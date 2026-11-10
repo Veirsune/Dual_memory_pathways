@@ -1,0 +1,117 @@
+[
+  {
+    "file": "evidence/ssc.csv",
+    "source": "block5-ssc/metrics.csv",
+    "sha256": "67297b572482e4a317e8cc419c73c00f33db229d89a11ccd009c87a0b7cc6c4d"
+  },
+  {
+    "file": "evidence/mnist.csv",
+    "source": "block6-mnist/metrics.csv",
+    "sha256": "b08d3a9f5a00f49859614a322532e1d07891ca54c9fabaac4ca720294317b565"
+  },
+  {
+    "file": "evidence/gesture.csv",
+    "source": "final-study/block3-summary.csv",
+    "sha256": "dd17759c16418c65a4a78a3828e33294b2a8f779279cf6d4a498457fe41adf42"
+  },
+  {
+    "file": "evidence/shd-capacity.csv",
+    "source": "shd-vector-memory/metrics.csv",
+    "sha256": "77dc4cb78082b436e25c5065fe8b822d8ddd8dad955d6fa8e3418678f6fee37f"
+  },
+  {
+    "file": "evidence/shd-supervision.csv",
+    "source": "shd-supervision-ablation/seed-metrics.csv",
+    "sha256": "374ef2f6941562f78cf52596520ff1a1671c7894383ccd8ffe29b146c66403f6"
+  },
+  {
+    "file": "evidence/mnist-statistics.json",
+    "source": "block6-mnist/paired-statistics.json",
+    "sha256": "a41a2100df23e9bb6358f46d4b15a94d1272bdf9851044864342c350b381fd57"
+  },
+  {
+    "file": "evidence/ssc-statistics.json",
+    "source": "block5-ssc/paired-statistics.json",
+    "sha256": "502a2016611e5723795a4918711797a9d4a4691038348c0170fbb2b1e7cb7d51"
+  },
+  {
+    "file": "evidence/hardware-cycles.csv",
+    "source": "block7-hardware/cycles.csv",
+    "sha256": "856d8b89205c8c3351cf206c772a2705f65dec94284e274e88b88a5ed8a0568d"
+  },
+  {
+    "file": "evidence/hardware-operations.csv",
+    "source": "final-study/hardware-summary.csv",
+    "sha256": "b71aa7b8ab90a6f31ecc1cc3cabf64dac70565d3bfccb03f583203dab9a719ed"
+  },
+  {
+    "file": "evidence/hardware-replay.json",
+    "source": "block7-hardware/results/trained-replay.json",
+    "sha256": "eb3565a6f23be66bf54a1aad232c80b5a4d2139937bfc2b9227af01fa29c6470"
+  },
+  {
+    "file": "evidence/shd-capacity-report.md",
+    "source": "shd-vector-memory/REPORT.md",
+    "sha256": "f2c31fd0624d698e7dd40af71415714679b0a3a2b5fa64f357b5b2b0899623ac"
+  },
+  {
+    "file": "evidence/shd-supervision-report.md",
+    "source": "shd-supervision-ablation/REPORT.md",
+    "sha256": "067bf554e0a763ea44624d9236015e6a03c9ba918ab223fd8528f728f4e5ce01"
+  },
+  {
+    "file": "evidence/shd-readout-report.md",
+    "source": "shd-final-readout/REPORT.md",
+    "sha256": "0b7090d7885c7e8a41b4e5b4e94ca1d8dd8422e9c974da674a8a3724433761a2"
+  },
+  {
+    "file": "evidence/shd-clean-report.md",
+    "source": "shd-accuracy/REPORT.md",
+    "sha256": "8cfec067ff42dfdec993500100a3cdee9e149436bdaf38006dd1d62926aae385"
+  },
+  {
+    "file": "evidence/ssc-report.md",
+    "source": "block5-ssc/REPORT.md",
+    "sha256": "1f184d6d101d4ef2bba97253035dacf950cd7dda35cc48575479e1b12c4f138c"
+  },
+  {
+    "file": "evidence/mnist-report.md",
+    "source": "block6-mnist/REPORT.md",
+    "sha256": "ab3f4a001ffc3c03efaec389ce81f8f2e48e83eeea4a0d61c1af7897b89b606c"
+  },
+  {
+    "file": "evidence/gesture-report.md",
+    "source": "final-study/BLOCK3_REPORT.md",
+    "sha256": "6bd4991c2b719e4893f4c293129e6ef1dea00761d5d3e3348ca507648da33514"
+  },
+  {
+    "file": "evidence/operations-report.md",
+    "source": "final-study/BLOCK4_REPORT.md",
+    "sha256": "810e989b8294d8ad2e07e512615aea718c6bf794865cc116780ab979948aca18"
+  },
+  {
+    "file": "evidence/rtl-report.md",
+    "source": "block7-hardware/REPORT.md",
+    "sha256": "8c391e2c82e3b6fa39935bc8de2748415e4e5470d8bff633684db4e9170760bf"
+  },
+  {
+    "file": "evidence/ssc-protocol.json",
+    "source": "block5-ssc/LOCKED_PROTOCOL.json",
+    "sha256": "2b18b0f8347f7e0228a531760f3654304a8bcc025803b7d766fb871eafc3d846"
+  },
+  {
+    "file": "evidence/mnist-protocol.json",
+    "source": "block6-mnist/LOCKED_PROTOCOL.json",
+    "sha256": "298add9d4f0d0ada133a06af54eac30a188c0ff6d063f04e21db63926eb933f3"
+  },
+  {
+    "file": "evidence/gesture-protocol.json",
+    "source": "final-study/LOCKED_PROTOCOL.json",
+    "sha256": "48f948faa39758375eac1a454f932414fcd0bc3e37550e4bc9f93c2af9649cac"
+  },
+  {
+    "file": "evidence/shd-protocol.json",
+    "source": "shd-supervision-ablation/protocol.json",
+    "sha256": "b613eb01d02ad9ce7a3156ad8b15b49484d583a55cb2100fdefa69678500edf8"
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-11-03T17:12:44.082934+00:00",
+  "dataset": "SSC official 75466/9981/20382",
+  "frames": 250,
+  "maximum_frames": 370,
+  "clean_epochs": 40,
+  "mixed_epochs": 12,
+  "seed": 801,
+  "batch": 512,
+  "training_gap_lengths": [
+    40,
+    80
+  ],
+  "evaluation_gap_lengths": [
+    40,
+    80,
+    120
+  ],
+  "no_new_gate_architecture": true,
+  "no_noise_position_supervision": true,
+  "no_TEST_selection": true,
+  "loss": "equal whole-utterance and last20-frame class CE for ALL three models; no auxiliary memory head loss",
+  "same_d_not_same_total_capacity": true,
+  "code_sha256": {
+    "commit_memory/vector_ops.py": "c9dc8348be66e7f43aca1a6dab15012e85e19e6a7935c5128862573d2d9f33bd",
+    "commit_memory/model.py": "6d47ffd3418f97f500d93878495da660a325c83b80522404e8a48833c3f6bda3",
+    "commit_memory/reference_model.py": "d30487de1c9129378f6f5e559fe03ba55f76e49bda80aa522e285601d9192911",
+    "commit_memory/base_model.py": "86f06f9e6f6734e4dcb0846bcb992f44223eb66525d7760a44d147b455a3bcd0",
+    "commit_memory/__init__.py": "e8e4a6cd9e5ac39dfa25b099f0b311f559100ee6caefc68151ee3d21bda70699",
+    "large_scale/models.py": "2e54e1984ed92b61368b919823b70ba32bec7f22c5bbb862d3dff055f1a4cbb5",
+    "large_scale/verify_gpu.py": "8277b649627222084a0685e52257e4eb07e7058323966d28e19be9d475101abf",
+    "large_scale/__init__.py": "4d62b1f4a25dca078236cfd11bedda6be2c549d2a7bc967aaea3180b4afb4c24",
+    "large_scale/ssc_study.py": "6ed00d596c0e1bf5b268f3e5459ed2b311bf3eaf8ad1bd75c7abaac1570520a6"
+  },
+  "prior_four_block_archive_sha256": "9ada141a33b51271dd753d250d3fe6580b95d5726aa976937523dc1a2abf249b"
+}

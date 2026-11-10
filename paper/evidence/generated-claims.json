@@ -1,0 +1,3218 @@
+[
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "clean",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 33.971151015602004,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      33.971151015602004
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "clean",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 48.71455205573545,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      48.71455205573545
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "clean",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 58.36031792758316,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      58.36031792758316
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 33.97605730546561,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      33.97605730546561
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 47.88538906878618,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      47.88538906878618
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 58.83132175448925,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      58.83132175448925
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 85.60606060606061,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.60606060606061
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 86.74242424242425,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.74242424242425
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 86.74242424242425,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.74242424242425
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "clean",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 45.70666666666667,
+    "sd": 2.101483602918028,
+    "n_training_seeds": 3,
+    "values": [
+      43.47,
+      47.64,
+      46.01
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "clean",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 97.27333333333335,
+    "sd": 0.9300179209742858,
+    "n_training_seeds": 3,
+    "values": [
+      97.78,
+      96.2,
+      97.84
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "clean",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 97.98666666666666,
+    "sd": 0.6000277771348039,
+    "n_training_seeds": 3,
+    "values": [
+      98.41,
+      97.3,
+      98.25
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 14.839999999999998,
+    "sd": 1.3704378862246924,
+    "n_training_seeds": 3,
+    "values": [
+      13.489999999999998,
+      16.23,
+      14.799999999999999
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 94.39333333333332,
+    "sd": 1.5623806621093836,
+    "n_training_seeds": 3,
+    "values": [
+      95.25,
+      92.58999999999999,
+      95.34
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 96.42333333333333,
+    "sd": 0.7484873635094509,
+    "n_training_seeds": 3,
+    "values": [
+      96.89,
+      95.56,
+      96.82
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "clean",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 38.12,
+    "sd": 1.26692541216916,
+    "n_training_seeds": 3,
+    "values": [
+      37.82,
+      37.03,
+      39.51
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "clean",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 92.15999999999998,
+    "sd": 0.8674675786448754,
+    "n_training_seeds": 3,
+    "values": [
+      93.11,
+      91.41,
+      91.96
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "clean",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 93.50666666666666,
+    "sd": 1.6700099800101003,
+    "n_training_seeds": 3,
+    "values": [
+      94.39999999999999,
+      91.58,
+      94.54
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 27.463333333333335,
+    "sd": 1.5871147826585617,
+    "n_training_seeds": 3,
+    "values": [
+      27.29,
+      29.13,
+      25.97
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 88.99666666666667,
+    "sd": 1.821684202416362,
+    "n_training_seeds": 3,
+    "values": [
+      90.27,
+      86.91,
+      89.81
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 89.63,
+    "sd": 2.793617726175152,
+    "n_training_seeds": 3,
+    "values": [
+      91.84,
+      86.49,
+      90.56
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 4.7443822981061725,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      4.7443822981061725
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 120,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 3.7189677166126978,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      3.7189677166126978
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 120,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 3.4098714552055736,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      3.4098714552055736
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 11.053871062702385,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      11.053871062702385
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 120,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 3.5227161220684913,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      3.5227161220684913
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 120,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 3.9103130212932977,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      3.9103130212932977
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 56.520459228731234,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      56.520459228731234
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 120,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 54.93082131292317,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      54.93082131292317
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 120,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 52.79167893239133,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      52.79167893239133
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 86.36363636363636,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.36363636363636
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 9.090909090909092,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      9.090909090909092
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 8.712121212121211,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      8.712121212121211
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 85.60606060606061,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.60606060606061
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 19.696969696969695,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      19.696969696969695
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 26.51515151515152,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      26.51515151515152
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 86.36363636363636,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.36363636363636
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 70.83333333333334,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      70.83333333333334
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 47.474747474747474,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      47.474747474747474
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.066666666666666,
+    "sd": 0.9497543542060405,
+    "n_training_seeds": 3,
+    "values": [
+      10.61,
+      8.97,
+      10.620000000000001
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.646666666666667,
+    "sd": 0.43247350593225126,
+    "n_training_seeds": 3,
+    "values": [
+      11.05,
+      10.190000000000001,
+      10.7
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 9.940000000000001,
+    "sd": 0.30512292604784735,
+    "n_training_seeds": 3,
+    "values": [
+      9.73,
+      10.290000000000001,
+      9.8
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 78.61333333333333,
+    "sd": 5.727532918572651,
+    "n_training_seeds": 3,
+    "values": [
+      81.97,
+      72.0,
+      81.87
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 8.693333333333333,
+    "sd": 5.356233129106064,
+    "n_training_seeds": 3,
+    "values": [
+      13.389999999999999,
+      9.83,
+      2.86
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.156666666666668,
+    "sd": 2.493698725454487,
+    "n_training_seeds": 3,
+    "values": [
+      9.51,
+      12.91,
+      8.05
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 88.01333333333334,
+    "sd": 7.107899361508531,
+    "n_training_seeds": 3,
+    "values": [
+      92.65,
+      79.83,
+      91.56
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 78.68,
+    "sd": 15.740238244702649,
+    "n_training_seeds": 3,
+    "values": [
+      88.73,
+      60.540000000000006,
+      86.77
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 32.026666666666664,
+    "sd": 15.513388841040932,
+    "n_training_seeds": 3,
+    "values": [
+      26.529999999999998,
+      20.01,
+      49.54
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 16.906666666666666,
+    "sd": 0.7003094554076316,
+    "n_training_seeds": 3,
+    "values": [
+      17.1,
+      16.13,
+      17.49
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 11.346666666666666,
+    "sd": 0.005773502691896135,
+    "n_training_seeds": 3,
+    "values": [
+      11.35,
+      11.35,
+      11.34
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.74,
+    "sd": 0.3764306044943744,
+    "n_training_seeds": 3,
+    "values": [
+      11.07,
+      10.82,
+      10.33
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 74.38666666666666,
+    "sd": 2.523139578646679,
+    "n_training_seeds": 3,
+    "values": [
+      76.44,
+      71.57,
+      75.14999999999999
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 14.123333333333335,
+    "sd": 0.46003623045726966,
+    "n_training_seeds": 3,
+    "values": [
+      14.580000000000002,
+      14.13,
+      13.66
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.896666666666667,
+    "sd": 1.301242995498279,
+    "n_training_seeds": 3,
+    "values": [
+      12.3,
+      10.66,
+      9.73
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 81.06,
+    "sd": 5.768509339508783,
+    "n_training_seeds": 3,
+    "values": [
+      84.93,
+      74.42999999999999,
+      83.82
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 56.43333333333334,
+    "sd": 17.279109737869405,
+    "n_training_seeds": 3,
+    "values": [
+      65.89,
+      36.49,
+      66.92
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 160,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 28.02333333333333,
+    "sd": 12.892076377889378,
+    "n_training_seeds": 3,
+    "values": [
+      36.86,
+      13.23,
+      33.98
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 33.774899421057796,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      33.774899421057796
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 38.62231380629967,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      38.62231380629967
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 53.974094789520166,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      53.974094789520166
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 33.35786478265136,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      33.35786478265136
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 37.03267589049161,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      37.03267589049161
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 53.04189971543519,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      53.04189971543519
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 120,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 33.088018840153076,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      33.088018840153076
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 120,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 36.659797860857616,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      36.659797860857616
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 120,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 51.78588951035227,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      51.78588951035227
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 33.568835246786385,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      33.568835246786385
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 43.469728191541556,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      43.469728191541556
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 53.66499852811304,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      53.66499852811304
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 33.26464527524286,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      33.26464527524286
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 42.670002943773916,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      42.670002943773916
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 52.394269453439314,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      52.394269453439314
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 120,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 32.788735158473166,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      32.788735158473166
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 120,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 42.05181042095967,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      42.05181042095967
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 120,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 50.93710136394858,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      50.93710136394858
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 20,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.98484848484848,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.98484848484848
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 20,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.60606060606061,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.60606060606061
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 20,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 86.36363636363636,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.36363636363636
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.60606060606061,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.60606060606061
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.22727272727273,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.22727272727273
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 88.25757575757575,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      88.25757575757575
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.22727272727273,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.22727272727273
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 83.71212121212122,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      83.71212121212122
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 86.36363636363636,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.36363636363636
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 20,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.47979797979798,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.47979797979798
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 20,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.98484848484848,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.98484848484848
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 20,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.73232323232324,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.73232323232324
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.60606060606061,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.60606060606061
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 86.74242424242424,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.74242424242424
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.98484848484848,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.98484848484848
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.73232323232322,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.73232323232322
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.35353535353535,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.35353535353535
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 86.36363636363636,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.36363636363636
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 15.176666666666668,
+    "sd": 1.6217377510970543,
+    "n_training_seeds": 3,
+    "values": [
+      13.600000000000001,
+      16.84,
+      15.09
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 88.45,
+    "sd": 1.802082129094014,
+    "n_training_seeds": 3,
+    "values": [
+      90.2,
+      88.55,
+      86.6
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 93.65666666666668,
+    "sd": 0.17785762095938445,
+    "n_training_seeds": 3,
+    "values": [
+      93.62,
+      93.85,
+      93.5
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 15.313333333333333,
+    "sd": 1.5966318715763315,
+    "n_training_seeds": 3,
+    "values": [
+      13.76,
+      16.950000000000003,
+      15.229999999999999
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 89.85000000000001,
+    "sd": 3.0056114186634337,
+    "n_training_seeds": 3,
+    "values": [
+      91.53,
+      86.38,
+      91.64
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 93.68333333333334,
+    "sd": 2.5923027086614168,
+    "n_training_seeds": 3,
+    "values": [
+      95.17999999999999,
+      90.69,
+      95.17999999999999
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 15.716666666666667,
+    "sd": 1.6750024875603426,
+    "n_training_seeds": 3,
+    "values": [
+      14.04,
+      17.39,
+      15.72
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 81.14666666666668,
+    "sd": 9.201599498637908,
+    "n_training_seeds": 3,
+    "values": [
+      87.77000000000001,
+      70.64,
+      85.03
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 78.97333333333334,
+    "sd": 11.120307249951917,
+    "n_training_seeds": 3,
+    "values": [
+      87.82,
+      66.49000000000001,
+      82.61
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 13.903333333333334,
+    "sd": 1.6727920771373035,
+    "n_training_seeds": 3,
+    "values": [
+      12.540000000000001,
+      15.770000000000001,
+      13.4
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 89.11666666666667,
+    "sd": 1.550043010155957,
+    "n_training_seeds": 3,
+    "values": [
+      90.36,
+      89.61,
+      87.38
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 93.67,
+    "sd": 0.11532562594670966,
+    "n_training_seeds": 3,
+    "values": [
+      93.67999999999999,
+      93.78,
+      93.55
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 13.076666666666668,
+    "sd": 1.6169518648782752,
+    "n_training_seeds": 3,
+    "values": [
+      11.73,
+      14.87,
+      12.629999999999999
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 91.56,
+    "sd": 1.4387842089764526,
+    "n_training_seeds": 3,
+    "values": [
+      92.72,
+      89.95,
+      92.01
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 95.02999999999999,
+    "sd": 0.6486139067272649,
+    "n_training_seeds": 3,
+    "values": [
+      95.5,
+      94.28999999999999,
+      95.3
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 11.506666666666666,
+    "sd": 1.7273196963310913,
+    "n_training_seeds": 3,
+    "values": [
+      10.45,
+      13.5,
+      10.57
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 88.46333333333332,
+    "sd": 2.1850019069404323,
+    "n_training_seeds": 3,
+    "values": [
+      90.33,
+      86.06,
+      89.0
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 92.39333333333333,
+    "sd": 0.4309679029038371,
+    "n_training_seeds": 3,
+    "values": [
+      92.88,
+      92.06,
+      92.24
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 28.153333333333336,
+    "sd": 1.0785793124908976,
+    "n_training_seeds": 3,
+    "values": [
+      28.92,
+      28.62,
+      26.919999999999998
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.43666666666667,
+    "sd": 1.9343560513342266,
+    "n_training_seeds": 3,
+    "values": [
+      86.99,
+      83.27,
+      86.05000000000001
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.93333333333332,
+    "sd": 2.840604395781527,
+    "n_training_seeds": 3,
+    "values": [
+      88.11,
+      82.72,
+      86.97
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 27.580000000000002,
+    "sd": 1.0256217626396185,
+    "n_training_seeds": 3,
+    "values": [
+      28.73,
+      27.250000000000004,
+      26.76
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.66333333333334,
+    "sd": 2.2727589694759436,
+    "n_training_seeds": 3,
+    "values": [
+      87.64,
+      83.17999999999999,
+      86.17
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 84.84333333333332,
+    "sd": 5.06385557982584,
+    "n_training_seeds": 3,
+    "values": [
+      87.58,
+      79.0,
+      87.94999999999999
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 25.08666666666667,
+    "sd": 1.080108019289429,
+    "n_training_seeds": 3,
+    "values": [
+      26.3,
+      24.73,
+      24.23
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 81.65,
+    "sd": 4.565829606982723,
+    "n_training_seeds": 3,
+    "values": [
+      84.59,
+      76.39,
+      83.97
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "silence",
+    "middle": true,
+    "mult": 1,
+    "mean": 79.23,
+    "sd": 11.175491040665731,
+    "n_training_seeds": 3,
+    "values": [
+      85.39,
+      66.33,
+      85.97
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 27.58,
+    "sd": 1.339104178172856,
+    "n_training_seeds": 3,
+    "values": [
+      27.76,
+      28.82,
+      26.16
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.23666666666666,
+    "sd": 1.5650026624045488,
+    "n_training_seeds": 3,
+    "values": [
+      86.8,
+      83.67,
+      85.24000000000001
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 40,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 85.70666666666666,
+    "sd": 2.0656798719388605,
+    "n_training_seeds": 3,
+    "values": [
+      87.07000000000001,
+      83.33,
+      86.72
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 27.650000000000002,
+    "sd": 1.4353048456686834,
+    "n_training_seeds": 3,
+    "values": [
+      28.34,
+      28.610000000000003,
+      26.0
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 84.80333333333334,
+    "sd": 1.7238716116153574,
+    "n_training_seeds": 3,
+    "values": [
+      86.59,
+      83.15,
+      84.67
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 80,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 84.92333333333333,
+    "sd": 2.7368838728256857,
+    "n_training_seeds": 3,
+    "values": [
+      86.00999999999999,
+      81.81,
+      86.95
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 27.436666666666667,
+    "sd": 1.344408172146144,
+    "n_training_seeds": 3,
+    "values": [
+      28.68,
+      27.62,
+      26.009999999999998
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 81.86999999999999,
+    "sd": 4.391081871247678,
+    "n_training_seeds": 3,
+    "values": [
+      84.87,
+      76.83,
+      83.91
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "mean",
+    "L": 160,
+    "kind": "poisson",
+    "middle": true,
+    "mult": 1,
+    "mean": 82.55,
+    "sd": 4.559287224994713,
+    "n_training_seeds": 3,
+    "values": [
+      84.5,
+      77.34,
+      85.81
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 3.7189677166126978,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      3.7189677166126978
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 3.7189677166126978,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      3.7189677166126978
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 5.799234618781278,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      5.799234618781278
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 4.1850652536551864,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      4.1850652536551864
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 55.156510646649004,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      55.156510646649004
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 54.86213325483269,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      54.86213325483269
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 4.7443822981061725,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      4.7443822981061725
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 3.723874006476303,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      3.723874006476303
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 3.4196840349327835,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      3.4196840349327835
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 11.053871062702385,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      11.053871062702385
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 4.543224413698361,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      4.543224413698361
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 3.566872730840938,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      3.566872730840938
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 56.520459228731234,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      56.520459228731234
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 53.11549406338927,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      53.11549406338927
+    ]
+  },
+  {
+    "task": "SSC",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 52.978117947208325,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      52.978117947208325
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 20,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 58.71212121212122,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      58.71212121212122
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 9.090909090909092,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      9.090909090909092
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 20,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 46.96969696969697,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      46.96969696969697
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 22.348484848484848,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      22.348484848484848
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 20,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 73.10606060606061,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      73.10606060606061
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 70.45454545454545,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      70.45454545454545
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 86.36363636363636,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.36363636363636
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 20,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 39.520202020202014,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      39.520202020202014
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 9.46969696969697,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      9.46969696969697
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 85.60606060606061,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      85.60606060606061
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 20,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 54.67171717171717,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      54.67171717171717
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 33.33333333333333,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      33.33333333333333
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 86.36363636363636,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      86.36363636363636
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 20,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 73.61111111111111,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      73.61111111111111
+    ]
+  },
+  {
+    "task": "DVS Gesture",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 41.54040404040404,
+    "sd": 0,
+    "n_training_seeds": 1,
+    "values": [
+      41.54040404040404
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.993333333333334,
+    "sd": 0.16258331197676218,
+    "n_training_seeds": 3,
+    "values": [
+      11.05,
+      11.12,
+      10.81
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 11.079999999999998,
+    "sd": 0.2685144316419507,
+    "n_training_seeds": 3,
+    "values": [
+      11.37,
+      11.03,
+      10.84
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 66.1,
+    "sd": 12.421123137623264,
+    "n_training_seeds": 3,
+    "values": [
+      73.50999999999999,
+      51.76,
+      73.03
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 45.580000000000005,
+    "sd": 15.355002442201043,
+    "n_training_seeds": 3,
+    "values": [
+      56.54,
+      28.03,
+      52.17
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 85.64666666666666,
+    "sd": 9.56317067364864,
+    "n_training_seeds": 3,
+    "values": [
+      91.81,
+      74.63,
+      90.5
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 84.25666666666666,
+    "sd": 10.48052638627151,
+    "n_training_seeds": 3,
+    "values": [
+      91.19,
+      72.2,
+      89.38000000000001
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.066666666666666,
+    "sd": 0.9497543542060405,
+    "n_training_seeds": 3,
+    "values": [
+      10.61,
+      8.97,
+      10.620000000000001
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 9.94,
+    "sd": 0.30116440692751095,
+    "n_training_seeds": 3,
+    "values": [
+      9.610000000000001,
+      10.2,
+      10.01
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.263333333333334,
+    "sd": 0.32316146634977017,
+    "n_training_seeds": 3,
+    "values": [
+      10.02,
+      10.63,
+      10.14
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 78.61333333333333,
+    "sd": 5.727532918572651,
+    "n_training_seeds": 3,
+    "values": [
+      81.97,
+      72.0,
+      81.87
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 57.28333333333333,
+    "sd": 18.304800827469645,
+    "n_training_seeds": 3,
+    "values": [
+      68.17,
+      36.15,
+      67.53
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 40.52666666666667,
+    "sd": 18.57349006873327,
+    "n_training_seeds": 3,
+    "values": [
+      51.32,
+      19.08,
+      51.18000000000001
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 88.01333333333334,
+    "sd": 7.107899361508531,
+    "n_training_seeds": 3,
+    "values": [
+      92.65,
+      79.83,
+      91.56
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 68.52666666666666,
+    "sd": 20.83344506636704,
+    "n_training_seeds": 3,
+    "values": [
+      78.61,
+      44.57,
+      82.39999999999999
+    ]
+  },
+  {
+    "task": "S-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 58.873333333333335,
+    "sd": 25.058037300102605,
+    "n_training_seeds": 3,
+    "values": [
+      68.87,
+      30.36,
+      77.39
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 11.346666666666666,
+    "sd": 0.005773502691896135,
+    "n_training_seeds": 3,
+    "values": [
+      11.35,
+      11.35,
+      11.34
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 11.35,
+    "sd": 0.0,
+    "n_training_seeds": 3,
+    "values": [
+      11.35,
+      11.35,
+      11.35
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 31.483333333333334,
+    "sd": 14.715876913501733,
+    "n_training_seeds": 3,
+    "values": [
+      38.43,
+      14.580000000000002,
+      41.44
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 32.89666666666667,
+    "sd": 11.448809253950095,
+    "n_training_seeds": 3,
+    "values": [
+      39.25,
+      19.68,
+      39.76
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 68.19,
+    "sd": 14.131733793133806,
+    "n_training_seeds": 3,
+    "values": [
+      77.77,
+      51.959999999999994,
+      74.83999999999999
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "silence",
+    "middle": false,
+    "mult": 1,
+    "mean": 64.55666666666667,
+    "sd": 17.51912193385654,
+    "n_training_seeds": 3,
+    "values": [
+      76.3,
+      44.42,
+      72.95
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 16.906666666666666,
+    "sd": 0.7003094554076316,
+    "n_training_seeds": 3,
+    "values": [
+      17.1,
+      16.13,
+      17.49
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.703333333333333,
+    "sd": 0.3484728588187805,
+    "n_training_seeds": 3,
+    "values": [
+      11.020000000000001,
+      10.76,
+      10.33
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "fsnn",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 10.743333333333334,
+    "sd": 0.4350095784386057,
+    "n_training_seeds": 3,
+    "values": [
+      11.24,
+      10.56,
+      10.43
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 74.38666666666666,
+    "sd": 2.523139578646679,
+    "n_training_seeds": 3,
+    "values": [
+      76.44,
+      71.57,
+      75.14999999999999
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 27.72,
+    "sd": 14.76256414041951,
+    "n_training_seeds": 3,
+    "values": [
+      33.85,
+      10.879999999999999,
+      38.43
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "dmp",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 26.333333333333332,
+    "sd": 9.798047424529713,
+    "n_training_seeds": 3,
+    "values": [
+      32.08,
+      15.02,
+      31.900000000000002
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 0,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 81.06,
+    "sd": 5.768509339508783,
+    "n_training_seeds": 3,
+    "values": [
+      84.93,
+      74.42999999999999,
+      83.82
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 40,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 55.97666666666667,
+    "sd": 21.8285348416547,
+    "n_training_seeds": 3,
+    "values": [
+      69.77,
+      30.81,
+      67.35
+    ]
+  },
+  {
+    "task": "PS-MNIST",
+    "family": "commit",
+    "phase": "mixed",
+    "metric": "last20",
+    "L": 80,
+    "kind": "poisson",
+    "middle": false,
+    "mult": 1,
+    "mean": 45.96333333333333,
+    "sd": 20.094253739149742,
+    "n_training_seeds": 3,
+    "values": [
+      59.46,
+      22.869999999999997,
+      55.559999999999995
+    ]
+  }
+]

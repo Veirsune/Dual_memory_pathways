@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "steps": 944,
+  "checked_values": 117056,
+  "cycles": 185528,
+  "stable_read_skipped_steps": 818,
+  "reset_replay_passed": true,
+  "full_classifier": false,
+  "source_checkpoint_sha256": "180e868124f08683d5ae1c8d72a1258d780af2d7aae75bfcb6def3d9ee9645b5",
+  "rtl_sha256": "616c63264f28825379b36a4bc467fa1872205ae20a594a23cb8da76ee52524d8",
+  "fixture_sha256": "c7cdb9659a7ca0f833db9d314f8ce3c2052f7a9902e93ebd3b27b50d88acb9a5",
+  "backend": "native Verilator 5.006"
+}

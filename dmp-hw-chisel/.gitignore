@@ -1,0 +1,10 @@
+# Local build/simulation products; deliverable RTL and traces are archived separately.
+target/
+project/target/
+project/project/
+test_run_dir/
+generated-commit/
+generated-commit-trained/
+generated-dmp-matched/
+functional-results/
+**/__pycache__/

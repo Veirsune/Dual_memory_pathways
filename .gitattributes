@@ -1,0 +1,2 @@
+# Preserve evidence snapshot bytes and their recorded checksums.
+paper/evidence/** -text -whitespace

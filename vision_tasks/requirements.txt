@@ -1,0 +1,6 @@
+# Install a device-appropriate torch 2.0.0 and torchvision 0.15.1 first (Python 3.10).
+numpy==1.23.0
+scipy==1.9.1
+matplotlib==3.8.4
+spikingjelly==0.0.0.0.14
+requests>=2.31,<3

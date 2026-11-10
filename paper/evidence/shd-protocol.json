@@ -1,0 +1,69 @@
+{
+  "created_utc": "2026-10-26T17:05:27.522960+00:00",
+  "study": "Supervision-source ablation of vector-driven commit memory",
+  "capacities": [
+    10,
+    30
+  ],
+  "seeds": [
+    501,
+    502,
+    503
+  ],
+  "modes": [
+    "task_only",
+    "zero_rule",
+    "joint_supervised"
+  ],
+  "epochs": 30,
+  "new_training_runs": 18,
+  "historical_references": 6,
+  "all_checkpoints_evaluated_no_winner_selection": true,
+  "arms": {
+    "task_only": "Same digit classification+auxiliary digit loss only; no permission calibration, no mask-derived gate BCE or survival penalty, no raw-zero closure rule",
+    "zero_rule": "task_only plus raw all-zero input forces permission0 in both layers",
+    "joint_supervised": "zero_rule plus mask-derived opening BCE and cumulative survival penalty; no separate calibration so initial weights/steps match other new arms"
+  },
+  "common_initialization": "Matched classification-only content source per d/seed; freshly reset permit MLP with seed+23117, output weights0,bias+2, hence initial permission1. No supervised detector weights retained. Original local per-coordinate gate and threshold.02 retained in all arms.",
+  "historical_reference": "Previous calibrated+joint-supervised recipe,6 frozen original checkpoints,re-evaluated; not a one-factor calibration comparison because detector initialization/calibration also differ.",
+  "supervision_scope": "All arms receive same digit labels and known query times including retained/new-word labels. task_only means no noise-position supervision of the gate, NOT absence of temporal task supervision or architectural priors.",
+  "optimization": {
+    "lr": 0.001,
+    "epochs": 30,
+    "batch": 128,
+    "weight_decay": 0.05,
+    "cosine_lr_floor": 5e-05,
+    "grad_clip": 1.0,
+    "aux_weight": 1.0,
+    "gate_bce_weight_supervised": 1.0,
+    "survival_weight_supervised": 1.0
+  },
+  "data": "TRAIN6245 excluding speakers0/2; existing640 balanced heldout validation. Remaining heldout TRAIN examples are additional confirmation, same speakers, disjoint examples; not claimed never inspected in entire project.",
+  "augmentation": "Paired RNG exactly follows previous robust training: frequency shift+-12,25%single/37.5%middle/37.5%pair,L20/40/80,silence or Poisson.25. Query losses unchanged.",
+  "inference": "Only input frames and causal state; no labels,masks,boundaries or taskIDs",
+  "validation": "Original14conditions <=80 andnoise<=.25; final checkpoints only, no epoch/model selection",
+  "final_evaluation": "After all18fits freeze: all24models on all2264officialTEST anchors,23oldconditions+4newnoise probes. Also10conditions on remaining heldout TRAIN examples. Official test historically reused; not a pristine new test set.",
+  "novel_noise_probes": [
+    "pair-poisson-low-L80 rate.05",
+    "pair-poisson-high-L80 rate.5",
+    "pair-band-L80 28contiguouschannels at1.25,mean.25",
+    "pair-rate-matched-L80 uniformPoisson rate equal to anchor clean-word mean"
+  ],
+  "confirmation_conditions": [
+    "clean",
+    "pair-silence-L80",
+    "pair-poisson-L80",
+    "pair-silence-L160",
+    "pair-poisson-L160",
+    "pair-clean-L0",
+    "pair-poisson-low-L80",
+    "pair-poisson-high-L80",
+    "pair-band-L80",
+    "pair-rate-matched-L80"
+  ],
+  "diagnostic": "Seed501 bothd all3newarms: force permission open at every frame, retain zero rule if configured; compare clean/pairnoiseL80/pairsilenceL80. Intervention also changes content encoding, not a gap-only effect. Known boundaries never fed to model.",
+  "criteria": "Report paired differences in SNN retention, auxiliary retention, clean/newword accuracy, old-label persistence at20, gate means/zero rates and strict survival. Only call task-supervised closure learned if task_only closes during gaps more than voice and maintains useful class content; forced-open intervention is supporting evidence, not unique causal proof.",
+  "compute": "4CPU quota,32GB RAM,noGPU,max2workers2threads",
+  "read_gate_changes_this_stage": false,
+  "prior_studies_untouched": true
+}

@@ -1,0 +1,896 @@
+{
+  "lstm": {
+    "DOI": "10.1162/neco.1997.9.8.1735",
+    "title": [
+      "Long Short-Term Memory"
+    ],
+    "author": [
+      {
+        "given": "Sepp",
+        "family": "Hochreiter",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Fakult\u00e4t f\u00fcr Informatik, Technische Universit\u00e4t M\u00fcnchen, 80290 M\u00fcnchen, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "J\u00fcrgen",
+        "family": "Schmidhuber",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "IDSIA, Corso Elvezia 36, 6900 Lugano, Switzerland"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Neural Computation"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1997,
+          11,
+          1
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          1997,
+          11,
+          1
+        ]
+      ]
+    },
+    "published-online": null,
+    "volume": "9",
+    "issue": "8",
+    "page": "1735-1780",
+    "URL": "https://doi.org/10.1162/neco.1997.9.8.1735"
+  },
+  "shd": {
+    "DOI": "10.1109/tnnls.2020.3044364",
+    "title": [
+      "The Heidelberg Spiking Data Sets for the Systematic Evaluation of Spiking Neural Networks"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-7948-4391",
+        "authenticated-orcid": false,
+        "given": "Benjamin",
+        "family": "Cramer",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Kirchhoff-Institute for Physics, Heidelberg, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-9603-6777",
+        "authenticated-orcid": false,
+        "given": "Yannik",
+        "family": "Stradmann",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Kirchhoff-Institute for Physics, Heidelberg, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1440-4375",
+        "authenticated-orcid": false,
+        "given": "Johannes",
+        "family": "Schemmel",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Kirchhoff-Institute for Physics, Heidelberg, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1883-644X",
+        "authenticated-orcid": false,
+        "given": "Friedemann",
+        "family": "Zenke",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Friedrich Miescher Institute for Biomedical Research, Basel, Switzerland"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "IEEE Transactions on Neural Networks and Learning Systems"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          7
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2022,
+          7
+        ]
+      ]
+    },
+    "published-online": null,
+    "volume": "33",
+    "issue": "7",
+    "page": "2744-2757",
+    "URL": "https://doi.org/10.1109/tnnls.2020.3044364"
+  },
+  "mnist": {
+    "DOI": "10.1109/5.726791",
+    "title": [
+      "Gradient-based learning applied to document recognition"
+    ],
+    "author": [
+      {
+        "given": "Y.",
+        "family": "Lecun",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "L.",
+        "family": "Bottou",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Y.",
+        "family": "Bengio",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "P.",
+        "family": "Haffner",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Proceedings of the IEEE"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          1998
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          1998
+        ]
+      ]
+    },
+    "published-online": null,
+    "volume": "86",
+    "issue": "11",
+    "page": "2278-2324",
+    "URL": "https://doi.org/10.1109/5.726791"
+  },
+  "gesture": {
+    "DOI": "10.1109/cvpr.2017.781",
+    "title": [
+      "A Low Power, Fully Event-Based Gesture Recognition System"
+    ],
+    "author": [
+      {
+        "given": "Arnon",
+        "family": "Amir",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Brian",
+        "family": "Taba",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "David",
+        "family": "Berg",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Timothy",
+        "family": "Melano",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jeffrey",
+        "family": "McKinstry",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Carmelo",
+        "family": "Di Nolfo",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Tapan",
+        "family": "Nayak",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Alexander",
+        "family": "Andreopoulos",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Guillaume",
+        "family": "Garreau",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Marcela",
+        "family": "Mendoza",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jeff",
+        "family": "Kusnitz",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Michael",
+        "family": "Debole",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Steve",
+        "family": "Esser",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Tobi",
+        "family": "Delbruck",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Myron",
+        "family": "Flickner",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Dharmendra",
+        "family": "Modha",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2017,
+          7
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2017,
+          7
+        ]
+      ]
+    },
+    "published-online": null,
+    "volume": null,
+    "issue": null,
+    "page": "7388-7397",
+    "URL": "https://doi.org/10.1109/cvpr.2017.781"
+  },
+  "surrogate": {
+    "DOI": "10.1109/msp.2019.2931595",
+    "title": [
+      "Surrogate Gradient Learning in Spiking Neural Networks: Bringing the Power of Gradient-Based Optimization to Spiking Neural Networks"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-0332-3273",
+        "authenticated-orcid": false,
+        "given": "Emre O.",
+        "family": "Neftci",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1737-0182",
+        "authenticated-orcid": false,
+        "given": "Hesham",
+        "family": "Mostafa",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Friedemann",
+        "family": "Zenke",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "IEEE Signal Processing Magazine"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2019,
+          11
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2019,
+          11
+        ]
+      ]
+    },
+    "published-online": null,
+    "volume": "36",
+    "issue": "6",
+    "page": "51-63",
+    "URL": "https://doi.org/10.1109/msp.2019.2931595"
+  },
+  "spikingjelly": {
+    "DOI": "10.1126/sciadv.adi1480",
+    "title": [
+      "SpikingJelly: An open-source machine learning infrastructure platform for spike-based intelligence"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0009-4409-0312",
+        "authenticated-orcid": true,
+        "given": "Wei",
+        "family": "Fang",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "School of Computer Science, Peking University, China."
+          },
+          {
+            "name": "Peng Cheng Laboratory, China."
+          },
+          {
+            "name": "School of Electronic and Computer Engineering, Shenzhen Graduate School, Peking University, China."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7658-9259",
+        "authenticated-orcid": true,
+        "given": "Yanqi",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Computer Science, Peking University, China."
+          },
+          {
+            "name": "Peng Cheng Laboratory, China."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5171-1898",
+        "authenticated-orcid": true,
+        "given": "Jianhao",
+        "family": "Ding",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Computer Science, Peking University, China."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6913-7553",
+        "authenticated-orcid": true,
+        "given": "Zhaofei",
+        "family": "Yu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Institute for Artificial Intelligence, Peking University, China."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8629-9506",
+        "authenticated-orcid": true,
+        "given": "Timoth\u00e9e",
+        "family": "Masquelier",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Centre de Recherche Cerveau et Cognition (CERCO), UMR5549 CNRS\u2013Universit\u00e9 Toulouse 3, France."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0009-0002-7583-4619",
+        "authenticated-orcid": true,
+        "given": "Ding",
+        "family": "Chen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Peng Cheng Laboratory, China."
+          },
+          {
+            "name": "Department of Computer Science and Engineering, Shanghai Jiao Tong University, China."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Liwei",
+        "family": "Huang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Computer Science, Peking University, China."
+          },
+          {
+            "name": "Peng Cheng Laboratory, China."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-0747-1943",
+        "authenticated-orcid": true,
+        "given": "Huihui",
+        "family": "Zhou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Peng Cheng Laboratory, China."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8994-431X",
+        "authenticated-orcid": true,
+        "given": "Guoqi",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Institute of Automation, Chinese Academy of Sciences, China."
+          },
+          {
+            "name": "School of Artificial Intelligence, University of Chinese Academy of Sciences, China."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-2978-5935",
+        "authenticated-orcid": true,
+        "given": "Yonghong",
+        "family": "Tian",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Computer Science, Peking University, China."
+          },
+          {
+            "name": "Peng Cheng Laboratory, China."
+          },
+          {
+            "name": "School of Electronic and Computer Engineering, Shenzhen Graduate School, Peking University, China."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Science Advances"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          6
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          6
+        ]
+      ]
+    },
+    "published-online": null,
+    "volume": "9",
+    "issue": "40",
+    "page": null,
+    "URL": "https://doi.org/10.1126/sciadv.adi1480"
+  },
+  "gru": {
+    "DOI": "10.3115/v1/d14-1179",
+    "title": [
+      "Learning Phrase Representations using RNN Encoder\u2013Decoder for Statistical Machine Translation"
+    ],
+    "author": [
+      {
+        "given": "Kyunghyun",
+        "family": "Cho",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Bart",
+        "family": "van Merrienboer",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Caglar",
+        "family": "Gulcehre",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Dzmitry",
+        "family": "Bahdanau",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Fethi",
+        "family": "Bougares",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Holger",
+        "family": "Schwenk",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Yoshua",
+        "family": "Bengio",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "container-title": [
+      "Proceedings of the 2014 Conference on Empirical Methods in Natural Language Processing (EMNLP)"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "published-online": null,
+    "volume": null,
+    "issue": null,
+    "page": "1724-1734",
+    "URL": "https://doi.org/10.3115/v1/d14-1179"
+  }
+}

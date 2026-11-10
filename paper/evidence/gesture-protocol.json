@@ -1,0 +1,20 @@
+{
+  "locked_utc": "2026-11-03T16:11:05.137529+00:00",
+  "scope": "Blocks1/2 sealed; only three gesture fine-tunes, then hardware analysis",
+  "epochs": 20,
+  "seed": 701,
+  "lr": 0.0001,
+  "loss": "equal CE(mean),CE(last20) for all models",
+  "training": "901 TRAIN; uniform clean/silence/Poisson1x; L20/40/80, mid/tail; identical plans/noise",
+  "selection": "epoch20 fixed, no TEST selection",
+  "test": "264 official TEST clips, 43 identical conditions; zero-shot and fine-tuned",
+  "inference_noise_seeds": [
+    1101,
+    2202,
+    3303
+  ],
+  "code_sha256": {
+    "final_study.py": "6b92b91d865842c0edb5ec57fbc594a253bcd34e90e78b068b8db79982528e47",
+    "corruption_eval.py": "e88dfc056b10ffdbdc9013264e46056c61c2a6679a756f69bc8285b2dc7733e4"
+  }
+}

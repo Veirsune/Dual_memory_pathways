@@ -1,0 +1,18 @@
+[
+  {
+    "condition": "clean",
+    "dmp_macs": 63211996.121212125,
+    "commit_dense_macs": 67195629.96969697,
+    "commit_cached_macs": 67195629.96969697,
+    "cached_overhead_percent": 6.302021915027067,
+    "cache_saving_percent": 0.0
+  },
+  {
+    "condition": "p100_silence0_L80",
+    "dmp_macs": 64159196.121212125,
+    "commit_dense_macs": 69274349.96969697,
+    "commit_cached_macs": 68455149.96969697,
+    "cached_overhead_percent": 6.695772559819413,
+    "cache_saving_percent": 1.1825444776578153
+  }
+]

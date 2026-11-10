@@ -1,0 +1,126 @@
+{
+  "tasks": [
+    "smnist",
+    "psmnist"
+  ],
+  "families": [
+    "fsnn",
+    "dmp",
+    "commit"
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "clean_epochs": 50,
+  "mixed_epochs": 12,
+  "batch": 512,
+  "d": 40,
+  "theta": 300,
+  "hidden": 200,
+  "steps": 784,
+  "held_out_length": 160,
+  "training_lengths": [
+    40,
+    80
+  ],
+  "initialization": "paired default Linear",
+  "selection": "fixed final epoch; all18 models freeze before official TEST; no noise-position supervision",
+  "code_sha256": {
+    "mnist_study/models.py": "04a9bf9f2ac91a068667ad338fcc936b77f03bbf823ae0e8f810fa713a9f9f0a",
+    "mnist_study/verify.py": "851312f030af7ff1c3ccc4facfbea9ddc1b298a65fcdf0a3df66469f83027d20",
+    "mnist_study/run.py": "5180ff3d32c1c00e5146ba300c2fbd47acc7dc46a497fcaaaabf32654d40ec81",
+    "mnist_study/__init__.py": "2941d21a8c37c8585c02b3d9d033adf2805a15d85f8929dfe573b3a7e936510e",
+    "commit_memory/vector_ops.py": "c9dc8348be66e7f43aca1a6dab15012e85e19e6a7935c5128862573d2d9f33bd",
+    "commit_memory/model.py": "6d47ffd3418f97f500d93878495da660a325c83b80522404e8a48833c3f6bda3",
+    "commit_memory/reference_model.py": "d30487de1c9129378f6f5e559fe03ba55f76e49bda80aa522e285601d9192911",
+    "commit_memory/base_model.py": "86f06f9e6f6734e4dcb0846bcb992f44223eb66525d7760a44d147b455a3bcd0",
+    "commit_memory/__init__.py": "e8e4a6cd9e5ac39dfa25b099f0b311f559100ee6caefc68151ee3d21bda70699",
+    "vision_tasks/corruption_eval.py": "e88dfc056b10ffdbdc9013264e46056c61c2a6679a756f69bc8285b2dc7733e4",
+    "vision_tasks/models.py": "e3322b99b2e8e8d88f68f7b039f307e9ad549171aa5293277ecb7dcc638b9d9b",
+    "vision_tasks/prepare_gesture.py": "e9d198d45c68b74b5cd8feb75fa5974ec8829530871251bb6571a633ff27687d",
+    "vision_tasks/final_study.py": "6b92b91d865842c0edb5ec57fbc594a253bcd34e90e78b068b8db79982528e47",
+    "vision_tasks/cpu_lif.py": "5270923910fe54346aa00ed3151ae880f6c1c6473d3f32dd9f85158280ee1c24",
+    "vision_tasks/download_gesture.py": "f7567185665c31c70aab1d9336d20b15986181f6cc2afed7c5c00f2dd20aeea8",
+    "vision_tasks/hardware_audit.py": "3a37a440b780fbbeb6cbe410a25915909393bb78bbd9f36ad986a13d54a000dd",
+    "vision_tasks/run.py": "5da5550bbe76b9678747686a4eab0a36ff4c589cac717179a949851a2351d488",
+    "vision_tasks/commit_cell.py": "e53ee999a2992d8bbbc88ee04f7ded8b41b7ab4849f69bb3811bdf24737d2a18",
+    "vision_tasks/__init__.py": "ecb4af1c26f9235ab646c50a07847e0e5f00c45c1d071d47a15bf0bd74b0374e",
+    "vision_tasks/predict.py": "5e40d0afaf050044cfdc2e47c3aa7d51162871794be6b9fa045f45f43297a3a3",
+    "smnist/src/dual_pathway.py": "83e8dd038d62c9c780ac9edb531b18c736571b4c89a129584e0a5b9da1efd9ee"
+  },
+  "prior_archive_sha256": {
+    "/workspace/experiments/final-study/final-research-deliverable.tar.gz": "9ada141a33b51271dd753d250d3fe6580b95d5726aa976937523dc1a2abf249b",
+    "/workspace/experiments/block5-ssc/block5-ssc-deliverable.tar.gz": "76b3b24796ac23cabaab09e51c7dc1a35a62dd4f98ad4f89ea4d4d000be9179d"
+  },
+  "data": {
+    "train_x": {
+      "shape": [
+        54000,
+        784
+      ],
+      "dtype": "uint8",
+      "sha256": "cfd977843b956fa6be8102e45b94592ea5f6b827397fc28428f6937971549373"
+    },
+    "train_y": {
+      "shape": [
+        54000
+      ],
+      "dtype": "int64",
+      "sha256": "94e4a358002d3f9536fca79bdaf9968d34117cbead1b64e3db98465df54c3b18"
+    },
+    "valid_x": {
+      "shape": [
+        6000,
+        784
+      ],
+      "dtype": "uint8",
+      "sha256": "f73708a6c3a537643b2a12dc27ced59b2e52ca8e1ada9d824173431c14fc2dae"
+    },
+    "valid_y": {
+      "shape": [
+        6000
+      ],
+      "dtype": "int64",
+      "sha256": "8c68ab395f0f981d48f4c72a1c9d336742159c522f96cc3fdb2037b95c2ad1ba"
+    },
+    "test_x": {
+      "shape": [
+        10000,
+        784
+      ],
+      "dtype": "uint8",
+      "sha256": "6d87418db22cc8025d05968bec9bd5c3932904b23485740db143a061a2c9d161"
+    },
+    "test_y": {
+      "shape": [
+        10000
+      ],
+      "dtype": "int64",
+      "sha256": "2fd8de6bdb8d11780b4b96dc57847bcfe6953f7c32aa48bfcd8237c3b7847243"
+    },
+    "train_indices": {
+      "shape": [
+        54000
+      ],
+      "dtype": "int64",
+      "sha256": "d37bf04995d47313da804e872bdd028cdbba27cb342ca0db4f80561c47664788"
+    },
+    "valid_indices": {
+      "shape": [
+        6000
+      ],
+      "dtype": "int64",
+      "sha256": "dcb0005b0f6a389bda4873d0ff81df41b3154ab4e79d959f762779e1ba9fb104"
+    },
+    "permutation": {
+      "shape": [
+        784
+      ],
+      "dtype": "int64",
+      "sha256": "f9a8cd5f9693aa379e8f6adc1007ac82dc0a800f25a30b80c6879fa35cf540ea"
+    },
+    "archive_sha256": "297ae20055ea8ecccaae559ace2138923069518c0327ad1c832f0c323fd65b14"
+  }
+}

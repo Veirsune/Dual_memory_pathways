@@ -58,7 +58,7 @@ LSTM and GRU established selective retention and updating in recurrent networks~
 \section{Gated dual-state memory}
 \label{sec:method}
 \subsection{Candidate--stable shared memory}
-We use $s_t\in\R^M$ for the current layer input and $r_t$ for the raw sensor frame. A hidden layer contains $N$ LIF neurons and shares a memory of dimension $d\ll N$. The fast neuronal state accumulates recent input but changes through leakage and reset. DMP adds a slow shared state $h_t\in\R^d$:
+We use $s_t\in\R^M$ for the current layer input and $s_t^{(0)}$ for the raw sensor frame. A hidden layer contains $N$ LIF neurons and shares a memory of dimension $d\ll N$. The fast neuronal state accumulates recent input but changes through leakage and reset. DMP adds a slow shared state $h_t\in\R^d$:
 \begin{equation}
 \begin{aligned}
  x_t&=\relu(w_u^\top s_t+b_x),\\
@@ -74,7 +74,7 @@ GDSM separates integration from storage:
 \begin{equation}
 \begin{aligned}
  u_t&=\relu(W_u s_t+b_u),\\
- p_t&=\bar A p_{t-1}+D u_t ,
+ p_t&=\bar A p_{t-1}+\bar b\odot u_t ,
 \end{aligned}
 \label{eq:candidate}
 \end{equation}
@@ -87,7 +87,7 @@ GDSM separates integration from storage:
  I_t=W_f s_t+W_p p_t+W_m m_t+b .
 \label{eq:read}
 \end{equation}
-The drive $u_t$, candidate $p_t$ and stable state $m_t$ are all $d$-dimensional. The learned matrix $W_u\in\R^{d\times M}$ lets different drive coordinates extract different channel combinations; $D$ is a fixed diagonal input scaling. Thus vector drive increases the information that can enter the shared state without introducing a separate memory for every neuron.
+The drive $u_t$, candidate $p_t$ and stable state $m_t$ are all $d$-dimensional. The learned matrix $W_u\in\R^{d\times M}$ lets different drive coordinates extract different channel combinations; $\bar b$ scales the drive coordinate by coordinate. The fixed diagonal scaling used in code is absorbed into $W_u$ and $b_u$, as detailed in Appendix~\ref{app:training}. Thus vector drive increases the information that can enter the shared state without introducing a separate memory for every neuron.
 
 The candidate updates at every step to track new input. The stable state updates only through its write gate $g_t$. It receives the previous candidate $p_{t-1}$, allowing the gate to use current evidence before accepting that candidate and preventing the current frame from entering stable memory through the candidate branch in the same step. This delay defines the write timing; rejection of a sustained disturbance is learned by the gate.
 
@@ -95,7 +95,7 @@ The fast input, candidate and stable state have independent read projections in 
 
 \begin{figure*}[t]
 \centering\includegraphics[width=.94\textwidth]{figures/architecture.pdf}
-\caption{\textbf{From shared integration to protected memory.} \textbf{a}, Layer-level comparison: FSNN has only fast neuronal dynamics; DMP adds one continuously updated shared state; GDSM separates candidate and stable states. DMP uses the shared fast/slow formulation of Sun et al.~\cite{dmp}. \textbf{b}, GDSM within one layer. Vector drive updates the candidate; a one-step delay ($z^{-1}$) supplies $p_{t-1}$ to the write gate. Candidate and stable states have independent reads into the LIF current. Solid arrows carry signals; dashed arrows carry causal gate control. The stable feedback retains the fraction $1-g_t$ of its previous state. \textbf{c}, At a fully closed step, stable coordinates remain unchanged and their projected read can be reused. Candidate and fast processing remain active. Coordinate tiles are schematic, not measured values.}
+\caption{\textbf{Shared-memory architectures.} \textbf{a}, DMP~\cite{dmp} drives one shared state with a scalar input. \textbf{b}, GDSM uses vector drive, a candidate state and a gated stable state. The write carries $p_{t-1}$; independent reads combine both states with the fast pathway. The input-facing layer is shown, where $s_t=s_t^{(0)}$; deeper layers also receive permission computed from the raw input. Dashed arrows denote gate control.}
 \label{fig:architecture}
 \end{figure*}
 
@@ -110,7 +110,7 @@ Let $f(s_t)$ contain four input statistics: normalized mean activity, absolute c
 \begin{equation}
 \begin{aligned}
  \hat g_t&=\sigma\!\left(W_g[f(s_t);e_{t-1}]+b_g\right),\\
- g_t&=\ind[\|r_t\|_1>0]\,
+ g_t&=\ind[\|s_t^{(0)}\|_1>0]\,
        \hat g_t\odot\ind[\hat g_t\ge\varepsilon]\odot q_t .
 \end{aligned}
 \label{eq:gate}
@@ -259,7 +259,7 @@ All neural, memory and feature-history states start at zero for a new sequence. 
  \begin{cases}-1,&i<j,\\(-1)^{i-j+1},&i\ge j,\end{cases}
  \qquad b^{\mathrm c}_i=\frac{(2i+1)(-1)^i}{\theta}.
 \]
-Discretization gives $\bar A$ and $\bar b$. To initialize vector drive from a scalar DMP branch, we choose positive scales $c_i$ evenly spaced from 0.5 to 1.5, multiply its input weights and bias by $c_i$ for row $i$, and set $D_{ii}=\bar b_i/c_i$. Since ReLU preserves positive scaling, the initial candidate drive equals the scalar branch's drive. The rows of $W_u$ then train independently. In paired SSC and MNIST starts, $W_m$ is initialized to zero so that the additional stable read does not alter the initial current.
+Discretization gives $\bar A$ and $\bar b$. The implementation stores a projection $\widetilde W_u$, bias $\widetilde b_u$ and fixed diagonal scaling $D$, with $D_{ii}=\bar b_i/c_i$ and positive constants $c_i$ evenly spaced from 0.5 to 1.5. We use the equivalent notation $W_u=C^{-1}\widetilde W_u$ and $b_u=C^{-1}\widetilde b_u$, where $C=\operatorname{diag}(c_i)$. Positive homogeneity of ReLU gives $D\relu(\widetilde W_u s_t+\widetilde b_u)=\bar b\odot\relu(W_u s_t+b_u)$, so Eq.~\eqref{eq:candidate} describes exactly the implemented drive. For initialization, stored row $i$ and its bias are $c_i$ times the scalar DMP weights and bias; the effective initial drive therefore matches DMP. The projection rows subsequently train independently. In paired SSC and MNIST starts, $W_m$ is initialized to zero so that the additional stable read does not alter the initial current.
 
 Local gate weights start at zero, with bias $\log(0.95/0.05)$. The permission MLP's output weights start at zero and its output bias at $+2$ in the task-supervised comparisons. These initially open gates learn to close through training. Historical SHD protection studies use separately calibrated initialization.
 

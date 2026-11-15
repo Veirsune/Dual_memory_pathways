@@ -30,7 +30,7 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 
 | 符号 | 固定含义 |
 |---|---|
-| `s_t` / `r_t` | 当前层输入 / 原始传感器帧 |
+| `s_t` / `s_t^(0)` | 当前层输入 / 原始传感器帧 |
 | `x_t` / `h_t` | 原版 DMP 的标量驱动 / 共享状态 |
 | `u_t` | 新模型的向量驱动 |
 | `p_t` / `m_t` | 候选状态 / 稳定状态 |
@@ -40,7 +40,7 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 
 第 3 节是方法，第 5 节是主要结果，第 6 节是实现成本。附录 A 给训练设置，B 给 SHD 组件与监督对照，C 给完整补充结果，D 给硬件细节。主文表 2 和图 2 可直接阅读核心结果。
 
-图 1 分为模型对照、层内快慢通路和闭门保持三个部分。`figures/architecture.pdf` 与 `figures/architecture.svg` 是矢量文件，`scripts/draw_architecture.py` 提供独立绘图源码。图采用黑白灰配色；具体修改方法见 [图 1 编辑说明](FIGURE_EDITING.md)。
+图 1 并列对照 DMP 与 GDSM，各结构只画一次。`figures/architecture.pdf` 与 `figures/architecture.svg` 是矢量文件，`scripts/draw_architecture.py` 提供独立绘图源码。图采用纯黑线条、纯黑文字和纯白背景；具体修改方法见 [图 1 编辑说明](FIGURE_EDITING.md)。
 
 ## 编译与数值核验
 

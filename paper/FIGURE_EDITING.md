@@ -1,44 +1,42 @@
 # Figure 1 编辑说明
 
-图 1 使用 **Python + Matplotlib** 按坐标绘制。圆形神经元、矩形状态、菱形门、连线和文字由脚本分别生成，公式使用 Matplotlib MathText 排版。输出包含 PDF、SVG 和 PNG。
+图使用 **Python + Matplotlib** 按坐标绘制，公式用 MathText 排版。只保留左右两个分图：DMP、GDSM。所有绘图对象均使用纯黑 `#000000` 描边/文字与纯白 `#FFFFFF` 底色，无灰色填充、透明度色块或渐变。
 
-## 文件在哪里
+## 文件
 
-| 文件 | 用途 |
+- `scripts/draw_architecture.py`：绘图源代码。
+- `figures/architecture.svg`：可用 Inkscape、Illustrator 编辑的矢量文件，保留文字对象。
+- `figures/architecture.pdf`：论文实际使用的矢量图。
+- `figures/architecture.png`：300 dpi 预览。
+- `main.tex`：搜索 `fig:architecture` 修改图注或插图宽度。
+
+## 修改代码
+
+脚本顶部的三个表集中管理布局，坐标原点在左下角，横坐标向右增加，纵坐标向上增加。
+
+| 配置 | 内容 |
 |---|---|
-| `scripts/draw_architecture.py` | 绘图源代码，修改结构、文字、公式和样式 |
-| `figures/architecture.svg` | 在 Inkscape、Illustrator 等软件中直接编辑 |
-| `figures/architecture.pdf` | 论文实际使用的矢量图 |
-| `figures/architecture.png` | 300 dpi 预览图 |
-| `main.tex` 中的 `fig:architecture` | 图注及插图宽度 |
+| `NODES` | 每个模块的左下角坐标、宽度、高度、文字 |
+| `ROUTES` | 每条箭头的起点、拐点、终点、线宽、是否虚线 |
+| `LABELS` | 各标签的坐标、内容、字号 |
+| `FIGURE_SIZE` | 整体尺寸，单位英寸 |
+| `CANVAS` | 坐标范围，当前为 101 × 45 |
+| `FONT_FAMILY` | 字体，当前为 DejaVu Sans |
 
-## 用代码修改
-
-脚本顶部集中定义配色、画布大小、字体、输出分辨率和三个分图的标题位置。当前采用黑白灰：主要文字和通路 `#222222`，次要文字 `#666666`，分隔线 `#CCCCCC`，填充 `#F5F5F5`，背景白色。快通路、候选状态、稳定状态和门控使用相同墨色，通过标签与实线/虚线区分。
-
-- **改颜色：** 修改 `PALETTE`。
-- **改整体大小：** 修改 `FIGURE_SIZE`，单位为英寸。
-- **改字体：** 修改 `FONT_FAMILY`；局部字号在 `text(..., size=...)` 或调用中的字号参数里。
-- **改分图标题和位置：** 修改 `PANEL_HEADINGS`。
-- **改节点、文字、连线：** 在代码的 `# a:`、`# b:`、`# c:` 三个分区中编辑对应调用。
-
-坐标范围为横向 `0–100`、纵向 `0–79`，原点在左下角。`x` 增大向右，`y` 增大向上。常用函数：
+例如：
 
 ```python
-# 文字：位置、内容、字号
-text(41, 36.9, r'$W_p p_t$', 8)
+# NODES：左下角 x/y，宽，高，文字
+'candidate': (59, 17, 12, 6, 'Candidate\n' + r'$p_t$'),
 
-# 状态框：左下角 x/y、宽、高、文字、墨色
-state(28.6, 19.7, 13.2, 9, 'Candidate\n' + r'$p_t\in\mathbb{R}^{d}$', CAND)
+# ROUTES：依次连接起点、拐点和终点；最后一项控制是否虚线
+'candidate_read': ([(65,23.1), (65,30), (92.5,30), (93.5,31.5)], 1, False),
 
-# 折线箭头：依次列出起点、拐点、终点
-arrow([(35.2, 28.9), (35.2, 35.3), (58.7, 35.3), (59.5, 37.4)], CAND, 1.2)
-
-# 虚线控制箭头
-arrow([(10.7, 4.6), (18.9, 4.6)], GATE, 1, ls='--')
+# LABELS：x，y，公式，字号
+(77, 32, r'$W_p$', 9),
 ```
 
-移动节点后，相连箭头的端点和附近标签需要同步移动。公式写在原始字符串的 `$...$` 中，例如 `r'$m_t=m_{t-1}$'`。
+移动模块时，相连箭头的端点和附近标签需要同步移动。LIF 圆、写入门菱形和回路在 `draw_architecture()` 中绘制；修改这些对象可搜索 `Circle`、`Polygon`、`recurrence`。
 
 在仓库根目录运行：
 
@@ -49,20 +47,17 @@ python scripts/draw_architecture.py
 make
 ```
 
-绘图命令同时生成 `architecture.pdf`、`architecture.svg`、`architecture.png`；`make` 编译论文为 `GDSM_Paper.pdf`，需要安装 TeX Live 和 latexmk。也可用 `make architecture` 生成图。全量图表重建命令为 `python scripts/build_assets.py`，它同样调用这份绘图脚本。
+绘图命令同时生成 PDF、SVG、PNG。`make` 编译论文 `GDSM_Paper.pdf`，需要 TeX Live 和 latexmk。也可以用 `make architecture` 只生成图。
 
 ## 用绘图软件修改
 
-用 Inkscape 或 Illustrator 打开 `figures/architecture.svg`。SVG 保留文字对象，节点和连线可以选中、移动、改样式；公式通常由多个文字片段组成，大幅修改公式时用脚本更方便。默认字体为 DejaVu Sans。
+打开 `figures/architecture.svg`，直接选中文字、节点和连线修改。公式可能由多个文字片段组成；修改复杂公式时，编辑代码中的 `$...$` 更方便。
 
-保存 SVG 后，将画布导出成 `figures/architecture.pdf`，替换同名文件，再运行 `make` 即可更新论文。此时不要运行绘图脚本，否则它会按代码覆盖手工修改的图。长期维护时，建议将最终调整同步到脚本。
+保存 SVG，并将画布导出为 `figures/architecture.pdf` 后，运行 `make` 更新论文。再次运行绘图脚本会覆盖手工修改，因此建议将最终布局同步到代码。
 
-## 图注与图宽
+## 图与模型的对应
 
-在 `main.tex` 中搜索 `fig:architecture`，其前面的 `\caption{...}` 为图注。当前插图命令为：
-
-```tex
-\includegraphics[width=.94\textwidth]{figures/architecture.pdf}
-```
-
-修改 `.94` 可以调整图在论文中的整体宽度。图中的状态格子是结构示意，不是实验数据。
+- `p_{t-1}` 标签表示候选写入有一步延迟，图中不再另画延迟框。
+- 输入层的统计模块直接从 `s_t` 主干分支。正文以 `s_t^(0)` 表示原始输入，深层共享该原始输入产生的许可；图注交代这一关系。
+- `bar b ⊙ u_t` 与代码中的固定对角缩放是等价表示：将正的行缩放吸收进输入投影即可。具体映射在论文附录 A，模型与实验结果没有变化。
+- 回路、实线和虚线表达结构，解释性语句放在正文和图注中。

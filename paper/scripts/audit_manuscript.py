@@ -68,10 +68,10 @@ main_text=text.split(r'\appendix')[0]
 check('six core equations',main_text.count(r'\begin{equation}')==6)
 check('defined core equation labels',all(r'\label{eq:'+s+'}' in main_text for s in ['dmp','candidate','stable','read','gate','loss']))
 check('consistent layer-input and fast-read notation',r'z_t' not in text and r'W_x' not in text and r'W_f s_t' in text)
-check('raw-input closure rule',r'\ind[\|r_t\|_1>0]' in text)
+check('raw-input closure rule',r'\ind[\|s_t^{(0)}\|_1>0]' in text)
 check('appendix sections present',all(r'\label{app:'+s+'}' in text for s in ['training','shd','additional','hardware']))
 check('headline quantities typeset',all(v in main_text for v in ['52.79','3.91','70.83','19.70','78.68','8.69','117,056','6.30']))
-check('plot uses matching notation',all(v in (R/'scripts/draw_architecture.py').read_text() for v in ['$s_t$','W_f s_t',r'$r_t,\ s_t$']))
+check('plot uses matching notation',all(v in (R/'scripts/draw_architecture.py').read_text() for v in ['$s_t$',r'$W_f$',r'$\bar b\odot u_t$',r'$p_{t-1}$']))
 report={'status':'passed','checks':checks,'pages':pages,'new_training_runs':0,'note':'Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript.'}
 (R/'evidence/manuscript-audit.json').write_text(json.dumps(report,indent=2))
 print(f'Passed {len(checks)} checks; {pages} PDF pages; zero new training runs.')

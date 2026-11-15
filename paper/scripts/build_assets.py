@@ -68,20 +68,25 @@ for task in tasks:
  s.append(r'\addlinespace')
 (ROOT/'tables/middle.tex').write_text('\n'.join(s)+'\n')
 # Retention figure: matched endpoint at L=0; seed SD only for MNIST.
-colors={'fsnn':'#7b8492','dmp':'#c45a35','commit':'#007e87'}
+plt.style.use('default')
+default_colors=plt.rcParamsDefault['axes.prop_cycle'].by_key()['color']
+colors=dict(zip(families,default_colors))
+markers={'fsnn':'o','dmp':'s','commit':'^'}
+# Keep the same blue/orange/green palette across all quantitative figures.
+bar_colors={'dmp':colors['dmp'],'dense':default_colors[0],'cached':colors['commit']}
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':9,'axes.spines.top':False,'axes.spines.right':False,'pdf.fonttype':42,'ps.fonttype':42})
 fig,axes=plt.subplots(2,4,figsize=(11.5,5.0),sharey=True)
 for col,task in enumerate(tasks):
  for row,kind in enumerate(['silence','poisson']):
   ax=axes[row,col];ls=[0]+lengths[task]
   for f in families:
-   vals=np.array([get(task,f,L=L,kind=kind) for L in ls]);ax.plot(ls,vals[:,0],'-o',c=colors[f],lw=1.8,ms=3.5,label=labels[f])
+   vals=np.array([get(task,f,L=L,kind=kind) for L in ls]);ax.plot(ls,vals[:,0],linestyle='-',marker=markers[f],c=colors[f],lw=1.8,ms=3.5,label=labels[f])
    if 'MNIST' in task:ax.fill_between(ls,np.clip(vals[:,0]-vals[:,1],0,100),np.clip(vals[:,0]+vals[:,1],0,100),color=colors[f],alpha=.13,lw=0)
-  ax.set_ylim(0,101);ax.set_xticks(ls);ax.grid(axis='y',alpha=.18)
+  ax.set_ylim(0,101);ax.set_xticks(ls);ax.grid(axis='y',alpha=.2);ax.set_axisbelow(True)
   if row==0:ax.set_title(task,fontweight='bold',fontsize=10)
   if row==1:ax.set_xlabel('Appended frames, $L$')
   if col==0:ax.set_ylabel(('Silence' if row==0 else 'Poisson')+'\nEndpoint accuracy (%)')
-  if task!='DVS Gesture':ax.axvline(lengths[task][-2],ls=':',c='#aeb3ba',lw=.8);ax.text(.98,.95,'last length unseen',ha='right',va='top',transform=ax.transAxes,fontsize=7,color='#444444')
+  if task!='DVS Gesture':ax.axvline(lengths[task][-2],ls=':',c='0.6',lw=.8);ax.text(.98,.95,'last length unseen',ha='right',va='top',transform=ax.transAxes,fontsize=7,color='black')
 fig.legend(*axes[0,0].get_legend_handles_labels(),loc='lower center',ncol=3,frameon=False,bbox_to_anchor=(.5,-.015))
 fig.tight_layout(rect=(0,.04,1,1));fig.savefig(ROOT/'figures/retention.pdf',bbox_inches='tight');fig.savefig(ROOT/'figures/retention.png',dpi=180,bbox_inches='tight');plt.close(fig)
 # Architecture schematic: vector circuits and shared-state mechanism.
@@ -99,7 +104,7 @@ for condition in conditions:
                   cached_overhead_percent=100*(cached/dmp-1),cache_saving_percent=100*saved/dense))
 (ROOT/'evidence/full-network-mac-claims.json').write_text(json.dumps(full,indent=2))
 fig,ax=plt.subplots(figsize=(5.3,3.1));xs=np.arange(2);width=.23
-for j,(key,label,color) in enumerate([('dmp_macs','DMP','#c45a35'),('commit_dense_macs','GDSM dense','#8ebfc0'),('commit_cached_macs','GDSM cached','#007e87')]):
+for j,(key,label,color) in enumerate([('dmp_macs','DMP',bar_colors['dmp']),('commit_dense_macs','GDSM dense',bar_colors['dense']),('commit_cached_macs','GDSM cached',bar_colors['cached'])]):
  vals=[x[key]/1e6 for x in full];bars=ax.bar(xs+(j-1)*width,vals,width,color=color,label=label)
  for b,v in zip(bars,vals):ax.text(b.get_x()+width/2,v+.8,f'{v:.2f}',ha='center',fontsize=8)
 ax.set_xticks(xs,['Clean (100 frames)','Tail silence L80 (180 frames)'])
@@ -107,12 +112,12 @@ ax.set_ylabel('Full-network MACs / sample (M)',fontsize=9);ax.set_ylim(0,84)
 ax.text(0,79.2,f"GDSM: +{full[0]['cached_overhead_percent']:.2f}%",ha='center',fontsize=8)
 ax.text(1,79.2,f"Cache saves {full[1]['cache_saving_percent']:.2f}%",ha='center',fontsize=8)
 ax.legend(fontsize=8,frameon=False,loc='upper center',bbox_to_anchor=(.5,-.17),ncol=3)
-ax.grid(axis='y',alpha=.16);ax.set_axisbelow(True)
+ax.grid(axis='y',alpha=.2);ax.set_axisbelow(True)
 fig.tight_layout();fig.savefig(ROOT/'figures/full-network-macs.pdf',bbox_inches='tight');fig.savefig(ROOT/'figures/full-network-macs.png',dpi=180,bbox_inches='tight');plt.close(fig)
 
 # Hardware schedule measured from CSV, rather than hard-coded cycles.
 rows=read('hardware-cycles.csv');fig,ax=plt.subplots(figsize=(5.3,2.8));xs=np.arange(2);width=.24
-for j,(variant,condition,label,color) in enumerate([('dmp','signal','Matched scalar DMP','#c45a35'),('commit_dense','signal','GDSM dense','#007e87'),('commit_cached','silence','GDSM, closed + cache','#71bdaf')]):
+for j,(variant,condition,label,color) in enumerate([('dmp','signal','Matched scalar DMP',bar_colors['dmp']),('commit_dense','signal','GDSM dense',bar_colors['dense']),('commit_cached','silence','GDSM, closed + cache',bar_colors['cached'])]):
  vals=[]
  for d in [10,30]:
   rr=[r for r in rows if r['scenario']==f'capacity{d}' and r['variant']==variant and (r['condition']==condition)]
@@ -121,7 +126,7 @@ for j,(variant,condition,label,color) in enumerate([('dmp','signal','Matched sca
   v=sorted(set(int(r['cycles']) for r in rr));assert len(v)==1,v;vals.append(v[0])
  bars=ax.bar(xs+(j-1)*width,vals,width,color=color,label=label)
  for b,v in zip(bars,vals):ax.text(b.get_x()+width/2,v+3,str(v),ha='center',fontsize=8)
-ax.set_xticks(xs,['$d=10$','$d=30$']);ax.set_ylabel('Processing cycles / frame');ax.set_ylim(0,260);ax.legend(fontsize=7,frameon=False,loc='upper left');fig.tight_layout();fig.savefig(ROOT/'figures/hardware.pdf',bbox_inches='tight');plt.close(fig)
+ax.set_xticks(xs,['$d=10$','$d=30$']);ax.set_ylabel('Processing cycles / frame');ax.set_ylim(0,260);ax.grid(axis='y',alpha=.2);ax.set_axisbelow(True);ax.legend(fontsize=7,frameon=False,loc='upper left');fig.tight_layout();fig.savefig(ROOT/'figures/hardware.pdf',bbox_inches='tight');fig.savefig(ROOT/'figures/hardware.png',dpi=180,bbox_inches='tight');plt.close(fig)
 # Deduplicated, machine-readable claims used by tables and figures.
 unique={json.dumps({k:v for k,v in c.items() if k not in ['mean','sd','values']},sort_keys=True):c for c in claims}
 (ROOT/'evidence/generated-claims.json').write_text(json.dumps(list(unique.values()),indent=2))

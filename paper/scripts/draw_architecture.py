@@ -4,7 +4,6 @@ Panel structure follows the model-comparison / fast-slow circuit presentation
 of the DMP paper. All artwork is drawn here; no source-paper image is embedded.
 """
 from pathlib import Path
-import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -12,25 +11,38 @@ from matplotlib.patches import Circle, Rectangle, FancyBboxPatch, FancyArrowPatc
 from matplotlib.path import Path as MplPath
 
 ROOT = Path(__file__).resolve().parents[1]
-INK = '#24313C'
-MUTED = '#63717C'
-LINE = '#CBD3D9'
-FAST = '#4B5660'
-CAND = '#477EA7'
-STABLE = '#218777'
-GATE = '#BC8634'
-LIGHT_BLUE = '#EDF4F9'
-LIGHT_GREEN = '#EBF5F1'
-LIGHT_GOLD = '#FAF2E4'
+# EDIT HERE: figure-wide appearance and canvas (coordinates increase right/up).
+PALETTE = {
+    'ink': '#222222',       # text, pathways, states and gates
+    'muted': '#666666',     # secondary annotations
+    'rule': '#CCCCCC',      # separators and group outline
+    'fill': '#F5F5F5',      # light neutral node fill
+    'background': '#FFFFFF',
+}
+FIGURE_SIZE = (7.4, 5.85)  # inches; controls the PDF/SVG physical size
+CANVAS = (100, 79)        # drawing coordinate width and height
+FONT_FAMILY = 'DejaVu Sans'
+OUTPUT_DPI = 300          # PNG only; PDF/SVG remain vector
+PANEL_HEADINGS = {
+    'a': (0, 77, 'Shared memory changes what a spiking layer can retain'),
+    'b': (0, 47.7, 'Candidate–stable memory within one layer'),
+    'c': (76, 47.7, 'Closed-gate step'),
+}
+# Paths are distinguished by geometry and labels, not by different colors.
+INK = FAST = CAND = STABLE = GATE = PALETTE['ink']
+MUTED = PALETTE['muted']
+LINE = PALETTE['rule']
+BLOCK_FILL = PALETTE['fill']
+BACKGROUND = PALETTE['background']
 
 
 def draw_architecture(root=ROOT):
-    with plt.rc_context({'font.family':'DejaVu Sans', 'font.size':8,
+    with plt.rc_context({'font.family':FONT_FAMILY, 'font.size':8,
                          'mathtext.fontset':'dejavusans', 'pdf.fonttype':42,
                          'ps.fonttype':42, 'svg.fonttype':'none'}):
-        fig = plt.figure(figsize=(7.4, 5.85), facecolor='white')
+        fig = plt.figure(figsize=FIGURE_SIZE, facecolor=BACKGROUND)
         ax = fig.add_axes([.015,.015,.97,.97])
-        ax.set(xlim=(0,100), ylim=(0,79)); ax.set_aspect('equal'); ax.axis('off')
+        ax.set(xlim=(0,CANVAS[0]), ylim=(0,CANVAS[1])); ax.set_aspect('equal'); ax.axis('off')
 
         def text(x,y,s,size=8,color=INK,ha='center',weight='normal',va='center',**kw):
             return ax.text(x,y,s,fontsize=size,color=color,ha=ha,va=va,
@@ -56,7 +68,7 @@ def draw_architecture(root=ROOT):
                 ax.add_patch(Rectangle((x+.45+i*(w-.9)/5,y+.4),(w-.9)/5-.15,.65,fc=color,alpha=.22+.12*(i%3),ec='none',zorder=4))
             text(x+w/2,y+h*.64,label,7.8 if small else 9,color,zorder=4)
         def soma(x,y,r=2.55):
-            ax.add_patch(Circle((x,y),r,fc='#F7F5EF',ec=FAST,lw=1,zorder=4))
+            ax.add_patch(Circle((x,y),r,fc=BLOCK_FILL,ec=FAST,lw=1,zorder=4))
             text(x,y,'LIF',8,zorder=5)
         def spikes(x,y,color=FAST,width=4,amp=1.4):
             pts=[(x,y)]
@@ -64,13 +76,13 @@ def draw_architecture(root=ROOT):
                 q=x+width*f;pts += [(q,y),(q,y+amp),(q,y)]
             pts.append((x+width,y));line(pts,color,.8)
         def gate(x,y,scale=1):
-            ax.add_patch(Polygon([(x-scale,y),(x,y+scale),(x+scale,y),(x,y-scale)],closed=True,fc=LIGHT_GOLD,ec=GATE,lw=1,zorder=5))
+            ax.add_patch(Polygon([(x-scale,y),(x,y+scale),(x+scale,y),(x,y-scale)],closed=True,fc=BLOCK_FILL,ec=GATE,lw=1,zorder=5))
         def panel(x,y,letter,title):
             text(x,y,letter,12,ha='left',weight='bold')
             text(x+3.2,y,title,9.3,ha='left',weight='bold')
 
         # a: identical neuron symbols and fast paths make changes easy to compare.
-        panel(0,77,'a','Shared memory changes what a spiking layer can retain')
+        panel(PANEL_HEADINGS['a'][0], PANEL_HEADINGS['a'][1], 'a', PANEL_HEADINGS['a'][2])
         for x in [32.8,66.4]:line([(x,52),(x,73.5)],LINE,.65)
         text(16,72.5,'FSNN',9.3,weight='bold')
         text(49.5,72.5,'DMP',9.3,weight='bold')
@@ -112,8 +124,8 @@ def draw_architecture(root=ROOT):
         text(83,52.9,'Candidate + gated stable state',7.3,MUTED)
         line([(0,50.5),(100,50.5)],LINE,.75)
 
-        # b: expanded fast/slow circuit. Arrow color identifies the state read.
-        panel(0,47.7,'b','Candidate–stable memory within one layer')
+        # b: expanded fast/slow circuit. Path labels identify the independent state reads.
+        panel(PANEL_HEADINGS['b'][0], PANEL_HEADINGS['b'][1], 'b', PANEL_HEADINGS['b'][2])
         # Fast pathway across the top; soma receives both memory reads from below.
         spikes(1.5,40,width=4.5,amp=1.8)
         text(3.4,43.5,'Layer input',7.5,MUTED);text(3.6,37.7,r'$s_t\in\mathbb{R}^{M}$',8)
@@ -124,12 +136,12 @@ def draw_architecture(root=ROOT):
         text(67.2,36.9,'Spikes',7.5,MUTED)
 
         # Background groups indicate sharing, rather than an additional neuron.
-        ax.add_patch(FancyBboxPatch((10.6,8.5),58.8,25.5,boxstyle='round,pad=0,rounding_size=1.4',fc='#FAFBFC',ec=LINE,lw=.9,linestyle=(0,(4,3)),zorder=0))
+        ax.add_patch(FancyBboxPatch((10.6,8.5),58.8,25.5,boxstyle='round,pad=0,rounding_size=1.4',fc=BACKGROUND,ec=LINE,lw=.9,linestyle=(0,(4,3)),zorder=0))
         text(50.5,32.2,r'Shared memory ($d\ll N$)',7.9,MUTED)
 
         dot(13.8,40)
         arrow([(13.8,40),(13.8,26.2)],CAND,1.15)
-        box(10.9,20.2,13.3,6,'Vector drive\n'+r'$u_t\in\mathbb{R}^d$',LIGHT_BLUE,CAND,size=8)
+        box(10.9,20.2,13.3,6,'Vector drive\n'+r'$u_t\in\mathbb{R}^d$',BLOCK_FILL,CAND,size=8)
         text(17,29,r'$W_u$',8,CAND)
         arrow([(24.3,23.2),(28.5,23.2)],CAND,1.2)
         state(28.6,19.7,13.2,9,'Candidate\n'+r'$p_t\in\mathbb{R}^{d}$',CAND)
@@ -154,7 +166,7 @@ def draw_architecture(root=ROOT):
         text(68.2,30.8,r'$W_m m_t$',8,STABLE)
 
         # Causal control is separated from the data path and includes both inputs.
-        box(19,2,32.2,5.1,'Causal statistics + past EMA',LIGHT_GOLD,GATE,size=7.7)
+        box(19,2,32.2,5.1,'Causal statistics + past EMA',BLOCK_FILL,GATE,size=7.7)
         text(2.2,4.6,r'$r_t,\ s_t$',8.4,GATE,ha='left')
         arrow([(10.7,4.6),(18.9,4.6)],GATE,1,ls='--')
         arrow([(51.3,4.6),(51.8,4.6),(51.8,9.1),(50.2,9.1),(50.2,21.8)],GATE,1,ls='--')
@@ -164,7 +176,7 @@ def draw_architecture(root=ROOT):
 
         # c: exact closed-gate consequence, no simulated or empirical traces.
         line([(73,0),(73,48)],LINE,.75)
-        panel(76,47.7,'c','Closed-gate step')
+        panel(PANEL_HEADINGS['c'][0], PANEL_HEADINGS['c'][1], 'c', PANEL_HEADINGS['c'][2])
         text(88,42.7,r'$g_t=\mathbf{0}$',11,GATE)
         text(88,38.9,'No stable write',8.2,weight='bold')
         # Coordinates remain identical across the step.
@@ -176,11 +188,11 @@ def draw_architecture(root=ROOT):
         text(88,18.8,r'$m_t=m_{t-1}$',10,STABLE)
         text(88,14.3,'Reuse stable read',8.2,weight='bold')
         text(88,10.3,r'$W_m m_t=W_m m_{t-1}$',8.3,STABLE)
-        box(76.7,1.4,22.4,5.5,'Candidate and fast\npath remain active',LIGHT_BLUE,'none',size=7.8,color=CAND)
+        box(76.7,1.4,22.4,5.5,'Candidate and fast\npath remain active',BLOCK_FILL,'none',size=7.8,color=CAND)
 
         folder=root/'figures';folder.mkdir(exist_ok=True)
         for extension in ['pdf','svg','png']:
-            fig.savefig(folder/f'architecture.{extension}',dpi=300,facecolor='white',bbox_inches='tight',pad_inches=.03)
+            fig.savefig(folder/f'architecture.{extension}',dpi=OUTPUT_DPI,facecolor=BACKGROUND,bbox_inches='tight',pad_inches=.03)
         plt.close(fig)
 
 if __name__=='__main__':

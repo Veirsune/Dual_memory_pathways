@@ -40,7 +40,7 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 
 第 3 节是方法，第 5 节是主要结果，第 6 节是实现成本。附录 A 给训练设置，B 给 SHD 组件与监督对照，C 给完整补充结果，D 给硬件细节。主文表 2 和图 2 可直接阅读核心结果。
 
-图 1 分为模型对照、层内快慢通路和闭门保持三个部分。`figures/architecture.pdf` 与 `figures/architecture.svg` 是矢量文件，`scripts/draw_architecture.py` 提供独立绘图源码。
+图 1 分为模型对照、层内快慢通路和闭门保持三个部分。`figures/architecture.pdf` 与 `figures/architecture.svg` 是矢量文件，`scripts/draw_architecture.py` 提供独立绘图源码。图采用黑白灰配色；具体修改方法见 [图 1 编辑说明](FIGURE_EDITING.md)。
 
 ## 编译与数值核验
 

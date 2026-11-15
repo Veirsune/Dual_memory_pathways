@@ -1,6 +1,8 @@
-.PHONY: all assets audit clean
+.PHONY: all architecture assets audit clean
 all:
 	latexmk -jobname=GDSM_Paper -pdf -interaction=nonstopmode -halt-on-error main.tex
+architecture:
+	python scripts/draw_architecture.py
 assets:
 	python scripts/build_assets.py
 audit: all

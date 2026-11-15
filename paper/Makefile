@@ -1,6 +1,7 @@
 .PHONY: all assets audit clean
 all:
 	latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+	cp main.pdf GDSM_Paper.pdf
 assets:
 	python scripts/build_assets.py
 audit: all

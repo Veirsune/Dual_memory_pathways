@@ -444,11 +444,46 @@
       "check": "complete PDF",
       "passed": true,
       "details": {
-        "pages": 11
+        "pages": 10
       }
+    },
+    {
+      "check": "six core equations",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "defined core equation labels",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "consistent layer-input and fast-read notation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "raw-input closure rule",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "appendix sections present",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "headline quantities typeset",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "plot uses matching notation",
+      "passed": true,
+      "details": null
     }
   ],
-  "pages": 11,
+  "pages": 10,
   "new_training_runs": 0,
   "note": "Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript."
 }

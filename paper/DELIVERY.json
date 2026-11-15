@@ -1,0 +1,30 @@
+{
+  "status": "complete",
+  "revision": "v4-full-rewrite",
+  "date": "2026-11-15",
+  "pdf_pages": 10,
+  "main_and_references_pages": 6,
+  "appendix_pages": 4,
+  "figures": 4,
+  "tables": 8,
+  "references": 14,
+  "numerical_and_compilation_checks": 67,
+  "new_training_runs": 0,
+  "files": {
+    "main.pdf": {
+      "bytes": 256886,
+      "sha256": "93f0a5d59fbb04485914b376049e15109b4938a6aa4a5a138fc12c2761a1433d"
+    },
+    "main.tex": {
+      "bytes": 45860,
+      "sha256": "5b0356c1d4d690bd6349327541e8d83c008c72a65675cc322feed5f1c71f9388"
+    },
+    "GDSM_LaTeX_2026-11-15.zip": {
+      "bytes": 268971,
+      "sha256": "94ab5967bf6560b9ca126460dc8e07ad59205d1b9ed322e81d7e891e7bbf5404"
+    }
+  },
+  "model_name": "GDSM",
+  "compilation": "passed",
+  "archive_integrity": "passed"
+}

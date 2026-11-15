@@ -90,7 +90,7 @@ def box(x,y,w,h,text,color='#edf4f7',ec='#557283',fs=11):
  ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=0.08,rounding_size=0.08',fc=color,ec=ec,lw=1.2));ax.text(x+w/2,y+h/2,text,ha='center',va='center',fontsize=fs)
 def arrow(a,b,color='#4b5a66',style='-',rad=0):
  ax.add_patch(FancyArrowPatch(a,b,arrowstyle='-|>',mutation_scale=12,lw=1.3,color=color,linestyle=style,connectionstyle=f'arc3,rad={rad}'))
-box(.15,2.1,1.1,.8,'Layer input\n$z_t$');box(2.1,2.1,1.35,.8,'Vector drive\n$u_t\\in\\mathbb{R}^d$')
+box(.15,2.1,1.1,.8,'Layer input\n$s_t$');box(2.1,2.1,1.35,.8,'Vector drive\n$u_t\\in\\mathbb{R}^d$')
 box(4.25,2.0,1.65,1.0,'Candidate $p_t$\n$\\bar A p_{t-1}+D u_t$',fs=10.5)
 box(6.5,2.0,1.6,1.0,'Stable $m_t$\ngated update',color='#e4f3ed',ec='#3d8571',fs=10.5)
 box(4.15,3.85,3.95,.8,'Causal gate $g_t$: current features + past EMA',color='#f7eedb',ec='#af8a35',fs=10)
@@ -99,10 +99,10 @@ arrow((1.32,2.5),(2.02,2.5));arrow((3.53,2.5),(4.17,2.5));arrow((5.98,2.5),(6.42
 arrow((8.18,2.5),(8.72,2.5),color='#007e87');ax.text(8.45,2.75,'$W_m$',ha='center')
 arrow((9.98,2.5),(10.47,2.5))
 # Routed paths; arrows only at final segment.
-ax.plot([.7,.7,9.35],[2.98,4.95,4.95],c='#4b5a66',lw=1.3);arrow((9.35,4.95),(9.35,2.98));ax.text(2.4,5.04,'Fast path $W_x z_t$',ha='center',fontsize=10)
+ax.plot([.7,.7,9.35],[2.98,4.95,4.95],c='#4b5a66',lw=1.3);arrow((9.35,4.95),(9.35,2.98));ax.text(2.4,5.04,'Fast path $W_f s_t$',ha='center',fontsize=10)
 ax.plot([5.07,5.07,9.35],[1.92,1.1,1.1],c='#007e87',lw=1.3);arrow((9.35,1.1),(9.35,2.02),color='#007e87');ax.text(7.15,1.26,'Candidate read $W_p p_t$',ha='center',fontsize=10)
 arrow((7.3,3.77),(7.3,3.08),style='--',color='#af8a35');ax.text(7.7,3.42,'write',fontsize=9,color='#806421')
-ax.text(.2,3.7,'Raw input\nstatistics',fontsize=10,ha='left');arrow((1.3,4.1),(4.07,4.22),style='--',color='#af8a35')
+ax.text(.2,3.7,'Raw input $r_t$\nstatistics',fontsize=10,ha='left');arrow((1.3,4.1),(4.07,4.22),style='--',color='#af8a35')
 ax.text(5.95,.5,r'$m_t=(1-g_t)\odot m_{t-1}+g_t\odot p_{t-1}$',ha='center',fontsize=13)
 ax.text(5.95,.08,'When the write gate is closed, stable memory is held; candidate and fast paths keep running.',ha='center',fontsize=10,color='#44515b')
 fig.savefig(ROOT/'figures/architecture.pdf',bbox_inches='tight');fig.savefig(ROOT/'figures/architecture.png',dpi=180,bbox_inches='tight');plt.close(fig)

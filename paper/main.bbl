@@ -14,22 +14,6 @@ Pengfei Sun, Zhe Su, Jascha Achterberg, Giacomo Indiveri, Dan F.~M. Goodman,
 \newblock arXiv:2512.07602v3, 2026.
 \newblock URL \url{https://arxiv.org/abs/2512.07602v3}.
 
-\bibitem[Hochreiter and Schmidhuber(1997)]{lstm}
-Sepp Hochreiter and Jurgen Schmidhuber.
-\newblock {Long Short-Term Memory}.
-\newblock \emph{Neural Computation}, 9\penalty0 (8):\penalty0 1735--1780, 1997.
-\newblock \doi{10.1162/neco.1997.9.8.1735}.
-
-\bibitem[Cho et~al.(2014)Cho, van Merrienboer, Gulcehre, Bahdanau, Bougares,
-  Schwenk, and Bengio]{gru}
-Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi
-  Bougares, Holger Schwenk, and Yoshua Bengio.
-\newblock {Learning Phrase Representations using RNN EncoderDecoder for
-  Statistical Machine Translation}.
-\newblock In \emph{Proceedings of the 2014 Conference on Empirical Methods in
-  Natural Language Processing (EMNLP)}, pages 1724--1734, 2014.
-\newblock \doi{10.3115/v1/d14-1179}.
-
 \bibitem[Voelker et~al.(2019)Voelker, Kajic, and Eliasmith]{lmu}
 Aaron Voelker, Ivana Kajic, and Chris Eliasmith.
 \newblock {Legendre Memory Units: Continuous-Time Representation in Recurrent
@@ -51,11 +35,41 @@ Albert Gu, Karan Goel, and Christopher Re.
 \newblock In \emph{International Conference on Learning Representations}, 2022.
 \newblock URL \url{https://arxiv.org/abs/2111.00396}.
 
+\bibitem[Hochreiter and Schmidhuber(1997)]{lstm}
+Sepp Hochreiter and Jurgen Schmidhuber.
+\newblock {Long Short-Term Memory}.
+\newblock \emph{Neural Computation}, 9\penalty0 (8):\penalty0 1735--1780, 1997.
+\newblock \doi{10.1162/neco.1997.9.8.1735}.
+
+\bibitem[Cho et~al.(2014)Cho, van Merrienboer, Gulcehre, Bahdanau, Bougares,
+  Schwenk, and Bengio]{gru}
+Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi
+  Bougares, Holger Schwenk, and Yoshua Bengio.
+\newblock {Learning Phrase Representations using RNN EncoderDecoder for
+  Statistical Machine Translation}.
+\newblock In \emph{Proceedings of the 2014 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 1724--1734, 2014.
+\newblock \doi{10.3115/v1/d14-1179}.
+
 \bibitem[Gu and Dao(2023)]{mamba}
 Albert Gu and Tri Dao.
 \newblock {Mamba: Linear-Time Sequence Modeling with Selective State Spaces}.
 \newblock arXiv:2312.00752, 2023.
 \newblock URL \url{https://arxiv.org/abs/2312.00752}.
+
+\bibitem[Yao et~al.(2022)Yao, Li, Mo, and Cheng]{glif}
+X.~Yao, F.~Li, Z.~Mo, and J.~Cheng.
+\newblock {GLIF: A Unified Gated Leaky Integrate-and-Fire Neuron for Spiking
+  Neural Networks}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, pages 32160--32171, 2022.
+
+\bibitem[Zhang et~al.(2024)Zhang, Yang, Ma, Wu, Li, and Tan]{tclif}
+S.~Zhang, Q.~Yang, C.~Ma, J.~Wu, H.~Li, and K.~C. Tan.
+\newblock {TC-LIF: A Two-Compartment Spiking Neuron Model for Long-term
+  Sequential Modelling}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~38, pages 16838--16847, 2024.
 
 \bibitem[Neftci et~al.(2019)Neftci, Mostafa, and Zenke]{surrogate}
 Emre~O. Neftci, Hesham Mostafa, and Friedemann Zenke.
@@ -73,20 +87,6 @@ Wei Fang, Yanqi Chen, Jianhao Ding, Zhaofei Yu, Timothee Masquelier, Ding Chen,
   platform for spike-based intelligence}.
 \newblock \emph{Science Advances}, 9\penalty0 (40), 2023.
 \newblock \doi{10.1126/sciadv.adi1480}.
-
-\bibitem[Yao et~al.(2022)Yao, Li, Mo, and Cheng]{glif}
-X.~Yao, F.~Li, Z.~Mo, and J.~Cheng.
-\newblock {GLIF: A Unified Gated Leaky Integrate-and-Fire Neuron for Spiking
-  Neural Networks}.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~35, pages 32160--32171, 2022.
-
-\bibitem[Zhang et~al.(2024)Zhang, Yang, Ma, Wu, Li, and Tan]{tclif}
-S.~Zhang, Q.~Yang, C.~Ma, J.~Wu, H.~Li, and K.~C. Tan.
-\newblock {TC-LIF: A Two-Compartment Spiking Neuron Model for Long-term
-  Sequential Modelling}.
-\newblock In \emph{Proceedings of the AAAI Conference on Artificial
-  Intelligence}, volume~38, pages 16838--16847, 2024.
 
 \bibitem[Cramer et~al.(2022)Cramer, Stradmann, Schemmel, and Zenke]{shd}
 Benjamin Cramer, Yannik Stradmann, Johannes Schemmel, and Friedemann Zenke.

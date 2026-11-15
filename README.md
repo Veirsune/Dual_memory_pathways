@@ -6,6 +6,8 @@ GDSM 将持续更新的候选状态与门控更新的稳定状态分开，用小
 
 **[下载论文 PDF](https://raw.githubusercontent.com/Veirsune/Dual_memory_pathways/main/paper/GDSM_Paper.pdf)** · **[GitHub 在线查看 PDF](paper/GDSM_Paper.pdf)** · [LaTeX 源码](paper/main.tex) · [实验协议与结果](paper/evidence/) · [论文中文导读](paper/README.md)
 
+**论文已于 2026-11-15 全文重写：**[带日期的新 PDF](paper/GDSM_Rewritten_2026-11-15.pdf) · [Overleaf 源码包](paper/GDSM_LaTeX_2026-11-15.zip)。10 页，方法统一为六个核心公式，全部实验数值保持不变。
+
 在 iPad 上可用 Safari 打开 PDF 下载链接，再通过“分享 → 存储到文件”保存。
 
 本仓库基于 Sun 等人的 [Dual Memory Pathways](https://github.com/sunpengfei1122/Dual_memory_pathways) 扩展。原作者介绍、安装说明和引用信息保存在 [README.upstream.md](README.upstream.md)，原始数据集示例仍在各自目录中。GDSM 的代码配置键沿用 `commit`，以兼容历史实验和检查点。

@@ -42,3 +42,7 @@ Figure 3 uses full-network effective MAC estimates for clean Gesture and appende
 ## Naming revision v3
 
 The manuscript names the architecture Gated Dual-State Memory (GDSM). Historical result keys and source reports retain `commit`; this is a presentation-only rename of the same evaluated model. No weights, metrics or protocols changed.
+
+## Full rewrite, 2026-11-15
+
+Version v4 reorganizes the scientific narrative and unifies notation without changing experiments or source metrics. The 10-page PDF contains six core method equations, four figures, eight tables and 14 references. The numerical/compilation audit passes 67 checks. The versioned PDF is `GDSM_Rewritten_2026-11-15.pdf`; `GDSM_Paper.pdf` and `main.pdf` contain identical bytes.

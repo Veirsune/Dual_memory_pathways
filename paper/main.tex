@@ -9,7 +9,7 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
 \usepackage{enumitem,fancyhdr}
-\hypersetup{pdftitle={Gated Dual-State Memory for Robust Temporal Processing in Spiking Neural Networks},pdfauthor={Anonymous authors},pdfsubject={Rewritten research manuscript, November 15, 2026},pdfkeywords={spiking neural networks, shared memory, gated dual-state memory, temporal robustness}}
+\hypersetup{pdftitle={Gated Dual-State Memory for Robust Temporal Processing in Spiking Neural Networks},pdfauthor={Anonymous authors},pdfsubject={Gated dual-state memory for robust temporal processing in spiking neural networks},pdfkeywords={spiking neural networks, shared memory, gated dual-state memory, temporal robustness}}
 \raggedbottom
 \setlength{\parskip}{2pt}
 \setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
@@ -20,7 +20,7 @@
 \renewcommand{\topfraction}{.92}\renewcommand{\textfraction}{.07}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{\small Gated Dual-State Memory}
-\fancyhead[R]{\small Rewritten draft -- 15 November 2026}
+\fancyhead[R]{}
 \fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{.3pt}
 \makeatletter\let\tableinput\@@input\makeatother
 \newcommand{\R}{\mathbb{R}}
@@ -29,7 +29,7 @@
 \newcommand{\ind}{\mathbb{I}}
 \title{\vspace{-1.1cm}\textbf{Gated Dual-State Memory for Robust Temporal Processing\newline in Spiking Neural Networks}}
 \author{Anonymous authors}
-\date{Rewritten manuscript --- November 15, 2026}
+\date{}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -407,6 +407,6 @@ The trained trace uses the seed-42 S-MNIST mixed checkpoint, the first official-
 Against floating-point execution, mean absolute errors are 0.00548 for the candidate, 0.00508 for stable memory, 0.03341 for read current and 0.000087 for gates. One of 37,760 coordinate decisions differs at the hard gate boundary, producing a maximum gate error of 0.4072. Exact agreement with the fixed-point reference thus establishes correct integer execution, while the floating-point comparison measures quantization effects. No physical power or energy measurement is inferred from these counts.
 
 \paragraph{Reproducible artifacts.}
-The repository includes the manuscript, vector figures, generated table fragments, frozen result files, training protocols and hardware replay data. The asset builder recomputes aggregates and plots from archived results; a checksum manifest records their source files. The numerical audit checks headline values, component tables, operation accounting and successful PDF compilation. Preparing this rewritten manuscript introduces no new training runs or checkpoint selection.
+The repository includes the manuscript, vector figures, generated table fragments, frozen result files, training protocols and hardware replay data. The asset builder recomputes aggregates and plots from archived results; a checksum manifest records their source files. The numerical audit checks headline values, component tables, operation accounting and successful PDF compilation.
 
 \end{document}

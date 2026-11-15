@@ -4,9 +4,8 @@
 
 GDSM 将持续更新的候选状态与门控更新的稳定状态分开，用小型共享记忆增强脉冲神经网络在静音和噪声干扰后的信息保持。
 
-**[下载论文 PDF](https://raw.githubusercontent.com/Veirsune/Dual_memory_pathways/main/paper/GDSM_Paper.pdf)** · **[GitHub 在线查看 PDF](paper/GDSM_Paper.pdf)** · [LaTeX 源码](paper/main.tex) · [实验协议与结果](paper/evidence/) · [论文中文导读](paper/README.md)
+**[下载论文 PDF](https://raw.githubusercontent.com/Veirsune/Dual_memory_pathways/main/paper/GDSM_Paper.pdf)** · **[GitHub 在线查看 PDF](paper/GDSM_Paper.pdf)** · [LaTeX 源码](paper/main.tex) · [源码包](paper/GDSM_LaTeX.zip) · [实验协议与结果](paper/evidence/) · [论文中文导读](paper/README.md)
 
-**论文已于 2026-11-15 全文重写：**[带日期的新 PDF](paper/GDSM_Rewritten_2026-11-15.pdf) · [Overleaf 源码包](paper/GDSM_LaTeX_2026-11-15.zip)。10 页，方法统一为六个核心公式，全部实验数值保持不变。
 
 在 iPad 上可用 Safari 打开 PDF 下载链接，再通过“分享 → 存储到文件”保存。
 

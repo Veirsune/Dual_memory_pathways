@@ -1,10 +1,10 @@
 # 门控双状态记忆（GDSM）论文
 
-**2026-11-15 全文重写版（v4）**。英文稿 10 页：正文及参考文献 6 页，附录 4 页。作者、单位尚待填写；本仓库公开研究草稿及代码，尚未投稿。
+论文共 10 页：正文及参考文献 6 页，附录 4 页。
 
-[下载重写版 PDF](https://raw.githubusercontent.com/Veirsune/Dual_memory_pathways/main/paper/GDSM_Rewritten_2026-11-15.pdf) · [GitHub 查看](https://github.com/Veirsune/Dual_memory_pathways/blob/main/paper/GDSM_Rewritten_2026-11-15.pdf) · [LaTeX 主文件](main.tex)
+[下载论文 PDF](https://raw.githubusercontent.com/Veirsune/Dual_memory_pathways/main/paper/GDSM_Paper.pdf) · [GitHub 查看](https://github.com/Veirsune/Dual_memory_pathways/blob/main/paper/GDSM_Paper.pdf) · [LaTeX 主文件](main.tex)
 
-iPad 可用 Safari 打开 PDF，然后选择“分享 → 存储到文件”。带日期的文件名用于区分旧版，`GDSM_Paper.pdf` 和 `main.pdf` 同步保留最新版本。
+iPad 可用 Safari 打开 PDF，然后选择“分享 → 存储到文件”。论文文件统一为 `GDSM_Paper.pdf`，源码包为 [GDSM_LaTeX.zip](GDSM_LaTeX.zip)。
 
 ## 论文讲的科学故事
 
@@ -24,14 +24,7 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 
 这项研究的成果是一个能跨语音、事件视觉和像素序列改善干扰后记忆保持的共享记忆架构，以及相应的对照证据和定点实现。真实权重重放的 117,056 个定点数值与整数参考完全一致；Gesture 干净输入下，全网有效 MAC 增加 6.30%。这是运算量对照，物理能耗仍需工艺级测量。
 
-## 这次如何重写
-
-- 从“识别与保持的区别”引出问题，按问题、方法、实验、机制解释、实现成本组织全文。
-- 方法收为两节、六个核心公式；每个变量在首次出现时定义，再解释公式的行为和作用。
-- 统一正文、公式和架构图中的符号；不再用同一个输入符号指代不同对象。
-- 把训练细节、监督来源、完整中途干扰结果、统计区间和压力测试放入附录。主文保留支撑核心结论的结果。
-- 图 3 展示全网 MAC，局部记忆分支周期另列附录；讨论聚焦结果意义与下一步问题。
-- 保留全部封存结果，没有新增训练、挑选新检查点或修改实验数值。
+## 论文结构与记号
 
 英文标题：*Gated Dual-State Memory for Robust Temporal Processing in Spiking Neural Networks*。
 
@@ -51,7 +44,7 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 
 上传本目录到 Overleaf，选择 `main.tex`，用 pdfLaTeX 编译。图表与参考文献已随附，无需训练环境。
 
-本地编译及同步 PDF 文件名：
+本地编译为 `GDSM_Paper.pdf`：
 
 ```bash
 make

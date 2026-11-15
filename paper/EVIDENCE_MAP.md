@@ -35,14 +35,6 @@ Crossref DOI metadata was retrieved for LSTM, GRU, the Heidelberg datasets, DVS 
 
 The main cross-dataset tables use the full frozen SSC, Gesture and MNIST comparisons, not pilot subsets or best seeds. Historical SHD controls are used to explain mechanism and are labelled by their actual supervision recipe. Whole-sequence, endpoint, auxiliary-head, gate-coefficient, operation-estimate and RTL-cycle quantities remain separately identified. Strong-noise failures and the final readout study are included in the text/appendix.
 
-## Revision v2
+## Manuscript artifacts
 
-Figure 3 uses full-network effective MAC estimates for clean Gesture and appended L80 silence, generated from `hardware-operations.csv`. Exact values and arithmetic are in `full-network-mac-claims.json`. The measured memory-core cycle figure is retained in the appendix. Evaluation chronology and distribution-shift details are retained in the appendix; the Discussion ends with two future-direction sentences.
-
-## Naming revision v3
-
-The manuscript names the architecture Gated Dual-State Memory (GDSM). Historical result keys and source reports retain `commit`; this is a presentation-only rename of the same evaluated model. No weights, metrics or protocols changed.
-
-## Full rewrite, 2026-11-15
-
-Version v4 reorganizes the scientific narrative and unifies notation without changing experiments or source metrics. The 10-page PDF contains six core method equations, four figures, eight tables and 14 references. The numerical/compilation audit passes 67 checks. The versioned PDF is `GDSM_Rewritten_2026-11-15.pdf`; `GDSM_Paper.pdf` and `main.pdf` contain identical bytes.
+The paper is `GDSM_Paper.pdf`, with editable source in `main.tex` and an independent source package in `GDSM_LaTeX.zip`. It contains six core method equations, four figures, eight tables and 14 references. Source metrics are preserved in the evidence files above.

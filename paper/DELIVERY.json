@@ -1,7 +1,5 @@
 {
   "status": "complete",
-  "revision": "v4-full-rewrite",
-  "date": "2026-11-15",
   "pdf_pages": 10,
   "main_and_references_pages": 6,
   "appendix_pages": 4,
@@ -11,17 +9,17 @@
   "numerical_and_compilation_checks": 67,
   "new_training_runs": 0,
   "files": {
-    "main.pdf": {
-      "bytes": 256886,
-      "sha256": "93f0a5d59fbb04485914b376049e15109b4938a6aa4a5a138fc12c2761a1433d"
+    "GDSM_Paper.pdf": {
+      "bytes": 256454,
+      "sha256": "49fc5b94e70a21e7ebd1d619e243663113f68b82b7789531e7bb796dec36b12b"
     },
     "main.tex": {
-      "bytes": 45860,
-      "sha256": "5b0356c1d4d690bd6349327541e8d83c008c72a65675cc322feed5f1c71f9388"
+      "bytes": 45716,
+      "sha256": "ead6b6e872e69301cc01afe707daccffd6102d26276905feea2adeb0b32f16e6"
     },
-    "GDSM_LaTeX_2026-11-15.zip": {
-      "bytes": 268971,
-      "sha256": "94ab5967bf6560b9ca126460dc8e07ad59205d1b9ed322e81d7e891e7bbf5404"
+    "GDSM_LaTeX.zip": {
+      "bytes": 268073,
+      "sha256": "aff7b0e8a98deca7322a5ec6632de080f0fc1e59ea669b627e515f4741718812"
     }
   },
   "model_name": "GDSM",

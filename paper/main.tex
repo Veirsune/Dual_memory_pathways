@@ -95,7 +95,7 @@ The fast input, candidate and stable state have independent read projections in 
 
 \begin{figure*}[t]
 \centering\includegraphics[width=.94\textwidth]{figures/architecture.pdf}
-\caption{\textbf{Shared-memory architectures.} \textbf{a}, DMP~\cite{dmp} drives one shared state with a scalar input. \textbf{b}, GDSM uses vector drive, a candidate state and a gated stable state. The write carries $p_{t-1}$; independent reads combine both states with the fast pathway. The input-facing layer is shown, where $s_t=s_t^{(0)}$; deeper layers also receive permission computed from the raw input. Dashed arrows denote gate control.}
+\caption{\textbf{Shared-memory architectures.} \textbf{a}, DMP~\cite{dmp} drives one shared state with a scalar input. \textbf{b}, GDSM uses vector drive, a candidate state and a gated stable state. The write carries $p_{t-1}$; independent reads combine both states with the fast pathway. $W_h$ denotes the DMP memory-read projection. The diamond denotes $g_t$, whose causal construction is specified in Eq.~\eqref{eq:gate}.}
 \label{fig:architecture}
 \end{figure*}
 

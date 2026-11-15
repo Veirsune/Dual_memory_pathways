@@ -13,44 +13,38 @@ from matplotlib.path import Path as MplPath
 ROOT = Path(__file__).resolve().parents[1]
 INK = '#000000'
 BACKGROUND = '#FFFFFF'
-FIGURE_SIZE = (7.4, 3.35)
+FIGURE_SIZE = (7.4, 2.6)
 CANVAS = (101, 45)
 FONT_FAMILY = 'DejaVu Sans'
 OUTPUT_DPI = 300
 # Rectangles: (left, bottom, width, height, label).
 NODES = {
-    'memory': (12.5, 17, 11, 6, 'Memory\n'+r'$h_t$'),
-    'drive': (43.5, 17, 10, 6, 'Vector\ndrive'),
+    'memory': (12.5, 17, 12, 6, 'Memory\n'+r'$h_t$'),
     'candidate': (59, 17, 12, 6, 'Candidate\n'+r'$p_t$'),
     'stable': (84, 17, 12, 6, 'Stable\n'+r'$m_t$'),
-    'gate': (55, 2, 17, 5, 'Gate'),
 }
 # Polyline arrows: ([start, bend(s), end], width, dashed).
 ROUTES = {
     'dmp_fast': ([(3,34),(25.1,34)],1.25,False),
     'dmp_drive': ([(7,34),(7,20),(12.4,20)],1,False),
-    'dmp_read': ([(23.6,20),(28,20),(28,31.1)],1,False),
+    'dmp_read': ([(24.6,20),(28,20),(28,31.1)],1,False),
     'dmp_output': ([(30.9,34),(33,34)],1,False),
     'gdsm_fast': ([(40,34),(92.1,34)],1.25,False),
-    'vector_drive': ([(46.5,34),(46.5,23.1)],1,False),
-    'candidate_drive': ([(53.6,20),(58.9,20)],1,False),
+    'candidate_drive': ([(46.5,34),(46.5,20),(58.9,20)],1,False),
     'stable_write': ([(71.1,20),(83.9,20)],1,False),
     'candidate_read': ([(65,23.1),(65,30),(92.5,30),(93.5,31.5)],1,False),
     'stable_read': ([(94,23.1),(94,31.2)],1,False),
-    'gate_input': ([(40.8,34),(40.8,4.5),(54.9,4.5)],1,False),
-    'gate_control': ([(72.1,4.5),(78,4.5),(78,18.7)],1,True),
     'gdsm_output': ([(97.9,34),(100.5,34)],1,False),
 }
 # Labels: (x, y, text, fontsize). No explanatory slogans inside the drawing.
 LABELS = [
     (1,34,r'$s_t$',9), (14,36.5,r'$W_f$',9),
-    (9.5,25,r'$\bar b x_t$',9), (18,14.2,r'$\bar A$',9),
+    (9.5,25,r'$\bar b x_t$',9), (18.5,14.2,r'$\bar A$',9), (30.5,26,r'$W_h$',9),
     (38.5,34,r'$s_t$',9), (65,36.5,r'$W_f$',9),
-    (56.2,25.5,r'$\bar b\odot u_t$',9),
+    (52.5,25,r'$\bar b\odot u_t$',9),
     (74.5,23.5,r'$p_{t-1}$',9), (65,14.2,r'$\bar A$',9),
     (90,14.2,r'$1-g_t$',9), (77,32,r'$W_p$',9),
-    (91.2,26,r'$W_m$',9), (80.2,8,r'$g_t$',9),
-    (50.5,11.5,'Shared memory',8),
+    (91.2,26,r'$W_m$',9), (78,16.8,r'$g_t$',9),
 ]
 
 
@@ -60,7 +54,7 @@ def draw_architecture(root=ROOT):
                          'pdf.fonttype':42, 'ps.fonttype':42, 'svg.fonttype':'none'}):
         fig=plt.figure(figsize=FIGURE_SIZE,facecolor=BACKGROUND)
         ax=fig.add_axes([.01,.01,.98,.98])
-        ax.set(xlim=(-1,CANVAS[0]),ylim=(0,CANVAS[1]))
+        ax.set(xlim=(-1,CANVAS[0]),ylim=(10,CANVAS[1]))
         ax.set_aspect('equal');ax.axis('off')
 
         def label(x,y,s,size=9,weight='normal',ha='center'):
@@ -78,10 +72,8 @@ def draw_architecture(root=ROOT):
 
         label(0,42,'a',12,'bold',ha='left');label(3.5,42,'DMP',10,'bold',ha='left')
         label(37,42,'b',12,'bold',ha='left');label(40.5,42,'GDSM',10,'bold',ha='left')
-        # One shared-memory boundary, white inside, black dashed edge.
-        ax.add_patch(Rectangle((42.5,9.5),56,18.5,fc=BACKGROUND,ec=INK,lw=.8,linestyle=(0,(4,3)),zorder=0))
         for points,lw,dashed in ROUTES.values():arrow(points,lw,dashed)
-        for x,y in [(7,34),(40.8,34),(46.5,34)]:
+        for x,y in [(7,34),(46.5,34)]:
             ax.add_patch(Circle((x,y),.27,fc=INK,ec=INK,zorder=3))
         for x,y,w,h,s in NODES.values():
             ax.add_patch(Rectangle((x,y),w,h,fc=BACKGROUND,ec=INK,lw=1,zorder=3))
@@ -92,12 +84,14 @@ def draw_architecture(root=ROOT):
         # A single write gate, with the incoming candidate labelled p_{t-1}.
         ax.add_patch(Polygon([(76.8,20),(78,21.2),(79.2,20),(78,18.8)],
                             closed=True,fc=BACKGROUND,ec=INK,lw=1,zorder=4))
-        for x in [18,65,90]:recurrence(x)
+        for x in [18.5,65,90]:recurrence(x)
         for item in LABELS:label(*item)
         folder=root/'figures';folder.mkdir(exist_ok=True)
         for extension in ['pdf','svg','png']:
             fig.savefig(folder/f'architecture.{extension}',dpi=OUTPUT_DPI,
                         facecolor=BACKGROUND,bbox_inches='tight',pad_inches=.04)
+        svg=folder/'architecture.svg'
+        svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n')
         plt.close(fig)
 
 if __name__=='__main__':

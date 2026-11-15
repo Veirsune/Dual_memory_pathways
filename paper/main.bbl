@@ -5,14 +5,19 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Sun et~al.(2026)Sun, Su, Achterberg, Indiveri, Goodman, and
-  Akarca]{dmp}
-Pengfei Sun, Zhe Su, Jascha Achterberg, Giacomo Indiveri, Dan F.~M. Goodman,
-  and Danyal Akarca.
-\newblock {Algorithm-hardware co-design of neuromorphic networks with dual
-  memory pathways}.
-\newblock arXiv:2512.07602v3, 2026.
-\newblock URL \url{https://arxiv.org/abs/2512.07602v3}.
+\bibitem[Yao et~al.(2022)Yao, Li, Mo, and Cheng]{glif}
+X.~Yao, F.~Li, Z.~Mo, and J.~Cheng.
+\newblock {GLIF: A Unified Gated Leaky Integrate-and-Fire Neuron for Spiking
+  Neural Networks}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, pages 32160--32171, 2022.
+
+\bibitem[Zhang et~al.(2024)Zhang, Yang, Ma, Wu, Li, and Tan]{tclif}
+S.~Zhang, Q.~Yang, C.~Ma, J.~Wu, H.~Li, and K.~C. Tan.
+\newblock {TC-LIF: A Two-Compartment Spiking Neuron Model for Long-term
+  Sequential Modelling}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~38, pages 16838--16847, 2024.
 
 \bibitem[Voelker et~al.(2019)Voelker, Kajic, and Eliasmith]{lmu}
 Aaron Voelker, Ivana Kajic, and Chris Eliasmith.
@@ -35,6 +40,15 @@ Albert Gu, Karan Goel, and Christopher Re.
 \newblock In \emph{International Conference on Learning Representations}, 2022.
 \newblock URL \url{https://arxiv.org/abs/2111.00396}.
 
+\bibitem[Sun et~al.(2026)Sun, Su, Achterberg, Indiveri, Goodman, and
+  Akarca]{dmp}
+Pengfei Sun, Zhe Su, Jascha Achterberg, Giacomo Indiveri, Dan F.~M. Goodman,
+  and Danyal Akarca.
+\newblock {Algorithm-hardware co-design of neuromorphic networks with dual
+  memory pathways}.
+\newblock arXiv:2512.07602v3, 2026.
+\newblock URL \url{https://arxiv.org/abs/2512.07602v3}.
+
 \bibitem[Hochreiter and Schmidhuber(1997)]{lstm}
 Sepp Hochreiter and Jurgen Schmidhuber.
 \newblock {Long Short-Term Memory}.
@@ -56,37 +70,6 @@ Albert Gu and Tri Dao.
 \newblock {Mamba: Linear-Time Sequence Modeling with Selective State Spaces}.
 \newblock arXiv:2312.00752, 2023.
 \newblock URL \url{https://arxiv.org/abs/2312.00752}.
-
-\bibitem[Yao et~al.(2022)Yao, Li, Mo, and Cheng]{glif}
-X.~Yao, F.~Li, Z.~Mo, and J.~Cheng.
-\newblock {GLIF: A Unified Gated Leaky Integrate-and-Fire Neuron for Spiking
-  Neural Networks}.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~35, pages 32160--32171, 2022.
-
-\bibitem[Zhang et~al.(2024)Zhang, Yang, Ma, Wu, Li, and Tan]{tclif}
-S.~Zhang, Q.~Yang, C.~Ma, J.~Wu, H.~Li, and K.~C. Tan.
-\newblock {TC-LIF: A Two-Compartment Spiking Neuron Model for Long-term
-  Sequential Modelling}.
-\newblock In \emph{Proceedings of the AAAI Conference on Artificial
-  Intelligence}, volume~38, pages 16838--16847, 2024.
-
-\bibitem[Neftci et~al.(2019)Neftci, Mostafa, and Zenke]{surrogate}
-Emre~O. Neftci, Hesham Mostafa, and Friedemann Zenke.
-\newblock {Surrogate Gradient Learning in Spiking Neural Networks: Bringing the
-  Power of Gradient-Based Optimization to Spiking Neural Networks}.
-\newblock \emph{IEEE Signal Processing Magazine}, 36\penalty0 (6):\penalty0
-  51--63, 2019.
-\newblock \doi{10.1109/msp.2019.2931595}.
-
-\bibitem[Fang et~al.(2023)Fang, Chen, Ding, Yu, Masquelier, Chen, Huang, Zhou,
-  Li, and Tian]{spikingjelly}
-Wei Fang, Yanqi Chen, Jianhao Ding, Zhaofei Yu, Timothee Masquelier, Ding Chen,
-  Liwei Huang, Huihui Zhou, Guoqi Li, and Yonghong Tian.
-\newblock {SpikingJelly: An open-source machine learning infrastructure
-  platform for spike-based intelligence}.
-\newblock \emph{Science Advances}, 9\penalty0 (40), 2023.
-\newblock \doi{10.1126/sciadv.adi1480}.
 
 \bibitem[Cramer et~al.(2022)Cramer, Stradmann, Schemmel, and Zenke]{shd}
 Benjamin Cramer, Yannik Stradmann, Johannes Schemmel, and Friedemann Zenke.
@@ -114,5 +97,22 @@ Y.~Lecun, L.~Bottou, Y.~Bengio, and P.~Haffner.
 \newblock \emph{Proceedings of the IEEE}, 86\penalty0 (11):\penalty0
   2278--2324, 1998.
 \newblock \doi{10.1109/5.726791}.
+
+\bibitem[Fang et~al.(2023)Fang, Chen, Ding, Yu, Masquelier, Chen, Huang, Zhou,
+  Li, and Tian]{spikingjelly}
+Wei Fang, Yanqi Chen, Jianhao Ding, Zhaofei Yu, Timothee Masquelier, Ding Chen,
+  Liwei Huang, Huihui Zhou, Guoqi Li, and Yonghong Tian.
+\newblock {SpikingJelly: An open-source machine learning infrastructure
+  platform for spike-based intelligence}.
+\newblock \emph{Science Advances}, 9\penalty0 (40), 2023.
+\newblock \doi{10.1126/sciadv.adi1480}.
+
+\bibitem[Neftci et~al.(2019)Neftci, Mostafa, and Zenke]{surrogate}
+Emre~O. Neftci, Hesham Mostafa, and Friedemann Zenke.
+\newblock {Surrogate Gradient Learning in Spiking Neural Networks: Bringing the
+  Power of Gradient-Based Optimization to Spiking Neural Networks}.
+\newblock \emph{IEEE Signal Processing Magazine}, 36\penalty0 (6):\penalty0
+  51--63, 2019.
+\newblock \doi{10.1109/msp.2019.2931595}.
 
 \end{thebibliography}

@@ -1,6 +1,6 @@
 # 门控双状态记忆（GDSM）论文
 
-论文共 10 页：正文及参考文献 6 页，附录 4 页。
+论文共 10 页，包含正文、参考文献及附录。
 
 [下载论文 PDF](https://raw.githubusercontent.com/Veirsune/Dual_memory_pathways/main/paper/GDSM_Paper.pdf) · [GitHub 查看](https://github.com/Veirsune/Dual_memory_pathways/blob/main/paper/GDSM_Paper.pdf) · [LaTeX 主文件](main.tex)
 
@@ -39,6 +39,8 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 | `T_0` / `T` / `L` / `K` | 原序列长度 / 扩展后长度 / 干扰长度 / 末端读取窗口 |
 
 第 3 节是方法，第 5 节是主要结果，第 6 节是实现成本。附录 A 给训练设置，B 给 SHD 组件与监督对照，C 给完整补充结果，D 给硬件细节。主文表 2 和图 2 可直接阅读核心结果。
+
+图 1 分为模型对照、层内快慢通路和闭门保持三个部分。`figures/architecture.pdf` 与 `figures/architecture.svg` 是矢量文件，`scripts/draw_architecture.py` 提供独立绘图源码。
 
 ## 编译与数值核验
 

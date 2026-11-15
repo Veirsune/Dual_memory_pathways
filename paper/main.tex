@@ -95,7 +95,7 @@ The fast input, candidate and stable state have independent read projections in 
 
 \begin{figure*}[t]
 \centering\includegraphics[width=.94\textwidth]{figures/architecture.pdf}
-\caption{GDSM separates ongoing integration from protected storage. The candidate $p_t$ processes every input frame. A causal, dimension-wise gate controls writes from $p_{t-1}$ to stable memory $m_t$. The three independent reads use the same notation as Eqs.~\eqref{eq:candidate}--\eqref{eq:read}: layer input $s_t$, fast projection $W_f$, candidate read $W_p$, and stable read $W_m$. Raw-input statistics are computed from $r_t$.}
+\caption{\textbf{From shared integration to protected memory.} \textbf{a}, Layer-level comparison: FSNN has only fast neuronal dynamics; DMP adds one continuously updated shared state; GDSM separates candidate and stable states. DMP uses the shared fast/slow formulation of Sun et al.~\cite{dmp}. \textbf{b}, GDSM within one layer. Vector drive updates the candidate; a one-step delay ($z^{-1}$) supplies $p_{t-1}$ to the write gate. Candidate and stable states have independent reads into the LIF current. Solid arrows carry signals; dashed arrows carry causal gate control. The stable feedback retains the fraction $1-g_t$ of its previous state. \textbf{c}, At a fully closed step, stable coordinates remain unchanged and their projected read can be reused. Candidate and fast processing remain active. Coordinate tiles are schematic, not measured values.}
 \label{fig:architecture}
 \end{figure*}
 
@@ -248,7 +248,6 @@ The datasets are publicly available~\cite{shd,gesture,mnist}. Source code, manus
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
-\clearpage
 \appendix
 
 \section{Implementation and training}

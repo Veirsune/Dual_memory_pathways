@@ -69,11 +69,11 @@ for task in tasks:
 (ROOT/'tables/middle.tex').write_text('\n'.join(s)+'\n')
 # Retention figure: matched endpoint at L=0; seed SD only for MNIST.
 plt.style.use('default')
-default_colors=plt.rcParamsDefault['axes.prop_cycle'].by_key()['color']
-colors=dict(zip(families,default_colors))
+# Blue-gray palette: neutral baseline, slate DMP, and deep-blue GDSM.
+colors={'fsnn':'#9AA3AC','dmp':'#64788C','commit':'#245781'}
 markers={'fsnn':'o','dmp':'s','commit':'^'}
-# Keep the same blue/orange/green palette across all quantitative figures.
-bar_colors={'dmp':colors['dmp'],'dense':default_colors[0],'cached':colors['commit']}
+# Keep DMP and GDSM colors consistent across curves and bars.
+bar_colors={'dmp':colors['dmp'],'dense':'#A5B9CC','cached':colors['commit']}
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':9,'axes.spines.top':False,'axes.spines.right':False,'pdf.fonttype':42,'ps.fonttype':42})
 fig,axes=plt.subplots(2,4,figsize=(11.5,5.0),sharey=True)
 for col,task in enumerate(tasks):

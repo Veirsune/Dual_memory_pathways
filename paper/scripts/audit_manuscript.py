@@ -63,7 +63,7 @@ check('no LaTeX errors','! LaTeX Error' not in log)
 info=subprocess.check_output(['pdfinfo',str(R/'GDSM_Paper.pdf')],text=True)
 pages=int(re.search(r'Pages:\s+(\d+)',info).group(1))
 extracted=subprocess.check_output(['pdftotext',str(R/'GDSM_Paper.pdf'),'-'],text=True)
-check('complete PDF',pages>0 and 'Reproducible artifacts.' in extracted,{'pages':pages})
+check('complete PDF',pages>0 and 'No physical power or energy measurement is inferred from these counts.' in ' '.join(extracted.split()),{'pages':pages})
 main_text=text.split(r'\appendix')[0]
 check('six core equations',main_text.count(r'\begin{equation}')==6)
 check('defined core equation labels',all(r'\label{eq:'+s+'}' in main_text for s in ['dmp','candidate','stable','read','gate','loss']))

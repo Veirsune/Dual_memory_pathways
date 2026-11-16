@@ -444,7 +444,7 @@
       "check": "complete PDF",
       "passed": true,
       "details": {
-        "pages": 10
+        "pages": 8
       }
     },
     {
@@ -483,7 +483,7 @@
       "details": null
     }
   ],
-  "pages": 10,
+  "pages": 8,
   "new_training_runs": 0,
   "note": "Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript."
 }

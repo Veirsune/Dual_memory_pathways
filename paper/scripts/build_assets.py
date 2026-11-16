@@ -67,6 +67,8 @@ for task in tasks:
    s.append(task+' & '+('Silent' if k=='silence' else 'Poisson')+' & '+str(L)+' & '+' & '.join(fmt(get(task,f,metric='mean',L=L,kind=k,middle=True),'MNIST' in task) for f in families)+r' \\')
  s.append(r'\addlinespace')
 (ROOT/'tables/middle.tex').write_text('\n'.join(s)+'\n')
+longest=[row for row in s if '&' in row and int(row.split('&')[2])==lengths[row.split('&')[0].strip()][-1]]
+(ROOT/'tables/middle-longest.tex').write_text('\n'.join(longest)+'\n')
 # Retention figure: matched endpoint at L=0; seed SD only for MNIST.
 plt.style.use('default')
 # Blue-gray palette: neutral baseline, slate DMP, and deep-blue GDSM.

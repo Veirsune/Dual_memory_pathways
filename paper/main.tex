@@ -216,7 +216,7 @@ Endpoint scoring reveals information that these averages miss. On SSC, DMP's 47.
 
 Interruption training contributes to active-noise robustness. Clean-only GDSM reaches 11.47\% after SSC tail noise of length 120, increasing to 52.79\% after mixed training. The architecture supplies a protected storage path, and disturbance exposure teaches the network to use it. The shared endpoint objective also changes the task faced by FSNN: its S-MNIST whole-sequence accuracy falls from 45.71\% to 14.84\% after mixed training. We therefore report both stages rather than interpreting mixed training as a universal improvement to ordinary classification.
 
-When the original event resumes after a middle gap, later evidence can replenish the state. GDSM exceeds DMP in all six SSC middle conditions, but gains are smaller and mixed on MNIST. The full results in Appendix~\ref{app:additional} distinguish this recovery problem from remembering a completed event. The main advantage of GDSM is persistence of usable information after evidence is no longer present.
+When the original event resumes after a middle gap, later evidence can replenish the state. GDSM exceeds DMP in all six SSC middle conditions, but gains are smaller and mixed on MNIST. The longest-gap results in Appendix~\ref{app:additional} distinguish this recovery problem from remembering a completed event. The main advantage of GDSM is persistence of usable information after evidence is no longer present.
 
 \section{Implementation cost and hardware verification}
 The retention mechanism has a measurable model-level cost. On clean Gesture inputs, effective full-network MACs increase from 63.212 million for DMP to 67.196 million for GDSM, an overhead of 6.30\% (Fig.~\ref{fig:hardware}). During an appended L80 silent gap, cached GDSM requires 68.455 million MACs versus 64.159 million for DMP. Caching reduces GDSM's own dense count from 69.274 million to 68.455 million, saving 1.183\% of full-network MACs. These estimates account for active computation across the network; the local memory-core cycle measurements are reported separately in Appendix~\ref{app:hardware}.
@@ -245,47 +245,45 @@ The datasets are publicly available~\cite{shd,gesture,mnist}. Source code, manus
 \bibliography{references}
 \appendix
 
-\section{Implementation and training}
+\section{Reproduction essentials}
 \label{app:training}
-The models are implemented in SpikingJelly~\cite{spikingjelly} and trained with surrogate gradients~\cite{surrogate}.
-
-\subsection{State dynamics and initialization}
-All neural, memory and feature-history states start at zero for a new sequence. An inserted interruption does not reset any state. The candidate transition uses the original DMP Legendre construction and zero-order-hold discretization with a unit time step. For indices $i,j=0,\ldots,d-1$, its continuous parameters are
-\[
- A^{\mathrm c}_{ij}=\frac{2i+1}{\theta}
- \begin{cases}-1,&i<j,\\(-1)^{i-j+1},&i\ge j,\end{cases}
- \qquad b^{\mathrm c}_i=\frac{(2i+1)(-1)^i}{\theta}.
-\]
-Discretization gives $\bar A$ and $\bar b$. The implementation stores a projection $\widetilde W_u$, bias $\widetilde b_u$ and fixed diagonal scaling $D$, with $D_{ii}=\bar b_i/c_i$ and positive constants $c_i$ evenly spaced from 0.5 to 1.5. We use the equivalent notation $W_u=C^{-1}\widetilde W_u$ and $b_u=C^{-1}\widetilde b_u$, where $C=\operatorname{diag}(c_i)$. Positive homogeneity of ReLU gives $D\relu(\widetilde W_u s_t+\widetilde b_u)=\bar b\odot\relu(W_u s_t+b_u)$, so Eq.~\eqref{eq:candidate} describes exactly the implemented drive. For initialization, stored row $i$ and its bias are $c_i$ times the scalar DMP weights and bias; the effective initial drive therefore matches DMP. The projection rows subsequently train independently. In paired SSC and MNIST starts, $W_m$ is initialized to zero so that the additional stable read does not alter the initial current.
-
-Local gate weights start at zero, with bias $\log(0.95/0.05)$. The permission MLP's output weights start at zero and its output bias at $+2$ in the task-supervised comparisons. These initially open gates learn to close through training. Historical SHD protection studies use separately calibrated initialization.
-
-\subsection{Gate features}
-Local activity normalization uses a scale bounded below by 0.05. Mean activity and absolute mean change are divided by this scale; variance is divided by its square. Nonzero occupancy supplies the fourth feature. Equation~\eqref{eq:gate} concatenates these features with their previous EMA.
-
-The permission MLP uses raw-input features and their previous EMA. For auditory input, four global statistics and 14 pooled frequency bands produce a $36\to32\to2d$ MLP, whose output is split between the two hidden layers. Gesture uses four global statistics and $2\times4\times4$ polarity/spatial bins, giving a $72\to32\to d$ MLP; pooled frame counts are divided by a further 16 for these features. MNIST uses the four scalar-pixel statistics and an $8\to32\to2d$ MLP. Pixel variance is identically zero but the shared feature construction is retained. Each MLP uses a ReLU hidden layer. Permission is one when its output logit is nonnegative; its backward derivative is replaced by the sigmoid derivative.
-
-\subsection{SSC and Gesture}
-SSC events are binned into 250 frames between each utterance's first and last event. Consecutive groups of five channels are reduced by a maximum, yielding 140 channels. The two hidden LIF layers have time constant 2, threshold 1 and dropout 0.2. The memory window is $\theta=40$. Training uses seed 801, batch size 512, AdamW, weight decay 0.05 and gradient clipping at 1. Learning rates start at 0.003 for 40 clean epochs and 0.001 for 12 mixed epochs, with cosine decay to $5\times10^{-5}$ in each stage. Both stages use Eq.~\eqref{eq:loss}. Training shifts input channels by up to 12 in either direction. Evaluation noise seed 901 supplies paired inputs to all models, with shorter gaps taken as prefixes of the longest noise realization.
-
-Gesture uses subjects 1--19 for training, subjects 20--23 for validation and official test subjects 24--29. The event mirror has millisecond timestamp precision. Counts are grouped into 100 normalized frames and averaged over $4\times4$ spatial blocks, producing two-polarity $32\times32$ inputs. Each $3\times3$ convolution is followed by LIF activation and $2\times2$ average pooling. The memory branch is attached to the 256-unit fully connected layer, with $\theta=300$; output scores are membrane potentials. This protocol uses 100 frames rather than the original DMP study's 1,000-frame Gesture setting.
-
-Each model starts mixed training from its best validation checkpoint within 50 clean epochs. Fine-tuning uses seed 701, Adam, learning rate $10^{-4}$, batch size 4 and 20 fixed epochs with Eq.~\eqref{eq:loss}. Input-byte hashes confirm identical augmented batches across models. The 1$\times$ noise rate is estimated from training activity; 3$\times$ appears only in stress evaluation.
-
-\subsection{Sequential MNIST}
-The official training images are stratified into 54,000 training and 6,000 validation examples with split seed 1701. Pixels are normalized to $[0,1]$. PS-MNIST uses one permutation generated with seed 1702, shared across all splits and training seeds. The two 200-unit LIF layers use time constant 2, threshold 1, no dropout and $\theta=300$.
-
-Seeds 42, 43 and 44 each train all three models on both tasks. Adam uses batch size 512, no weight decay and gradient clipping at 1. The 50-epoch clean stage uses whole-sequence cross-entropy, with constant learning rate 0.001 on S-MNIST and 0.005 on PS-MNIST. The 12-epoch mixed stage uses Eq.~\eqref{eq:loss} and learning rate 0.0003. Paired starts use the default linear-layer initialization, rather than the original DMP study's truncated-normal initialization. Evaluation noise seed is 2701. The 18 fits took 7,932.53 seconds on an A100 80 GB, followed by 319.1 seconds of evaluation.
-
-\paragraph{Evaluation chronology.}
-SHD was used iteratively during architecture development, and SSC's official test set had also been evaluated in earlier project stages. For the comparisons reported here, protocols and scheduled checkpoints were fixed before evaluation. All 18 MNIST models were frozen before official-test evaluation for that block.
-
-\section{SHD component and supervision controls}
-\label{app:shd}
+The implementation uses SpikingJelly and surrogate gradients~\cite{spikingjelly,surrogate}. Table~\ref{tab:optimization} summarizes optimization; Table~\ref{tab:protocol} gives data sizes and backbones. Detailed preprocessing, feature normalization and implementation records are provided in the repository's \texttt{EXPERIMENT\_DETAILS.md}.
 
 \begin{table*}[t]
 \centering\small
-\caption{SHD supervision ablation: accuracy (\%), three fine-tuning seeds, mean $\pm$ SD. Clean and new-word columns use their sequence classification queries; silence and noise use L80 retention queries. ``Gate labels'' adds both opening and leakage losses.}
+\caption{Optimization settings. Learning rates and epochs are listed as clean / mixed. Gesture selects its clean checkpoint by validation accuracy within 50 epochs.}
+\label{tab:optimization}
+\begin{tabular}{llrrrr}
+\toprule Task & Optimizer & Epochs & Learning rate & Batch & Training seeds\\\midrule
+SSC & AdamW & $40/12$ & $0.003/0.001$ & 512 & 801\\
+Gesture & Adam & $50/20$ & --- / $10^{-4}$ & 4 & 701 (mixed)\\
+S-MNIST & Adam & $50/12$ & $0.001/0.0003$ & 512 & 42--44\\
+PS-MNIST & Adam & $50/12$ & $0.005/0.0003$ & 512 & 42--44\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{States and gates.}
+States start at zero for each new sequence and persist across inserted gaps. Candidate dynamics use the original DMP Legendre construction with zero-order-hold discretization. The memory window is $\theta=40$ for speech and 300 for Gesture/MNIST. The code stores $D_{ii}=\bar b_i/c_i$, with positive $c_i$ spanning 0.5--1.5. Setting $W_u=C^{-1}\widetilde W_u$ and $b_u=C^{-1}\widetilde b_u$, where $C=\operatorname{diag}(c_i)$, gives the equivalent drive in Eq.~\eqref{eq:candidate} by ReLU homogeneity. Projection rows initially match scalar DMP; paired SSC/MNIST starts set $W_m=0$.
+
+Local gates start with zero weights and bias $\log(0.95/0.05)$. The permission MLP starts with zero output weights and bias $+2$; its hidden layer uses ReLU. Auditory features combine four global statistics and 14 frequency bands ($36\to32\to2d$ MLP); Gesture uses four statistics and $2\times4\times4$ spatial bins ($72\to32\to d$); MNIST uses four statistics ($8\to32\to2d$). Each input includes the previous feature EMA. Permission is one for a nonnegative output logit, with sigmoid surrogate gradients.
+
+\paragraph{Data and objectives.}
+Speech is reduced to 140 channels. Gesture uses subjects 1--19 for training, 20--23 for validation and 24--29 for testing, with 100 frames and two-polarity $32\times32$ inputs. MNIST uses a stratified training/validation split (seed 1701), normalized pixels and a shared PS-MNIST permutation (seed 1702). SSC uses Eq.~\eqref{eq:loss} in both stages; MNIST uses whole-sequence loss in the clean stage. All main mixed stages use Eq.~\eqref{eq:loss}. SHD was used iteratively during development and SSC test evaluation had occurred in earlier stages; the reported protocols and scheduled checkpoints were fixed before evaluation. All 18 MNIST fits were frozen before their official-test evaluation.
+
+\paragraph{Hardware scope.}
+\label{app:hardware}
+The memory core uses signed 24-bit Q11.12 arithmetic. With four inputs and 32 read outputs, local DMP cycles are 43/63 at $d=10/30$, versus 136/216 for dense GDSM and 104/184 for fully closed cached GDSM. These exclude the fast backbone. Trained replay covers 944 steps and matches 117,056 integer-reference values; cached execution uses 185,528 rather than 188,800 cycles. Lookup-table settings and quantization errors are documented in the repository. No physical power or energy measurement is inferred from these counts.
+
+\section{SHD supervision controls}
+\label{app:shd}
+SHD uses 6,245 training, 640 validation and 1,271 confirmation examples from the training release, with 2,264 official-test examples. Inputs have 100 frames; the backbone has two 128-unit LIF layers. The capacity comparison in Table~\ref{tab:capacity} uses a shared historical recipe with explicit gate supervision and a stable-memory auxiliary loss of weight 1.0. Its wide-scalar control uses $M\to d\to1$ projections.
+
+The separate supervision ablation starts each arm from matched class-trained weights and freshly initialized permission networks. All arms retain the auxiliary class loss and run 30 epochs with seeds 501--503, batch size 128 and AdamW (learning rate 0.001, weight decay 0.05, clipping at 1). Training mixes single words (25\%), middle interruptions (37.5\%) and paired words (37.5\%), with silence or rate-0.25 noise and gaps of 20/40/80 frames. Table~\ref{tab:supervision} separates the empty-frame closure rule from additional gate classification and leakage losses. At $d=30$, closure raises silence retention from 29.52\% to 67.82\%; gate labels add only 0.65 points to noise retention. The main cross-dataset study therefore uses class supervision without gate labels.
+
+\begin{table*}[t]
+\centering\small
+\caption{SHD supervision ablation: accuracy (\%), mean $\pm$ SD over three fine-tuning seeds. Silence and noise use L80 retention queries; the new-word column uses sequence classification.}
 \label{tab:supervision}
 \begin{tabular}{rlrrrr}
 \toprule $d$ & Training & Clean & Silence L80 & Noise L80 & New word\\\midrule
@@ -299,22 +297,10 @@ SHD was used iteratively during architecture development, and SSC's official tes
 \end{tabular}
 \end{table*}
 
-SHD development uses 6,245 training utterances, 640 validation utterances and a 1,271-example confirmation subset drawn from the official training release; training excludes speakers 0 and 2. Official-test evaluation contains 2,264 utterances. Inputs have 140 channels and 100 normalized frames, with two 128-unit LIF hidden layers, dropout 0.2 and $\theta=40$. A separate DMP baseline trained on the full training release reached $91.95\pm0.64$\% clean accuracy. That score belongs to DMP and uses a different training split from the memory studies.
-
-Content training runs for 80 epochs with an auxiliary stable-memory classification loss of weight 1.0. The scalar, wide-scalar and vector controls in Table~\ref{tab:capacity} share a historical protected recipe that also includes noise-detector calibration and explicit opening/leakage objectives. The wide-scalar control uses $M\to d\to1$ projections with ReLU after each projection. It increases parameter count while retaining scalar drive.
-
-The separate supervision study compares task supervision alone, task supervision with exact closure on empty raw frames, and the same model with additional noise-position-derived gate losses (Table~\ref{tab:supervision}). The last arm jointly adds gate classification and leakage penalties. All arms retain the auxiliary class loss, start from matched class-trained sources and receive freshly initialized permission networks. Thus the task-supervised arms do not inherit a trained noise detector.
-
-Each arm uses three fine-tuning seeds (501--503), 30 epochs, batch size 128 and AdamW with learning rate 0.001, weight decay 0.05, gradient clipping at 1 and cosine decay to $5\times10^{-5}$. Training mixes 25\% single words, 37.5\% middle interruptions and 37.5\% paired words. Gaps are silent or rate-0.25 Poisson noise, with lengths 20, 40 or 80. Channel shifts range up to 12. Paired words share a speaker and have different class labels; SHD's 20 labels encode both digit and language.
-
-At $d=30$, the zero-input rule raises silence retention from 29.52\% to 67.82\%. Adding gate labels yields little further improvement in noise retention and lowers the average new-word score. This comparison motivates the class-supervised recipe used in the main transfer study. Exact closure remains conditional on the learned decision: the mean direct old-state coefficient during noise is 0.706 for the $d=30$ zero-rule model, rather than a guaranteed retention threshold for every noisy sequence.
-
-
-
-\section{Additional results and analyses}
+\section{Supplementary results}
 \label{app:additional}
-\subsection{Recognition and middle interruptions}
-Table~\ref{tab:clean} reports whole-sequence accuracy before and after mixed training. Table~\ref{tab:middle} lists all standard-intensity middle interruptions. Because the event resumes after a middle gap, these tests permit recovery from later evidence; they answer a different question from tail retention. At the unseen L160 gap on MNIST, GDSM's middle-silence scores are slightly below DMP, whereas its middle-noise scores are higher. Tail protection therefore does not imply a uniform advantage on every interruption placement.
+\paragraph{Recognition and recovery.}
+Table~\ref{tab:clean} reports clean-input recognition before and after mixed training; Table~\ref{tab:middle} gives every model's longest middle-gap result. All shorter conditions remain in the repository. GDSM exceeds DMP in all six SSC middle conditions. At MNIST L160, its middle-noise accuracy is higher but its middle-silence accuracy is slightly lower, distinguishing recovery after an interruption from retention after an event ends.
 
 \begin{table*}[t]
 \centering\small
@@ -329,77 +315,19 @@ Table~\ref{tab:clean} reports whole-sequence accuracy before and after mixed tra
 
 \begin{table*}[t]
 \centering\small
-\caption{All standard-intensity middle-interruption conditions after mixed training: whole-sequence accuracy (\%). MNIST reports three-seed mean $\pm$ SD. Gesture noise is 1$\times$. The longest gap is unseen during training for SSC and MNIST.}
+\caption{Longest middle interruption: whole-sequence accuracy (\%). MNIST reports three-seed mean $\pm$ SD; Gesture noise is 1$\times$. These gaps are unseen during training for SSC and MNIST.}
 \label{tab:middle}
 \begin{tabular}{llrrrr}
 \toprule Task & Interruption & $L$ & FSNN & DMP & GDSM\\\midrule
-\tableinput{tables/middle.tex}
+\tableinput{tables/middle-longest.tex}
 \bottomrule
 \end{tabular}
 \end{table*}
 
-\subsection{Unfamiliar noise and event switching}
-Uniform-noise training does not cover every disturbance. Concentrating SHD noise in 28 adjacent channels at rate 1.25 preserves the global mean intensity of uniform rate-0.25 noise, but lowers the $d=30$ zero-rule model's L80 retention from 60.16\% to $6.91\pm0.38$\%. Gesture's unseen 3$\times$ noise also removes the tail advantage at L80 (Table~\ref{tab:strong}). For the corresponding Gesture middle test, GDSM's whole-sequence accuracy exceeds DMP, while its final-20-frame accuracy is 18.31 points lower. These outcomes identify noise distribution and recovery speed as useful targets for further development.
+\paragraph{Noise shifts and switching.}
+Concentrating SHD noise into 28 adjacent channels at matched global intensity lowers the $d=30$ zero-rule model's L80 retention from 60.16\% to $6.91\pm0.38$\%. Under unseen 3$\times$ Gesture noise at L80, all models reach 9.09\% tail accuracy; middle accuracy is 64.27\%, 19.19\% and 54.17\% for FSNN, DMP and GDSM. Thus protection depends on the disturbance distribution. In the frozen-memory switching study, static and dynamic reading give first-20-frame new-word accuracy of $12.28\pm0.87$\% and $12.69\pm0.45$\%, versus $12.22\pm0.97$\% for fixed reading. Their L80 noise retention is $58.94\pm8.17$\% and $61.50\pm8.36$\%, versus $60.16\pm8.76$\%. These small gains support the simpler fixed reader used in the main experiments.
 
-\begin{table}[htbp]
-\centering\small
-\caption{Gesture accuracy (\%) under unseen 3$\times$ noise, averaged over three paired noise realizations. Middle tests use whole-sequence scores; tail tests use the final 20 frames.}
-\label{tab:strong}
-\begin{tabular}{lrrrr}
-\toprule Test & $L$ & FSNN & DMP & GDSM\\\midrule
-Middle & 20 & 84.47 & 81.82 & 83.59\\
-Middle & 40 & 82.20 & 63.13 & 74.87\\
-Middle & 80 & 64.27 & 19.19 & 54.17\\\addlinespace
-Tail & 20 & 9.09 & 9.09 & 18.69\\
-Tail & 40 & 9.09 & 9.09 & 12.50\\
-Tail & 80 & 9.09 & 9.09 & 9.09\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-A frozen-memory SHD study tests whether reading can accelerate switching without erasing stable content. It fixes the entire backbone and first-layer reading, training only three final-layer read multipliers for 30 epochs with additional new-word class queries at frames 20 and 40. A static reader learns three logits; a dynamic reader uses a $12\to16\to3$ MLP on causal input/context and memory statistics. Both return $3\,\mathrm{softmax}(\cdot)$, initialized to unit coefficients. Candidate, stable and write-gate traces remain identical across readers for the same encoded stream.
-
-With the original fixed reader, first-20-frame new-word accuracy is $12.22\pm0.97$\%, while the old label is predicted on $27.72\pm4.56$\% of examples. New-word final-20-frame accuracy rises to $71.72\pm4.46$\%. Static prefix reading yields $12.28\pm0.87$\% early accuracy and $58.94\pm8.17$\% noise L80 retention; dynamic prefix reading gives $12.69\pm0.45$\% and $61.50\pm8.36$\%. The fixed reader's retention is $60.16\pm8.76$\%. These small early-read improvements support using the simpler fixed reader for the main comparisons while leaving event-switching adaptation as a distinct problem.
-
-\subsection{Paired uncertainty}
-SSC's GDSM--DMP tail gains at L120 are 51.41 points for silence and 48.88 for noise. Speaker-cluster bootstrap 95\% intervals are $[49.49,53.25]$ and $[46.96,50.73]$. Gesture's corresponding subject-cluster intervals are reported in the main text. These intervals describe test-population sampling conditional on the fitted models; they do not estimate variation across training seeds.
-
-For MNIST, Table~\ref{tab:paired} gives the three paired seed differences and Student-$t$ intervals with two degrees of freedom. Every observed longest-tail difference is positive, but three seeds leave broad intervals for active-noise conditions. The S-MNIST silence interval excludes zero. Clean-stage GDSM--DMP differences average 0.71 points on S-MNIST (95\% interval $[-0.16,1.59]$) and 1.35 on PS-MNIST ($[-1.65,4.34]$).
-
-\begin{table}[htbp]
-\centering\footnotesize
-\caption{GDSM minus DMP endpoint accuracy at L160 (percentage points). Seed differences are ordered 42, 43, 44. The unbounded $t$ interval is reported without clipping.}
-\label{tab:paired}
-\begin{tabular}{lll}
-\toprule Task / gap & Seed differences & Paired 95\% interval\\\midrule
-S / silence & 75.34, 50.71, 83.91 & $[27.17,112.80]$\\
-S / noise & 17.02, 7.10, 41.49 & $[-22.10,65.84]$\\
-PS / silence & 51.31, 22.36, 53.26 & $[-0.68,85.30]$\\
-PS / noise & 24.56, 2.57, 24.25 & $[-14.19,48.45]$\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\section{Hardware implementation details}
-\label{app:hardware}
-\subsection{Local cycles and network operations}
-The local cycle comparison uses four input channels, $N=32$ read outputs, permission hidden width $H_q=32$, and matched Q11.12 precision and row scheduling. DMP takes $1+d+N$ processing cycles per frame. Dense GDSM takes $4d+H_q+2N$; a fully closed stable gate permits cached reading and reduces this to $4d+H_q+N$. Two handshake cycles per transaction are excluded.
-
-The resulting counts at $d=10/30$ are 43/63 for DMP, 136/216 for dense GDSM and 104/184 for closed cached GDSM (Fig.~\ref{fig:corecycles}). The local memory branch is more expensive with GDSM. Whole-network MAC accounting includes the larger fast backbone and gives the smaller model-level overhead shown in Fig.~\ref{fig:hardware}; these two quantities measure different scopes and cannot be treated as interchangeable latency ratios.
-
-\begin{figure}[t]
-\centering\includegraphics[width=\columnwidth]{figures/hardware.pdf}
-\caption{\textbf{Memory-branch processing cycles only.} Cached bars describe fully closed steps. Candidate integration, gating and candidate reading remain active. These counts exclude the fast backbone and do not measure full-network latency.}
-\label{fig:corecycles}
-\end{figure}
-
-Parameter counts provide another view of cost. SSC uses 39,075 parameters for FSNN, 47,281 for DMP and 66,495 for GDSM. The corresponding MNIST counts are 42,610, 59,213 and 86,778. Gesture uses 1,085,356 for DMP and 1,259,395 for GDSM. Equal memory dimension therefore does not mean equal total parameter count; the SHD wide-scalar control addresses parameter count for the input-drive comparison specifically.
-
-\subsection{Fixed-point replay}
-The memory core uses signed 24-bit Q11.12 values, wide intermediate products, arithmetic shifts and saturation. Sigmoid is a 257-entry lookup table over $[-8,8]$ with spacing $1/16$. The implemented threshold is $82/4096$ and the EMA coefficient is $3277/4096$. Any open stable coordinate triggers the complete stable read; reuse occurs when all coordinates close.
-
-The trained trace uses the seed-42 S-MNIST mixed checkpoint, the first official-test image (digit 7), the first $d=40$ memory layer and four read coordinates. Its 944 steps comprise 784 pixel steps, 80 silent steps and 80 clipped rate-0.1 noise steps. Native replay matches all 117,056 checked integer-reference values. It takes 185,528 processing cycles, compared with 188,800 for dense execution: 818 skipped stable reads save 3,272 cycles, or 1.73\%.
-
-Against floating-point execution, mean absolute errors are 0.00548 for the candidate, 0.00508 for stable memory, 0.03341 for read current and 0.000087 for gates. One of 37,760 coordinate decisions differs at the hard gate boundary, producing a maximum gate error of 0.4072. Exact agreement with the fixed-point reference thus establishes correct integer execution, while the floating-point comparison measures quantization effects. No physical power or energy measurement is inferred from these counts.
+\paragraph{Uncertainty.}
+SSC's L120 GDSM--DMP gains are 51.41 points for silence and 48.88 for noise; speaker-cluster bootstrap 95\% intervals are $[49.49,53.25]$ and $[46.96,50.73]$. These intervals condition on fitted models. MNIST L160 differences are positive for all three seeds; paired 95\% $t$ intervals (unclipped percentage points) are $[27.17,112.80]$ (S-MNIST silence), $[-22.10,65.84]$ (S-MNIST noise), $[-0.68,85.30]$ (PS-MNIST silence) and $[-14.19,48.45]$ (PS-MNIST noise).
 
 \end{document}

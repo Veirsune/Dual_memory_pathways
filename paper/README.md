@@ -1,6 +1,6 @@
 # 门控双状态记忆（GDSM）论文
 
-论文共 10 页，包含正文、参考文献及附录。
+论文共 8 页，包含正文、参考文献及附录。
 
 [下载论文 PDF](https://raw.githubusercontent.com/Veirsune/Dual_memory_pathways/main/paper/GDSM_Paper.pdf) · [GitHub 查看](https://github.com/Veirsune/Dual_memory_pathways/blob/main/paper/GDSM_Paper.pdf) · [LaTeX 主文件](main.tex)
 
@@ -38,11 +38,11 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 | `W_f` / `W_p` / `W_m` | 快通路 / 候选 / 稳定读取权重 |
 | `T_0` / `T` / `L` / `K` | 原序列长度 / 扩展后长度 / 干扰长度 / 末端读取窗口 |
 
-第 1 节引言合并问题背景与相关研究，第 2 节是方法，第 4 节是主要结果，第 5 节是实现成本。附录 A 给训练设置，B 给 SHD 组件与监督对照，C 给完整补充结果，D 给硬件细节。主文表 2 和图 2 可直接阅读核心结果。
+第 1 节引言合并问题背景与相关研究，第 2 节是方法，第 4 节是主要结果，第 5 节是实现成本。附录 A 汇总复现配置与硬件范围，B 给 SHD 监督消融，C 给关键补充结果。详细实现、完整结果表与探索记录见 [实验细节](EXPERIMENT_DETAILS.md)。主文表 2 和图 2 可直接阅读核心结果。
 
 图 1 并列对照 DMP 与 GDSM，各结构只画一次。`figures/architecture.pdf` 与 `figures/architecture.svg` 是矢量文件，`scripts/draw_architecture.py` 提供独立绘图源码。图采用纯黑线条、纯黑文字和纯白背景；具体修改方法见 [图 1 编辑说明](FIGURE_EDITING.md)。
 
-图 2–4 使用蓝灰主调：FSNN 为灰色，DMP 为灰蓝色，GDSM 为深蓝色，GDSM dense 柱为浅蓝灰色。配色在 `scripts/build_assets.py` 中统一定义。图 1 单独使用纯黑白。
+图 2–3 使用蓝灰主调：FSNN 为灰色，DMP 为灰蓝色，GDSM 为深蓝色，GDSM dense 柱为浅蓝灰色。配色在 `scripts/build_assets.py` 中统一定义。图 1 单独使用纯黑白。
 
 ## 编译与数值核验
 

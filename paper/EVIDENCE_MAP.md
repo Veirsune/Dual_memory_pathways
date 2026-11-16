@@ -37,4 +37,4 @@ The main cross-dataset tables use the full frozen SSC, Gesture and MNIST compari
 
 ## Manuscript artifacts
 
-The paper is `GDSM_Paper.pdf`, with editable source in `main.tex` and an independent source package in `GDSM_LaTeX.zip`. It contains six core method equations, four figures, eight tables and 14 references. Source metrics are preserved in the evidence files above.
+The paper is `GDSM_Paper.pdf`, with editable source in `main.tex` and an independent source package in `GDSM_LaTeX.zip`. It contains six core method equations, four figures, eight tables and 16 references. Source metrics are preserved in the evidence files above.

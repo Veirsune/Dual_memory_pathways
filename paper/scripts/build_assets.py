@@ -132,4 +132,6 @@ ax.set_xticks(xs,['$d=10$','$d=30$']);ax.set_ylabel('Processing cycles / frame')
 # Deduplicated, machine-readable claims used by tables and figures.
 unique={json.dumps({k:v for k,v in c.items() if k not in ['mean','sd','values']},sort_keys=True):c for c in claims}
 (ROOT/'evidence/generated-claims.json').write_text(json.dumps(list(unique.values()),indent=2))
-print('Generated 4 figures, 3 tables,',len(unique),'numerical aggregates,',len(manifest),'source copies.')
+from draw_training_curves import draw_training_curves
+draw_training_curves(ROOT, colors=colors, markers=markers)
+print('Generated 5 figure assets, 4 tables,',len(unique),'numerical aggregates,',len(manifest),'source copies.')

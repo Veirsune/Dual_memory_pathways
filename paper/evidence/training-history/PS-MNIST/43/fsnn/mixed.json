@@ -1,0 +1,113 @@
+[
+  {
+    "epoch": 1,
+    "loss": 5.779819609747992,
+    "train_accuracy": 0.3213888888888889,
+    "seconds": 2.5138309001922607,
+    "plan_sha256": "03e92841fbdf5c8529cc9be73b870f3545108285296fbe42ba53266852daf8be",
+    "first_batch_sha256": "ad6d4ab72f679ab1f21c09dfd60a5abc79050768a535110f793da90e0edfdcdc"
+  },
+  {
+    "epoch": 2,
+    "loss": 5.075677455760815,
+    "train_accuracy": 0.2685925925925926,
+    "seconds": 2.508923053741455,
+    "plan_sha256": "06576ad971d59d59405e70a167f1a33cd9f8d2e52aea17dc836076f3368cc88d",
+    "first_batch_sha256": "c56759fad9214519c9b3364d2e29c5800391499d5daa83f18d557fa766589b3f"
+  },
+  {
+    "epoch": 3,
+    "loss": 4.55989047467267,
+    "train_accuracy": 0.2749814814814815,
+    "seconds": 2.5273685455322266,
+    "plan_sha256": "993db11c2120091a5a850aac2c890f95686cb457b3f50fd9d9ed3474f83c76cb",
+    "first_batch_sha256": "c8cbc3e65d05f4592cca7d5d8447523f481c366c2176f4e05eaa3b8ccdf02449"
+  },
+  {
+    "epoch": 4,
+    "loss": 4.362858283290157,
+    "train_accuracy": 0.27725925925925926,
+    "seconds": 2.5384418964385986,
+    "plan_sha256": "a7ed4412396d6b680a8b19035fc00724eb36bc470a0fea003ea90932a9e34ac0",
+    "first_batch_sha256": "1741f76dc77706d4631bcc619fcfa0911863213cd39c45d1123e3f4bb0adc258"
+  },
+  {
+    "epoch": 5,
+    "loss": 3.6915448016413936,
+    "train_accuracy": 0.278537037037037,
+    "seconds": 2.5255587100982666,
+    "plan_sha256": "bc60e926d37f3c41ce58a501800ebd05e24c46a7fdb30029dd171346f692ef09",
+    "first_batch_sha256": "b960276f8b67137a712e589359295878bfc9fd876ccbb69dbe259c340de8449f",
+    "validation": {
+      "mean": 0.26266666666666666,
+      "last20": 0.151,
+      "n": 6000
+    }
+  },
+  {
+    "epoch": 6,
+    "loss": 3.4280197458620423,
+    "train_accuracy": 0.2798703703703704,
+    "seconds": 2.528097152709961,
+    "plan_sha256": "e4ae907efc286a331a8de283c8c7fe3f86c861ae20ec29d0ddde3359bc151810",
+    "first_batch_sha256": "d1fedebc1586af736659995d73459c5bfcd46ed9531abcc1671074d554aba696"
+  },
+  {
+    "epoch": 7,
+    "loss": 3.258511743121677,
+    "train_accuracy": 0.2779074074074074,
+    "seconds": 2.531256675720215,
+    "plan_sha256": "7b84ad03c9dc1958c6f56266120dee0bd76630e8049aceea0efc4c7a960475eb",
+    "first_batch_sha256": "0d6770df9e1ae4c7ce72af108325743fe34287c86c74ed4bb1649e6d533653a0"
+  },
+  {
+    "epoch": 8,
+    "loss": 3.007699291865031,
+    "train_accuracy": 0.2785,
+    "seconds": 2.526252269744873,
+    "plan_sha256": "19e86a7b5db0ecc2d940e055df3afa8171d734cc46f4328c5764fc91b0b41e2a",
+    "first_batch_sha256": "4ba4a608be8c1f766d391643e5784eb9b71836488fd1a70253cca036236c7b23"
+  },
+  {
+    "epoch": 9,
+    "loss": 2.8775824409767434,
+    "train_accuracy": 0.2773333333333333,
+    "seconds": 2.531177282333374,
+    "plan_sha256": "654a2c3e01d471d1bdee9630d28fd5b5c8b7394f9ac3972f0bbad8575a8aa09c",
+    "first_batch_sha256": "a8093200f6e0a5c4e478f3e101a33b18ac96654b7201b82977d5939afd7ff0ea"
+  },
+  {
+    "epoch": 10,
+    "loss": 2.8666344787456373,
+    "train_accuracy": 0.257,
+    "seconds": 2.534196376800537,
+    "plan_sha256": "6645dcf731992383a3e9595c6ddc5ac77f9701757758236f915feca016c2385e",
+    "first_batch_sha256": "18db07930f9669876682a7f2299cbb197b54d74e7daef733dd5bfbea07fa12fc",
+    "validation": {
+      "mean": 0.2325,
+      "last20": 0.14983333333333335,
+      "n": 6000
+    }
+  },
+  {
+    "epoch": 11,
+    "loss": 2.7333004631466338,
+    "train_accuracy": 0.2639444444444444,
+    "seconds": 2.5225415229797363,
+    "plan_sha256": "474731c9b58a20ff7b69e743f94fcc9da0aac2f5eedf89656047d68e075dbd60",
+    "first_batch_sha256": "6257b00b17aee08faf6ed1c1cb66cea2efdc2cf3cad588ca28b6bec8f743bf3a"
+  },
+  {
+    "epoch": 12,
+    "loss": 2.6700906461786342,
+    "train_accuracy": 0.2725740740740741,
+    "seconds": 2.5250661373138428,
+    "plan_sha256": "f703913064621aadd684b77f7d88a3091bc4707d3431bff99e26bb4901a32a39",
+    "first_batch_sha256": "42d904e2cfc141570236153fa409bcd88ad15c6661c5e0325d01c9b7c49498f1",
+    "validation": {
+      "mean": 0.25633333333333336,
+      "last20": 0.148,
+      "n": 6000
+    }
+  }
+]

@@ -1,0 +1,380 @@
+[
+  {
+    "task": "SSC",
+    "seed": 801,
+    "family": "fsnn",
+    "stage": "clean",
+    "file": "evidence/training-history/SSC/801/fsnn/clean.json",
+    "source": "block5-ssc/results/runs/fsnn/clean/history.json",
+    "sha256": "ab59d97d6af72d8a8499104adc4cf0d872c03a4e84e762b7016fafe0d01d933e"
+  },
+  {
+    "task": "SSC",
+    "seed": 801,
+    "family": "fsnn",
+    "stage": "mixed",
+    "file": "evidence/training-history/SSC/801/fsnn/mixed.json",
+    "source": "block5-ssc/results/runs/fsnn/mixed/history.json",
+    "sha256": "261a898f27b855dede7721edbce14ee7a383c274da6d1f180e58f48974665a0f"
+  },
+  {
+    "task": "SSC",
+    "seed": 801,
+    "family": "dmp",
+    "stage": "clean",
+    "file": "evidence/training-history/SSC/801/dmp/clean.json",
+    "source": "block5-ssc/results/runs/dmp/clean/history.json",
+    "sha256": "9ef855985a38eb2007af6d42dab01e9e644464d02d16081ed36fa0541bcb74a2"
+  },
+  {
+    "task": "SSC",
+    "seed": 801,
+    "family": "dmp",
+    "stage": "mixed",
+    "file": "evidence/training-history/SSC/801/dmp/mixed.json",
+    "source": "block5-ssc/results/runs/dmp/mixed/history.json",
+    "sha256": "702a16e26ad25645896716d7c0de8668470f819b5bf90fda5ad90da73a1d0f83"
+  },
+  {
+    "task": "SSC",
+    "seed": 801,
+    "family": "commit",
+    "stage": "clean",
+    "file": "evidence/training-history/SSC/801/commit/clean.json",
+    "source": "block5-ssc/results/runs/commit/clean/history.json",
+    "sha256": "cd4c8c1b5e72e74219751d2c5923b661037b9b9da42ffb8dfd5de6743241b6ce"
+  },
+  {
+    "task": "SSC",
+    "seed": 801,
+    "family": "commit",
+    "stage": "mixed",
+    "file": "evidence/training-history/SSC/801/commit/mixed.json",
+    "source": "block5-ssc/results/runs/commit/mixed/history.json",
+    "sha256": "533804637d5fb2be442390ba5c6b6df3651811430298ed7ebba84320574a410a"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 42,
+    "family": "fsnn",
+    "stage": "clean",
+    "file": "evidence/training-history/S-MNIST/42/fsnn/clean.json",
+    "source": "block6-mnist/results/runs/smnist/42/fsnn/clean/history.json",
+    "sha256": "747378445ee4783241bf07f9c67da5c6eb84d322bfa84750edc5c1daeaff4a61"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 42,
+    "family": "fsnn",
+    "stage": "mixed",
+    "file": "evidence/training-history/S-MNIST/42/fsnn/mixed.json",
+    "source": "block6-mnist/results/runs/smnist/42/fsnn/mixed/history.json",
+    "sha256": "5e9012d8c838f502973f3e14fb7c257d9724adc78cbdcd35d317dae0edabf120"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 42,
+    "family": "dmp",
+    "stage": "clean",
+    "file": "evidence/training-history/S-MNIST/42/dmp/clean.json",
+    "source": "block6-mnist/results/runs/smnist/42/dmp/clean/history.json",
+    "sha256": "f64dd9b3195a165b9e90d89d4ffedc045e5f087f3abcc3f8b660a261b442c612"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 42,
+    "family": "dmp",
+    "stage": "mixed",
+    "file": "evidence/training-history/S-MNIST/42/dmp/mixed.json",
+    "source": "block6-mnist/results/runs/smnist/42/dmp/mixed/history.json",
+    "sha256": "40198775f987cf7a5b50a7b5901f84ddb818a6f5b44cb07784b63727a4b4afff"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 42,
+    "family": "commit",
+    "stage": "clean",
+    "file": "evidence/training-history/S-MNIST/42/commit/clean.json",
+    "source": "block6-mnist/results/runs/smnist/42/commit/clean/history.json",
+    "sha256": "33247b027ba518418fe44a37987bb4e0af530af741de7d639d6e89e64302cb33"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 42,
+    "family": "commit",
+    "stage": "mixed",
+    "file": "evidence/training-history/S-MNIST/42/commit/mixed.json",
+    "source": "block6-mnist/results/runs/smnist/42/commit/mixed/history.json",
+    "sha256": "b8ec907e76bf234fcef02893e951ae35286b6a10dc3c2cf8466677aada4d5d70"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 43,
+    "family": "fsnn",
+    "stage": "clean",
+    "file": "evidence/training-history/S-MNIST/43/fsnn/clean.json",
+    "source": "block6-mnist/results/runs/smnist/43/fsnn/clean/history.json",
+    "sha256": "a37aefcd43fbf4d7fb772d1d2f4503304c742d7dbe07ca0d3ecd836482a7eb23"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 43,
+    "family": "fsnn",
+    "stage": "mixed",
+    "file": "evidence/training-history/S-MNIST/43/fsnn/mixed.json",
+    "source": "block6-mnist/results/runs/smnist/43/fsnn/mixed/history.json",
+    "sha256": "dc7b6ccbe3abce366b673a4a8e5834e2e88aa14b1d9347cc7e3587a4205499ae"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 43,
+    "family": "dmp",
+    "stage": "clean",
+    "file": "evidence/training-history/S-MNIST/43/dmp/clean.json",
+    "source": "block6-mnist/results/runs/smnist/43/dmp/clean/history.json",
+    "sha256": "3897c8663c4ee43ab5e6745c61754e15b2cfa3c2650424f76672cc9715137947"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 43,
+    "family": "dmp",
+    "stage": "mixed",
+    "file": "evidence/training-history/S-MNIST/43/dmp/mixed.json",
+    "source": "block6-mnist/results/runs/smnist/43/dmp/mixed/history.json",
+    "sha256": "3372f1fd5fcb69642446ef6579191a40550545bd350f82d18c74d383bdf01a47"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 43,
+    "family": "commit",
+    "stage": "clean",
+    "file": "evidence/training-history/S-MNIST/43/commit/clean.json",
+    "source": "block6-mnist/results/runs/smnist/43/commit/clean/history.json",
+    "sha256": "c67330b2391a1ca1aa93d53b6c585ab57236483468ebb5ff62964cccc54ce179"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 43,
+    "family": "commit",
+    "stage": "mixed",
+    "file": "evidence/training-history/S-MNIST/43/commit/mixed.json",
+    "source": "block6-mnist/results/runs/smnist/43/commit/mixed/history.json",
+    "sha256": "266c9f172b51a1a817ee682cf3caf3005b3b2cd0afe437f47f94247cc8fa5e48"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 44,
+    "family": "fsnn",
+    "stage": "clean",
+    "file": "evidence/training-history/S-MNIST/44/fsnn/clean.json",
+    "source": "block6-mnist/results/runs/smnist/44/fsnn/clean/history.json",
+    "sha256": "5d3e8b55f076ef01d04e208900e67e38ce85e016db87e72a1e38f56e135558c5"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 44,
+    "family": "fsnn",
+    "stage": "mixed",
+    "file": "evidence/training-history/S-MNIST/44/fsnn/mixed.json",
+    "source": "block6-mnist/results/runs/smnist/44/fsnn/mixed/history.json",
+    "sha256": "670abb1983a9de46e3dfc3a9e6c5fdaf1481dbe615a88be6a4261dcba46ab783"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 44,
+    "family": "dmp",
+    "stage": "clean",
+    "file": "evidence/training-history/S-MNIST/44/dmp/clean.json",
+    "source": "block6-mnist/results/runs/smnist/44/dmp/clean/history.json",
+    "sha256": "6e4daef0ba8a177cafe9c4be8dda2de5720698b43bf21df10de660a88d760065"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 44,
+    "family": "dmp",
+    "stage": "mixed",
+    "file": "evidence/training-history/S-MNIST/44/dmp/mixed.json",
+    "source": "block6-mnist/results/runs/smnist/44/dmp/mixed/history.json",
+    "sha256": "29796a37b1d949a67a6ac94e05346594e7820e86606da357028975d04e99e7b7"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 44,
+    "family": "commit",
+    "stage": "clean",
+    "file": "evidence/training-history/S-MNIST/44/commit/clean.json",
+    "source": "block6-mnist/results/runs/smnist/44/commit/clean/history.json",
+    "sha256": "db1d6e3db458eefff06ed4c63923025a563bd0334994db9f7211daece82be44a"
+  },
+  {
+    "task": "S-MNIST",
+    "seed": 44,
+    "family": "commit",
+    "stage": "mixed",
+    "file": "evidence/training-history/S-MNIST/44/commit/mixed.json",
+    "source": "block6-mnist/results/runs/smnist/44/commit/mixed/history.json",
+    "sha256": "e566201884078a6bed1a7eef5bda4d4d74f2a050eb2de3785ef3a64f12515167"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 42,
+    "family": "fsnn",
+    "stage": "clean",
+    "file": "evidence/training-history/PS-MNIST/42/fsnn/clean.json",
+    "source": "block6-mnist/results/runs/psmnist/42/fsnn/clean/history.json",
+    "sha256": "4c919a71669d90ee7c6b0567f175e87135b89b34f4eecea196a27dbbe7a67727"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 42,
+    "family": "fsnn",
+    "stage": "mixed",
+    "file": "evidence/training-history/PS-MNIST/42/fsnn/mixed.json",
+    "source": "block6-mnist/results/runs/psmnist/42/fsnn/mixed/history.json",
+    "sha256": "d68419d86066263980bcab0b6299b29e92ac5ed6e11d26d24bc604313598b071"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 42,
+    "family": "dmp",
+    "stage": "clean",
+    "file": "evidence/training-history/PS-MNIST/42/dmp/clean.json",
+    "source": "block6-mnist/results/runs/psmnist/42/dmp/clean/history.json",
+    "sha256": "667d92184510c15d3e784edfac57258c254df422c96c9149ee1ce2dc30776a12"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 42,
+    "family": "dmp",
+    "stage": "mixed",
+    "file": "evidence/training-history/PS-MNIST/42/dmp/mixed.json",
+    "source": "block6-mnist/results/runs/psmnist/42/dmp/mixed/history.json",
+    "sha256": "ad48ec0a5369c27a7fba3bd7426cdd1e9caf5a3b8e1c4a6546d4458511a5818e"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 42,
+    "family": "commit",
+    "stage": "clean",
+    "file": "evidence/training-history/PS-MNIST/42/commit/clean.json",
+    "source": "block6-mnist/results/runs/psmnist/42/commit/clean/history.json",
+    "sha256": "9d56196e0a2f0cdc772157466d18dbab165e62c7b12b50478c38473d9f0490eb"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 42,
+    "family": "commit",
+    "stage": "mixed",
+    "file": "evidence/training-history/PS-MNIST/42/commit/mixed.json",
+    "source": "block6-mnist/results/runs/psmnist/42/commit/mixed/history.json",
+    "sha256": "48bd3c0c634eee262c58c2e000fa06e10a6f47f508308f04b790e120a2505669"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 43,
+    "family": "fsnn",
+    "stage": "clean",
+    "file": "evidence/training-history/PS-MNIST/43/fsnn/clean.json",
+    "source": "block6-mnist/results/runs/psmnist/43/fsnn/clean/history.json",
+    "sha256": "af49c0ea980d8ee8aecdec80bfe243371d57d35b4008e6dadd555f478befa7b8"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 43,
+    "family": "fsnn",
+    "stage": "mixed",
+    "file": "evidence/training-history/PS-MNIST/43/fsnn/mixed.json",
+    "source": "block6-mnist/results/runs/psmnist/43/fsnn/mixed/history.json",
+    "sha256": "ecd5cafd349d9b0db6463e02834fbff6b7360b315921293cd62ffa4a01856422"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 43,
+    "family": "dmp",
+    "stage": "clean",
+    "file": "evidence/training-history/PS-MNIST/43/dmp/clean.json",
+    "source": "block6-mnist/results/runs/psmnist/43/dmp/clean/history.json",
+    "sha256": "45be5395d3825d77dfb8326c8e034ff7c7e0842b5e66b7899d46f2451f7e7014"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 43,
+    "family": "dmp",
+    "stage": "mixed",
+    "file": "evidence/training-history/PS-MNIST/43/dmp/mixed.json",
+    "source": "block6-mnist/results/runs/psmnist/43/dmp/mixed/history.json",
+    "sha256": "d4e8d82349e0ed68c1c6e29855d840a3ae8e84c23a385b0c6967e4647c0dd091"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 43,
+    "family": "commit",
+    "stage": "clean",
+    "file": "evidence/training-history/PS-MNIST/43/commit/clean.json",
+    "source": "block6-mnist/results/runs/psmnist/43/commit/clean/history.json",
+    "sha256": "5d001af5c6d9900ede369addab32a86b6808cf6154f2640b7a5b3967a735e096"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 43,
+    "family": "commit",
+    "stage": "mixed",
+    "file": "evidence/training-history/PS-MNIST/43/commit/mixed.json",
+    "source": "block6-mnist/results/runs/psmnist/43/commit/mixed/history.json",
+    "sha256": "e8360eb546f910d5d4e0ef840de1ba593967311aa553737e95c95533f1a0d574"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 44,
+    "family": "fsnn",
+    "stage": "clean",
+    "file": "evidence/training-history/PS-MNIST/44/fsnn/clean.json",
+    "source": "block6-mnist/results/runs/psmnist/44/fsnn/clean/history.json",
+    "sha256": "6d491c0da4168cb1810022679849bb7552b7aa2773f271c1cbaa6d2b6f5d74bb"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 44,
+    "family": "fsnn",
+    "stage": "mixed",
+    "file": "evidence/training-history/PS-MNIST/44/fsnn/mixed.json",
+    "source": "block6-mnist/results/runs/psmnist/44/fsnn/mixed/history.json",
+    "sha256": "0f7e82ffabd79c419e627883ea30aa2d3c1172551aa45773ff9430d0a6cfb448"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 44,
+    "family": "dmp",
+    "stage": "clean",
+    "file": "evidence/training-history/PS-MNIST/44/dmp/clean.json",
+    "source": "block6-mnist/results/runs/psmnist/44/dmp/clean/history.json",
+    "sha256": "b5e5b8c89df82649f7c644392a75ab4c4dc2e54102c356d715494f83bc02f05b"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 44,
+    "family": "dmp",
+    "stage": "mixed",
+    "file": "evidence/training-history/PS-MNIST/44/dmp/mixed.json",
+    "source": "block6-mnist/results/runs/psmnist/44/dmp/mixed/history.json",
+    "sha256": "80d8c6d8153386eeb898addcde8678c63712dd80e3f2809cc7253aa4cff38596"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 44,
+    "family": "commit",
+    "stage": "clean",
+    "file": "evidence/training-history/PS-MNIST/44/commit/clean.json",
+    "source": "block6-mnist/results/runs/psmnist/44/commit/clean/history.json",
+    "sha256": "be9a7547c92aed62877424b335c31550680641d27a58a50bda100eaaeb9edeaf"
+  },
+  {
+    "task": "PS-MNIST",
+    "seed": 44,
+    "family": "commit",
+    "stage": "mixed",
+    "file": "evidence/training-history/PS-MNIST/44/commit/mixed.json",
+    "source": "block6-mnist/results/runs/psmnist/44/commit/mixed/history.json",
+    "sha256": "727ac10c6d07bb01c8e3e52938937d80ecd0ac381d64577844e3564848f2bd0e"
+  }
+]

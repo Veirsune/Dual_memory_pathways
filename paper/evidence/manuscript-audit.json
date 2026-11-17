@@ -481,6 +481,16 @@
       "check": "plot uses matching notation",
       "passed": true,
       "details": null
+    },
+    {
+      "check": "training histories and evaluation schedules",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "plotted training aggregates match histories",
+      "passed": true,
+      "details": null
     }
   ],
   "pages": 8,

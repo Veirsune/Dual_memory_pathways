@@ -42,7 +42,9 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 
 图 1 并列对照 DMP 与 GDSM，各结构只画一次。`figures/architecture.pdf` 与 `figures/architecture.svg` 是矢量文件，`scripts/draw_architecture.py` 提供独立绘图源码。图采用纯黑线条、纯黑文字和纯白背景；具体修改方法见 [图 1 编辑说明](FIGURE_EDITING.md)。
 
-图 2–3 使用蓝灰主调：FSNN 为灰色，DMP 为灰蓝色，GDSM 为深蓝色，GDSM dense 柱为浅蓝灰色。配色在 `scripts/build_assets.py` 中统一定义。图 1 单独使用纯黑白。
+图 2–4 使用蓝灰主调：FSNN 为灰色，DMP 为灰蓝色，GDSM 为深蓝色，GDSM dense 柱为浅蓝灰色。配色在 `scripts/build_assets.py` 中统一定义。图 1 单独使用纯黑白。
+
+图 3 展示 SSC、S-MNIST、PS-MNIST 的干净输入验证准确率随训练轮数的变化，标出干净训练与混合训练的切换。MNIST 使用三个种子的均值与标准差。图来自 42 份原始训练日志，仅绘制实际记录的验证点；原日志没有逐轮干扰分项验证，图中不将训练准确率或最终测试结果作为替代。单独重画可运行 `make training-curves`，脚本为 `scripts/draw_training_curves.py`。
 
 ## 编译与数值核验
 

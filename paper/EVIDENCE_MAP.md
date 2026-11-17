@@ -37,6 +37,10 @@ The main cross-dataset tables use the full frozen SSC, Gesture and MNIST compari
 
 ## Manuscript artifacts
 
-The paper is `GDSM_Paper.pdf`, with editable source in `main.tex` and an independent source package in `GDSM_LaTeX.zip`. It contains six core method equations, three figures, seven tables and 16 references. Source metrics are preserved in the evidence files above.
+The paper is `GDSM_Paper.pdf`, with editable source in `main.tex` and an independent source package in `GDSM_LaTeX.zip`. It contains six core method equations, four figures, seven tables and 16 references. Source metrics are preserved in the evidence files above.
 
 Detailed protocols, exploratory diagnostics and complete supplementary tables are preserved in `EXPERIMENT_DETAILS.md`. The PDF retains the longest middle-gap condition for each dataset and both disturbance types, without changing any recorded values. The memory-core cycle plot remains a repository asset; the PDF reports its key counts in Appendix A.
+
+## Training curves
+
+Figure 3 uses clean-input, whole-sequence validation accuracy from 42 original stage histories, packaged under `evidence/training-history/`. Source locations and SHA-256 hashes are listed in `evidence/training-history-manifest.json`. `training-curve-points.csv` contains 96 aggregates. All seeds are included (SSC: 801; MNIST: 42, 43, 44), and uncertainty is sample standard deviation, not a confidence interval. The archived validation functions are in `training-history/ssc_study.py` and `training-history/mnist_run.py`. No corruption-specific validation trajectory was recorded, and no missing epochs or intermediate checkpoints are reconstructed.

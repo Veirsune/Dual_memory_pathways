@@ -1,0 +1,113 @@
+[
+  {
+    "epoch": 1,
+    "loss": 4.9873022032843695,
+    "train_accuracy": 0.8968333333333334,
+    "seconds": 4.154606103897095,
+    "plan_sha256": "42d7d8ebe7fa7dfb48cb33c9de72cb385c738256505155e4d900db401478157d",
+    "first_batch_sha256": "9df7f365f8fc0b1f26fa6fef2aa7a506d8fed3a68e68b3e5936cfcdfdb380734"
+  },
+  {
+    "epoch": 2,
+    "loss": 3.370419840636077,
+    "train_accuracy": 0.9046481481481482,
+    "seconds": 4.108784914016724,
+    "plan_sha256": "18b240505a94d32af5224b1776fec7fcdeb6f42e0e8876c45c2612577819e0e5",
+    "first_batch_sha256": "db496fd46d062d7d2f4e3ab02247bf139989d55f17e3569313d949954a9f0326"
+  },
+  {
+    "epoch": 3,
+    "loss": 2.9112724603723596,
+    "train_accuracy": 0.8997407407407407,
+    "seconds": 4.127879858016968,
+    "plan_sha256": "99a584ba6b2d5d465742d4094a7b2dcb61a02d4ddc273ba64ccb38d563598ad5",
+    "first_batch_sha256": "678cdbebc968d24373ba54c36e79b51f8558fb04cdb5fbccc8e37e60ddc1b9c4"
+  },
+  {
+    "epoch": 4,
+    "loss": 2.5506035688894766,
+    "train_accuracy": 0.8987407407407407,
+    "seconds": 4.1385109424591064,
+    "plan_sha256": "3076f9e135c5670dc81a4bf122ea525b04c2187524fb549e563e8d870623bd30",
+    "first_batch_sha256": "be4ae8e2840c36152542f073c13a67ceccc0f0173d46b404084ea71a37905e3e"
+  },
+  {
+    "epoch": 5,
+    "loss": 2.0528583664011073,
+    "train_accuracy": 0.9002592592592593,
+    "seconds": 4.134963035583496,
+    "plan_sha256": "0ab6bd7270cb9462f0fe61ab2e14f05976295ea9de3719b242ce5c56406c2dca",
+    "first_batch_sha256": "4b572df0953ef6e09e27e1a368bfbbaf72fadcbb3c1c487be5e45b6099c65ca7",
+    "validation": {
+      "mean": 0.9096666666666666,
+      "last20": 0.6945,
+      "n": 6000
+    }
+  },
+  {
+    "epoch": 6,
+    "loss": 1.6614223370022243,
+    "train_accuracy": 0.9015,
+    "seconds": 4.11600136756897,
+    "plan_sha256": "2dd6c665d452abb8729fee24d4bf1ec6e58cce2ba82ec0ac8e3d3b2623872d6f",
+    "first_batch_sha256": "0ddb47a5d2967cd7fc2d89005bc655251c935cccfcdfaab76f36ad9d27c94b5e"
+  },
+  {
+    "epoch": 7,
+    "loss": 1.5050136760782313,
+    "train_accuracy": 0.8962962962962963,
+    "seconds": 4.147108316421509,
+    "plan_sha256": "e1b4def31dd379218229cbf4034a568f9c51a14ad913e72d9c38a9b01af15cdb",
+    "first_batch_sha256": "3280ff95359e146ea82fc8b727bec6b562135f113ef38202d3f0b522c6ee0990"
+  },
+  {
+    "epoch": 8,
+    "loss": 1.4436433287373296,
+    "train_accuracy": 0.9022962962962963,
+    "seconds": 4.134866952896118,
+    "plan_sha256": "801f73726f75741d4e5e2f88ca0f84c461f5cc0248abdc882ead8d664e8c9590",
+    "first_batch_sha256": "327ec3cda1186fe4aac8567bffecf4a1e795269ff038bb140ab8448dc2ab4ccd"
+  },
+  {
+    "epoch": 9,
+    "loss": 1.2284198083877564,
+    "train_accuracy": 0.8962037037037037,
+    "seconds": 4.150492429733276,
+    "plan_sha256": "d568582a34b174c095cca9f76426176b23ff2cb8f2057acf01187cb4cd4a3c68",
+    "first_batch_sha256": "9cb2541530fe886f1ac143feea1cc212d0e370571e09e3b9fcb3f94697147927"
+  },
+  {
+    "epoch": 10,
+    "loss": 1.2092554274311773,
+    "train_accuracy": 0.8978518518518519,
+    "seconds": 4.147710084915161,
+    "plan_sha256": "820d3cf77c0766edd9956166a4f9e6a40cb75d3ab5c32a18f855288a56a6c7df",
+    "first_batch_sha256": "6499ab53d471a3e9b8db9b6fda7c922c5a3d06409b3ed8f74a1890c1d46e47e4",
+    "validation": {
+      "mean": 0.9,
+      "last20": 0.732,
+      "n": 6000
+    }
+  },
+  {
+    "epoch": 11,
+    "loss": 0.9864707484421906,
+    "train_accuracy": 0.8943888888888889,
+    "seconds": 4.138680696487427,
+    "plan_sha256": "7179462105988a5414877a3f4a3fc53b1cb0df3d607828fe516fb449f49b0ee8",
+    "first_batch_sha256": "4964a381730109a8ea958fd20e91134934cef0fb0160153b64a3e075af8855b1"
+  },
+  {
+    "epoch": 12,
+    "loss": 0.9112272832835162,
+    "train_accuracy": 0.8972777777777777,
+    "seconds": 4.117049932479858,
+    "plan_sha256": "cd6d9b871554cede5fa87f9f0dfc0ccb875ba76ead768b135f24f47c6d7cf458",
+    "first_batch_sha256": "e12444af76f43818698c8079b66f3590332ae8adb6f0da4b40abe1e8cd3134e7",
+    "validation": {
+      "mean": 0.9016666666666666,
+      "last20": 0.7456666666666667,
+      "n": 6000
+    }
+  }
+]

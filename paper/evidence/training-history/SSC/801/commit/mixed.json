@@ -1,0 +1,108 @@
+[
+  {
+    "epoch": 1,
+    "loss": 1.7876750204409158,
+    "train_accuracy": 0.5251769008560147,
+    "seconds": 12.581042051315308,
+    "plan_sha256": "fe2867da144b4e2428dbbd87e22baa5fcdb3f1ed6a7a522a3af77161b0b0a6db",
+    "first_batch_sha256": "46eec48e9245cdcd7bcd9aae453b98c818a12a204bb1b92c6a611e431106281d"
+  },
+  {
+    "epoch": 2,
+    "loss": 1.6569901243185121,
+    "train_accuracy": 0.5431452574669388,
+    "seconds": 12.829231262207031,
+    "plan_sha256": "04a9096c8b3bf254366a306414e1a83198646781770488ffea86c5035c573da2",
+    "first_batch_sha256": "f39a311bc0f3a973458b3ca8ea51fe9b224dbdc5ea02b060f7d710224399004a"
+  },
+  {
+    "epoch": 3,
+    "loss": 1.6237217643292359,
+    "train_accuracy": 0.5508573397291495,
+    "seconds": 12.768078804016113,
+    "plan_sha256": "99fe470958ccccf632d196698b88ab5f87c3295e8f57dd5baf85098b6510be32",
+    "first_batch_sha256": "a0e55bfe007ab31ae8e16a20ff15b478a7d0e7e234dada79f40d8abfb75e0567"
+  },
+  {
+    "epoch": 4,
+    "loss": 1.622994558341655,
+    "train_accuracy": 0.5489889486656243,
+    "seconds": 12.724781036376953,
+    "plan_sha256": "987766beb2734f73bd9ba9d5e085cca9f2a8cd6131caf3dffff3e156aaf644b9",
+    "first_batch_sha256": "398c4540842745b0884a7a0d520490d7c7372e3b717f3d173330ebcb404f5439"
+  },
+  {
+    "epoch": 5,
+    "loss": 1.6072937247420345,
+    "train_accuracy": 0.5507645827259958,
+    "seconds": 12.618724584579468,
+    "plan_sha256": "9a1ba65b3b7053d2a7677a291d215a6065ea3a74cce2fea52ba26215ce61cfc2",
+    "first_batch_sha256": "9bda7146f4afdae7cb6e5184035e4072a241d1195be31db688cfad6524e803bf"
+  },
+  {
+    "epoch": 6,
+    "loss": 1.6068597393032351,
+    "train_accuracy": 0.5506320727214905,
+    "seconds": 12.817302703857422,
+    "plan_sha256": "84cb583d374ec91334c900bc189128954626ab6b7f63230156014e573b6ee730",
+    "first_batch_sha256": "6a9501c4fa98c957e8a65035cc57eaf140a493f996c8001cef27133d1f63d08d"
+  },
+  {
+    "epoch": 7,
+    "loss": 1.5704880682526685,
+    "train_accuracy": 0.5603848090530835,
+    "seconds": 12.691039085388184,
+    "plan_sha256": "eff849536b6a9e3e1588cd539bdfa6ceb203b18df19458fe25e5e77e7e9ba9a2",
+    "first_batch_sha256": "c708929418ed20aea1ed72964e0dadb68a468e02de2ab4520d69cab851da652e"
+  },
+  {
+    "epoch": 8,
+    "loss": 1.5578260848856629,
+    "train_accuracy": 0.5665332732621313,
+    "seconds": 12.777512788772583,
+    "plan_sha256": "306abc564d7c10186f13f742e9861c9461fe029289cb74489c928a18b47578f0",
+    "first_batch_sha256": "933d79e8d39a7becfd7b15eb4deb483f7171c2daea52ecab9e330e9fc55272fe"
+  },
+  {
+    "epoch": 9,
+    "loss": 1.5645374382334871,
+    "train_accuracy": 0.5638830731720245,
+    "seconds": 12.867453336715698,
+    "plan_sha256": "55459bf3aa9ebd180ddad21dafa19a0b44bad3823f0e3c79de5f2d5d78c3c69d",
+    "first_batch_sha256": "6ad0c6d4274687f5ea0d8707e36ab44693b022ce08ff47aae622caa14ff72c1f"
+  },
+  {
+    "epoch": 10,
+    "loss": 1.5629652440745399,
+    "train_accuracy": 0.5627699891341796,
+    "seconds": 12.685898065567017,
+    "plan_sha256": "cc898d10c8b22cb0290798a3a8c370761f8e584afb2888a6fd97d41014df3c97",
+    "first_batch_sha256": "f12126ecc60e00912bbeacd3a6fabecb71db343ba036e4ce73c9d38520b76478",
+    "validation": {
+      "mean": 0.5911231339545135,
+      "last20": 0.5712854423404469,
+      "n": 9981
+    }
+  },
+  {
+    "epoch": 11,
+    "loss": 1.556617334405677,
+    "train_accuracy": 0.564466117191848,
+    "seconds": 12.805476903915405,
+    "plan_sha256": "d29498ee31687c2871410807a966f854c78d6bd5b64d23d072b2f2bf485cb344",
+    "first_batch_sha256": "eba33775e1e1ca99f4b0e478c13d2e5e677ef63c7b80a306cb12a5a5e3e221ae"
+  },
+  {
+    "epoch": 12,
+    "loss": 1.5498962124389881,
+    "train_accuracy": 0.5656454562319455,
+    "seconds": 12.702224731445312,
+    "plan_sha256": "9201cce3a6ddafc074947989eaafd101bbb85c953f270783cc9b4e66ea1e3ec1",
+    "first_batch_sha256": "47825b351c84fc64f18587a4d777c094be9b29a30264ac1103f677bf5dae2548",
+    "validation": {
+      "mean": 0.5960324616771867,
+      "last20": 0.5719867748722572,
+      "n": 9981
+    }
+  }
+]

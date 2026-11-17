@@ -1,0 +1,113 @@
+[
+  {
+    "epoch": 1,
+    "loss": 2.2355424344098127,
+    "train_accuracy": 0.9242037037037037,
+    "seconds": 15.223059892654419,
+    "plan_sha256": "03e92841fbdf5c8529cc9be73b870f3545108285296fbe42ba53266852daf8be",
+    "first_batch_sha256": "fe74c80d358126edbd007c663a8ba45d2e8fe35dffac4904ac47575c6219387e"
+  },
+  {
+    "epoch": 2,
+    "loss": 1.2561818781428866,
+    "train_accuracy": 0.9360185185185185,
+    "seconds": 15.028416156768799,
+    "plan_sha256": "06576ad971d59d59405e70a167f1a33cd9f8d2e52aea17dc836076f3368cc88d",
+    "first_batch_sha256": "ba5394087f7eee6f0664e85450054e6e0a6cb5c3283a8fb836e6cce5b92695ea"
+  },
+  {
+    "epoch": 3,
+    "loss": 1.145545080167276,
+    "train_accuracy": 0.9404814814814815,
+    "seconds": 15.078982830047607,
+    "plan_sha256": "993db11c2120091a5a850aac2c890f95686cb457b3f50fd9d9ed3474f83c76cb",
+    "first_batch_sha256": "076334b809df121a58101be7e7cea04e203a35fa9879620ace2ae8ab3867b4a9"
+  },
+  {
+    "epoch": 4,
+    "loss": 1.1334444636592158,
+    "train_accuracy": 0.9382222222222222,
+    "seconds": 15.205882787704468,
+    "plan_sha256": "a7ed4412396d6b680a8b19035fc00724eb36bc470a0fea003ea90932a9e34ac0",
+    "first_batch_sha256": "2f095d9ea8c535a27700a69e979140d08c01bd169653b360eb1504964df76f83"
+  },
+  {
+    "epoch": 5,
+    "loss": 0.7849872551670781,
+    "train_accuracy": 0.9376111111111111,
+    "seconds": 15.10325288772583,
+    "plan_sha256": "bc60e926d37f3c41ce58a501800ebd05e24c46a7fdb30029dd171346f692ef09",
+    "first_batch_sha256": "7414afec7c70c571b32976ead32e63b97f1cb740131249516e0ae69ac322f8f6",
+    "validation": {
+      "mean": 0.951,
+      "last20": 0.745,
+      "n": 6000
+    }
+  },
+  {
+    "epoch": 6,
+    "loss": 0.7284904241650193,
+    "train_accuracy": 0.9431296296296297,
+    "seconds": 15.233691930770874,
+    "plan_sha256": "e4ae907efc286a331a8de283c8c7fe3f86c861ae20ec29d0ddde3359bc151810",
+    "first_batch_sha256": "0ef78b33924628badfc86f5e8ab5ae175aaf0e0173bb6646af585654c4a94abe"
+  },
+  {
+    "epoch": 7,
+    "loss": 0.8136831635369195,
+    "train_accuracy": 0.9456296296296296,
+    "seconds": 15.134911060333252,
+    "plan_sha256": "7b84ad03c9dc1958c6f56266120dee0bd76630e8049aceea0efc4c7a960475eb",
+    "first_batch_sha256": "be454b1299c9fa818296ac213b543838a56b5879a2d513d02a4d699f5f846264"
+  },
+  {
+    "epoch": 8,
+    "loss": 0.6989692725428829,
+    "train_accuracy": 0.9445555555555556,
+    "seconds": 15.081767559051514,
+    "plan_sha256": "19e86a7b5db0ecc2d940e055df3afa8171d734cc46f4328c5764fc91b0b41e2a",
+    "first_batch_sha256": "bfdea79ca5676653e9463793c309f0b8035e04f7cd2aad99a9e16df52c41f868"
+  },
+  {
+    "epoch": 9,
+    "loss": 0.7401410094896952,
+    "train_accuracy": 0.9474444444444444,
+    "seconds": 15.128803014755249,
+    "plan_sha256": "654a2c3e01d471d1bdee9630d28fd5b5c8b7394f9ac3972f0bbad8575a8aa09c",
+    "first_batch_sha256": "d7f401e72402220bfac4ad41aa84c945218106f0c18e548d84621f2bb05bfe78"
+  },
+  {
+    "epoch": 10,
+    "loss": 0.6989730593186838,
+    "train_accuracy": 0.9455,
+    "seconds": 15.244396686553955,
+    "plan_sha256": "6645dcf731992383a3e9595c6ddc5ac77f9701757758236f915feca016c2385e",
+    "first_batch_sha256": "c2c2b0c80706937935a7ec20c59318a3ff4395e2c47d3cf0bcdc9c8f2bcebefa",
+    "validation": {
+      "mean": 0.9491666666666667,
+      "last20": 0.7748333333333334,
+      "n": 6000
+    }
+  },
+  {
+    "epoch": 11,
+    "loss": 0.6816194580572623,
+    "train_accuracy": 0.9477037037037037,
+    "seconds": 15.143641710281372,
+    "plan_sha256": "474731c9b58a20ff7b69e743f94fcc9da0aac2f5eedf89656047d68e075dbd60",
+    "first_batch_sha256": "ff113a4061b8fc7cc13940bf8b0bdd3aea2b7cc9a105770e77a275245a3f3557"
+  },
+  {
+    "epoch": 12,
+    "loss": 0.6347299688480519,
+    "train_accuracy": 0.9467407407407408,
+    "seconds": 15.081818342208862,
+    "plan_sha256": "f703913064621aadd684b77f7d88a3091bc4707d3431bff99e26bb4901a32a39",
+    "first_batch_sha256": "f43692b4ac1a1f5977e8a8678c5cd9c18f9f5f355dd403439596780dbd879ac1",
+    "validation": {
+      "mean": 0.952,
+      "last20": 0.7876666666666666,
+      "n": 6000
+    }
+  }
+]

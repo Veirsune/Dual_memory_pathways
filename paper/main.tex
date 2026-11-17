@@ -16,7 +16,7 @@
 \setlength{\floatsep}{10pt}
 \setlength{\emergencystretch}{1.5em}
 \setcounter{topnumber}{3}\setcounter{totalnumber}{4}
-\setcounter{dbltopnumber}{3}\renewcommand{\dbltopfraction}{.92}
+\setcounter{dbltopnumber}{2}\renewcommand{\dbltopfraction}{.92}
 \renewcommand{\topfraction}{.92}\renewcommand{\textfraction}{.07}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{\small Gated Dual-State Memory}
@@ -184,6 +184,12 @@ The benefit extends to full 784-step image sequences. After an unseen 160-frame 
 
 
 
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/training-curves.pdf}
+\caption{\textbf{Learning curves on the validation sets.} Accuracy uses whole-sequence scores on clean inputs in both stages. Dashed lines mark the switch to mixed training. Markers denote recorded evaluations: every 10 epochs for SSC, every 5 for MNIST, and each stage's final epoch. Lines connect those observations. SSC uses one seed; MNIST shows the mean and one standard deviation over three seeds.}
+\label{fig:training}
+\end{figure*}
+
 \subsection{Useful content and protected writes are complementary}
 The endpoint gains raise two questions: what has been stored, and what prevents it from being overwritten? SHD controls examine these separately. We compare scalar drive, vector drive and a \emph{wide-scalar} control that expands the input to $d$ coordinates and then compresses it back to one scalar. The wide-scalar model closely matches the vector model's parameter count. All three share the same protected-memory training recipe and independent candidate/stable reads.
 
@@ -210,11 +216,13 @@ The capacity study used a historical recipe with explicit gate supervision. A se
 \end{table}
 
 \subsection{Retention and recognition measure different abilities}
-GDSM remains effective on the ordinary classification task. After mixed training, SSC whole-sequence accuracy is 58.83\%, compared with 47.89\% for DMP; Gesture reaches 86.74\% with either memory model. Before mixed training, GDSM reaches $97.99\pm0.60$\% on S-MNIST and $93.51\pm1.67$\% on PS-MNIST, compared with $97.27\pm0.93$\% and $92.16\pm0.87$\% for DMP. The clean-stage and mixed-stage results are listed together in Appendix~\ref{app:additional}.
+Figure~\ref{fig:training} shows clean-input validation accuracy across both training stages. GDSM is ahead of DMP at the first logged evaluation on all three tasks; on S-MNIST, the epoch-5 means are 92.12\% and 82.64\%. Mixed training largely preserves recognition in the memory models but substantially reduces FSNN accuracy on MNIST. Final clean-input test results from both stages are listed in Appendix~\ref{app:additional}.
+
+
 
 Endpoint scoring reveals information that these averages miss. On SSC, DMP's 47.89\% whole-sequence score corresponds to only 11.05\% at the clean endpoint. GDSM scores 58.83\% and 56.52\%, respectively. Its large post-gap advantage combines a stronger endpoint representation with better preservation. Gesture, where the starting endpoints nearly match, isolates the latter effect particularly clearly.
 
-Interruption training contributes to active-noise robustness. Clean-only GDSM reaches 11.47\% after SSC tail noise of length 120, increasing to 52.79\% after mixed training. The architecture supplies a protected storage path, and disturbance exposure teaches the network to use it. The shared endpoint objective also changes the task faced by FSNN: its S-MNIST whole-sequence accuracy falls from 45.71\% to 14.84\% after mixed training. We therefore report both stages rather than interpreting mixed training as a universal improvement to ordinary classification.
+Interruption training contributes to active-noise robustness. Clean-only GDSM reaches 11.47\% after SSC tail noise of length 120, increasing to 52.79\% after mixed training. The architecture supplies a protected storage path, and disturbance exposure teaches the network to use it.
 
 When the original event resumes after a middle gap, later evidence can replenish the state. GDSM exceeds DMP in all six SSC middle conditions, but gains are smaller and mixed on MNIST. The longest-gap results in Appendix~\ref{app:additional} distinguish this recovery problem from remembering a completed event. The main advantage of GDSM is persistence of usable information after evidence is no longer present.
 
@@ -244,6 +252,7 @@ The datasets are publicly available~\cite{shd,gesture,mnist}. Source code, manus
 \bibliographystyle{unsrtnat}
 \bibliography{references}
 \appendix
+\setcounter{dbltopnumber}{4}
 
 \section{Reproduction essentials}
 \label{app:training}

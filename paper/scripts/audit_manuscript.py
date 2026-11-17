@@ -72,6 +72,12 @@ check('raw-input closure rule',r'\ind[\|s_t^{(0)}\|_1>0]' in text)
 check('appendix sections present',all(r'\label{app:'+s+'}' in text for s in ['training','shd','additional','hardware']))
 check('headline quantities typeset',all(v in main_text for v in ['52.79','3.91','70.83','19.70','78.68','8.69','117,056','6.30']))
 check('plot uses matching notation',all(v in (R/'scripts/draw_architecture.py').read_text() for v in ['$s_t$',r'$W_f$',r'$\bar b\odot u_t$',r'$p_{t-1}$']))
+# Learning curves must reproduce archived validation histories, not training/test scores.
+from draw_training_curves import training_points
+curve_points=training_points(R)
+check('training histories and evaluation schedules',len(curve_points)==96)
+curve_csv=csvread('training-curve-points.csv')
+check('plotted training aggregates match histories',len(curve_csv)==len(curve_points) and all(all(row[k]==str(point[k]) for k in ['task','family','stage','epoch','seeds']) and all(abs(float(row[k])-point[k])<1e-12 for k in ['mean','sd']) for row,point in zip(curve_csv,curve_points)))
 report={'status':'passed','checks':checks,'pages':pages,'new_training_runs':0,'note':'Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript.'}
 (R/'evidence/manuscript-audit.json').write_text(json.dumps(report,indent=2))
 print(f'Passed {len(checks)} checks; {pages} PDF pages; zero new training runs.')

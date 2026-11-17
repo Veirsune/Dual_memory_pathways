@@ -158,3 +158,7 @@ Against floating-point execution, mean absolute errors are 0.00548 for the candi
 | PS / silence | 51.31, 22.36, 53.26 | $[-0.68,85.30]$ |
 | PS / noise | 24.56, 2.57, 24.25 | $[-14.19,48.45]$ |
 
+
+## Validation learning curves
+
+The clean-input validation functions return whole-sequence (`mean`) and final-20-frame (`last20`) accuracy; Figure 3 plots only `mean`. SSC evaluates every 10 epochs and at each stage end (40 clean + 12 mixed); MNIST evaluates every 5 epochs and at each stage end (50 clean + 12 mixed). The epoch axis continues across stages. Validation uses all 9,981 SSC or 6,000 MNIST validation examples. The three MNIST seeds are averaged at matching epochs, with sample standard deviation; SSC has a single seed. No smoothing or invented intermediate evaluations are used. Detailed test-stage results remain distinct from these validation curves.

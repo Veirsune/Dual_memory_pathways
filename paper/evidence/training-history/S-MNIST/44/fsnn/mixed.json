@@ -1,0 +1,113 @@
+[
+  {
+    "epoch": 1,
+    "loss": 7.646680162500452,
+    "train_accuracy": 0.35885185185185187,
+    "seconds": 2.5332748889923096,
+    "plan_sha256": "5940da6dc5fade30abb549ca3f634363527afde933c8b1c1a70e687d98015e6b",
+    "first_batch_sha256": "62749813f1107234ac02650e94e6fd8eee6f9493bbcf44cb3b8739baa7c6f015"
+  },
+  {
+    "epoch": 2,
+    "loss": 4.845534487688983,
+    "train_accuracy": 0.2227962962962963,
+    "seconds": 2.5346603393554688,
+    "plan_sha256": "28f8dafb5e02dc656b0b1cd7a9c7c78a53c5788df057e50d91ef562c023b217d",
+    "first_batch_sha256": "67071ad2e49e3bae00a2c0a75c1bfa22bb2943116e9e448916e93c4ae98d4834"
+  },
+  {
+    "epoch": 3,
+    "loss": 3.476162474455657,
+    "train_accuracy": 0.21135185185185185,
+    "seconds": 2.556457757949829,
+    "plan_sha256": "3194b2c467fd875c0b57e4d1dddad4a98043fa2605810a0b0f38412c22f90658",
+    "first_batch_sha256": "9477f2daa3cbf878f31c5195e87a8b58f2358dde5f0eb1c413660a786b073327"
+  },
+  {
+    "epoch": 4,
+    "loss": 3.134867118270309,
+    "train_accuracy": 0.18575925925925926,
+    "seconds": 2.556802988052368,
+    "plan_sha256": "e4162bd27e8d12352dbf9d948ec1b4ad1a383b11b0ea095f66c14d0de8727d1c",
+    "first_batch_sha256": "8ec68e791b4506fc6dfdcc980f598a29e0953eb1f2b595fcdace7fb1f58ebb23"
+  },
+  {
+    "epoch": 5,
+    "loss": 2.943286846231531,
+    "train_accuracy": 0.1698888888888889,
+    "seconds": 2.5383169651031494,
+    "plan_sha256": "c715315f3939565bf41925d9af1644bf421657891c6d9eb89d548abc37e090f7",
+    "first_batch_sha256": "9cf55b208b7fd001d43e82b60a810f6193deb0449d4128c58eb23a729bd62872",
+    "validation": {
+      "mean": 0.17383333333333334,
+      "last20": 0.094,
+      "n": 6000
+    }
+  },
+  {
+    "epoch": 6,
+    "loss": 2.7745539670167148,
+    "train_accuracy": 0.15572222222222223,
+    "seconds": 2.5388052463531494,
+    "plan_sha256": "3918a4a0274cffbc98b7e73ff75cc28775f00c50b6cd21786cb61e7008a8493c",
+    "first_batch_sha256": "741be7bcab48e34c7a974e06adf42bf0e0d99f82cd5df6ed6d1d58bbe4fc0e51"
+  },
+  {
+    "epoch": 7,
+    "loss": 2.609117194422969,
+    "train_accuracy": 0.14116666666666666,
+    "seconds": 2.5447418689727783,
+    "plan_sha256": "ce1b7ea048097c4a352f5730f95ecd0eaf93a281c7c6f079cd1ba07e4933982f",
+    "first_batch_sha256": "d3bc2b8c240cb8da2337cf6e864aaecb82481011358b4ffeaee5cf59293eff51"
+  },
+  {
+    "epoch": 8,
+    "loss": 2.5460397234316225,
+    "train_accuracy": 0.13244444444444445,
+    "seconds": 2.525319814682007,
+    "plan_sha256": "07aac3615b05fe04ae9f8669c056108bf6fa676dee2c5d78bbab23e255a1dc37",
+    "first_batch_sha256": "18160075684244cc2e32bfe2c9dce1ef7ff01549e30519808fff07aee71f2a94"
+  },
+  {
+    "epoch": 9,
+    "loss": 2.5004068503203216,
+    "train_accuracy": 0.13014814814814815,
+    "seconds": 2.5268356800079346,
+    "plan_sha256": "8a411866def71432998e52a6bb2153738fdd273ed1f8bfcd1c554a6dd576812c",
+    "first_batch_sha256": "d836cf8a2cd506f021cabdff7a275cf12fd11662b5790becd90dcfdc1fc4b9e8"
+  },
+  {
+    "epoch": 10,
+    "loss": 2.484556491357309,
+    "train_accuracy": 0.12577777777777777,
+    "seconds": 2.534149408340454,
+    "plan_sha256": "52d5175687d888821a192ac8fbf89bf5ea78afd723843c930272385de3346286",
+    "first_batch_sha256": "5c286264496b5ae0b224fed513630dc01cf3b84e7acc78514e0b6b57c19b2678",
+    "validation": {
+      "mean": 0.13316666666666666,
+      "last20": 0.099,
+      "n": 6000
+    }
+  },
+  {
+    "epoch": 11,
+    "loss": 2.456862989001804,
+    "train_accuracy": 0.13472222222222222,
+    "seconds": 2.545480728149414,
+    "plan_sha256": "db4755b5b38dbde3a1da0beba1f1f26833a8fe4fc97d07e160600c3dbb69470d",
+    "first_batch_sha256": "278224e95c5d1b42b55bfb05914f9f9b065ab2ff4802785179ecf92c3f309351"
+  },
+  {
+    "epoch": 12,
+    "loss": 2.4027838336803296,
+    "train_accuracy": 0.1459074074074074,
+    "seconds": 2.5474321842193604,
+    "plan_sha256": "8c69ded3d456c788a9dd5d06250e1089acd4614021794364fd891f2fdf7b7ddf",
+    "first_batch_sha256": "645a430e73d69f35b542da4164bfd761582dc9f2c3f738b38dd1b5f444100f9e",
+    "validation": {
+      "mean": 0.15333333333333332,
+      "last20": 0.09666666666666666,
+      "n": 6000
+    }
+  }
+]

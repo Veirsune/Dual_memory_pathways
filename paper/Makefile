@@ -1,4 +1,4 @@
-.PHONY: all architecture training-curves assets audit clean
+.PHONY: all chinese architecture training-curves assets audit clean
 all:
 	latexmk -jobname=GDSM_Paper -pdf -interaction=nonstopmode -halt-on-error main.tex
 architecture:
@@ -11,3 +11,6 @@ audit: all
 	python scripts/audit_manuscript.py
 clean:
 	latexmk -jobname=GDSM_Paper -c main.tex
+
+chinese:
+	latexmk -xelatex -jobname=GDSM_Paper_ZH -interaction=nonstopmode -halt-on-error main_zh.tex

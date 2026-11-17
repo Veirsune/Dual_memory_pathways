@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "paragraphs": 54,
+  "equations_identical_to_english": 6,
+  "tables_with_identical_numeric_cells": 7,
+  "translated_captions": 11,
+  "embedded_figures": 4,
+  "references": 16,
+  "pdf_pages": 14,
+  "english_source_sha256": "0dd095e5e289b819f495913d17a9229cbed7a779bf04d03406f7dbe31cd56b6f",
+  "new_training_runs": 0,
+  "checks": [
+    "paragraph IDs present in PDF, Markdown and Word",
+    "paragraph numbers preserved (including seven additional tests)",
+    "equation source matches English exactly",
+    "all section/equation/figure/table reference numbers match English",
+    "all table numerical cells preserved",
+    "Word archive valid with editable math and seven tables",
+    "Markdown includes all bibliography titles",
+    "no PDF overflow, missing characters or unresolved references"
+  ]
+}

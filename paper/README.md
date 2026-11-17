@@ -6,6 +6,18 @@
 
 iPad 可用 Safari 打开 PDF，然后选择“分享 → 存储到文件”。论文文件统一为 `GDSM_Paper.pdf`，源码包为 [GDSM_LaTeX.zip](GDSM_LaTeX.zip)。
 
+## 中文对照与段落写作
+
+中文稿覆盖摘要、正文、附录、图注和表头，按英文顺序保留 54 个段落，并加上 `1-P2`、`4.2-P3` 等定位编号。公式、图表和参考文献编号与英文稿一致；SNN、DMP、GDSM、LIF 等术语及图内英文标签保留。中文 PDF 采用便于阅读的单栏排版。
+
+- `GDSM_Paper_ZH.pdf`：中文阅读与批注文档。
+- `GDSM_Chinese.docx`：用于逐段修改的 Word 文档，含可编辑公式和表格。
+- `GDSM_Chinese.md`：用于文本编辑器的中文稿，图片通过相对路径引用。
+- `main_zh.tex`：中文 PDF 的 LaTeX 源码；使用 XeLaTeX 和 Noto CJK 字体，运行 `make chinese`。
+- `CHINESE_PARAGRAPHS.json`：对应的英文原段、中文译段和英文源码行号，记录此次翻译依据的源文件校验和。
+
+Word、Markdown 和 LaTeX 是独立文件，直接修改其中一个不会自动同步另两个。后续按段落改稿时，请明确以哪个文件中的修改为准。中文译稿的核对记录见 `evidence/chinese-translation-audit.json`。
+
 ## 论文讲的科学故事
 
 **识别对了，不代表记住了。** 一段语音或手势结束后，如果后面还有停顿或背景噪声，分类器仍可能需要保留刚才的判断。对整段序列取平均的准确率，会把前面正确的输出算进去，因此未必能反映最后还记得多少。

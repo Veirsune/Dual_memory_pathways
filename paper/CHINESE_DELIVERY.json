@@ -1,0 +1,29 @@
+{
+  "language": "zh-CN",
+  "purpose": "paragraph-aligned reading and writing",
+  "english_source_sha256": "0dd095e5e289b819f495913d17a9229cbed7a779bf04d03406f7dbe31cd56b6f",
+  "paragraphs": 54,
+  "pdf_pages": 14,
+  "files": {
+    "GDSM_Paper_ZH.pdf": {
+      "bytes": 364134,
+      "sha256": "02d9823257cf1011d0dc5918ecfeceb0058af26e804c5e73ce6abb0fc0f60059"
+    },
+    "GDSM_Chinese.docx": {
+      "bytes": 386641,
+      "sha256": "50579d8ffe3b2db83fad0cb5e7967a2200f18f79db71a1fe9d84d6682214403a"
+    },
+    "GDSM_Chinese.md": {
+      "bytes": 39418,
+      "sha256": "2ec554baa4e4c8608275788eca783d32f05e47419d6586e76bd0fe205a0ea380"
+    },
+    "main_zh.tex": {
+      "bytes": 38371,
+      "sha256": "592e8896139a7a91f0a59cf367bf1949242b9e2b908138a16ae2fedf917ea7cf"
+    },
+    "CHINESE_PARAGRAPHS.json": {
+      "bytes": 54457,
+      "sha256": "2fecc89c5765ba43fcdf558957375868e3800548aed2b8907dc1594fb271e477"
+    }
+  }
+}

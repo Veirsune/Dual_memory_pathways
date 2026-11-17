@@ -1,0 +1,329 @@
+{
+  "english_source_sha256": "0dd095e5e289b819f495913d17a9229cbed7a779bf04d03406f7dbe31cd56b6f",
+  "paragraphs": [
+    {
+      "id": "摘要",
+      "line": 36,
+      "en": "A spiking network may recognize an event yet lose its class during the silence or noise that follows. We introduce gated dual-state memory (GDSM), which separates a continuously updated candidate state from a selectively updated stable state shared across a neural layer. This allows the network to process new input while protecting earlier information. We test classification at the end of appended interruptions on spiking speech, event-camera gestures and sequential images. On Spiking Speech Commands, GDSM retains 52.79\\% accuracy after 120 noise frames, compared with 3.91\\% for dual memory pathways (DMP). On DVS Gesture, accuracy after 80 silent frames improves from 19.70\\% to 70.83\\%. SHD controls identify complementary roles for richer input and write protection, while three-seed MNIST experiments demonstrate retention gains on longer sequences. These results show that separating integration from storage substantially improves the persistence of shared spiking memory.",
+      "zh": "SNN 可能已经正确识别了一个事件，却在随后出现的静音或噪声中丢失类别信息。我们提出门控双状态记忆（gated dual-state memory，GDSM），把层内共享的记忆分成两个状态：持续更新的候选状态，以及选择性更新的稳定状态。这样，网络在处理新输入的同时，也能保护先前的信息。我们在脉冲语音、事件相机手势和序列化图像任务中，在原始事件之后追加干扰，并在干扰末尾进行分类。在 Spiking Speech Commands 上，经过 120 帧噪声后，GDSM 的准确率仍为 52.79\\%，而双记忆通路（dual memory pathways，DMP）为 3.91\\%。在 DVS Gesture 上，80 帧静音后的准确率从 19.70\\% 提升至 70.83\\%。SHD 对照实验表明，更丰富的输入和写入保护发挥了互补作用；三个训练种子的 MNIST 实验进一步验证了较长序列中的记忆保持收益。这些结果说明，将信息整合与存储分开，可以显著增强共享脉冲记忆的持续保持能力。"
+    },
+    {
+      "id": "1-P1",
+      "line": 41,
+      "en": "Spiking neural networks (SNNs) process sensory events as they arrive. For many temporal tasks, however, the useful information must remain available after the event ends: a command may be followed by background noise, or a gesture by a pause. Recognizing the event is therefore only part of the task. The network must also preserve its interpretation while subsequent input provides little relevant evidence.",
+      "zh": "脉冲神经网络（SNN）随输入到来而处理感知事件。但在许多时序任务中，事件结束后，其中的有用信息仍然需要保留：语音命令之后可能出现背景噪声，手势之后可能出现停顿。因此，正确识别事件只是任务的一部分。当后续输入几乎不再提供相关证据时，网络还需要维持对刚才事件的判断。"
+    },
+    {
+      "id": "1-P2",
+      "line": 43,
+      "en": "Biological working memory faces the same tension: it must remain open to relevant new evidence while protecting the information already guiding behavior. Theories of prefrontal function emphasize the active maintenance of task-relevant context~\\cite{millercohen}. Computational models of prefrontal--basal ganglia circuits further show how selective gating can regulate when working memory is updated~\\cite{oreillyfrank}. The key idea is that processing an input need not imply storing it. This motivates a concrete design principle for SNNs: let one state follow incoming evidence while another preserves the current context, with controlled transfer between them. Here we apply this principle to memory maintained within an input sequence, where retaining a recognized event through a pause or distraction is the central requirement.",
+      "zh": "生物工作记忆也面临这种矛盾：既要接收相关的新信息，又要保护正在指导行为的已有信息。有关前额叶功能的理论强调，脑需要主动维持与当前任务有关的上下文~\\cite{millercohen}。前额叶—基底节回路的计算模型进一步说明，选择性门控可以调节工作记忆何时更新~\\cite{oreillyfrank}。其中的关键思想是：处理一个输入，并不意味着必须把它存进记忆。这给 SNN 提供了一个具体的设计原则：让一个状态跟踪不断到来的证据，让另一个状态保存当前上下文，并控制两者之间的信息传递。本文将这一原则用于单个输入序列内的记忆维持，重点是在停顿或干扰期间保留已经识别出的事件信息。"
+    },
+    {
+      "id": "1-P3",
+      "line": 45,
+      "en": "Existing work extends temporal processing through richer spiking dynamics~\\cite{glif,tclif} and compact representations of input history~\\cite{lmu,hippo,s4}. Dual memory pathways (DMP) bring the latter idea to SNNs by adding a small memory shared across each layer~\\cite{dmp}. This makes history available to the fast spiking pathway at low storage cost. Yet the shared state keeps updating during both useful input and interference. Information that was successfully accumulated can consequently be altered before it is needed.",
+      "zh": "已有研究通过更丰富的脉冲动力学~\\cite{glif,tclif}，或对输入历史进行紧凑表示~\\cite{lmu,hippo,s4}，来增强时序处理能力。双记忆通路（DMP）把后一种思路引入 SNN，在每层加入一块小型共享记忆~\\cite{dmp}，以较低的存储开销向快脉冲通路提供历史信息。然而，无论当前输入是有效信号还是干扰，这个共享状态都会继续更新。因此，已经积累起来的信息可能在被使用之前就发生改变。"
+    },
+    {
+      "id": "1-P4",
+      "line": 47,
+      "en": "Following this principle, we propose \\emph{gated dual-state memory} (GDSM), which separates ongoing integration from protected storage. A candidate state tracks incoming evidence, while a stable state accepts selected updates from that candidate. Both remain available to the spiking layer. Drawing on selective updating in recurrent and state-space models~\\cite{lstm,gru,mamba}, this design allows new input to be processed without automatically replacing the stored context. A vector input projection also lets the shared memory receive distinct combinations of input features.",
+      "zh": "基于上述原则，我们提出门控双状态记忆（GDSM），将持续的信息整合与受保护的存储分开。候选状态跟踪输入证据，稳定状态则选择性地接收候选状态的更新；脉冲层可以同时读取两者。借鉴循环模型与状态空间模型中的选择性更新机制~\\cite{lstm,gru,mamba}，这一设计允许网络处理新输入，而不必随之改写已保存的上下文。此外，向量输入投影使共享记忆能够接收不同的输入特征组合。"
+    },
+    {
+      "id": "1-P5",
+      "line": 49,
+      "en": "We evaluate this distinction by appending silence or noise after a complete event and classifying from the end of the gap. Whole-sequence averages can include earlier correct predictions even when the current state has lost the answer; endpoint evaluation directly tests whether the representation remains usable. We pair these tests with ordinary classification and interruptions placed within the event.",
+      "zh": "为了检验这一区别，我们在完整事件之后追加静音或噪声，再根据干扰末尾的输出进行分类。即使当前状态已经丢失答案，对整段序列求平均仍可能把较早的正确预测计入结果；末端评估则直接检验当前表征是否仍然可用。我们同时进行常规分类测试，以及在事件中间插入干扰的测试。"
+    },
+    {
+      "id": "1-P6",
+      "line": 51,
+      "en": "The results show substantial retention gains across speech, event-camera gestures and sequential images, including gap lengths absent from training. On SSC, GDSM retains 52.79\\% accuracy after 120 noise frames, compared with 3.91\\% for DMP. Gesture starts from nearly matched clean endpoints, yet GDSM retains 70.83\\% after 80 silent frames versus 19.70\\% for DMP. SHD controls identify complementary contributions from richer memory input and protected writes. A fixed-point implementation further demonstrates that the mechanism can be realized in hardware. Together, these findings establish selective storage as an effective addition to shared spiking memory.",
+      "zh": "实验在语音、事件相机手势和序列化图像上都表现出明显的记忆保持收益，也覆盖了训练时没有出现过的干扰长度。在 SSC 上，120 帧噪声后 GDSM 的准确率为 52.79\\%，DMP 为 3.91\\%。在 Gesture 上，两者在干扰前的末端准确率接近，但经过 80 帧静音后，GDSM 仍保持 70.83\\%，DMP 则为 19.70\\%。SHD 对照实验进一步揭示了丰富记忆输入和保护写入这两方面的互补贡献。定点实现也验证了该机制可以在硬件中实现。综合来看，选择性存储能够有效增强 SNN 的共享记忆。"
+    },
+    {
+      "id": "2.1-P1",
+      "line": 56,
+      "en": "We use $s_t\\in\\R^M$ for the current layer input and $s_t^{(0)}$ for the raw sensor frame. A hidden layer contains $N$ LIF neurons and shares a memory of dimension $d\\ll N$. The fast neuronal state accumulates recent input but changes through leakage and reset. DMP adds a slow shared state $h_t\\in\\R^d$:",
+      "zh": "用 $s_t\\in\\R^M$ 表示当前层的输入，$s_t^{(0)}$ 表示原始传感器帧。一个隐藏层包含 $N$ 个 LIF 神经元，并共享一个维度为 $d\\ll N$ 的记忆。神经元的快状态积累近期输入，但会受到泄漏和复位的影响。DMP 在此基础上加入慢共享状态 $h_t\\in\\R^d$："
+    },
+    {
+      "id": "2.1-P2",
+      "line": 64,
+      "en": "Here $x_t$ is a scalar, and $\\bar A\\in\\R^{d\\times d}$ and $\\bar b\\in\\R^d$ are fixed discretized Legendre parameters.",
+      "zh": "其中，$x_t$ 是标量；$\\bar A\\in\\R^{d\\times d}$ 和 $\\bar b\\in\\R^d$ 是固定的离散化 Legendre 参数。"
+    },
+    {
+      "id": "2.1-P3",
+      "line": 66,
+      "en": "Equation~\\eqref{eq:dmp} exposes two constraints. First, all input channels enter memory through a single scalar projection at each frame. Second, the state continues to evolve regardless of whether the input is useful. During a pause or a noise segment, stored features can change through the state dynamics or through irrelevant new drive.",
+      "zh": "式~\\eqref{eq:dmp} 存在两个限制。第一，每一帧的所有输入通道都要经过同一个标量投影才能进入记忆。第二，无论当前输入是否有用，记忆状态都会持续演化。在停顿或噪声期间，已经存储的特征可能因状态本身的动力学或无关的新输入而发生改变。"
+    },
+    {
+      "id": "2.1-P4",
+      "line": 68,
+      "en": "GDSM separates integration from storage:",
+      "zh": "GDSM 将信息整合与存储分开："
+    },
+    {
+      "id": "2.1-P5",
+      "line": 85,
+      "en": "The drive $u_t$, candidate $p_t$ and stable state $m_t$ are all $d$-dimensional. The learned matrix $W_u\\in\\R^{d\\times M}$ lets different drive coordinates extract different channel combinations; $\\bar b$ scales the drive coordinate by coordinate. The fixed diagonal scaling used in code is absorbed into $W_u$ and $b_u$, as detailed in Appendix~\\ref{app:training}. Thus vector drive increases the information that can enter the shared state without introducing a separate memory for every neuron.",
+      "zh": "输入驱动 $u_t$、候选状态 $p_t$ 和稳定状态 $m_t$ 都是 $d$ 维向量。可学习矩阵 $W_u\\in\\R^{d\\times M}$ 让不同维度提取不同的输入通道组合，$\\bar b$ 则对各维驱动分别缩放。代码中的固定对角缩放已吸收到 $W_u$ 和 $b_u$ 中，具体说明见附录~\\ref{app:training}。因此，向量驱动增加了能够进入共享状态的信息，而无需为每个神经元单独设置记忆。"
+    },
+    {
+      "id": "2.1-P6",
+      "line": 87,
+      "en": "The candidate updates at every step to track new input. The stable state updates only through its write gate $g_t$. It receives the previous candidate $p_{t-1}$, allowing the gate to use current evidence before accepting that candidate and preventing the current frame from entering stable memory through the candidate branch in the same step. This delay defines the write timing; rejection of a sustained disturbance is learned by the gate.",
+      "zh": "候选状态每一步都更新，以跟踪新输入；稳定状态则只通过写入门 $g_t$ 更新。稳定状态接收的是上一时刻的候选状态 $p_{t-1}$，因此门控可以先利用当前证据，再决定是否接受这个候选状态，也避免当前帧经候选通路在同一步直接进入稳定记忆。这一延迟规定了写入时序；能否拒绝持续干扰，仍由门控通过学习决定。"
+    },
+    {
+      "id": "2.1-P7",
+      "line": 89,
+      "en": "The fast input, candidate and stable state have independent read projections in Eq.~\\eqref{eq:read}. Their sum drives the layer's LIF neurons. When $g_t=\\mathbf0$, the stable state is unchanged, while candidate and fast processing continue. The network can therefore protect earlier content without suspending its response to new input. The unchanged product $W_m m_t$ can also be cached and reused in hardware.",
+      "zh": "在式~\\eqref{eq:read} 中，快输入、候选状态和稳定状态分别具有独立的读取投影，三者之和驱动该层的 LIF 神经元。当 $g_t=\\mathbf0$ 时，稳定状态保持不变，而候选状态和快通路继续处理输入。网络因此能够保护已有内容，同时继续响应新信息。在硬件中，不变的乘积 $W_m m_t$ 也可以被缓存并重复使用。"
+    },
+    {
+      "id": "2.2-P1",
+      "line": 98,
+      "en": "A small write gate can still accumulate substantial drift. For a fixed realized gate sequence, the direct coefficient of old stable coordinate $j$ after $L$ steps is",
+      "zh": "即使写入门的值很小，长期累积仍可能造成明显的状态漂移。对于一段已经确定的门控序列，经过 $L$ 步后，旧稳定状态第 $j$ 个分量的直接保留系数为"
+    },
+    {
+      "id": "2.2-P2",
+      "line": 102,
+      "en": "For example, a constant gate of 0.02 gives $(0.98)^{80}\\approx0.20$. This coefficient describes the old state's direct contribution, rather than the fraction of class information retained. Nevertheless, it shows why weak continuous writing may be insufficient for long pauses. We therefore allow exact closure.",
+      "zh": "例如，当门值恒为 0.02 时，$(0.98)^{80}\\approx0.20$。这个系数表示旧状态对当前状态的直接贡献，并不等于保留下来的类别信息比例。不过，它说明了为什么持续的小幅写入也未必能应对长停顿。因此，我们允许门控完全关闭。"
+    },
+    {
+      "id": "2.2-P3",
+      "line": 104,
+      "en": "Let $f(s_t)$ contain four input statistics: normalized mean activity, absolute change in mean activity, variance and nonzero occupancy. Their history is summarized by $e_t=\\rho e_{t-1}+(1-\\rho)f(s_t)$, with $\\rho=0.8$. The gate uses the current features and the previous history:",
+      "zh": "令 $f(s_t)$ 包含四个输入统计量：归一化平均活动量、平均活动量变化的绝对值、方差和非零元素占比。历史统计用 $e_t=\\rho e_{t-1}+(1-\\rho)f(s_t)$ 表示，其中 $\\rho=0.8$。门控结合当前特征和上一时刻的历史统计："
+    },
+    {
+      "id": "2.2-P4",
+      "line": 113,
+      "en": "The threshold $\\varepsilon=0.02$ is applied coordinate by coordinate. The binary permission $q_t\\in\\{0,1\\}^d$ comes from a small MLP using current raw-input statistics and their historical summary. A raw empty frame closes all stable writes. Otherwise, each coordinate must pass both the local threshold and the learned permission. The forward pass uses hard decisions; the backward pass uses sigmoid derivatives as surrogates. No interruption mask or future frame is supplied to the gate.",
+      "zh": "阈值 $\\varepsilon=0.02$ 逐维应用。二值许可 $q_t\\in\\{0,1\\}^d$ 由一个小型 MLP 根据当前原始输入的统计量及其历史摘要生成。若原始输入为空帧，则关闭所有稳定状态的写入；否则，每个维度必须同时通过局部门控阈值和学习得到的写入许可。前向传播采用硬判定，反向传播使用 sigmoid 导数作为 surrogate gradient。门控不接收干扰位置掩码，也不使用未来帧。"
+    },
+    {
+      "id": "2.2-P5",
+      "line": 115,
+      "en": "In the main SSC, Gesture and MNIST mixed-training comparisons, all models receive the same class supervision, without noise-position labels for gate learning. Let $T$ denote the length of the complete, possibly extended sequence, $o_t$ its per-frame output score, and $y$ the class. We combine whole-sequence and endpoint classification:",
+      "zh": "在主要的 SSC、Gesture 和 MNIST 混合训练对照中，所有模型接受相同的类别监督，不使用噪声位置标签训练门控。令 $T$ 表示完整序列的长度，其中可包含追加的干扰；$o_t$ 为逐帧输出分数，$y$ 为类别。训练目标结合整段序列分类和末端分类："
+    },
+    {
+      "id": "2.2-P6",
+      "line": 123,
+      "en": "where $\\lambda=0.5$ and $K=20$. When a gap is appended, its final window contains no new task event. The second term therefore encourages the network to preserve information acquired earlier. GDSM supplies a stable storage path for that objective, while the first term maintains ordinary sequence classification. Clean-stage objectives and the auxiliary SHD diagnostics are specified in Appendix~\\ref{app:training}.",
+      "zh": "其中 $\\lambda=0.5$，$K=20$。当序列末尾追加干扰时，最后一个窗口内没有新的任务事件，因此第二项损失鼓励网络保留此前获得的信息。GDSM 为这一目标提供稳定存储通路，第一项损失则维持常规序列分类能力。干净训练阶段的目标和 SHD 辅助诊断设置见附录~\\ref{app:training}。"
+    },
+    {
+      "id": "3.1-P1",
+      "line": 127,
+      "en": "We use SHD for mechanism studies and evaluate the resulting architecture on Spiking Speech Commands (SSC), DVS Gesture, sequential MNIST (S-MNIST) and permuted sequential MNIST (PS-MNIST)~\\cite{shd,gesture,mnist}. The last two tasks use the same images with different pixel orderings. Table~\\ref{tab:protocol} summarizes the main comparisons.",
+      "zh": "我们使用 SHD 研究模型机制，并在 Spiking Speech Commands（SSC）、DVS Gesture、sequential MNIST（S-MNIST）和 permuted sequential MNIST（PS-MNIST）上评估得到的架构~\\cite{shd,gesture,mnist}。后两项任务使用相同图像，但像素输入顺序不同。主要对照设置汇总于表~\\ref{tab:protocol}。"
+    },
+    {
+      "id": "3.1-P2",
+      "line": 129,
+      "en": "Each comparison contains FSNN, scalar-drive DMP and GDSM with the same fast backbone, input realizations and training schedule. DMP and GDSM use the same candidate dimension $d$; GDSM adds a stable state and gate parameters. SSC and MNIST share the initial fast-path and classifier weights across models, and GDSM's vector drive is initialized from the DMP scalar drive. Gesture starts from each model's own clean validation-selected checkpoint, then uses identical mixed-training batches for all three models. All GDSM transfer experiments use the fixed read in Eq.~\\eqref{eq:read}.",
+      "zh": "每组对照包含 FSNN、标量驱动 DMP 和 GDSM，三者使用相同的快通路骨干、实际输入样本及训练安排。DMP 的共享状态与 GDSM 的候选状态使用相同维度 $d$；GDSM 额外增加稳定状态和门控参数。在 SSC 和 MNIST 上，各模型共享快通路和分类器的初始权重，GDSM 的向量驱动由 DMP 的标量驱动初始化。Gesture 则从各模型在干净验证集上选出的 checkpoint 开始，随后对三种模型使用完全相同的混合训练批次。所有 GDSM 跨数据集实验均采用式~\\eqref{eq:read} 的固定读取方式。"
+    },
+    {
+      "id": "3.2-P1",
+      "line": 148,
+      "en": "We evaluate two placements of the same disturbance. In a \\emph{middle interruption}, a length-$L$ segment is inserted halfway through the input, after which the event resumes. Classification uses average scores over the complete extended sequence. In \\emph{tail retention}, the segment is appended after the complete event, and classification uses only the final $K=20$ frames. The target remains the original class. We also evaluate the clean endpoint with the same 20-frame readout. This separates the quality of the representation before a gap from its ability to survive that gap.",
+      "zh": "我们把同一种干扰放在两个不同位置进行评估。在 middle interruption（中间干扰）中，将长度为 $L$ 的片段插入输入中间，之后原事件继续，分类使用扩展后整段序列的平均分数。在 tail retention（末尾保持）中，干扰追加在完整事件之后，分类只使用最后 $K=20$ 帧，目标类别仍为原事件的类别。我们还使用相同的 20 帧读取窗口评估干净输入的末端表现，从而区分干扰前的表征质量与经过干扰后的保持能力。"
+    },
+    {
+      "id": "3.2-P2",
+      "line": 150,
+      "en": "Mixed training samples clean input, silence and Poisson noise with equal probability. SSC and MNIST use lengths 40 and 80 and either middle or tail placement. Evaluation adds length 120 for SSC and 160 for MNIST, which are absent from training. SSC noise has rate 0.25 per channel per frame; MNIST uses rate 0.1 clipped to $[0,1]$. Gesture uses lengths 20, 40 and 80, with noise intensity calibrated from training activity (1$\\times$); 3$\\times$ is an additional stress test. Noise realizations are paired across model families.",
+      "zh": "混合训练以相同概率抽取干净输入、静音和 Poisson 噪声。SSC 和 MNIST 的训练干扰长度为 40 或 80 帧，位置为事件中间或末尾。评估时，SSC 额外测试训练中未见过的 120 帧干扰，MNIST 额外测试 160 帧干扰。SSC 的噪声率为每通道每帧 0.25；MNIST 的噪声率为 0.1，并截断到 $[0,1]$。Gesture 使用 20、40 和 80 帧干扰，噪声强度按训练数据的活动量校准为 1$\\times$，另以 3$\\times$ 强度进行压力测试。不同模型使用配对的噪声样本。"
+    },
+    {
+      "id": "3.2-P3",
+      "line": 152,
+      "en": "Auditory and gesture events are normalized into frames using known segment boundaries. All state updates are causal over those frames, and inserted gaps do not reset the network. The longest main test contains 944 pixel steps. These constructed streams isolate retention and interruption recovery while keeping the class target unambiguous.",
+      "zh": "语音和手势事件根据已知的片段边界归一化为帧。所有状态更新仅使用当前及过去的帧，插入干扰时不重置网络。最长的主要测试包含 944 个像素时间步。这些构造的输入流保持了明确的目标类别，使我们能够分别研究记忆保持和干扰后的恢复。"
+    },
+    {
+      "id": "3.3-P1",
+      "line": 155,
+      "en": "Both MNIST tasks use three training seeds, and all 18 models are frozen before official-test evaluation. Their results are reported as mean $\\pm$ sample standard deviation. SSC uses one training seed; Gesture uses one fine-tuning seed and averages three noise realizations. SHD supervision controls use three fine-tuning seeds. Speaker- and subject-cluster bootstrap intervals describe paired SSC and Gesture differences; three-seed paired $t$ intervals are reported for MNIST in Appendix~\\ref{app:additional}. Training details and evaluation chronology are provided in Appendix~\\ref{app:training}.",
+      "zh": "两个 MNIST 任务均使用三个训练种子，全部 18 个模型在正式测试集评估前冻结。结果报告均值 $\\pm$ 样本标准差。SSC 使用一个训练种子；Gesture 使用一个微调种子，并对三组噪声样本取平均。SHD 监督方式对照使用三个微调种子。SSC 和 Gesture 的配对差异分别通过说话人簇和受试者簇 bootstrap 区间描述；MNIST 的三种子配对 $t$ 区间见附录~\\ref{app:additional}。训练细节与评估顺序见附录~\\ref{app:training}。"
+    },
+    {
+      "id": "4.1-P1",
+      "line": 177,
+      "en": "GDSM substantially improves endpoint accuracy across speech, event vision and sequential images (Table~\\ref{tab:retention}). On SSC, it retains 54.93\\% after 120 silent frames and 52.79\\% after 120 noise frames, compared with 3.52\\% and 3.91\\% for DMP. GDSM's own clean endpoint is 56.52\\%, so the noise interval costs only 3.73 percentage points. Its retention changes little from length 40 to the unseen length 120 (Fig.~\\ref{fig:retention}). This is direct evidence that the learned representation remains usable beyond the interruption lengths used in training.",
+      "zh": "GDSM 在语音、事件视觉和序列化图像任务上都显著提高了末端准确率（表~\\ref{tab:retention}）。在 SSC 上，120 帧静音后准确率为 54.93\\%，120 帧噪声后为 52.79\\%，而 DMP 分别为 3.52\\% 和 3.91\\%。GDSM 自身的干净末端准确率为 56.52\\%，因此噪声片段仅造成 3.73 个百分点的下降。从 40 帧增加到训练中未见过的 120 帧，其保持表现变化很小（图~\\ref{fig:retention}）。这直接说明，学到的表征在超过训练干扰长度之后仍然可用。"
+    },
+    {
+      "id": "4.1-P2",
+      "line": 179,
+      "en": "Gesture offers an especially clear comparison because the two memory models begin the gap with similar accuracy: 85.61\\% for DMP and 86.36\\% for GDSM. After 80 silent frames, their accuracies diverge to 19.70\\% and 70.83\\%. At the trained noise intensity, the corresponding values are 26.52\\% and 47.47\\%. The advantage therefore reflects preservation of information, rather than a large difference in initial recognition. The paired gains are 51.14 points for silence and 20.96 for noise, with subject-cluster 95\\% intervals of $[42.93,57.27]$ and $[11.07,28.40]$.",
+      "zh": "Gesture 的对照尤其清晰，因为两种记忆模型在干扰开始前的准确率接近：DMP 为 85.61\\%，GDSM 为 86.36\\%。经过 80 帧静音后，两者分别为 19.70\\% 和 70.83\\%；在训练所用的噪声强度下，分别为 26.52\\% 和 47.47\\%。这一差距主要体现了信息保持能力，而非干扰前识别水平的大幅差异。静音和噪声条件下的配对收益分别为 51.14 和 20.96 个百分点；按受试者簇计算的 95\\% 区间分别为 $[42.93,57.27]$ 和 $[11.07,28.40]$。"
+    },
+    {
+      "id": "4.1-P3",
+      "line": 181,
+      "en": "The benefit extends to full 784-step image sequences. After an unseen 160-frame pause, S-MNIST accuracy rises from $8.69\\pm5.36$\\% with DMP to $78.68\\pm15.74$\\% with GDSM. PS-MNIST rises from $14.12\\pm0.46$\\% to $56.43\\pm17.28$\\%. Under noise, GDSM reaches $32.03\\pm15.51$\\% and $28.02\\pm12.89$\\%, respectively. All three training seeds improve over DMP in each of these four tail conditions. The effect is strongest for silence, with larger remaining variation under active interference.",
+      "zh": "这一收益也出现在完整的 784 步图像序列上。经过训练中未见过的 160 帧停顿后，S-MNIST 的准确率从 DMP 的 $8.69\\pm5.36$\\% 提升至 GDSM 的 $78.68\\pm15.74$\\%；PS-MNIST 则从 $14.12\\pm0.46$\\% 提升至 $56.43\\pm17.28$\\%。在噪声条件下，GDSM 在两个任务上分别达到 $32.03\\pm15.51$\\% 和 $28.02\\pm12.89$\\%。在上述四种末尾干扰条件中，三个训练种子的结果均优于 DMP。静音条件下的效果最强，噪声条件下仍存在更大的结果波动。"
+    },
+    {
+      "id": "4.2-P1",
+      "line": 194,
+      "en": "The endpoint gains raise two questions: what has been stored, and what prevents it from being overwritten? SHD controls examine these separately. We compare scalar drive, vector drive and a \\emph{wide-scalar} control that expands the input to $d$ coordinates and then compresses it back to one scalar. The wide-scalar model closely matches the vector model's parameter count. All three share the same protected-memory training recipe and independent candidate/stable reads.",
+      "zh": "末端性能的提升引出两个问题：记忆中存入了什么，以及是什么阻止它被覆盖？SHD 对照实验分别检验这两点。我们比较标量驱动、向量驱动和 wide-scalar 对照。wide-scalar 先把输入扩展到 $d$ 维，再压缩回单个标量，其参数量与向量驱动模型接近。三者使用相同的受保护记忆训练方案，并独立读取候选状态和稳定状态。"
+    },
+    {
+      "id": "4.2-P2",
+      "line": 196,
+      "en": "Table~\\ref{tab:capacity} shows that vector drive improves both clean stable-memory decoding and the main SNN's retention. At $d=30$, it reaches 66.70\\% average L80 retention, compared with 59.76\\% for the slightly larger wide-scalar control. The improvement is therefore not explained by parameter count alone. The same comparison at $d=10$ gives 51.88\\% versus 47.46\\%. In the three-seed scalar--vector comparison, mean retention improves by 14.36 and 12.46 points at $d=10$ and $d=30$, respectively.",
+      "zh": "表~\\ref{tab:capacity} 显示，向量驱动同时提高了干净输入下稳定记忆的解码准确率，以及主 SNN 的记忆保持能力。在 $d=30$ 时，向量驱动的 L80 平均保持准确率为 66.70\\%，而参数量略大的 wide-scalar 为 59.76\\%，说明收益不能仅用参数更多来解释。在 $d=10$ 时，对应结果为 51.88\\% 和 47.46\\%。在另外的三种子标量—向量对照中，$d=10$ 和 $d=30$ 的平均保持准确率分别提高了 14.36 和 12.46 个百分点。"
+    },
+    {
+      "id": "4.2-P3",
+      "line": 198,
+      "en": "Protection is also important. With vector drive but without the additional protection mechanism, the single-seed controls reach only 23.98\\% and 38.25\\% at those capacities, compared with 51.88\\% and 66.70\\% in the protected variants. The combined evidence supports the design's two roles: vector drive improves what enters memory, and selective writes help preserve it.",
+      "zh": "保护机制也很重要。在使用向量驱动、但不加入额外保护机制的单种子对照中，两个容量下的保持准确率仅为 23.98\\% 和 38.25\\%，而加入保护后分别达到 51.88\\% 和 66.70\\%。这些证据支持设计中两个部分的作用：向量驱动改善进入记忆的信息，选择性写入则帮助保存这些信息。"
+    },
+    {
+      "id": "4.2-P4",
+      "line": 200,
+      "en": "The capacity study used a historical recipe with explicit gate supervision. A separate matched supervision ablation asks whether useful protection can be learned without those labels (Appendix~\\ref{app:shd}). At $d=30$, task training plus the zero-input rule reaches 67.82\\% silence retention and 60.16\\% noise retention. Adding noise-position-derived gate losses changes noise retention to 60.81\\%, an increase of only 0.65 points. The main transfer experiments therefore use class supervision without noise-position gate labels.",
+      "zh": "容量研究沿用了带有显式门控监督的早期训练方案。另一组匹配的监督消融实验检验：不使用这些标签，能否学到有效保护（附录~\\ref{app:shd}）？在 $d=30$ 时，仅使用类别训练并加入零输入关闭规则，静音保持准确率就达到 67.82\\%，噪声保持准确率达到 60.16\\%。额外加入由噪声位置生成的门控损失后，噪声保持准确率变为 60.81\\%，只提高了 0.65 个百分点。因此，主要跨数据集实验采用类别监督，不使用噪声位置标签监督门控。"
+    },
+    {
+      "id": "4.3-P1",
+      "line": 219,
+      "en": "Figure~\\ref{fig:training} shows clean-input validation accuracy across both training stages. GDSM is ahead of DMP at the first logged evaluation on all three tasks; on S-MNIST, the epoch-5 means are 92.12\\% and 82.64\\%. Mixed training largely preserves recognition in the memory models but substantially reduces FSNN accuracy on MNIST. Final clean-input test results from both stages are listed in Appendix~\\ref{app:additional}.",
+      "zh": "图~\\ref{fig:training} 展示了两个训练阶段中，干净输入的验证准确率变化。在三个任务最早记录的验证点上，GDSM 都高于 DMP；例如 S-MNIST 第 5 轮的均值分别为 92.12\\% 和 82.64\\%。进入混合训练后，带记忆模型的识别能力总体保持，而 FSNN 在 MNIST 上的准确率明显下降。两个阶段结束后的干净输入测试结果列于附录~\\ref{app:additional}。"
+    },
+    {
+      "id": "4.3-P2",
+      "line": 223,
+      "en": "Endpoint scoring reveals information that these averages miss. On SSC, DMP's 47.89\\% whole-sequence score corresponds to only 11.05\\% at the clean endpoint. GDSM scores 58.83\\% and 56.52\\%, respectively. Its large post-gap advantage combines a stronger endpoint representation with better preservation. Gesture, where the starting endpoints nearly match, isolates the latter effect particularly clearly.",
+      "zh": "末端评分揭示了整段平均结果中看不到的信息。在 SSC 上，DMP 的整段分类准确率为 47.89\\%，但干净末端准确率仅为 11.05\\%；GDSM 对应为 58.83\\% 和 56.52\\%。因此，GDSM 干扰后的大幅优势同时来自更强的末端表征和更好的信息保持。Gesture 在干扰前的末端表现接近，因而更清楚地单独体现了后者。"
+    },
+    {
+      "id": "4.3-P3",
+      "line": 225,
+      "en": "Interruption training contributes to active-noise robustness. Clean-only GDSM reaches 11.47\\% after SSC tail noise of length 120, increasing to 52.79\\% after mixed training. The architecture supplies a protected storage path, and disturbance exposure teaches the network to use it.",
+      "zh": "带干扰训练有助于提升噪声鲁棒性。只经过干净训练的 GDSM，在 SSC 末尾追加 120 帧噪声后准确率为 11.47\\%；混合训练后提高到 52.79\\%。架构提供了受保护的存储通路，而训练中接触干扰使网络学会利用这条通路。"
+    },
+    {
+      "id": "4.3-P4",
+      "line": 227,
+      "en": "When the original event resumes after a middle gap, later evidence can replenish the state. GDSM exceeds DMP in all six SSC middle conditions, but gains are smaller and mixed on MNIST. The longest-gap results in Appendix~\\ref{app:additional} distinguish this recovery problem from remembering a completed event. The main advantage of GDSM is persistence of usable information after evidence is no longer present.",
+      "zh": "当原事件在中间干扰之后继续时，后续证据可以补充状态信息。在 SSC 的六种中间干扰条件下，GDSM 均高于 DMP，但在 MNIST 上收益较小，且不同条件的表现并不一致。附录~\\ref{app:additional} 的最长干扰结果区分了这种恢复问题与“记住一个已经结束的事件”。GDSM 的主要优势，是在相关证据不再出现之后，仍能维持可用的信息。"
+    },
+    {
+      "id": "5-P1",
+      "line": 230,
+      "en": "The retention mechanism has a measurable model-level cost. On clean Gesture inputs, effective full-network MACs increase from 63.212 million for DMP to 67.196 million for GDSM, an overhead of 6.30\\% (Fig.~\\ref{fig:hardware}). During an appended L80 silent gap, cached GDSM requires 68.455 million MACs versus 64.159 million for DMP. Caching reduces GDSM's own dense count from 69.274 million to 68.455 million, saving 1.183\\% of full-network MACs. These estimates account for active computation across the network; the local memory-core cycle measurements are reported separately in Appendix~\\ref{app:hardware}.",
+      "zh": "记忆保持机制会增加一定的模型级计算开销。在干净 Gesture 输入上，全网有效 MACs 从 DMP 的 63.212 million 增加到 GDSM 的 67.196 million，增幅为 6.30\\%（图~\\ref{fig:hardware}）。在末尾追加 L80 静音时，带缓存的 GDSM 需要 68.455 million MACs，DMP 为 64.159 million。缓存使 GDSM 自身的密集执行开销从 69.274 million 降至 68.455 million，节省全网 MACs 的 1.183\\%。这些估计包含全网的有效计算；局部记忆核的周期测量单独列于附录~\\ref{app:hardware}。"
+    },
+    {
+      "id": "5-P2",
+      "line": 232,
+      "en": "We implement the memory branch in the public DMP Chisel framework using signed 24-bit Q11.12 arithmetic. The core includes vector drive, full candidate dynamics, delayed stable writes, causal gates, independent reads and a stable-read cache. All 25 original tests and seven additional integer-reference tests pass. A separate trained-weight reference test and native Verilator replay validate a 944-step sequence comprising 784 pixels, 80 silent steps and 80 noisy steps. All 117,056 checked fixed-point values agree exactly with the reference.",
+      "zh": "我们在公开的 DMP Chisel 框架中实现记忆分支，采用有符号 24-bit Q11.12 定点运算。记忆核包含向量驱动、完整候选状态动力学、延迟稳定写入、因果门控、独立读取和稳定读取缓存。原有 25 项测试及新增的 7 项整数参考测试全部通过。另一项使用已训练权重的参考测试和原生 Verilator 重放验证了 944 步序列，其中包含 784 个像素步、80 个静音步和 80 个噪声步。检查的 117,056 个定点数值全部与参考结果完全一致。"
+    },
+    {
+      "id": "5-P3",
+      "line": 234,
+      "en": "The replay tests a memory core, with four read coordinates from a real $d=40$ trained layer. It verifies the arithmetic and update schedule; whole-network quantized classification remains a separate evaluation. Together with operation accounting, it establishes an implementable mechanism and its computation cost. Physical energy characterization requires the technology and memory-macro flow used in the original DMP hardware study~\\cite{dmp}.",
+      "zh": "这次重放测试的是记忆核，使用一个真实训练得到的 $d=40$ 层中的四个读取坐标，验证的是运算和更新时序。全网量化分类仍需单独评估。结合运算量统计，这些结果验证了机制的可实现性及其计算开销。物理能耗评估还需要原 DMP 硬件研究所使用的工艺和 memory macro 流程~\\cite{dmp}。"
+    },
+    {
+      "id": "6-P1",
+      "line": 243,
+      "en": "The experiments show that persistent shared memory requires both informative content and selective updates. Increasing input bandwidth improves what can be stored, while the stable state protects that content without stopping ongoing integration. The benefit appears across spiking speech, event-camera gestures and long pixel sequences, and extends to gap lengths absent from training. GDSM therefore provides a practical way to strengthen retention in SNN layers while keeping memory shared across neurons.",
+      "zh": "实验表明，要使共享记忆持久有效，既需要有信息量的内容，也需要选择性更新。提高输入带宽能够改善存入的信息，稳定状态则在不停止持续整合新输入的情况下保护这些内容。这种收益出现在脉冲语音、事件相机手势和较长像素序列上，也延伸到训练中未见过的干扰长度。因此，GDSM 提供了一种实用方法：在保持层内记忆共享的同时，增强 SNN 的信息保持能力。"
+    },
+    {
+      "id": "6-P2",
+      "line": 245,
+      "en": "The clearest use case is a classifier whose interpretation must remain available through inactivity or background disturbance. Exact closure preserves the stable state, while independent candidate and fast reads maintain access to new input. The results connect that architectural separation to large endpoint gains and a concrete hardware implementation.",
+      "zh": "最直接的应用场景，是分类器需要在没有活动或存在背景干扰时持续保留先前的判断。门控完全关闭可以保持稳定状态，而独立的候选状态读取和快通路读取仍能提供新输入的信息。实验把这种架构上的分工与明显的末端性能提升、以及具体的硬件实现联系起来。"
+    },
+    {
+      "id": "6-P3",
+      "line": 247,
+      "en": "Future work should improve adaptation to new events and unfamiliar noise statistics, using the switching and stress tests in Appendix~\\ref{app:additional} as guides. More training-seed repetitions on SSC and Gesture and further matched-capacity controls would refine the attribution and variability of these effects.",
+      "zh": "后续研究应改善模型对新事件和陌生噪声分布的适应能力，附录~\\ref{app:additional} 的切换与压力测试提供了相应方向。增加 SSC 和 Gesture 的训练种子重复，并进一步开展容量匹配对照，有助于更准确地理解收益来源及其波动。"
+    },
+    {
+      "id": "6-P4",
+      "line": 250,
+      "en": "The datasets are publicly available~\\cite{shd,gesture,mnist}. Source code, manuscript files, result tables and hardware replay data are available at \\url{https://github.com/Veirsune/Dual_memory_pathways}. The implementation extends the original DMP project~\\cite{dmp}; its authorship and source are preserved in the repository.",
+      "zh": "本文使用的数据集均已公开~\\cite{shd,gesture,mnist}。源代码、论文文件、结果表和硬件重放数据可在 \\url{https://github.com/Veirsune/Dual_memory_pathways} 获取。本实现扩展自原 DMP 项目~\\cite{dmp}，仓库中保留了其作者信息和来源。"
+    },
+    {
+      "id": "A-P1",
+      "line": 259,
+      "en": "The implementation uses SpikingJelly and surrogate gradients~\\cite{spikingjelly,surrogate}. Table~\\ref{tab:optimization} summarizes optimization; Table~\\ref{tab:protocol} gives data sizes and backbones. Detailed preprocessing, feature normalization and implementation records are provided in the repository's \\texttt{EXPERIMENT\\_DETAILS.md}.",
+      "zh": "实现基于 SpikingJelly，训练采用 surrogate gradient~\\cite{spikingjelly,surrogate}。表~\\ref{tab:optimization} 汇总优化设置，表~\\ref{tab:protocol} 给出数据规模和骨干网络。详细预处理、特征归一化和实现记录见仓库中的 \\texttt{EXPERIMENT\\_DETAILS.md}。"
+    },
+    {
+      "id": "A-P2",
+      "line": 276,
+      "en": "States start at zero for each new sequence and persist across inserted gaps. Candidate dynamics use the original DMP Legendre construction with zero-order-hold discretization. The memory window is $\\theta=40$ for speech and 300 for Gesture/MNIST. The code stores $D_{ii}=\\bar b_i/c_i$, with positive $c_i$ spanning 0.5--1.5. Setting $W_u=C^{-1}\\widetilde W_u$ and $b_u=C^{-1}\\widetilde b_u$, where $C=\\operatorname{diag}(c_i)$, gives the equivalent drive in Eq.~\\eqref{eq:candidate} by ReLU homogeneity. Projection rows initially match scalar DMP; paired SSC/MNIST starts set $W_m=0$.",
+      "zh": "每条新序列的状态从零开始，插入干扰时保持状态连续。候选状态沿用原 DMP 的 Legendre 构造及 zero-order hold 离散化。语音任务的记忆窗口为 $\\theta=40$，Gesture 和 MNIST 为 300。代码保存 $D_{ii}=\\bar b_i/c_i$，其中正数 $c_i$ 分布在 0.5--1.5。令 $W_u=C^{-1}\\widetilde W_u$、$b_u=C^{-1}\\widetilde b_u$，其中 $C=\\operatorname{diag}(c_i)$，利用 ReLU 的正齐次性即可得到式~\\eqref{eq:candidate} 的等价驱动。投影各行在初始化时与标量 DMP 匹配；SSC 和 MNIST 的配对初始化设置 $W_m=0$。"
+    },
+    {
+      "id": "A-P3",
+      "line": 278,
+      "en": "Local gates start with zero weights and bias $\\log(0.95/0.05)$. The permission MLP starts with zero output weights and bias $+2$; its hidden layer uses ReLU. Auditory features combine four global statistics and 14 frequency bands ($36\\to32\\to2d$ MLP); Gesture uses four statistics and $2\\times4\\times4$ spatial bins ($72\\to32\\to d$); MNIST uses four statistics ($8\\to32\\to2d$). Each input includes the previous feature EMA. Permission is one for a nonnegative output logit, with sigmoid surrogate gradients.",
+      "zh": "局部门控的初始权重为零，偏置为 $\\log(0.95/0.05)$。写入许可 MLP 的输出层初始权重为零、偏置为 $+2$，隐藏层使用 ReLU。语音特征结合四个全局统计量与 14 个频带，对应 $36\\to32\\to2d$ MLP；Gesture 使用四个统计量和 $2\\times4\\times4$ 空间分箱，对应 $72\\to32\\to d$；MNIST 使用四个统计量，对应 $8\\to32\\to2d$。输入均包含上一时刻的特征 EMA。输出 logit 非负时许可值为一，反向传播使用 sigmoid surrogate gradient。"
+    },
+    {
+      "id": "A-P4",
+      "line": 281,
+      "en": "Speech is reduced to 140 channels. Gesture uses subjects 1--19 for training, 20--23 for validation and 24--29 for testing, with 100 frames and two-polarity $32\\times32$ inputs. MNIST uses a stratified training/validation split (seed 1701), normalized pixels and a shared PS-MNIST permutation (seed 1702). SSC uses Eq.~\\eqref{eq:loss} in both stages; MNIST uses whole-sequence loss in the clean stage. All main mixed stages use Eq.~\\eqref{eq:loss}. SHD was used iteratively during development and SSC test evaluation had occurred in earlier stages; the reported protocols and scheduled checkpoints were fixed before evaluation. All 18 MNIST fits were frozen before their official-test evaluation.",
+      "zh": "语音输入降为 140 个通道。Gesture 使用受试者 1--19 训练、20--23 验证、24--29 测试，输入为 100 帧双极性 $32\\times32$ 数据。MNIST 对训练集进行分层划分，得到训练与验证子集（seed 1701），像素归一化，PS-MNIST 使用统一的排列（seed 1702）。SSC 两个训练阶段都使用式~\\eqref{eq:loss}；MNIST 在干净阶段使用整段序列损失。主要混合训练阶段均使用式~\\eqref{eq:loss}。SHD 用于架构开发中的迭代实验，SSC 测试集也曾在早期阶段进行过评估；本文报告的方案与预定 checkpoint 在本轮评估前固定。全部 18 个 MNIST 模型在其正式测试集评估前冻结。"
+    },
+    {
+      "id": "A-P5",
+      "line": 285,
+      "en": "The memory core uses signed 24-bit Q11.12 arithmetic. With four inputs and 32 read outputs, local DMP cycles are 43/63 at $d=10/30$, versus 136/216 for dense GDSM and 104/184 for fully closed cached GDSM. These exclude the fast backbone. Trained replay covers 944 steps and matches 117,056 integer-reference values; cached execution uses 185,528 rather than 188,800 cycles. Lookup-table settings and quantization errors are documented in the repository. No physical power or energy measurement is inferred from these counts.",
+      "zh": "记忆核采用有符号 24-bit Q11.12 运算。在四个输入和 32 个读取输出的设置下，$d=10/30$ 时，DMP 局部周期数为 43/63，密集 GDSM 为 136/216，门控完全关闭且使用缓存的 GDSM 为 104/184。这些数值不包含快通路骨干。已训练权重重放覆盖 944 步，与 117,056 个整数参考值一致；缓存执行使用 185,528 个周期，密集执行使用 188,800 个周期。查表设置和量化误差记录在仓库中。这些计数不代表物理功率或能耗测量。"
+    },
+    {
+      "id": "B-P1",
+      "line": 289,
+      "en": "SHD uses 6,245 training, 640 validation and 1,271 confirmation examples from the training release, with 2,264 official-test examples. Inputs have 100 frames; the backbone has two 128-unit LIF layers. The capacity comparison in Table~\\ref{tab:capacity} uses a shared historical recipe with explicit gate supervision and a stable-memory auxiliary loss of weight 1.0. Its wide-scalar control uses $M\\to d\\to1$ projections.",
+      "zh": "SHD 从训练集划分出 6,245 个训练样本、640 个验证样本和 1,271 个确认样本，正式测试集包含 2,264 个样本。输入为 100 帧，骨干包含两个各有 128 个 LIF 神经元的隐藏层。表~\\ref{tab:capacity} 的容量对照使用相同的早期训练方案，其中包含显式门控监督，以及权重为 1.0 的稳定记忆辅助分类损失。wide-scalar 对照使用 $M\\to d\\to1$ 投影。"
+    },
+    {
+      "id": "B-P2",
+      "line": 291,
+      "en": "The separate supervision ablation starts each arm from matched class-trained weights and freshly initialized permission networks. All arms retain the auxiliary class loss and run 30 epochs with seeds 501--503, batch size 128 and AdamW (learning rate 0.001, weight decay 0.05, clipping at 1). Training mixes single words (25\\%), middle interruptions (37.5\\%) and paired words (37.5\\%), with silence or rate-0.25 noise and gaps of 20/40/80 frames. Table~\\ref{tab:supervision} separates the empty-frame closure rule from additional gate classification and leakage losses. At $d=30$, closure raises silence retention from 29.52\\% to 67.82\\%; gate labels add only 0.65 points to noise retention. The main cross-dataset study therefore uses class supervision without gate labels.",
+      "zh": "独立的监督消融实验中，各组从匹配的类别训练权重开始，写入许可网络重新初始化。所有组保留辅助分类损失，使用 seeds 501--503 训练 30 轮，batch size 为 128，优化器为 AdamW，学习率为 0.001，weight decay 为 0.05，梯度裁剪阈值为 1。训练混合单词样本（25\\%）、中间干扰样本（37.5\\%）和双词样本（37.5\\%），干扰为静音或 rate 0.25 的噪声，长度为 20/40/80 帧。表~\\ref{tab:supervision} 将空帧关闭规则与额外的门控分类、泄漏损失区分开。在 $d=30$ 时，关闭规则将静音保持准确率从 29.52\\% 提升到 67.82\\%，门控标签则只使噪声保持准确率再提高 0.65 个百分点。因此，主要跨数据集实验采用类别监督，不使用门控标签。"
+    },
+    {
+      "id": "C-P1",
+      "line": 312,
+      "en": "Table~\\ref{tab:clean} reports clean-input recognition before and after mixed training; Table~\\ref{tab:middle} gives every model's longest middle-gap result. All shorter conditions remain in the repository. GDSM exceeds DMP in all six SSC middle conditions. At MNIST L160, its middle-noise accuracy is higher but its middle-silence accuracy is slightly lower, distinguishing recovery after an interruption from retention after an event ends.",
+      "zh": "表~\\ref{tab:clean} 报告混合训练前后的干净输入识别结果；表~\\ref{tab:middle} 给出所有模型在各数据集最长中间干扰下的表现。较短干扰条件的完整结果保留在仓库中。GDSM 在 SSC 的六种中间干扰条件下均高于 DMP；在 MNIST L160 上，其中间噪声准确率更高，但中间静音准确率略低。这区分了干扰后的恢复能力与事件结束后的记忆保持能力。"
+    },
+    {
+      "id": "C-P2",
+      "line": 337,
+      "en": "Concentrating SHD noise into 28 adjacent channels at matched global intensity lowers the $d=30$ zero-rule model's L80 retention from 60.16\\% to $6.91\\pm0.38$\\%. Under unseen 3$\\times$ Gesture noise at L80, all models reach 9.09\\% tail accuracy; middle accuracy is 64.27\\%, 19.19\\% and 54.17\\% for FSNN, DMP and GDSM. Thus protection depends on the disturbance distribution. In the frozen-memory switching study, static and dynamic reading give first-20-frame new-word accuracy of $12.28\\pm0.87$\\% and $12.69\\pm0.45$\\%, versus $12.22\\pm0.97$\\% for fixed reading. Their L80 noise retention is $58.94\\pm8.17$\\% and $61.50\\pm8.36$\\%, versus $60.16\\pm8.76$\\%. These small gains support the simpler fixed reader used in the main experiments.",
+      "zh": "将 SHD 噪声集中在 28 个相邻通道、同时保持总体强度一致，会使 $d=30$ 零输入关闭规则模型的 L80 保持准确率从 60.16\\% 降至 $6.91\\pm0.38$\\%。在训练中未见过的 3$\\times$ Gesture 噪声、L80 条件下，所有模型的末尾准确率均为 9.09\\%；中间干扰准确率则分别为 FSNN 64.27\\%、DMP 19.19\\%、GDSM 54.17\\%。因此，保护效果依赖干扰分布。在冻结记忆的切换研究中，静态和动态读取的新词前 20 帧准确率分别为 $12.28\\pm0.87$\\% 和 $12.69\\pm0.45$\\%，固定读取为 $12.22\\pm0.97$\\%；其 L80 噪声保持准确率分别为 $58.94\\pm8.17$\\% 和 $61.50\\pm8.36$\\%，固定读取为 $60.16\\pm8.76$\\%。这些早期读取收益较小，因此主要实验采用更简单的固定读取。"
+    },
+    {
+      "id": "C-P3",
+      "line": 340,
+      "en": "SSC's L120 GDSM--DMP gains are 51.41 points for silence and 48.88 for noise; speaker-cluster bootstrap 95\\% intervals are $[49.49,53.25]$ and $[46.96,50.73]$. These intervals condition on fitted models. MNIST L160 differences are positive for all three seeds; paired 95\\% $t$ intervals (unclipped percentage points) are $[27.17,112.80]$ (S-MNIST silence), $[-22.10,65.84]$ (S-MNIST noise), $[-0.68,85.30]$ (PS-MNIST silence) and $[-14.19,48.45]$ (PS-MNIST noise).",
+      "zh": "在 SSC L120 上，GDSM 相对 DMP 的静音和噪声收益分别为 51.41 和 48.88 个百分点；说话人簇 bootstrap 的 95\\% 区间分别为 $[49.49,53.25]$ 和 $[46.96,50.73]$。这些区间以已经训练好的模型为条件。在 MNIST L160 上，三个种子的配对差异均为正；配对 95\\% $t$ 区间以百分点表示、未经截断，分别为：S-MNIST 静音 $[27.17,112.80]$，S-MNIST 噪声 $[-22.10,65.84]$，PS-MNIST 静音 $[-0.68,85.30]$，PS-MNIST 噪声 $[-14.19,48.45]$。"
+    }
+  ]
+}

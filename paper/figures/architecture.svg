@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-15T07:16:31.963703</dc:date>
+    <dc:date>2026-11-17T13:07:28.482311</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -32,137 +32,137 @@ z
    <g id="patch_2">
     <path d="M 23.356235 59.189647
 L 135.089893 59.189647
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-width: 1.25; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-width: 1.25; stroke-linejoin: miter"/>
     <path d="M 131.889893 57.589647
 L 135.089893 59.189647
 L 131.889893 60.789647
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-width: 1.25; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-width: 1.25; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 43.832471 59.189647
 L 43.832471 130.856471
 L 70.357354 130.856471
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
     <path d="M 67.157354 129.256471
 L 70.357354 130.856471
 L 67.157354 132.456471
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 133.927906 130.856471
 L 151.332706 130.856471
 L 151.332706 75.152952
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
     <path d="M 149.732706 78.352952
 L 151.332706 75.152952
 L 152.932706 78.352952
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 166.177976 59.189647
 L 175.809966 59.189647
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
     <path d="M 172.609966 57.589647
 L 175.809966 59.189647
 L 172.609966 60.789647
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 212.761412 59.189647
 L 478.066834 59.189647
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-width: 1.25; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-width: 1.25; stroke-linejoin: miter"/>
     <path d="M 474.866834 57.589647
 L 478.066834 59.189647
 L 474.866834 60.789647
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-width: 1.25; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-width: 1.25; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 246.035294 59.189647
 L 246.035294 130.856471
 L 308.39359 130.856471
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
     <path d="M 305.19359 129.256471
 L 308.39359 130.856471
 L 305.19359 132.456471
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
     <path d="M 371.964141 130.856471
 L 436.37006 130.856471
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
     <path d="M 433.17006 129.256471
 L 436.37006 130.856471
 L 433.17006 132.456471
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
     <path d="M 340.737882 114.987388
 L 340.737882 79.665882
 L 481.512 79.665882
 L 486.010885 72.917555
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
     <path d="M 482.904564 74.692595
 L 486.010885 72.917555
 L 485.567125 76.467636
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_10">
     <path d="M 489.190588 114.987388
 L 489.190588 74.641046
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
     <path d="M 487.590588 77.841046
 L 489.190588 74.641046
 L 490.790588 77.841046
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_11">
     <path d="M 509.154918 59.189647
 L 521.346437 59.189647
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
     <path d="M 518.146437 57.589647
 L 521.346437 59.189647
 L 518.146437 60.789647
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_12">
     <path d="M 83.249224 146.725553
 C 61.749176 176.928 143.654118 176.928 122.802453 147.636377
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linecap: round"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linecap: round"/>
     <path d="M 123.354769 151.171196
 L 122.802453 147.636377
 L 125.961698 149.315416
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linecap: round"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linecap: round"/>
    </g>
    <g id="patch_13">
     <path d="M 321.285459 146.725553
 C 299.785412 176.928 381.690353 176.928 360.838689 147.636377
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linecap: round"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linecap: round"/>
     <path d="M 361.391004 151.171196
 L 360.838689 147.636377
 L 363.997934 149.315416
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linecap: round"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linecap: round"/>
    </g>
    <g id="patch_14">
     <path d="M 449.261929 146.725553
 C 427.761882 176.928 509.666824 176.928 488.815159 147.636377
-" clip-path="url(#p517fbf5b3e)" style="fill: none; stroke: #000000; stroke-linecap: round"/>
+" clip-path="url(#p1cfd142356)" style="fill: none; stroke: #000000; stroke-linecap: round"/>
     <path d="M 489.367475 151.171196
 L 488.815159 147.636377
 L 491.974404 149.315416
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linecap: round"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linecap: round"/>
    </g>
    <g id="patch_15">
     <path d="M 43.832471 60.571793
@@ -175,7 +175,7 @@ C 42.595956 58.471512 42.450325 58.823098 42.450325 59.189647
 C 42.450325 59.556196 42.595956 59.907782 42.855146 60.166972
 C 43.114335 60.426161 43.465921 60.571793 43.832471 60.571793
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_16">
     <path d="M 246.035294 60.571793
@@ -188,7 +188,7 @@ C 244.79878 58.471512 244.653148 58.823098 244.653148 59.189647
 C 244.653148 59.556196 244.79878 59.907782 245.057969 60.166972
 C 245.317159 60.426161 245.668745 60.571793 246.035294 60.571793
 z
-" clip-path="url(#p517fbf5b3e)" style="stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_17">
     <path d="M 71.987294 146.213647
@@ -196,7 +196,7 @@ L 133.416 146.213647
 L 133.416 115.499294
 L 71.987294 115.499294
 z
-" clip-path="url(#p517fbf5b3e)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_18">
     <path d="M 310.023529 146.213647
@@ -204,7 +204,7 @@ L 371.452235 146.213647
 L 371.452235 115.499294
 L 310.023529 115.499294
 z
-" clip-path="url(#p517fbf5b3e)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_19">
     <path d="M 438 146.213647
@@ -212,7 +212,7 @@ L 499.428706 146.213647
 L 499.428706 115.499294
 L 438 115.499294
 z
-" clip-path="url(#p517fbf5b3e)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_20">
     <path d="M 151.332706 73.523012
@@ -225,7 +225,7 @@ C 138.509595 51.742319 136.999341 55.388394 136.999341 59.189647
 C 136.999341 62.9909 138.509595 66.636975 141.197487 69.324866
 C 143.885378 72.012758 147.531453 73.523012 151.332706 73.523012
 z
-" clip-path="url(#p517fbf5b3e)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_21">
     <path d="M 494.309647 73.523012
@@ -238,7 +238,7 @@ C 481.486536 51.742319 479.976282 55.388394 479.976282 59.189647
 C 479.976282 62.9909 481.486536 66.636975 484.174428 69.324866
 C 486.862319 72.012758 490.508394 73.523012 494.309647 73.523012
 z
-" clip-path="url(#p517fbf5b3e)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_22">
     <path d="M 401.142776 130.856471
@@ -246,7 +246,7 @@ L 407.285647 124.7136
 L 413.428518 130.856471
 L 407.285647 136.999341
 z
-" clip-path="url(#p517fbf5b3e)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
+" clip-path="url(#p1cfd142356)" style="fill: #ffffff; stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="font: 700 12px 'DejaVu Sans'; text-anchor: start" x="7.999059" y="21.548426" transform="rotate(-0 7.999059 21.548426)">a</text>
@@ -262,31 +262,31 @@ z
    </g>
    <g id="text_5">
     <text style="font: 8.8px 'DejaVu Sans'" transform="translate(84.80671 128.357683)">Memory</text>
-    <!-- $h_t$ -->
-    <g transform="translate(98.565647 138.211758)">
+    <!-- $m[k]$ -->
+    <g transform="translate(92.405647 138.211758)">
      <text>
-      <tspan style="font: oblique 8.8px 'DejaVu Sans'" x="0" y="-0.15625">h</tspan>
-      <tspan style="font: oblique 6.16px 'DejaVu Sans'" x="5.545654" y="1.3203125">t</tspan>
+      <tspan style="font: oblique 8.8px 'DejaVu Sans'" x="0 11.937256" y="-0.15625">mk</tspan>
+      <tspan style="font: 8.8px 'DejaVu Sans'" x="8.52356 17.004395" y="-0.15625">[]</tspan>
      </text>
     </g>
    </g>
    <g id="text_6">
-    <text style="font: 8.8px 'DejaVu Sans'" transform="translate(318.242882 128.348746)">Candidate</text>
-    <!-- $p_t$ -->
-    <g transform="translate(336.601882 138.202821)">
+    <text style="font: 8.8px 'DejaVu Sans'" transform="translate(318.242882 128.347921)">Candidate</text>
+    <!-- $p[k]$ -->
+    <g transform="translate(331.937882 138.203646)">
      <text>
-      <tspan style="font: oblique 8.8px 'DejaVu Sans'" x="0" y="-0.953125">p</tspan>
-      <tspan style="font: oblique 6.16px 'DejaVu Sans'" x="5.554199" y="0.5234375">t</tspan>
+      <tspan style="font: oblique 8.8px 'DejaVu Sans'" x="0 8.967896" y="-0.15625">pk</tspan>
+      <tspan style="font: 8.8px 'DejaVu Sans'" x="5.554199 14.035034" y="-0.15625">[]</tspan>
      </text>
     </g>
    </g>
    <g id="text_7">
     <text style="font: 8.8px 'DejaVu Sans'" transform="translate(454.776665 128.357683)">Stable</text>
-    <!-- $m_t$ -->
-    <g transform="translate(463.082353 138.211758)">
+    <!-- $m[k]$ -->
+    <g transform="translate(458.418353 138.211758)">
      <text>
-      <tspan style="font: oblique 8.8px 'DejaVu Sans'" x="0" y="-0.953125">m</tspan>
-      <tspan style="font: oblique 6.16px 'DejaVu Sans'" x="8.52356" y="0.5234375">t</tspan>
+      <tspan style="font: oblique 8.8px 'DejaVu Sans'" x="0 11.937256" y="-0.15625">mk</tspan>
+      <tspan style="font: 8.8px 'DejaVu Sans'" x="8.52356 17.004395" y="-0.15625">[]</tspan>
      </text>
     </g>
    </g>
@@ -297,11 +297,11 @@ z
     <text style="font: 8.8px 'DejaVu Sans'; text-anchor: middle" x="494.309647" y="61.617897" transform="rotate(-0 494.309647 61.617897)">LIF</text>
    </g>
    <g id="text_10">
-    <!-- $s_t$ -->
-    <g transform="translate(9.383118 61.673085)">
+    <!-- $s[k]$ -->
+    <g transform="translate(4.613118 61.673085)">
      <text>
-      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0" y="-0.953125">s</tspan>
-      <tspan style="font: oblique 6.3px 'DejaVu Sans'" x="4.688965" y="0.5234375">t</tspan>
+      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0 8.200195" y="-0.15625">sk</tspan>
+      <tspan style="font: 9px 'DejaVu Sans'" x="4.688965 13.412109" y="-0.15625">[]</tspan>
      </text>
     </g>
    </g>
@@ -315,12 +315,11 @@ z
     </g>
    </g>
    <g id="text_12">
-    <!-- $\bar b x_t$ -->
-    <g transform="translate(49.745118 108.474458)">
+    <!-- $\bar B x[k]$ -->
+    <g transform="translate(44.750118 108.204458)">
      <text>
-      <tspan style="font: 9px 'DejaVu Sans'" x="5.800781" y="-2.296875">̄</tspan>
-      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0 5.712891" y="-0.390625">bx</tspan>
-      <tspan style="font: oblique 6.3px 'DejaVu Sans'" x="11.039062" y="1.0859375">t</tspan>
+      <tspan style="font: 9px 'DejaVu Sans'" x="5.90625 11.500488 20.223633" y="-2.296875 -0.671875 -0.671875">̄[]</tspan>
+      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0 6.174316 15.011719" y="-0.671875">Bxk</tspan>
      </text>
     </g>
    </g>
@@ -334,20 +333,20 @@ z
     </g>
    </g>
    <g id="text_14">
-    <!-- $W_h$ -->
-    <g transform="translate(157.560353 102.625555)">
+    <!-- $W_m$ -->
+    <g transform="translate(156.480353 102.625555)">
      <text>
       <tspan style="font: oblique 9px 'DejaVu Sans'" x="0" y="-0.4375">W</tspan>
-      <tspan style="font: oblique 6.3px 'DejaVu Sans'" x="8.898926" y="1.0390625">h</tspan>
+      <tspan style="font: oblique 6.3px 'DejaVu Sans'" x="8.898926" y="1.0390625">m</tspan>
      </text>
     </g>
    </g>
    <g id="text_15">
-    <!-- $s_t$ -->
-    <g transform="translate(201.347824 61.673085)">
+    <!-- $s[k]$ -->
+    <g transform="translate(196.577824 61.673085)">
      <text>
-      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0" y="-0.953125">s</tspan>
-      <tspan style="font: oblique 6.3px 'DejaVu Sans'" x="4.688965" y="0.5234375">t</tspan>
+      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0 8.200195" y="-0.15625">sk</tspan>
+      <tspan style="font: 9px 'DejaVu Sans'" x="4.688965 13.412109" y="-0.15625">[]</tspan>
      </text>
     </g>
    </g>
@@ -361,22 +360,21 @@ z
     </g>
    </g>
    <g id="text_17">
-    <!-- $\bar b\odot u_t$ -->
-    <g transform="translate(264.149647 108.474458)">
+    <!-- $\bar B\odot \mathbf{x}[k]$ -->
+    <g transform="translate(259.109647 108.204458)">
      <text>
-      <tspan style="font: 9px 'DejaVu Sans'" x="5.800781 7.466309" y="-2.296875 -0.390625">̄⊙</tspan>
-      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0 16.760742" y="-0.390625">bu</tspan>
-      <tspan style="font: oblique 6.3px 'DejaVu Sans'" x="22.464844" y="1.0859375">t</tspan>
+      <tspan style="font: 9px 'DejaVu Sans'" x="5.90625 7.927734 23.027344 31.750488" y="-2.296875 -0.671875 -0.671875 -0.671875">̄⊙[]</tspan>
+      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0 26.538574" y="-0.671875">Bk</tspan>
+      <tspan style="font: 700 9px 'DejaVu Sans'" x="17.222168" y="-0.671875">x</tspan>
      </text>
     </g>
    </g>
    <g id="text_18">
-    <!-- $p_{t-1}$ -->
-    <g transform="translate(379.243941 115.404921)">
+    <!-- $p[k-1]$ -->
+    <g transform="translate(371.998941 115.414765)">
      <text>
-      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0" y="-0.953125">p</tspan>
-      <tspan style="font: oblique 6.3px 'DejaVu Sans'" x="5.712891" y="0.5234375">t</tspan>
-      <tspan style="font: 6.3px 'DejaVu Sans'" x="9.410449 15.916553" y="0.5234375">−1</tspan>
+      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0 9.224121" y="-0.15625">pk</tspan>
+      <tspan style="font: 9px 'DejaVu Sans'" x="5.712891 16.189453 25.483887 31.209961" y="-0.15625">[−1]</tspan>
      </text>
     </g>
    </g>
@@ -390,12 +388,11 @@ z
     </g>
    </g>
    <g id="text_20">
-    <!-- $1-g_t$ -->
-    <g transform="translate(456.069353 163.012168)">
+    <!-- $1-g[k]$ -->
+    <g transform="translate(451.344353 163.022012)">
      <text>
-      <tspan style="font: 9px 'DejaVu Sans'" x="0 7.479492" y="-0.4375">1−</tspan>
-      <tspan style="font: oblique 9px 'DejaVu Sans'" x="16.773926" y="-0.4375">g</tspan>
-      <tspan style="font: oblique 6.3px 'DejaVu Sans'" x="22.486816" y="1.0390625">t</tspan>
+      <tspan style="font: 9px 'DejaVu Sans'" x="0 7.479492 22.486816 31.209961" y="-0.15625">1−[]</tspan>
+      <tspan style="font: oblique 9px 'DejaVu Sans'" x="16.773926 25.998047" y="-0.15625">gk</tspan>
      </text>
     </g>
    </g>
@@ -418,18 +415,18 @@ z
     </g>
    </g>
    <g id="text_23">
-    <!-- $g_t$ -->
-    <g transform="translate(403.055647 149.702615)">
+    <!-- $g[k]$ -->
+    <g transform="translate(398.285647 149.712459)">
      <text>
-      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0" y="-0.953125">g</tspan>
-      <tspan style="font: oblique 6.3px 'DejaVu Sans'" x="5.712891" y="0.5234375">t</tspan>
+      <tspan style="font: oblique 9px 'DejaVu Sans'" x="0 9.224121" y="-0.15625">gk</tspan>
+      <tspan style="font: 9px 'DejaVu Sans'" x="5.712891 14.436035" y="-0.15625">[]</tspan>
      </text>
     </g>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p517fbf5b3e">
+  <clipPath id="p1cfd142356">
    <rect x="2.88" y="2.88" width="522.144" height="179.167059"/>
   </clipPath>
  </defs>

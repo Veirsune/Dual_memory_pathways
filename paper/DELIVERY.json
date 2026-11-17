@@ -8,16 +8,16 @@
   "new_training_runs": 0,
   "files": {
     "GDSM_Paper.pdf": {
-      "bytes": 250493,
-      "sha256": "7e0b16a0057821640372080138e6f9f75506e34c3302c90f313f78632bb5112d"
+      "bytes": 252459,
+      "sha256": "731b94cd2482fffdf435d1a71ccb8e6bd9f34bfb51ece24916fd2f142b0515ff"
     },
     "main.tex": {
-      "bytes": 35691,
-      "sha256": "0dd095e5e289b819f495913d17a9229cbed7a779bf04d03406f7dbe31cd56b6f"
+      "bytes": 36184,
+      "sha256": "0b59cded6c9332a5ba196ba74a94c313a3c3ae2bf459186f114fff3fbdd6b8df"
     },
     "GDSM_LaTeX.zip": {
-      "bytes": 893214,
-      "sha256": "c3beddfb2a751695a4315a766b0116f677b376a9a06ff6c72564e03cbf8d6b89"
+      "bytes": 898722,
+      "sha256": "a05aa768013ddd64fb6b9360115af42418b2297c3f258981b2ee8accce30785d"
     }
   },
   "model_name": "GDSM",

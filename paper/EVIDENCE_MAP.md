@@ -44,3 +44,7 @@ Detailed protocols, exploratory diagnostics and complete supplementary tables ar
 ## Training curves
 
 Figure 3 uses clean-input, whole-sequence validation accuracy from 42 original stage histories, packaged under `evidence/training-history/`. Source locations and SHA-256 hashes are listed in `evidence/training-history-manifest.json`. `training-curve-points.csv` contains 96 aggregates. All seeds are included (SSC: 801; MNIST: 42, 43, 44), and uncertainty is sample standard deviation, not a confidence interval. The archived validation functions are in `training-history/ssc_study.py` and `training-history/mnist_run.py`. No corruption-specific validation trajectory was recorded, and no missing epochs or intermediate checkpoints are reconstructed.
+
+## Notation alignment
+
+The English and Chinese manuscripts now follow the original DMP Methods equations (7)–(11) and tensor-dimension table: layer l, step [k], membrane u, drive x, memory m, projection W_x, mapping f_x and matrices Abar/Bbar. The proposed model adds candidate p and write gate g and extends x to a vector. ReLU remains documented as the actual implementation of f_x in Appendix A. Fast and memory currents are written separately, with their combined implementation bias retained in the text. See `NOTATION.md` for the code-variable correspondence. No trained model or archived numerical result was changed.

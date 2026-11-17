@@ -458,7 +458,7 @@
       "details": null
     },
     {
-      "check": "consistent layer-input and fast-read notation",
+      "check": "original DMP notation preserved",
       "passed": true,
       "details": null
     },

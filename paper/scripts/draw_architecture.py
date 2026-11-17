@@ -19,9 +19,9 @@ FONT_FAMILY = 'DejaVu Sans'
 OUTPUT_DPI = 300
 # Rectangles: (left, bottom, width, height, label).
 NODES = {
-    'memory': (12.5, 17, 12, 6, 'Memory\n'+r'$h_t$'),
-    'candidate': (59, 17, 12, 6, 'Candidate\n'+r'$p_t$'),
-    'stable': (84, 17, 12, 6, 'Stable\n'+r'$m_t$'),
+    'memory': (12.5, 17, 12, 6, 'Memory\n'+r'$m[k]$'),
+    'candidate': (59, 17, 12, 6, 'Candidate\n'+r'$p[k]$'),
+    'stable': (84, 17, 12, 6, 'Stable\n'+r'$m[k]$'),
 }
 # Polyline arrows: ([start, bend(s), end], width, dashed).
 ROUTES = {
@@ -38,13 +38,13 @@ ROUTES = {
 }
 # Labels: (x, y, text, fontsize). No explanatory slogans inside the drawing.
 LABELS = [
-    (1,34,r'$s_t$',9), (14,36.5,r'$W_f$',9),
-    (9.5,25,r'$\bar b x_t$',9), (18.5,14.2,r'$\bar A$',9), (30.5,26,r'$W_h$',9),
-    (38.5,34,r'$s_t$',9), (65,36.5,r'$W_f$',9),
-    (52.5,25,r'$\bar b\odot u_t$',9),
-    (74.5,23.5,r'$p_{t-1}$',9), (65,14.2,r'$\bar A$',9),
-    (90,14.2,r'$1-g_t$',9), (77,32,r'$W_p$',9),
-    (91.2,26,r'$W_m$',9), (78,16.8,r'$g_t$',9),
+    (1,34,r'$s[k]$',9), (14,36.5,r'$W_f$',9),
+    (9.5,25,r'$\bar B x[k]$',9), (18.5,14.2,r'$\bar A$',9), (30.5,26,r'$W_m$',9),
+    (38.5,34,r'$s[k]$',9), (65,36.5,r'$W_f$',9),
+    (52.5,25,r'$\bar B\odot \mathbf{x}[k]$',9),
+    (74.5,23.5,r'$p[k-1]$',9), (65,14.2,r'$\bar A$',9),
+    (90,14.2,r'$1-g[k]$',9), (77,32,r'$W_p$',9),
+    (91.2,26,r'$W_m$',9), (78,16.8,r'$g[k]$',9),
 ]
 
 
@@ -81,7 +81,7 @@ def draw_architecture(root=ROOT):
         for x in [28,95]:
             ax.add_patch(Circle((x,34),2.8,fc=BACKGROUND,ec=INK,lw=1,zorder=3))
             label(x,34,'LIF',8.8)
-        # A single write gate, with the incoming candidate labelled p_{t-1}.
+        # A single write gate, with the incoming candidate labelled p[k-1].
         ax.add_patch(Polygon([(76.8,20),(78,21.2),(79.2,20),(78,18.8)],
                             closed=True,fc=BACKGROUND,ec=INK,lw=1,zorder=4))
         for x in [18.5,65,90]:recurrence(x)

@@ -25,7 +25,6 @@
 \makeatletter\let\tableinput\@@input\makeatother
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\CE}{\operatorname{CE}}
-\newcommand{\relu}{\operatorname{ReLU}}
 \newcommand{\ind}{\mathbb{I}}
 \title{\vspace{-1.1cm}\textbf{Gated Dual-State Memory for Robust Temporal Processing\newline in Spiking Neural Networks}}
 \author{Anonymous authors}
@@ -53,70 +52,76 @@ The results show substantial retention gains across speech, event-camera gesture
 \section{Gated dual-state memory}
 \label{sec:method}
 \subsection{Candidate--stable shared memory}
-We use $s_t\in\R^M$ for the current layer input and $s_t^{(0)}$ for the raw sensor frame. A hidden layer contains $N$ LIF neurons and shares a memory of dimension $d\ll N$. The fast neuronal state accumulates recent input but changes through leakage and reset. DMP adds a slow shared state $h_t\in\R^d$:
+We follow DMP's notation~\cite{dmp}: $s^{l-1}[k]\in\R^M$ is the input to layer $l$ at step $k$, $u^l[k]\in\R^N$ its LIF membrane potentials, and $s^0[k]$ the raw sensor frame. Each layer shares a slow memory of dimension $d\ll N$. The original DMP writes a scalar drive into this state:
 \begin{equation}
 \begin{aligned}
- x_t&=\relu(w_u^\top s_t+b_x),\\
- h_t&=\bar A h_{t-1}+\bar b x_t .
+ x^l[k]&=f_x(W_x s^{l-1}[k]+b),\\
+ m^l[k]&=\bar A m^l[k-1]+\bar B x^l[k] .
 \end{aligned}
 \label{eq:dmp}
 \end{equation}
-Here $x_t$ is a scalar, and $\bar A\in\R^{d\times d}$ and $\bar b\in\R^d$ are fixed discretized Legendre parameters.
+Here $f_x$ is the input mapping, $W_x\in\R^{1\times M}$ its projection, and $b$ its bias. The fixed matrices $\bar A\in\R^{d\times d}$ and $\bar B\in\R^{d\times1}$ are the discretized Legendre parameters. Thus $x^l[k]$ is scalar, while the memory $m^l[k]$ is a vector.
 
 Equation~\eqref{eq:dmp} exposes two constraints. First, all input channels enter memory through a single scalar projection at each frame. Second, the state continues to evolve regardless of whether the input is useful. During a pause or a noise segment, stored features can change through the state dynamics or through irrelevant new drive.
 
-GDSM separates integration from storage:
+GDSM adds a candidate $p^l[k]$ and retains $m^l[k]$ for protected storage. We extend the scalar drive to $\mathbf{x}^l[k]\in\R^d$, applying $f_x$ coordinatewise:
 \begin{equation}
 \begin{aligned}
- u_t&=\relu(W_u s_t+b_u),\\
- p_t&=\bar A p_{t-1}+\bar b\odot u_t ,
+ \mathbf{x}^l[k]&=f_x(W_x s^{l-1}[k]+b),\\
+ p^l[k]&=\bar A p^l[k-1]+\bar B\odot \mathbf{x}^l[k] ,
 \end{aligned}
 \label{eq:candidate}
 \end{equation}
 \begin{equation}
- m_t=(1-g_t)\odot m_{t-1}+g_t\odot p_{t-1},
- \quad g_t\in[0,1]^d,
+\begin{aligned}
+ m^l[k]={}&(1-g^l[k])\odot m^l[k-1]\\
+ &+g^l[k]\odot p^l[k-1].
+\end{aligned}
 \label{eq:stable}
 \end{equation}
 \begin{equation}
- I_t=W_f s_t+W_p p_t+W_m m_t+b .
+\begin{aligned}
+ I^l[k]&=W_f s^{l-1}[k],\\
+ I_m^l[k]&=W_p p^l[k]+W_m m^l[k].
+\end{aligned}
 \label{eq:read}
 \end{equation}
-The drive $u_t$, candidate $p_t$ and stable state $m_t$ are all $d$-dimensional. The learned matrix $W_u\in\R^{d\times M}$ lets different drive coordinates extract different channel combinations; $\bar b$ scales the drive coordinate by coordinate. The fixed diagonal scaling used in code is absorbed into $W_u$ and $b_u$, as detailed in Appendix~\ref{app:training}. Thus vector drive increases the information that can enter the shared state without introducing a separate memory for every neuron.
+The drive $\mathbf{x}^l[k]$, candidate $p^l[k]$ and stable state $m^l[k]$ are all $d$-dimensional. Compared with DMP, $W_x$ now has $d$ rows rather than one, allowing different input-channel combinations to enter memory. The column $\bar B$ scales this drive coordinatewise. The code's fixed diagonal scaling is absorbed into $W_x$ and $b$ (Appendix~\ref{app:training}). No separate memory is introduced for each neuron.
 
-The candidate updates at every step to track new input. The stable state updates only through its write gate $g_t$. It receives the previous candidate $p_{t-1}$, allowing the gate to use current evidence before accepting that candidate and preventing the current frame from entering stable memory through the candidate branch in the same step. This delay defines the write timing; rejection of a sustained disturbance is learned by the gate.
+The candidate updates at every step to track new input. The stable state updates only through its write gate $g^l[k]\in[0,1]^d$. It receives the previous candidate $p^l[k-1]$, allowing the gate to use current evidence before accepting that candidate and preventing the current frame from entering stable memory through the candidate branch in the same step. This delay defines the write timing; rejection of a sustained disturbance is learned by the gate.
 
-The fast input, candidate and stable state have independent read projections in Eq.~\eqref{eq:read}. Their sum drives the layer's LIF neurons. When $g_t=\mathbf0$, the stable state is unchanged, while candidate and fast processing continue. The network can therefore protect earlier content without suspending its response to new input. The unchanged product $W_m m_t$ can also be cached and reused in hardware.
+Following DMP, $I^l[k]$ denotes the fast input current and $I_m^l[k]$ the memory current. Their sum, together with the combined readout bias $b_o$, drives the LIF layer. Candidate and stable memory have independent read projections. When $g^l[k]=\mathbf0$, $m^l[k]$ is unchanged while candidate and fast processing continue. The product $W_m m^l[k]$ can therefore be cached and reused.
 
 \begin{figure*}[t]
 \centering\includegraphics[width=.94\textwidth]{figures/architecture.pdf}
-\caption{\textbf{Shared-memory architectures.} \textbf{a}, DMP~\cite{dmp} drives one shared state with a scalar input. \textbf{b}, GDSM uses vector drive, a candidate state and a gated stable state. The write carries $p_{t-1}$; independent reads combine both states with the fast pathway. $W_h$ denotes the DMP memory-read projection. The diamond denotes $g_t$, whose causal construction is specified in Eq.~\eqref{eq:gate}.}
+\caption{\textbf{Shared-memory architectures.} \textbf{a}, DMP~\cite{dmp} drives one shared state with a scalar input. \textbf{b}, GDSM uses vector drive, a candidate state and a gated stable state. The write carries $p^l[k-1]$; independent reads combine both states with the fast pathway. $W_m$ is the memory-read projection in both panels; layer superscripts are omitted in the diagram. The diamond denotes $g^l[k]$, whose causal construction is specified in Eq.~\eqref{eq:gate}.}
 \label{fig:architecture}
 \end{figure*}
 
 \subsection{Exact gate closure and training objective}
 A small write gate can still accumulate substantial drift. For a fixed realized gate sequence, the direct coefficient of old stable coordinate $j$ after $L$ steps is
 \[
- R_j(t,L)=\prod_{k=1}^{L}(1-g_{t+k,j}).
+ R_j(k,L)=\prod_{r=1}^{L}(1-g_j^l[k+r]).
 \]
 For example, a constant gate of 0.02 gives $(0.98)^{80}\approx0.20$. This coefficient describes the old state's direct contribution, rather than the fraction of class information retained. Nevertheless, it shows why weak continuous writing may be insufficient for long pauses. We therefore allow exact closure.
 
-Let $f(s_t)$ contain four input statistics: normalized mean activity, absolute change in mean activity, variance and nonzero occupancy. Their history is summarized by $e_t=\rho e_{t-1}+(1-\rho)f(s_t)$, with $\rho=0.8$. The gate uses the current features and the previous history:
+Let $f^l[k]=f(s^{l-1}[k])$ contain four input statistics: normalized mean activity, absolute change in mean activity, variance and nonzero occupancy. Their history is summarized by $e^l[k]=\rho e^l[k-1]+(1-\rho)f^l[k]$, with $\rho=0.8$. The gate uses current features and the previous history:
 \begin{equation}
 \begin{aligned}
- \hat g_t&=\sigma\!\left(W_g[f(s_t);e_{t-1}]+b_g\right),\\
- g_t&=\ind[\|s_t^{(0)}\|_1>0]\,
-       \hat g_t\odot\ind[\hat g_t\ge\varepsilon]\odot q_t .
+ \hat g^l[k]&=\sigma\!\left(W_g[f^l[k];e^l[k-1]]+b_g\right),\\
+ g^l[k]&=\ind[\|s^0[k]\|_1>0]\,
+       \hat g^l[k]\\
+ &\quad\odot\ind[\hat g^l[k]\ge\varepsilon]\odot q^l[k] .
 \end{aligned}
 \label{eq:gate}
 \end{equation}
-The threshold $\varepsilon=0.02$ is applied coordinate by coordinate. The binary permission $q_t\in\{0,1\}^d$ comes from a small MLP using current raw-input statistics and their historical summary. A raw empty frame closes all stable writes. Otherwise, each coordinate must pass both the local threshold and the learned permission. The forward pass uses hard decisions; the backward pass uses sigmoid derivatives as surrogates. No interruption mask or future frame is supplied to the gate.
+The threshold $\varepsilon=0.02$ is applied coordinate by coordinate. The binary permission $q^l[k]\in\{0,1\}^d$ comes from a small MLP using current raw-input statistics and their historical summary. A raw empty frame closes all stable writes. Otherwise, each coordinate must pass both the local threshold and the learned permission. The forward pass uses hard decisions; the backward pass uses sigmoid derivatives as surrogates. No interruption mask or future frame is supplied to the gate.
 
-In the main SSC, Gesture and MNIST mixed-training comparisons, all models receive the same class supervision, without noise-position labels for gate learning. Let $T$ denote the length of the complete, possibly extended sequence, $o_t$ its per-frame output score, and $y$ the class. We combine whole-sequence and endpoint classification:
+In the main SSC, Gesture and MNIST mixed-training comparisons, all models receive the same class supervision, without noise-position labels for gate learning. Let $T$ denote the length of the complete, possibly extended sequence, $o[k]$ its per-step output score, and $y$ the class. We combine whole-sequence and endpoint classification:
 \begin{equation}
 \begin{aligned}
-\mathcal L={}&(1-\lambda)\CE\!\left(\frac1T\sum_{t=1}^{T}o_t,y\right)\\
- &+\lambda\CE\!\left(\frac1K\sum_{t=T-K+1}^{T}o_t,y\right),
+\mathcal L={}&(1-\lambda)\CE\!\left(\frac1T\sum_{k=1}^{T}o[k],y\right)\\
+ &+\lambda\CE\!\left(\frac1K\sum_{k=T-K+1}^{T}o[k],y\right),
 \end{aligned}
 \label{eq:loss}
 \end{equation}
@@ -273,7 +278,7 @@ PS-MNIST & Adam & $50/12$ & $0.005/0.0003$ & 512 & 42--44\\
 \end{table*}
 
 \paragraph{States and gates.}
-States start at zero for each new sequence and persist across inserted gaps. Candidate dynamics use the original DMP Legendre construction with zero-order-hold discretization. The memory window is $\theta=40$ for speech and 300 for Gesture/MNIST. The code stores $D_{ii}=\bar b_i/c_i$, with positive $c_i$ spanning 0.5--1.5. Setting $W_u=C^{-1}\widetilde W_u$ and $b_u=C^{-1}\widetilde b_u$, where $C=\operatorname{diag}(c_i)$, gives the equivalent drive in Eq.~\eqref{eq:candidate} by ReLU homogeneity. Projection rows initially match scalar DMP; paired SSC/MNIST starts set $W_m=0$.
+States start at zero for each new sequence and persist across inserted gaps. Candidate dynamics use the original DMP Legendre construction with zero-order-hold discretization. The memory window is $\theta=40$ for speech and 300 for Gesture/MNIST. The code stores $D_{ii}=\bar B_i/c_i$, with positive $c_i$ spanning 0.5--1.5. Setting $W_x=C^{-1}\widetilde W_x$ and $b=C^{-1}\widetilde b$, where $C=\operatorname{diag}(c_i)$, gives the equivalent drive in Eq.~\eqref{eq:candidate} by ReLU homogeneity. Projection rows initially match scalar DMP; paired SSC/MNIST starts set $W_m=0$. The input mapping $f_x$ is ReLU in the released DMP code and in our experiments; the main equations retain the original paper's generic notation.
 
 Local gates start with zero weights and bias $\log(0.95/0.05)$. The permission MLP starts with zero output weights and bias $+2$; its hidden layer uses ReLU. Auditory features combine four global statistics and 14 frequency bands ($36\to32\to2d$ MLP); Gesture uses four statistics and $2\times4\times4$ spatial bins ($72\to32\to d$); MNIST uses four statistics ($8\to32\to2d$). Each input includes the previous feature EMA. Permission is one for a nonnegative output logit, with sigmoid surrogate gradients.
 

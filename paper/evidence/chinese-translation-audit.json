@@ -7,7 +7,7 @@
   "embedded_figures": 4,
   "references": 16,
   "pdf_pages": 14,
-  "english_source_sha256": "0dd095e5e289b819f495913d17a9229cbed7a779bf04d03406f7dbe31cd56b6f",
+  "english_source_sha256": "0b59cded6c9332a5ba196ba74a94c313a3c3ae2bf459186f114fff3fbdd6b8df",
   "new_training_runs": 0,
   "checks": [
     "paragraph IDs present in PDF, Markdown and Word",
@@ -18,5 +18,6 @@
     "Word archive valid with editable math and seven tables",
     "Markdown includes all bibliography titles",
     "no PDF overflow, missing characters or unresolved references"
-  ]
+  ],
+  "notation": "Aligned with original DMP layer l, step [k], x, m, u, W_x, f_x, Abar and Bbar"
 }

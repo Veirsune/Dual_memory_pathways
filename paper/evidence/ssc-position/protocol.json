@@ -1,0 +1,30 @@
+{
+  "dataset": "SSC official test, original first-to-last-event binning",
+  "samples": 20382,
+  "classes": 35,
+  "frames": 250,
+  "channels": 140,
+  "noise_frames": 80,
+  "poisson_rate": 0.25,
+  "noise_seed": 901,
+  "noise_generator": "NumPy PCG64, sample-major order, independent Poisson counts, additive without clipping",
+  "overlap_frames": [
+    0,
+    20,
+    40,
+    60,
+    80
+  ],
+  "start": "250 - overlap_frames",
+  "end": "330 - overlap_frames",
+  "score": "argmax of mean logits in final 20 frames of union; clean reference at frame 250",
+  "example_index": 0,
+  "checkpoint": "mixed final epoch 12, seed 801",
+  "checkpoints": {
+    "fsnn": "fe50c0d75c88c038f50cb18cb349b17a3c3cc33f87fc0dc555c88e8443179b04",
+    "dmp": "89654036b45c277e2ec40cbeb485e4e20cda59429ef8cb12ba30f9e2a8d71b92",
+    "commit": "292a39d346eb4f052a9204f568bfb5bc4eddb6e890d372fd4b79704f3e257e1a"
+  },
+  "data_sha256": "66b161c19c805cca2fddde6da39705530296a8613007500ae1a92535d6cd7d9d",
+  "labels_file_sha256": "2c10197d7cec20dc7e2ba3b233e4a4887251e963826cb64dbd3980838795a59b"
+}

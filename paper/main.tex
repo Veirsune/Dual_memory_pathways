@@ -231,6 +231,14 @@ Interruption training contributes to active-noise robustness. Clean-only GDSM re
 
 When the original event resumes after a middle gap, later evidence can replenish the state. GDSM exceeds DMP in all six SSC middle conditions, but gains are smaller and mixed on MNIST. The longest-gap results in Appendix~\ref{app:additional} distinguish this recovery problem from remembering a completed event. The main advantage of GDSM is persistence of usable information after evidence is no longer present.
 
+Moving the same burst from after the word into its final 80 frames reduced GDSM endpoint accuracy at every step, from 53.19\% to 44.96\% (Fig.~\ref{fig:position}). DMP scored 3.87\% and 4.25\% at the two extremes. GDSM retained a 40.70-point lead at full overlap, although its drop from the clean endpoint was larger than DMP's (11.56 versus 6.80 points). The strongest result was retention after the word. Moving the burst earlier both obscured more speech and shortened the noise-only tail.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/ssc-position.pdf}
+\caption{Noise timing on SSC. (a) The same 80-frame Poisson burst (rate 0.25 per channel per frame) moves across the end of a 250-frame word. Each row shows the 140 input channels for the first test utterance. The dotted line marks the word end. (b) Accuracy over all 20,382 utterances, scored on the last 20 frames ending when both word and burst have finished. Clean endpoint accuracy was 4.74\% (FSNN), 11.05\% (DMP) and 56.52\% (GDSM).}
+\label{fig:position}
+\end{figure*}
+
 \section{Implementation cost and hardware verification}
 The retention mechanism has a measurable model-level cost. On clean Gesture inputs, effective full-network MACs increase from 63.212 million for DMP to 67.196 million for GDSM, an overhead of 6.30\% (Fig.~\ref{fig:hardware}). During an appended L80 silent gap, cached GDSM requires 68.455 million MACs versus 64.159 million for DMP. Caching reduces GDSM's own dense count from 69.274 million to 68.455 million, saving 1.183\% of full-network MACs. These estimates account for active computation across the network; the local memory-core cycle measurements are reported separately in Appendix~\ref{app:hardware}.
 

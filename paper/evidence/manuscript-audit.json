@@ -444,7 +444,7 @@
       "check": "complete PDF",
       "passed": true,
       "details": {
-        "pages": 8
+        "pages": 9
       }
     },
     {
@@ -491,9 +491,104 @@
       "check": "plotted training aggregates match histories",
       "passed": true,
       "details": null
+    },
+    {
+      "check": "SSC timing design",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing fsnn_clean",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing fsnn_0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing fsnn_20",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing fsnn_40",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing fsnn_60",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing fsnn_80",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing dmp_clean",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing dmp_0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing dmp_20",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing dmp_40",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing dmp_60",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing dmp_80",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing commit_clean",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing commit_0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing commit_20",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing commit_40",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing commit_60",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC timing commit_80",
+      "passed": true,
+      "details": null
     }
   ],
-  "pages": 8,
+  "pages": 9,
   "new_training_runs": 0,
   "note": "Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript."
 }

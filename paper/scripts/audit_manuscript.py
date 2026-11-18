@@ -78,6 +78,21 @@ curve_points=training_points(R)
 check('training histories and evaluation schedules',len(curve_points)==96)
 curve_csv=csvread('training-curve-points.csv')
 check('plotted training aggregates match histories',len(curve_csv)==len(curve_points) and all(all(row[k]==str(point[k]) for k in ['task','family','stage','epoch','seeds']) and all(abs(float(row[k])-point[k])<1e-12 for k in ['mean','sd']) for row,point in zip(curve_csv,curve_points)))
+# Check every noise position against the paired utterance-level predictions.
+import numpy as np
+folder=R/'evidence/ssc-position'
+rows=list(csv.DictReader((folder/'accuracy.csv').open()))
+families={'FSNN':'fsnn','DMP':'dmp','GDSM':'commit'}
+with np.load(folder/'predictions.npz') as preds:
+ labels=preds['labels']
+ check('SSC timing design',len(labels)==20382 and len(rows)==18 and
+       {(r['model'],r['overlap_frames']) for r in rows}==
+       {(m,k) for m in families for k in ['clean','0','20','40','60','80']})
+ for row in rows:
+  key=families[row['model']]+'_'+row['overlap_frames']
+  hits=int((preds[key]==labels).sum())
+  check('SSC timing '+key,int(row['correct'])==hits and int(row['n'])==len(labels)
+        and abs(float(row['accuracy_pct'])-100*hits/len(labels))<1e-6)
 report={'status':'passed','checks':checks,'pages':pages,'new_training_runs':0,'note':'Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript.'}
 (R/'evidence/manuscript-audit.json').write_text(json.dumps(report,indent=2))
 print(f'Passed {len(checks)} checks; {pages} PDF pages; zero new training runs.')

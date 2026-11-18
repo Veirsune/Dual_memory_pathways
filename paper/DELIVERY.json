@@ -1,23 +1,23 @@
 {
   "status": "complete",
-  "pdf_pages": 8,
-  "figures": 4,
+  "pdf_pages": 9,
+  "figures": 5,
   "tables": 7,
   "references": 16,
-  "numerical_and_compilation_checks": 69,
+  "numerical_and_compilation_checks": 88,
   "new_training_runs": 0,
   "files": {
     "GDSM_Paper.pdf": {
-      "bytes": 252459,
-      "sha256": "731b94cd2482fffdf435d1a71ccb8e6bd9f34bfb51ece24916fd2f142b0515ff"
+      "bytes": 296540,
+      "sha256": "73f1af44ee3a627e599551f205442f2244be7d10973ac039066e2f23b21327cb"
     },
     "main.tex": {
-      "bytes": 36184,
-      "sha256": "0b59cded6c9332a5ba196ba74a94c313a3c3ae2bf459186f114fff3fbdd6b8df"
+      "bytes": 37245,
+      "sha256": "a9ab9f6e7dd178f3f126b502a7fe431ad06bda529c8b55719af46d2dc68be2c5"
     },
     "GDSM_LaTeX.zip": {
-      "bytes": 898722,
-      "sha256": "a05aa768013ddd64fb6b9360115af42418b2297c3f258981b2ee8accce30785d"
+      "bytes": 1291723,
+      "sha256": "fb68a5fc63244f72bdf8115af3d89bd0cae76bb287b60de1ec39ea6be304354d"
     }
   },
   "model_name": "GDSM",

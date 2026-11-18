@@ -1,13 +1,13 @@
 {
   "status": "passed",
-  "paragraphs": 54,
+  "paragraphs": 55,
   "equations_identical_to_english": 6,
   "tables_with_identical_numeric_cells": 7,
-  "translated_captions": 11,
-  "embedded_figures": 4,
+  "translated_captions": 12,
+  "embedded_figures": 5,
   "references": 16,
-  "pdf_pages": 14,
-  "english_source_sha256": "0b59cded6c9332a5ba196ba74a94c313a3c3ae2bf459186f114fff3fbdd6b8df",
+  "pdf_pages": 15,
+  "english_source_sha256": "a9ab9f6e7dd178f3f126b502a7fe431ad06bda529c8b55719af46d2dc68be2c5",
   "new_training_runs": 0,
   "checks": [
     "paragraph IDs present in PDF, Markdown and Word",

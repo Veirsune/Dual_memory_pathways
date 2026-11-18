@@ -48,3 +48,5 @@ Figure 3 uses clean-input, whole-sequence validation accuracy from 42 original s
 ## Notation alignment
 
 The English and Chinese manuscripts now follow the original DMP Methods equations (7)–(11) and tensor-dimension table: layer l, step [k], membrane u, drive x, memory m, projection W_x, mapping f_x and matrices Abar/Bbar. The proposed model adds candidate p and write gate g and extends x to a vector. ReLU remains documented as the actual implementation of f_x in Appendix A. Fast and memory currents are written separately, with their combined implementation bias retained in the text. See `NOTATION.md` for the code-variable correspondence. No trained model or archived numerical result was changed.
+
+Figure 4 uses the official SSC test predictions in `evidence/ssc-position/predictions.npz`. The directory also contains the fixed protocol, inference script, plotted utterance and per-condition counts. From the paper directory, `make ssc-position` redraws the panels and regenerates the accuracy CSV.

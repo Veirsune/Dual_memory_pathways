@@ -8,7 +8,7 @@ iPad 可用 Safari 打开 PDF，然后选择“分享 → 存储到文件”。�
 
 ## 中文对照与段落写作
 
-中文稿覆盖摘要、正文、附录、图注和表头，按英文顺序保留 54 个段落，并加上 `1-P2`、`4.2-P3` 等定位编号。公式、图表和参考文献编号与英文稿一致；SNN、DMP、GDSM、LIF 等术语及图内英文标签保留。中文 PDF 采用便于阅读的单栏排版。
+中文稿覆盖摘要、正文、附录、图注和表头，按英文顺序保留 55 个段落，并加上 `1-P2`、`4.2-P3` 等定位编号。公式、图表和参考文献编号与英文稿一致；SNN、DMP、GDSM、LIF 等术语及图内英文标签保留。中文 PDF 采用便于阅读的单栏排版。
 
 - `GDSM_Paper_ZH.pdf`：中文阅读与批注文档。
 - `GDSM_Chinese.docx`：用于逐段修改的 Word 文档，含可编辑公式和表格。
@@ -59,11 +59,13 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 
 图 1 并列对照 DMP 与 GDSM，各结构只画一次。`figures/architecture.pdf` 与 `figures/architecture.svg` 是矢量文件，`scripts/draw_architecture.py` 提供独立绘图源码。图采用纯黑线条、纯黑文字和纯白背景；具体修改方法见 [图 1 编辑说明](FIGURE_EDITING.md)。
 
-图 2–4 使用蓝灰主调：FSNN 为灰色，DMP 为灰蓝色，GDSM 为深蓝色，GDSM dense 柱为浅蓝灰色。配色在 `scripts/build_assets.py` 中统一定义。图 1 单独使用纯黑白。
+图 2–5 使用蓝灰主调：FSNN 为灰色，DMP 为灰蓝色，GDSM 为深蓝色，GDSM dense 柱为浅蓝灰色。配色在 `scripts/build_assets.py` 中统一定义。图 1 单独使用纯黑白。
 
 图 3 展示 SSC、S-MNIST、PS-MNIST 的干净输入验证准确率随训练轮数的变化，标出干净训练与混合训练的切换。MNIST 使用三个种子的均值与标准差。图来自 42 份原始训练日志，仅绘制实际记录的验证点；原日志没有逐轮干扰分项验证，图中不将训练准确率或最终测试结果作为替代。单独重画可运行 `make training-curves`，脚本为 `scripts/draw_training_curves.py`。
 
 ## 编译与数值核验
+
+图 4 比较 SSC 词尾的噪声位置，使用同一段噪声在五个位置的冻结模型预测；可用 `make ssc-position` 重画。图 5 给出全网 MACs。
 
 上传本目录到 Overleaf，选择 `main.tex`，用 pdfLaTeX 编译。图表与参考文献已随附，无需训练环境。
 

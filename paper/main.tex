@@ -150,7 +150,7 @@ PS-MNIST & 54,000 / 6,000 / 10,000 & 10 & 784 & 40 & $1\to200\to200\to10$ & $50+
 \end{table*}
 
 \subsection{Testing recognition and retention separately}
-We evaluate two placements of the same disturbance. In a \emph{middle interruption}, a length-$L$ segment is inserted halfway through the input, after which the event resumes. Classification uses average scores over the complete extended sequence. In \emph{tail retention}, the segment is appended after the complete event, and classification uses only the final $K=20$ frames. The target remains the original class. We also evaluate the clean endpoint with the same 20-frame readout. This separates the quality of the representation before a gap from its ability to survive that gap.
+For SSC word recognition, the network scores each class on every frame. At the known word boundary (frame 250), we classify the word using its mean class scores over frames 1--250. A second readout at the same instant uses frames 231--250. To measure retention, we append silence or noise and ask for the original class again at the end of the gap, using the most recent 20 frames. For example, an appended 120-frame gap moves this second decision to frame 370. In the middle-interruption condition, the event resumes after an inserted gap and classification uses the mean scores over the extended sequence.
 
 Mixed training samples clean input, silence and Poisson noise with equal probability. SSC and MNIST use lengths 40 and 80 and either middle or tail placement. Evaluation adds length 120 for SSC and 160 for MNIST, which are absent from training. SSC noise has rate 0.25 per channel per frame; MNIST uses rate 0.1 clipped to $[0,1]$. Gesture uses lengths 20, 40 and 80, with noise intensity calibrated from training activity (1$\times$); 3$\times$ is an additional stress test. Noise realizations are paired across model families.
 
@@ -225,7 +225,7 @@ Figure~\ref{fig:training} shows clean-input validation accuracy across both trai
 
 
 
-Endpoint scoring reveals information that these averages miss. On SSC, DMP's 47.89\% whole-sequence score corresponds to only 11.05\% at the clean endpoint. GDSM scores 58.83\% and 56.52\%, respectively. Its large post-gap advantage combines a stronger endpoint representation with better preservation. Gesture, where the starting endpoints nearly match, isolates the latter effect particularly clearly.
+At the end of a clean SSC word, GDSM recognized 58.83\% of words using the whole utterance and 56.52\% using its last 20 frames. DMP scored 47.89\% and 11.05\% at those same readouts. When tested again after 120 frames of background noise, GDSM scored 52.79\% and DMP 3.91\% using the final 20 frames. GDSM thus entered the gap with a stronger endpoint representation. Gesture offers a closer comparison of retention because the two models start with nearly identical clean endpoint accuracies.
 
 Interruption training contributes to active-noise robustness. Clean-only GDSM reaches 11.47\% after SSC tail noise of length 120, increasing to 52.79\% after mixed training. The architecture supplies a protected storage path, and disturbance exposure teaches the network to use it.
 
@@ -255,7 +255,7 @@ The replay tests a memory core, with four read coordinates from a real $d=40$ tr
 \section{Discussion and conclusion}
 The experiments show that persistent shared memory requires both informative content and selective updates. Increasing input bandwidth improves what can be stored, while the stable state protects that content without stopping ongoing integration. The benefit appears across spiking speech, event-camera gestures and long pixel sequences, and extends to gap lengths absent from training. GDSM therefore provides a practical way to strengthen retention in SNN layers while keeping memory shared across neurons.
 
-The clearest use case is a classifier whose interpretation must remain available through inactivity or background disturbance. Exact closure preserves the stable state, while independent candidate and fast reads maintain access to new input. The results connect that architectural separation to large endpoint gains and a concrete hardware implementation.
+A command recognizer can act at the word boundary and cache its predicted label if the application needs it later. Our delayed readout asks how much class information remains accessible in the network itself as new frames arrive. The experiments use known event boundaries. Detecting when a speaker has finished or how early a command can be recognized in continuous speech remains an open question.
 
 Future work should improve adaptation to new events and unfamiliar noise statistics, using the switching and stress tests in Appendix~\ref{app:additional} as guides. More training-seed repetitions on SSC and Gesture and further matched-capacity controls would refine the attribution and variability of these effects.
 

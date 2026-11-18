@@ -179,12 +179,12 @@ class CausalPermission(nn.Module):
     def reset_stream(self):self.stream={}
 
 class StreamModel(nn.Module):
-    def __init__(self,variant='commit_dmp',d=10,gate_mode='zero',aux_enabled=True,gate_threshold=.02,drive='scalar',protect=False,zero_rule=False):
+    def __init__(self,variant='commit_dmp',d=10,gate_mode='zero',aux_enabled=True,gate_threshold=.02,drive='scalar',protect=False,zero_rule=False,hidden=128):
         super().__init__();assert variant in VARIANTS
         assert drive=='scalar' or variant=='commit_dmp','Vector and wide-scalar drives are defined for commit only'
         self.variant=variant;self.d=d;self.gate_mode=gate_mode;self.aux_enabled=aux_enabled;self.drive=drive;self.protect=protect;self.zero_rule=zero_rule
-        self.LMU1=StreamCell(140,128,d,variant,gate_mode,gate_threshold,drive);self.LMU2=StreamCell(128,128,d,variant,gate_mode,gate_threshold,drive)
-        self.rnn_drop=nn.Dropout(.2);self.dense=nn.Linear(128,20)
+        self.LMU1=StreamCell(140,hidden,d,variant,gate_mode,gate_threshold,drive);self.LMU2=StreamCell(hidden,hidden,d,variant,gate_mode,gate_threshold,drive)
+        self.rnn_drop=nn.Dropout(.2);self.dense=nn.Linear(hidden,20)
         self.memory_head=nn.Sequential(nn.LayerNorm(d),nn.Linear(d,20))
         self.permit=CausalPermission(d,zero_rule);self.permission_logits=None
         if not protect:

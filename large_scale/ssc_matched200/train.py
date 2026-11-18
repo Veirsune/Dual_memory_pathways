@@ -3,6 +3,7 @@ import copy
 import hashlib
 import json
 import os
+import time
 from pathlib import Path
 from types import MethodType
 import numpy as np
@@ -19,7 +20,7 @@ from commit_memory.vector_ops import matrix_kernel, vector_fft
 BASE=Path(os.environ.get('SSC_ROOT','/content/ssc200'))
 OUT=BASE/'results'
 OUT.mkdir(parents=True,exist_ok=True)
-PROTO=json.loads(Path(__file__).with_name('protocol.json').read_text())
+PROTO=json.loads(Path(os.environ.get('SSC_PROTOCOL', Path(__file__).with_name('protocol.json'))).read_text())
 SEED=PROTO['seed']
 BATCH=PROTO['batch']
 DEVICE=os.environ.get('SSC_DEVICE','cuda')
@@ -51,10 +52,12 @@ def vector_candidate(cell,u):
 
 def make_models(scale):
     torch.manual_seed(SEED)
-    dmp=ConvLMU2(PROTO['memory_dimension_per_state'],250,PROTO['theta'])
-    fsnn=FSNN()
+    width,second=PROTO['hidden']
+    assert width==second
+    dmp=ConvLMU2(PROTO['memory_dimension_per_state'],250,PROTO['theta'],hidden=width)
+    fsnn=FSNN(hidden=width)
     fsnn.drop=nn.Identity()
-    gdsm=StreamModel(variant='commit_dmp',d=10,gate_mode='zero',gate_threshold=.02,drive='vector',protect=True,zero_rule=True)
+    gdsm=StreamModel(variant='commit_dmp',d=10,gate_mode='zero',gate_threshold=.02,drive='vector',protect=True,zero_rule=True,hidden=width)
     gdsm.rnn_drop=nn.Identity()
     gdsm.dense=copy.deepcopy(dmp.dense)
     del gdsm.memory_head
@@ -70,7 +73,8 @@ def make_models(scale):
     for name,cell in [('fc1',dmp.LMU1),('fc2',dmp.LMU2)]:
         getattr(fsnn,name).load_state_dict(cell.W_x.state_dict())
     fsnn.dense.load_state_dict(dmp.dense.state_dict())
-    models=dict(fsnn=fsnn,dmp=dmp,gdsm=gdsm)
+    available=dict(fsnn=fsnn,dmp=dmp,gdsm=gdsm)
+    models={k:available[k] for k in FAMILIES}
     for model in models.values():
         model.to(DEVICE)
         if DEVICE=='cuda':
@@ -136,7 +140,8 @@ def main():
     write('model-info.json',dict(parameters={k:sum(v.numel() for v in m.parameters() if v.requires_grad) for k,m in models.items()},gpu=torch.cuda.get_device_name() if DEVICE=='cuda' else 'cpu',torch=torch.__version__,feature_scale=scale))
     clean=[('clean',250,0,0)]
     retention=clean+[('silence',250,80,0),('noise',250,80,.25)]
-    for phase in ['clean','mixed']:
+    phases=[p for p in ['clean','mixed'] if PROTO[f'{p}_epochs']>0]
+    for phase in phases:
         optimizers={}; schedules={}; history={}; best={}
         for fam,m in models.items():
             if phase=='mixed':m.load_state_dict(torch.load(OUT/f'{fam}-clean-best.pt',map_location=DEVICE))
@@ -155,6 +160,7 @@ def main():
             for fam in FAMILIES:
                 if len(history[fam])>epoch:continue
                 m=models[fam];opt=optimizers[fam];m.train();rng=np.random.default_rng(epseed+1)
+                tick=time.monotonic()
                 total=0.;hits=0
                 for j,start in enumerate(range(0,len(y),BATCH)):
                     idx=order[start:start+BATCH];a=x[idx].float();target=y[idx]
@@ -171,7 +177,7 @@ def main():
                     if j%100==0:write('progress.json',dict(phase=phase,family=fam,epoch=epoch+1,batch=j+1,updates_per_epoch=295))
                 val=evaluate(fam,m,valid,clean if phase=='clean' else retention)
                 metric=np.mean([r['whole' if phase=='clean' else 'endpoint'] for r in val.values()]).item()
-                row=dict(epoch=epoch+1,train_accuracy=hits/len(y),loss=total/len(y),val=val,selection=metric)
+                row=dict(epoch=epoch+1,train_accuracy=hits/len(y),loss=total/len(y),val=val,selection=metric,seconds=time.monotonic()-tick)
                 history[fam].append(row);schedules[fam].step()
                 if metric>best[fam]:
                     write(f'{fam}-{phase}-best.pt',state_dict(m),True);best[fam]=metric
@@ -180,9 +186,10 @@ def main():
                 print(f'{phase} {epoch+1}/{epochs} {fam} val={metric:.4f}',flush=True)
     test=load_split('test')
     cases=clean+[('speech',0,250,r) for r in [.0625,.125,.25]]+[(k,250,L,.25 if k=='noise' else 0) for L in [80,120] for k in ['silence','noise']]+[('noise',125,80,.25)]
+    if PROTO.get("test_clean_only",False):cases=clean
     result={}
     for fam,m in models.items():
-        for phase in ['clean','mixed']:
+        for phase in phases:
             state_dict(m)  # Restore upstream FFT buffer shape after variable-length evaluation.
             m.load_state_dict(torch.load(OUT/f'{fam}-{phase}-best.pt',map_location=DEVICE))
             result[f'{fam}-{phase}']=evaluate(fam,m,test,cases)

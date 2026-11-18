@@ -157,11 +157,11 @@ class SpikingLMUFFTCell(LMUFFTCell):
 # Model wrapper
 # ------------------------
 class ConvLMU2(nn.Module):
-    def __init__(self, dd, TT, t):
+    def __init__(self, dd, TT, t, hidden=128):
         super().__init__()
-        self.LMU1 = SpikingLMUFFTCell(input_size=140,   hidden_size=128, memory_size=dd, seq_len=TT, theta=t)
-        self.LMU2 = SpikingLMUFFTCell(input_size=128, hidden_size=128, memory_size=dd, seq_len=TT, theta=t)
-        self.dense = nn.Linear(in_features=128, out_features=35)
+        self.LMU1 = SpikingLMUFFTCell(input_size=140,   hidden_size=hidden, memory_size=dd, seq_len=TT, theta=t)
+        self.LMU2 = SpikingLMUFFTCell(input_size=hidden, hidden_size=hidden, memory_size=dd, seq_len=TT, theta=t)
+        self.dense = nn.Linear(in_features=hidden, out_features=35)
         self.rnn_drop = nn.Dropout(p=0.5)
         self.apply(self._init_weights)
 

@@ -1,0 +1,28 @@
+{
+  "dataset": "SSC official train/valid/test, 75466/9981/20382",
+  "models": [
+    "dmp",
+    "gdsm"
+  ],
+  "inputs": "250 frames from first to last event, sum contiguous groups of 5 cochlear channels; the upstream SSC loader reads pre-binned files and does not specify raw time binning",
+  "hidden": [
+    256,
+    256
+  ],
+  "classes": 35,
+  "memory_dimension_per_state": 10,
+  "theta": 40,
+  "theta_choice": "Table 4; explicitly overrides the SSC training script default of 250; exact setting of the 72.90 run unverified",
+  "seed": 42,
+  "batch": 256,
+  "clean_epochs": 200,
+  "mixed_epochs": 0,
+  "recognition": "All 200 epochs on clean data, no augmentation, Adam lr=0.1, StepLR(80,0.5), no weight decay or gradient clipping, CE on mean logits over all 250 frames, no active dropout",
+  "selection": "Highest whole-word validation accuracy checked every epoch; earliest tie; strict split isolation",
+  "retention": "not run in width comparison",
+  "test": "Clean whole-word recognition; best validation checkpoint tested after all 200 epochs",
+  "sharing": "Equal examples, shuffle, corruption, backbone initialization, optimizer, updates, scoring and selection per phase across families; GDSM uses extra stable state and gate parameters. Known boundaries; single training seed.",
+  "earlier_results": "The older 40+12 baseline with max pooling and batch 512 answers a different training question and is not an author-performance replication.",
+  "test_clean_only": true,
+  "comparison": "Only hidden width changes from the 128-wide clean-stage reference. Single seed 42, same shuffle, batch and optimizer; run to the fixed epoch limit."
+}

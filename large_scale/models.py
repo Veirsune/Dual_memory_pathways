@@ -5,8 +5,8 @@ from spikingjelly.clock_driven.neuron import MultiStepLIFNode
 from commit_memory.base_model import StreamModel,CausalPermission
 
 class FSNN(nn.Module):
-    def __init__(self):
-        super().__init__();self.fc1=nn.Linear(140,128);self.lif1=MultiStepLIFNode(tau=2.,detach_reset=True);self.fc2=nn.Linear(128,128);self.lif2=MultiStepLIFNode(tau=2.,detach_reset=True);self.drop=nn.Dropout(.2);self.dense=nn.Linear(128,35)
+    def __init__(self,hidden=128):
+        super().__init__();self.fc1=nn.Linear(140,hidden);self.lif1=MultiStepLIFNode(tau=2.,detach_reset=True);self.fc2=nn.Linear(hidden,hidden);self.lif2=MultiStepLIFNode(tau=2.,detach_reset=True);self.drop=nn.Dropout(.2);self.dense=nn.Linear(hidden,35)
     def forward(self,x):
         functional.reset_net(self);h=self.lif1(self.fc1(x).transpose(0,1)).transpose(0,1);h=self.drop(h);return self.dense(self.lif2(self.fc2(h).transpose(0,1)).transpose(0,1))
 

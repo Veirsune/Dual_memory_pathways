@@ -7,7 +7,7 @@
   "embedded_figures": 5,
   "references": 16,
   "pdf_pages": 15,
-  "english_source_sha256": "3f4b7e8096fd809125c4e829b33aea1737b813eb11fbeadcf183563f05c29d4d",
+  "english_source_sha256": "57b38bb1ef585b03d56ffec90672556904b6fa006052d5eb061568404855adfb",
   "new_training_runs": 0,
   "checks": [
     "paragraph IDs present in PDF, Markdown and Word",

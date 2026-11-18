@@ -1,0 +1,13 @@
+{
+ "task": "Does state m carried across the clean first half improve classification using only second-half scores?",
+ "data": "SSC official test, all 20382 examples, matched-200 sum-pooled preprocessing",
+ "input_sha256": "081ff033c863d8e4e6bbf30b96c79caf94e7ff6a6674d364300095b5aa32eb3a",
+ "weights_sha256": "9d4e783de49df66847b00d06ee7a0cfa196de143c5dd07e8382885dd68947bdb",
+ "checkpoint": "single frozen gdsm-mixed-best, seed 42, d=10, clean 200 plus mixed 12 epochs",
+ "boundary": 125, "frames": 250,
+ "primary": "First 125 clean, second 125 additive iid Poisson 0.125 events/channel/frame, paired across arms",
+ "control": "Both halves clean",
+ "intervention": "Zero both layers' stable state m once between frames 125 and 126 (one-based). Keep p, membrane, gate history and previous inputs; allow all subsequent writes, including write from p[125].",
+ "score": "argmax of mean logits over frames 126-250 only",
+ "noise_rng": "NumPy PCG64 seed 4917, official test order", "ci": "paired speaker-cluster percentile bootstrap, 10000 draws, seed 413. Keep-minus-reset in percentage points; conditional on checkpoint and noise draw."
+}

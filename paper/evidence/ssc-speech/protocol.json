@@ -1,0 +1,30 @@
+{
+  "dataset": "SSC official test, original first-to-last-event binning",
+  "samples": 20382,
+  "classes": 35,
+  "frames": 250,
+  "channels": 140,
+  "checkpoint": "mixed final epoch 12, seed 801",
+  "checkpoints": {
+    "fsnn": "fe50c0d75c88c038f50cb18cb349b17a3c3cc33f87fc0dc555c88e8443179b04",
+    "dmp": "89654036b45c277e2ec40cbeb485e4e20cda59429ef8cb12ba30f9e2a8d71b92",
+    "commit": "292a39d346eb4f052a9204f568bfb5bc4eddb6e890d372fd4b79704f3e257e1a"
+  },
+  "data_sha256": "66b161c19c805cca2fddde6da39705530296a8613007500ae1a92535d6cd7d9d",
+  "labels_file_sha256": "2c10197d7cec20dc7e2ba3b233e4a4887251e963826cb64dbd3980838795a59b",
+  "example_index": 0,
+  "poisson_rates": [
+    0,
+    0.0625,
+    0.125,
+    0.25
+  ],
+  "increment_seeds": [
+    901,
+    902,
+    903
+  ],
+  "noise": "Independent Poisson increments across 250 frames and 140 channels, cumulative across rates, no clipping or padding",
+  "score": "argmax of mean logits over all 250 frames",
+  "batch_size": 256
+}

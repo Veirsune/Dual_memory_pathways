@@ -1,5 +1,5 @@
 {
-  "english_source_sha256": "a9ab9f6e7dd178f3f126b502a7fe431ad06bda529c8b55719af46d2dc68be2c5",
+  "english_source_sha256": "a0068ad14041392f1d7baf193e1ad8ac236c10d906fc1271e0a44aa8202cfd9c",
   "paragraphs": [
     {
       "id": "摘要",
@@ -226,8 +226,8 @@
     {
       "id": "4.3-P5",
       "line": 234,
-      "en": "Moving the same burst from after the word into its final 80 frames reduced GDSM endpoint accuracy at every step, from 53.19\\% to 44.96\\% (Fig.~\\ref{fig:position}). DMP scored 3.87\\% and 4.25\\% at the two extremes. GDSM retained a 40.70-point lead at full overlap, although its drop from the clean endpoint was larger than DMP's (11.56 versus 6.80 points). The strongest result was retention after the word. Moving the burst earlier both obscured more speech and shortened the noise-only tail.",
-      "zh": "将同一段噪声从词后逐步移入词尾的 80 帧，GDSM 的末端准确率随之从 53.19\\% 逐级降到 44.96\\%（图~\\ref{fig:position}）。DMP 在这两个位置分别为 3.87\\% 和 4.25\\%。噪声完全移入词尾时，GDSM 仍领先 40.70 个百分点，但相对各自的干净末端成绩，GDSM 下降了 11.56 个百分点，DMP 下降了 6.80 个百分点。GDSM 表现最好的是词后保持。噪声前移时，受干扰的语音变多，词后只剩噪声的时间也随之缩短。"
+      "en": "During speech, the relative performance depended on background intensity (Fig.~\\ref{fig:speech}). GDSM recognized 58.83\\% of clean words and DMP recognized 47.89\\%. With background spikes added throughout the word at 0.0625 events per channel per frame, these accuracies fell to 25.69\\% and 20.46\\%. At twice this rate the gap narrowed to 0.92 points. At 0.25, DMP led with 14.43\\% versus 9.77\\% for GDSM. Selective storage preserved a completed word under this noise rate in the retention task, while sustained interference during recognition eroded GDSM's clean advantage.",
+      "zh": "说话时一直有背景噪声，模型的排名会随噪声强度改变（图~\\ref{fig:speech}）。干净语音上，GDSM 和 DMP 的整词识别准确率分别为 58.83\\% 和 47.89\\%。从开头到结尾，每通道每帧平均叠加 0.0625 个背景脉冲后，准确率分别降至 25.69\\% 和 20.46\\%。噪声强度翻倍时，差距缩至 0.92 个百分点。强度升到 0.25 时，DMP 以 14.43\\% 超过 GDSM 的 9.77\\%。同一强度的噪声出现在词后时，GDSM 能保住已经形成的判断；当噪声贯穿整个词，它在干净语音上的优势会逐渐消失。"
     },
     {
       "id": "5-P1",

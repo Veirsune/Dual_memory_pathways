@@ -586,6 +586,76 @@
       "check": "SSC timing commit_80",
       "passed": true,
       "details": null
+    },
+    {
+      "check": "SSC speech conditions",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "same SSC test order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word fsnn_0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word fsnn_1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word fsnn_2",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word fsnn_3",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word dmp_0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word dmp_1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word dmp_2",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word dmp_3",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word commit_0",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word commit_1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word commit_2",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "SSC whole-word commit_3",
+      "passed": true,
+      "details": null
     }
   ],
   "pages": 9,

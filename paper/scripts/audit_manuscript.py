@@ -93,6 +93,18 @@ with np.load(folder/'predictions.npz') as preds:
   hits=int((preds[key]==labels).sum())
   check('SSC timing '+key,int(row['correct'])==hits and int(row['n'])==len(labels)
         and abs(float(row['accuracy_pct'])-100*hits/len(labels))<1e-6)
+# Whole-word classification under continuous additive noise.
+speech=R/'evidence/ssc-speech'
+rates=json.loads((speech/'protocol.json').read_text())['poisson_rates']
+records=list(csv.DictReader((speech/'accuracy.csv').open()))
+check('SSC speech conditions',len(records)==12 and {(r['model'],float(r['poisson_rate'])) for r in records}=={(m,r) for m in families for r in rates})
+with np.load(speech/'predictions.npz') as preds, np.load(folder/'predictions.npz') as archived:
+ labels=preds['labels']
+ check('same SSC test order',np.array_equal(labels,archived['labels']) and len(labels)==20382)
+ for r in records:
+  key=families[r['model']]+'_'+str(rates.index(float(r['poisson_rate'])))
+  hits=int(np.count_nonzero(preds[key]==labels))
+  check('SSC whole-word '+key,int(r['correct'])==hits and int(r['n'])==len(labels) and abs(float(r['accuracy_pct'])-100*hits/len(labels))<1e-6)
 report={'status':'passed','checks':checks,'pages':pages,'new_training_runs':0,'note':'Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript.'}
 (R/'evidence/manuscript-audit.json').write_text(json.dumps(report,indent=2))
 print(f'Passed {len(checks)} checks; {pages} PDF pages; zero new training runs.')

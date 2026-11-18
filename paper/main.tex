@@ -231,12 +231,12 @@ Interruption training contributes to active-noise robustness. Clean-only GDSM re
 
 When the original event resumes after a middle gap, later evidence can replenish the state. GDSM exceeds DMP in all six SSC middle conditions, but gains are smaller and mixed on MNIST. The longest-gap results in Appendix~\ref{app:additional} distinguish this recovery problem from remembering a completed event. The main advantage of GDSM is persistence of usable information after evidence is no longer present.
 
-Moving the same burst from after the word into its final 80 frames reduced GDSM endpoint accuracy at every step, from 53.19\% to 44.96\% (Fig.~\ref{fig:position}). DMP scored 3.87\% and 4.25\% at the two extremes. GDSM retained a 40.70-point lead at full overlap, although its drop from the clean endpoint was larger than DMP's (11.56 versus 6.80 points). The strongest result was retention after the word. Moving the burst earlier both obscured more speech and shortened the noise-only tail.
+During speech, the relative performance depended on background intensity (Fig.~\ref{fig:speech}). GDSM recognized 58.83\% of clean words and DMP recognized 47.89\%. With background spikes added throughout the word at 0.0625 events per channel per frame, these accuracies fell to 25.69\% and 20.46\%. At twice this rate the gap narrowed to 0.92 points. At 0.25, DMP led with 14.43\% versus 9.77\% for GDSM. Selective storage preserved a completed word under this noise rate in the retention task, while sustained interference during recognition eroded GDSM's clean advantage.
 
 \begin{figure*}[t]
-\centering\includegraphics[width=\textwidth]{figures/ssc-position.pdf}
-\caption{Noise timing on SSC. (a) The same 80-frame Poisson burst (rate 0.25 per channel per frame) moves across the end of a 250-frame word. Each row shows the 140 input channels for the first test utterance. The dotted line marks the word end. (b) Accuracy over all 20,382 utterances, scored on the last 20 frames ending when both word and burst have finished. Clean endpoint accuracy was 4.74\% (FSNN), 11.05\% (DMP) and 56.52\% (GDSM).}
-\label{fig:position}
+\centering\includegraphics[width=\textwidth]{figures/ssc-speech.pdf}
+\caption{SSC word recognition with background spikes throughout the utterance. (a) The first test utterance, clean and with Poisson noise at 0.25 events per channel per frame. Color marks the source of spike activity. (b) Accuracy on 20,382 utterances using the mean class score across all 250 frames. The three frozen models receive the same noise realization for each utterance and rate.}
+\label{fig:speech}
 \end{figure*}
 
 \section{Implementation cost and hardware verification}

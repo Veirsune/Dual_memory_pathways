@@ -183,6 +183,7 @@ def main():
     result={}
     for fam,m in models.items():
         for phase in ['clean','mixed']:
+            state_dict(m)  # Restore upstream FFT buffer shape after variable-length evaluation.
             m.load_state_dict(torch.load(OUT/f'{fam}-{phase}-best.pt',map_location=DEVICE))
             result[f'{fam}-{phase}']=evaluate(fam,m,test,cases)
     write('test.json',result);write('complete.json',{'completed':True})

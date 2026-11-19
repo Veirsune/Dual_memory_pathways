@@ -1,0 +1,12 @@
+{
+  "seed": 301,
+  "epochs": 30,
+  "n": 2264,
+  "train_n": 8156,
+  "loss": "same classification queries as DMP; no auxiliary or gate loss",
+  "batch": 128,
+  "matched_schedule": true,
+  "dmp_sha256": "b965af98f8ad2f460ed6db6c76d710dec5023773194d3281282d8c0d2a80b39f",
+  "source_sha256": "f528d72e446016def83f4d98a699640bf06c61cabc5e3453e04ac7a6dbe6d1e2",
+  "gdsm_sha256": "fa0461dc3dfdcfa84a8de695d95ff88e12da9a5bc4fdadc1c06791a85173a560"
+}

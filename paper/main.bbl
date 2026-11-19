@@ -1,9 +1,26 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Sun et~al.(2026)Sun, Su, Achterberg, Indiveri, Goodman, and
+  Akarca]{dmp}
+Pengfei Sun, Zhe Su, Jascha Achterberg, Giacomo Indiveri, Dan F.~M. Goodman,
+  and Danyal Akarca.
+\newblock {Algorithm-hardware co-design of neuromorphic networks with dual
+  memory pathways}.
+\newblock arXiv:2512.07602v3, 2026.
+\newblock URL \url{https://arxiv.org/abs/2512.07602v3}.
+
+\bibitem[Miller et~al.(1996)Miller, Erickson, and Desimone]{miller1996}
+Earl~K. Miller, Cynthia~A. Erickson, and Robert Desimone.
+\newblock {Neural Mechanisms of Visual Working Memory in Prefrontal Cortex of
+  the Macaque}.
+\newblock \emph{Journal of Neuroscience}, 16\penalty0 (16):\penalty0
+  5154--5167, 1996.
+\newblock \doi{10.1523/JNEUROSCI.16-16-05154.1996}.
 
 \bibitem[Miller and Cohen(2001)]{millercohen}
 Earl~K. Miller and Jonathan~D. Cohen.
@@ -18,50 +35,6 @@ Randall~C. O'Reilly and Michael~J. Frank.
   Prefrontal Cortex and Basal Ganglia}.
 \newblock \emph{Neural Computation}, 18\penalty0 (2):\penalty0 283--328, 2006.
 \newblock \doi{10.1162/089976606775093909}.
-
-\bibitem[Yao et~al.(2022)Yao, Li, Mo, and Cheng]{glif}
-X.~Yao, F.~Li, Z.~Mo, and J.~Cheng.
-\newblock {GLIF: A Unified Gated Leaky Integrate-and-Fire Neuron for Spiking
-  Neural Networks}.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~35, pages 32160--32171, 2022.
-
-\bibitem[Zhang et~al.(2024)Zhang, Yang, Ma, Wu, Li, and Tan]{tclif}
-S.~Zhang, Q.~Yang, C.~Ma, J.~Wu, H.~Li, and K.~C. Tan.
-\newblock {TC-LIF: A Two-Compartment Spiking Neuron Model for Long-term
-  Sequential Modelling}.
-\newblock In \emph{Proceedings of the AAAI Conference on Artificial
-  Intelligence}, volume~38, pages 16838--16847, 2024.
-
-\bibitem[Voelker et~al.(2019)Voelker, Kajic, and Eliasmith]{lmu}
-Aaron Voelker, Ivana Kajic, and Chris Eliasmith.
-\newblock {Legendre Memory Units: Continuous-Time Representation in Recurrent
-  Neural Networks}.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~32, 2019.
-\newblock URL
-  \url{https://papers.nips.cc/paper/2019/hash/952285b9b7e7a1be5aa7849f32ffff05-Abstract.html}.
-
-\bibitem[Gu et~al.(2020)Gu, Dao, Ermon, Rudra, and Re]{hippo}
-Albert Gu, Tri Dao, Stefano Ermon, Atri Rudra, and Christopher Re.
-\newblock {HiPPO: Recurrent Memory with Optimal Polynomial Projections}.
-\newblock In \emph{Advances in Neural Information Processing Systems},
-  volume~33, pages 1474--1487, 2020.
-
-\bibitem[Gu et~al.(2022)Gu, Goel, and Re]{s4}
-Albert Gu, Karan Goel, and Christopher Re.
-\newblock {Efficiently Modeling Long Sequences with Structured State Spaces}.
-\newblock In \emph{International Conference on Learning Representations}, 2022.
-\newblock URL \url{https://arxiv.org/abs/2111.00396}.
-
-\bibitem[Sun et~al.(2026)Sun, Su, Achterberg, Indiveri, Goodman, and
-  Akarca]{dmp}
-Pengfei Sun, Zhe Su, Jascha Achterberg, Giacomo Indiveri, Dan F.~M. Goodman,
-  and Danyal Akarca.
-\newblock {Algorithm-hardware co-design of neuromorphic networks with dual
-  memory pathways}.
-\newblock arXiv:2512.07602v3, 2026.
-\newblock URL \url{https://arxiv.org/abs/2512.07602v3}.
 
 \bibitem[Hochreiter and Schmidhuber(1997)]{lstm}
 Sepp Hochreiter and Jurgen Schmidhuber.
@@ -78,12 +51,6 @@ Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi
 \newblock In \emph{Proceedings of the 2014 Conference on Empirical Methods in
   Natural Language Processing (EMNLP)}, pages 1724--1734, 2014.
 \newblock \doi{10.3115/v1/d14-1179}.
-
-\bibitem[Gu and Dao(2023)]{mamba}
-Albert Gu and Tri Dao.
-\newblock {Mamba: Linear-Time Sequence Modeling with Selective State Spaces}.
-\newblock arXiv:2312.00752, 2023.
-\newblock URL \url{https://arxiv.org/abs/2312.00752}.
 
 \bibitem[Cramer et~al.(2022)Cramer, Stradmann, Schemmel, and Zenke]{shd}
 Benjamin Cramer, Yannik Stradmann, Johannes Schemmel, and Friedemann Zenke.
@@ -112,6 +79,35 @@ Y.~Lecun, L.~Bottou, Y.~Bengio, and P.~Haffner.
   2278--2324, 1998.
 \newblock \doi{10.1109/5.726791}.
 
+\bibitem[Voelker et~al.(2019)Voelker, Kajic, and Eliasmith]{lmu}
+Aaron Voelker, Ivana Kajic, and Chris Eliasmith.
+\newblock {Legendre Memory Units: Continuous-Time Representation in Recurrent
+  Neural Networks}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~32, 2019.
+\newblock URL
+  \url{https://papers.nips.cc/paper/2019/hash/952285b9b7e7a1be5aa7849f32ffff05-Abstract.html}.
+
+\bibitem[Gu et~al.(2020)Gu, Dao, Ermon, Rudra, and Re]{hippo}
+Albert Gu, Tri Dao, Stefano Ermon, Atri Rudra, and Christopher Re.
+\newblock {HiPPO: Recurrent Memory with Optimal Polynomial Projections}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~33, pages 1474--1487, 2020.
+
+\bibitem[Gu et~al.(2022)Gu, Goel, and Re]{s4}
+Albert Gu, Karan Goel, and Christopher Re.
+\newblock {Efficiently Modeling Long Sequences with Structured State Spaces}.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+\newblock URL \url{https://arxiv.org/abs/2111.00396}.
+
+\bibitem[Neftci et~al.(2019)Neftci, Mostafa, and Zenke]{surrogate}
+Emre~O. Neftci, Hesham Mostafa, and Friedemann Zenke.
+\newblock {Surrogate Gradient Learning in Spiking Neural Networks: Bringing the
+  Power of Gradient-Based Optimization to Spiking Neural Networks}.
+\newblock \emph{IEEE Signal Processing Magazine}, 36\penalty0 (6):\penalty0
+  51--63, 2019.
+\newblock \doi{10.1109/msp.2019.2931595}.
+
 \bibitem[Fang et~al.(2023)Fang, Chen, Ding, Yu, Masquelier, Chen, Huang, Zhou,
   Li, and Tian]{spikingjelly}
 Wei Fang, Yanqi Chen, Jianhao Ding, Zhaofei Yu, Timothee Masquelier, Ding Chen,
@@ -121,12 +117,24 @@ Wei Fang, Yanqi Chen, Jianhao Ding, Zhaofei Yu, Timothee Masquelier, Ding Chen,
 \newblock \emph{Science Advances}, 9\penalty0 (40), 2023.
 \newblock \doi{10.1126/sciadv.adi1480}.
 
-\bibitem[Neftci et~al.(2019)Neftci, Mostafa, and Zenke]{surrogate}
-Emre~O. Neftci, Hesham Mostafa, and Friedemann Zenke.
-\newblock {Surrogate Gradient Learning in Spiking Neural Networks: Bringing the
-  Power of Gradient-Based Optimization to Spiking Neural Networks}.
-\newblock \emph{IEEE Signal Processing Magazine}, 36\penalty0 (6):\penalty0
-  51--63, 2019.
-\newblock \doi{10.1109/msp.2019.2931595}.
+\bibitem[Yao et~al.(2022)Yao, Li, Mo, and Cheng]{glif}
+X.~Yao, F.~Li, Z.~Mo, and J.~Cheng.
+\newblock {GLIF: A Unified Gated Leaky Integrate-and-Fire Neuron for Spiking
+  Neural Networks}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35, pages 32160--32171, 2022.
+
+\bibitem[Zhang et~al.(2024)Zhang, Yang, Ma, Wu, Li, and Tan]{tclif}
+S.~Zhang, Q.~Yang, C.~Ma, J.~Wu, H.~Li, and K.~C. Tan.
+\newblock {TC-LIF: A Two-Compartment Spiking Neuron Model for Long-term
+  Sequential Modelling}.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~38, pages 16838--16847, 2024.
+
+\bibitem[Gu and Dao(2023)]{mamba}
+Albert Gu and Tri Dao.
+\newblock {Mamba: Linear-Time Sequence Modeling with Selective State Spaces}.
+\newblock arXiv:2312.00752, 2023.
+\newblock URL \url{https://arxiv.org/abs/2312.00752}.
 
 \end{thebibliography}

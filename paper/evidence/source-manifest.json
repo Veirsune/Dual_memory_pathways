@@ -113,5 +113,25 @@
     "file": "evidence/shd-protocol.json",
     "source": "shd-supervision-ablation/protocol.json",
     "sha256": "b613eb01d02ad9ce7a3156ad8b15b49484d583a55cb2100fdefa69678500edf8"
+  },
+  {
+    "file": "evidence/paired-effects.csv",
+    "source": "large_scale/paired_effects/paired.csv",
+    "sha256": "78a3021132bdcb156e7f582d55490d12db5761d3d8af2a3a63dfa658e067e315"
+  },
+  {
+    "file": "evidence/paired-intervals.csv",
+    "source": "large_scale/paired_effects/uncertainty.csv",
+    "sha256": "3b3cbe3c212f5fc2ae40d296d45388ed1dd9ce0aa3850e385658c901114a62e2"
+  },
+  {
+    "file": "evidence/ssc-midpoint.json",
+    "source": "large_scale/ssc_matched200/midpoint/results.json",
+    "sha256": "50efaf53f09545cbf1826d3a36a7aa3611880bd6c11ace8d4e1123fe6f495550"
+  },
+  {
+    "file": "evidence/ssc-midpoint.npz",
+    "source": "large_scale/ssc_matched200/midpoint/predictions.npz",
+    "sha256": "e93d3a2682bb1a67d2b3d8d18ac42d675c24c88365c90c8a5538ebeadf97fff4"
   }
 ]

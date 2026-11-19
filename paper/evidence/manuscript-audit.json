@@ -117,6 +117,26 @@
       "details": null
     },
     {
+      "check": "source checksum: evidence/paired-effects.csv",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "source checksum: evidence/paired-intervals.csv",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "source checksum: evidence/ssc-midpoint.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "source checksum: evidence/ssc-midpoint.npz",
+      "passed": true,
+      "details": null
+    },
+    {
       "check": "SHD supervision d10 task_only",
       "passed": true,
       "details": {
@@ -321,32 +341,32 @@
       ]
     },
     {
-      "check": "abstract ('SSC', 'commit', 120, 'poisson')",
+      "check": "gap endpoints ('SSC', 'commit', 120, 'poisson')",
       "passed": true,
       "details": null
     },
     {
-      "check": "abstract ('SSC', 'dmp', 120, 'poisson')",
+      "check": "gap endpoints ('SSC', 'dmp', 120, 'poisson')",
       "passed": true,
       "details": null
     },
     {
-      "check": "abstract ('DVS Gesture', 'commit', 80, 'silence')",
+      "check": "gap endpoints ('DVS Gesture', 'commit', 80, 'silence')",
       "passed": true,
       "details": null
     },
     {
-      "check": "abstract ('DVS Gesture', 'dmp', 80, 'silence')",
+      "check": "gap endpoints ('DVS Gesture', 'dmp', 80, 'silence')",
       "passed": true,
       "details": null
     },
     {
-      "check": "abstract ('S-MNIST', 'commit', 160, 'silence')",
+      "check": "gap endpoints ('S-MNIST', 'commit', 160, 'silence')",
       "passed": true,
       "details": null
     },
     {
-      "check": "abstract ('S-MNIST', 'dmp', 160, 'silence')",
+      "check": "gap endpoints ('S-MNIST', 'dmp', 160, 'silence')",
       "passed": true,
       "details": null
     },
@@ -444,7 +464,7 @@
       "check": "complete PDF",
       "passed": true,
       "details": {
-        "pages": 10
+        "pages": 9
       }
     },
     {
@@ -746,9 +766,64 @@
       "check": "paired changed predictions ssc-repair tail80",
       "passed": true,
       "details": null
+    },
+    {
+      "check": "ordinary recognition table SHD",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "ordinary recognition table SSC",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "ordinary recognition table DVS Gesture",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "ordinary recognition table S-MNIST",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "ordinary recognition table PS-MNIST",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "midpoint test cohort",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "midpoint correct counts clean",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "midpoint values in both languages clean",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "midpoint correct counts noise",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "midpoint values in both languages noise",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "stable readout dependence",
+      "passed": true,
+      "details": null
     }
   ],
-  "pages": 10,
-  "new_training_runs": 3,
+  "pages": 9,
+  "new_training_runs": 0,
   "note": "Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript."
 }

@@ -1,89 +1,40 @@
-# 门控双状态记忆（GDSM）论文
+# 脉冲网络怎样用上先前的输入
 
-论文共 8 页，包含正文、参考文献及附录。
+*Using Earlier Inputs in Spiking Networks with Gated Dual-State Memory*
 
-[下载论文 PDF](https://raw.githubusercontent.com/Veirsune/Dual_memory_pathways/main/paper/GDSM_Paper.pdf) · [GitHub 查看](https://github.com/Veirsune/Dual_memory_pathways/blob/main/paper/GDSM_Paper.pdf) · [LaTeX 主文件](main.tex)
+[中文 PDF](GDSM_Paper_ZH.pdf) · [中文 Word](GDSM_Chinese.docx) · [中文 Markdown](GDSM_Chinese.md) · [英文 PDF](GDSM_Paper.pdf) · [LaTeX 源码包](GDSM_LaTeX.zip)
 
-iPad 可用 Safari 打开 PDF，然后选择“分享 → 存储到文件”。论文文件统一为 `GDSM_Paper.pdf`，源码包为 [GDSM_LaTeX.zip](GDSM_LaTeX.zip)。
+一只手顺时针或逆时针画圆，都要经过圆的最高点。此时要判断方向，还需要知道手刚才从哪边过来。原 DMP 给脉冲网络的每一层一份共享记忆，让过去的输入参与当前判断。GDSM 延续这个思路，让候选状态逐帧跟踪输入，由写入门控制稳定状态的更新。
 
-## 中文对照与段落写作
+## 文章从哪里读起
 
-中文稿覆盖摘要、正文、附录、图注和表头，按英文顺序保留 55 个段落，并加上 `1-P2`、`4.2-P3` 等定位编号。公式、图表和参考文献编号与英文稿一致；SNN、DMP、GDSM、LIF 等术语及图内英文标签保留。中文 PDF 采用便于阅读的单栏排版。
+表 1 并列给出 SHD、SSC、DVS Gesture、S-MNIST 和 PS-MNIST 在原事件结束时的识别结果。第 3.2 节取一个固定的 SSC 模型，在词的正中间复制两份，只清空其中一份的稳定状态，再给两份模型完全相同的后半段。保留前半段的状态，后半段输出净多认对 813 个词。[逐例证据](../large_scale/ssc_matched200/midpoint/)
 
-- `GDSM_Paper_ZH.pdf`：中文阅读与批注文档。
-- `GDSM_Chinese.docx`：用于逐段修改的 Word 文档，含可编辑公式和表格。
-- `GDSM_Chinese.md`：用于文本编辑器的中文稿，图片通过相对路径引用。
-- `main_zh.tex`：中文 PDF 的 LaTeX 源码；使用 XeLaTeX 和 Noto CJK 字体，运行 `make chinese`。
-- `CHINESE_PARAGRAPHS.json`：对应的英文原段、中文译段和英文源码行号，记录此次翻译依据的源文件校验和。
+第 4 节讨论噪声出现的时机。干净手势上两种模型同为 86.74%。中档噪声贯穿动作时 DMP 更准，接在动作后持续 80 帧时 GDSM 更准。第 5 节给出全网乘加数及记忆核的定点核验。[跨任务对照](../large_scale/paired_effects/REPORT.md) · [证据索引](EVIDENCE_MAP.md)
 
-Word、Markdown 和 LaTeX 是独立文件，直接修改其中一个不会自动同步另两个。后续按段落改稿时，请明确以哪个文件中的修改为准。中文译稿的核对记录见 `evidence/chinese-translation-audit.json`。
+## 逐段写作与编译
 
-## 论文讲的科学故事
+中文 PDF 的段落编号与 Markdown、Word 及英文段落对照表一致。例如 `3.2-P1` 是词中清零实验的做法，`3.2-P2` 是结果。Word 中的公式、表格和正文可以编辑。段落对照表记录英文源码行号。[段落对照](CHINESE_PARAGRAPHS.json)
 
-**识别对了，不代表记住了。** 一段语音或手势结束后，如果后面还有停顿或背景噪声，分类器仍可能需要保留刚才的判断。对整段序列取平均的准确率，会把前面正确的输出算进去，因此未必能反映最后还记得多少。
-
-DMP 为脉冲网络增加一个全层共享的小记忆，但它始终接收输入、始终更新。我们把它分成两个状态：候选状态持续跟踪新输入，稳定状态只在门控允许时接收候选内容。向量输入让不同记忆维度接收不同的通道组合；独立读取让快通路、候选状态和稳定状态共同参与分类。
-
-实验直接在完整事件后追加干扰，只看干扰末尾的输出，检验“事件已经结束后还记不记得”。结果是：
-
-| 任务与干扰 | DMP | GDSM |
-|---|---:|---:|
-| SSC，追加 120 帧噪声 | 3.91% | 52.79% |
-| DVS Gesture，追加 80 帧静音 | 19.70% | 70.83% |
-| S-MNIST，追加 160 帧静音，三训练种子均值 | 8.69% | 78.68% |
-
-Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.36%），干扰后却明显分开，尤其清楚地展示了保持能力的差异。SHD 的容量和组件对照进一步表明：**存入更有用的内容，与避免内容被覆盖，是两个互补的作用。**
-
-这项研究的成果是一个能跨语音、事件视觉和像素序列改善干扰后记忆保持的共享记忆架构，以及相应的对照证据和定点实现。真实权重重放的 117,056 个定点数值与整数参考完全一致；Gesture 干净输入下，全网有效 MAC 增加 6.30%。这是运算量对照，物理能耗仍需工艺级测量。
-
-## 论文结构与记号
-
-英文标题：*Gated Dual-State Memory for Robust Temporal Processing in Spiking Neural Networks*。
-
-| 符号 | 固定含义 |
-|---|---|
-| `s^{l-1}[k]` / `s^0[k]` | 第 l 层的输入 / 原始传感器帧 |
-| `u^l[k]` | LIF 膜电位，与原论文一致 |
-| `x^l[k]` / 粗体 `x^l[k]` | DMP 标量驱动 / 我们的向量驱动 |
-| `m^l[k]` | DMP 的共享记忆；在我们的模型中为稳定记忆 |
-| `p^l[k]` / `g^l[k]` | 新增的候选状态 / 逐维写入门 |
-| `W_x` / `f_x` / `b` | 输入投影 / 映射函数 / 输入偏置 |
-| `Abar` / `Bbar` | 原论文的离散状态转移与输入矩阵 |
-| `I^l[k]` / `I_m^l[k]` | 快通路电流 / 记忆电流 |
-| `W_f` / `W_p` / `W_m` | 快通路 / 候选 / 稳定读取权重 |
-| `T_0` / `T` / `L` / `K` | 原序列长度 / 扩展后长度 / 干扰长度 / 末端读取窗口 |
-
-记号沿用原 DMP 论文，详细对照见 [NOTATION.md](NOTATION.md)。正文保留原文的映射函数 `f_x`，ReLU 只在实现说明中交代。
-
-第 1 节引言合并问题背景与相关研究，第 2 节是方法，第 4 节是主要结果，第 5 节是实现成本。附录 A 汇总复现配置与硬件范围，B 给 SHD 监督消融，C 给关键补充结果。详细实现、完整结果表与探索记录见 [实验细节](EXPERIMENT_DETAILS.md)。主文表 2 和图 2 可直接阅读核心结果。
-
-图 1 并列对照 DMP 与 GDSM，各结构只画一次。`figures/architecture.pdf` 与 `figures/architecture.svg` 是矢量文件，`scripts/draw_architecture.py` 提供独立绘图源码。图采用纯黑线条、纯黑文字和纯白背景；具体修改方法见 [图 1 编辑说明](FIGURE_EDITING.md)。
-
-图 2–5 使用蓝灰主调：FSNN 为灰色，DMP 为灰蓝色，GDSM 为深蓝色，GDSM dense 柱为浅蓝灰色。配色在 `scripts/build_assets.py` 中统一定义。图 1 单独使用纯黑白。
-
-图 3 展示 SSC、S-MNIST、PS-MNIST 的干净输入验证准确率随训练轮数的变化，标出干净训练与混合训练的切换。MNIST 使用三个种子的均值与标准差。图来自 42 份原始训练日志，仅绘制实际记录的验证点；原日志没有逐轮干扰分项验证，图中不将训练准确率或最终测试结果作为替代。单独重画可运行 `make training-curves`，脚本为 `scripts/draw_training_curves.py`。
-
-## 编译与数值核验
-
-图 4 比较 SSC 全程叠加背景脉冲时的整词识别准确率，使用相同的冻结模型和四档噪声强度（含干净输入）；可用 `make ssc-speech` 重画。图 5 汇总五项任务的架构差值，图 6 给出全网 MACs。
-
-上传本目录到 Overleaf，选择 `main.tex`，用 pdfLaTeX 编译。图表与参考文献已随附，无需训练环境。
-
-本地编译为 `GDSM_Paper.pdf`：
+英文 PDF 从 `main.tex` 编译，中文 PDF 从 `main_zh.tex` 编译，使用 XeLaTeX 和 Noto CJK 字体。在本目录运行以下命令。Word 和 Markdown 是独立的写作文件。
 
 ```bash
-make
-```
-
-从封存数据重建图表并核验：
-
-```bash
-python scripts/build_assets.py
+make all
+make chinese
 make audit
 ```
 
-需要 TeX Live、latexmk、Python、NumPy 和 Matplotlib。`build_assets.py` 在研究工作区使用实验源文件，独立运行时使用 `evidence/` 中的快照。`audit_manuscript.py` 核对来源校验和、主要数值、计算成本、记号和编译结果。
+记号沿用 DMP。正文的一条公式说明何时写入稳定状态。附录 A 汇集原 DMP、候选状态、读取电流、写入许可与训练目标的公式，附录 B 和 C 收录组件实验和各类读取条件下的成绩。[记号对照](NOTATION.md) · [实验细节](EXPERIMENT_DETAILS.md)
 
-`EVIDENCE_MAP.md` 给出证据对应关系。代码与图表生成所需指标已公开；原始数据和大型训练检查点不包含在源码仓库内。实验记录中的 `commit` 是 GDSM 的历史代码键，保留它是为了保持与封存结果的对应关系。
+## 图表
 
-SHD、DVS Gesture 和 SSC 的整段叠加与 L80 延迟读取逐样本对照，以及 S-MNIST、PS-MNIST 的延迟读取结果，见[跨数据集报告](../large_scale/paired_effects/REPORT.md)。报告同时给出 SSC 200 轮匹配训练与在同一检查点关闭记忆读取的诊断。
+| 图 | 内容 | 可编辑来源 |
+|---|---|---|
+| 1 | DMP 与 GDSM 的共享记忆结构 | [绘图脚本](scripts/draw_architecture.py) · [矢量 SVG](figures/architecture.svg) |
+| 2 | 干净验证集上的训练曲线 | [训练曲线脚本](scripts/draw_training_curves.py) |
+| 3 | 五项任务的架构差值及噪声出现的时机 | [差值图脚本](../large_scale/paired_effects/plot.py) |
+| 4 | 全程叠加背景脉冲的语音和识别结果 | [语音图脚本](scripts/draw_ssc_speech.py) |
+| 5 | 随间隔长度变化的末段分类准确率 | [结果图脚本](scripts/build_assets.py) |
+| 6 | 手势识别的整网乘加数 | [结果图脚本](scripts/build_assets.py) |
+
+图 1 保留黑白线稿，结果图沿用蓝灰色。用 `make architecture`、`make training-curves`、`make ssc-speech` 可分别重画图 1、2、4。图 3 的重画命令见[配图编辑说明](FIGURE_EDITING.md)。从源码包编译时可直接使用随附的矢量图。

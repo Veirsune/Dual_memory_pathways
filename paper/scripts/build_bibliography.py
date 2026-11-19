@@ -46,6 +46,36 @@ entries.append(r'''@misc{dmp,
  title={{TC-LIF: A Two-Compartment Spiking Neuron Model for Long-term Sequential Modelling}},
  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},volume={38},pages={16838--16847},year={2024}
 }
+
+@article{millercohen,
+  author = {Miller, Earl K. and Cohen, Jonathan D.},
+  title = {{An Integrative Theory of Prefrontal Cortex Function}},
+  journal = {Annual Review of Neuroscience},
+  year = {2001},
+  volume = {24},
+  number = {1},
+  pages = {167--202},
+  doi = {10.1146/annurev.neuro.24.1.167}
+}
+
+@article{oreillyfrank,
+  author = {O'Reilly, Randall C. and Frank, Michael J.},
+  title = {{Making Working Memory Work: A Computational Model of Learning in the Prefrontal Cortex and Basal Ganglia}},
+  journal = {Neural Computation},
+  year = {2006},
+  volume = {18},
+  number = {2},
+  pages = {283--328},
+  doi = {10.1162/089976606775093909}
+}
+
+@article{miller1996,
+ author = {Miller, Earl K. and Erickson, Cynthia A. and Desimone, Robert},
+ title = {{Neural Mechanisms of Visual Working Memory in Prefrontal Cortex of the Macaque}},
+ journal = {Journal of Neuroscience},
+ year = {1996}, volume = {16}, number = {16}, pages = {5154--5167},
+ doi = {10.1523/JNEUROSCI.16-16-05154.1996}
+}
 ''')
 (r/'references.bib').write_text('\n\n'.join(entries))
-print('Wrote',len(d)+7,'references')
+print('Wrote',sum(e.count('@') for e in entries),'references')

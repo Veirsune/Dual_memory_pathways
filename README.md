@@ -1,8 +1,10 @@
 # GDSM：门控双状态记忆
 
-**Gated Dual-State Memory for Robust Temporal Processing in Spiking Neural Networks**
+**脉冲网络怎样用上先前的输入**
 
-GDSM 将持续更新的候选状态与门控更新的稳定状态分开，用小型共享记忆增强脉冲神经网络在静音和噪声干扰后的信息保持。
+*Using Earlier Inputs in Spiking Networks with Gated Dual-State Memory*
+
+DMP 让一层脉冲神经元共享一份输入历史。GDSM 让候选状态继续跟踪新输入，写入门决定何时更新稳定状态。神经元同时读取两份状态。
 
 **[下载论文 PDF](https://raw.githubusercontent.com/Veirsune/Dual_memory_pathways/main/paper/GDSM_Paper.pdf)** · **[GitHub 在线查看 PDF](paper/GDSM_Paper.pdf)** · [LaTeX 源码](paper/main.tex) · [源码包](paper/GDSM_LaTeX.zip) · [实验协议与结果](paper/evidence/) · [论文中文导读](paper/README.md)
 
@@ -24,18 +26,21 @@ GDSM 将持续更新的候选状态与门控更新的稳定状态分开，用小
 | `dmp-hw-chisel/` | 原 DMP 硬件工程、GDSM 记忆核、定点参考和 Verilator 重放 |
 | `paper/` | 论文 PDF、LaTeX、图表脚本、指标 CSV、协议和证据快照 |
 
-## 主要实验结果
+## 前面的输入怎样参与分类
 
-以下是混合训练后，干扰结束时最后 20 帧的分类准确率；MNIST 为三个训练种子的均值，完整标准差见论文。
+同一套骨干和训练安排下，原事件结束时的干净分类准确率如下。S-MNIST 和 PS-MNIST 为三个训练种子的平均值，其余各行是一组配对模型。
 
-| 测试条件 | DMP | GDSM |
+| 数据集 | DMP | GDSM |
 |---|---:|---:|
-| SSC：尾部 Poisson 噪声 L120 | 3.91% | 52.79% |
-| DVS Gesture：尾部静音 L80 | 19.70% | 70.83% |
-| S-MNIST：尾部静音 L160 | 8.69% | 78.68% |
-| PS-MNIST：尾部静音 L160 | 14.12% | 56.43% |
+| SHD | 89.80% | 90.33% |
+| SSC（200 轮干净训练） | 72.34% | 75.29% |
+| DVS Gesture | 86.74% | 86.74% |
+| S-MNIST | 94.39% | 96.42% |
+| PS-MNIST | 89.00% | 89.63% |
 
-SSC 的 L120 和 MNIST 的 L160 未用于相应混合训练。数据划分、损失函数、种子、容量对照、噪声分布偏移和切换实验见论文及 `paper/evidence/`。训练权重和原始数据不在本次源码发布中；论文图表可直接从随附指标重建。
+在另一个固定的 SSC 模型上，我们只在一个词的中点清空一次稳定状态。两份副本听到相同的后半段，只用后半段分数分类。保留状态认对 6,692 个词，清零认对 5,879 个词，净差 813 个。[逐例结果与实验方法](large_scale/ssc_matched200/midpoint/)
+
+干扰实验进一步比较噪声伴随动作和动作结束后出现的情况。手势的中档噪声贯穿动作时 DMP 更准，接在动作之后时 GDSM 更准。[跨任务结果](large_scale/paired_effects/REPORT.md)
 
 ## 环境与功能检查
 

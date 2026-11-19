@@ -9,7 +9,7 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
 \usepackage{enumitem,fancyhdr}
-\hypersetup{pdftitle={Gated Dual-State Memory for Robust Temporal Processing in Spiking Neural Networks},pdfauthor={Anonymous authors},pdfsubject={Gated dual-state memory for robust temporal processing in spiking neural networks},pdfkeywords={spiking neural networks, shared memory, gated dual-state memory, temporal robustness}}
+\hypersetup{pdftitle={Using Earlier Inputs in Spiking Networks with Gated Dual-State Memory},pdfauthor={Anonymous authors},pdfkeywords={spiking neural networks, shared memory, temporal context}}
 \raggedbottom
 \setlength{\parskip}{2pt}
 \setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
@@ -26,52 +26,43 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\CE}{\operatorname{CE}}
 \newcommand{\ind}{\mathbb{I}}
-\title{\vspace{-1.1cm}\textbf{Gated Dual-State Memory for Robust Temporal Processing\newline in Spiking Neural Networks}}
+\title{\vspace{-1.1cm}\textbf{Using Earlier Inputs in Spiking Networks\\with Gated Dual-State Memory}}
 \author{Anonymous authors}
 \date{}
 \begin{document}
 \maketitle
+
 \begin{abstract}
-A spiking network may recognize an event yet lose its class during the silence or noise that follows. We introduce gated dual-state memory (GDSM), which separates a continuously updated candidate state from a selectively updated stable state shared across a neural layer. This allows the network to process new input while protecting earlier information. We test classification at the end of appended interruptions on spiking speech, event-camera gestures and sequential images. On Spiking Speech Commands, GDSM retains 52.79\% accuracy after 120 noise frames, compared with 3.91\% for dual memory pathways (DMP). On DVS Gesture, accuracy after 80 silent frames improves from 19.70\% to 70.83\%. SHD controls identify complementary roles for richer input and write protection, while three-seed MNIST experiments demonstrate retention gains on longer sequences. These results show that separating integration from storage substantially improves the persistence of shared spiking memory.
+
+By the time a listener hears the end of a word, its opening sounds have passed. Dual memory pathways (DMP) give a layer of spiking neurons a shared state through which those earlier inputs can still affect its response. We give this memory two update rules. A candidate state follows each incoming frame. A stable state accepts selected writes from the candidate. Neurons read both. On Spiking Speech Commands (SSC), gated dual-state memory (GDSM) raised whole-word accuracy from 72.34\% to 75.29\% with the same backbone and 200-epoch training schedule. In a separate experiment, we kept or cleared the stable state of the same network halfway through each word. With only the scores from the second half available for classification, carrying the state forward yielded 813 additional correct decisions on balance. Gesture and sequential-image experiments also showed gains when the network had to retain earlier evidence through subsequent input. When noise accompanied the gesture itself, GDSM recognized fewer gestures than DMP.
+
 \end{abstract}
-\noindent\textbf{Keywords:} spiking neural networks; shared memory; gated state updates; interference robustness.
 
-\section{Introduction}
-Spiking neural networks (SNNs) process sensory events as they arrive. For many temporal tasks, however, the useful information must remain available after the event ends: a command may be followed by background noise, or a gesture by a pause. Recognizing the event is therefore only part of the task. The network must also preserve its interpretation while subsequent input provides little relevant evidence.
+\section{Which way was the hand moving?}
 
-Biological working memory faces the same tension: it must remain open to relevant new evidence while protecting the information already guiding behavior. Theories of prefrontal function emphasize the active maintenance of task-relevant context~\cite{millercohen}. Computational models of prefrontal--basal ganglia circuits further show how selective gating can regulate when working memory is updated~\cite{oreillyfrank}. The key idea is that processing an input need not imply storing it. This motivates a concrete design principle for SNNs: let one state follow incoming evidence while another preserves the current context, with controlled transfer between them. Here we apply this principle to memory maintained within an input sequence, where retaining a recognized event through a pause or distraction is the central requirement.
+A hand tracing a circle passes through the top of the circle in either direction. Its position alone tells us little. Knowing which side it approached from gives that same position a meaning. An event camera records the movement as a stream of brightness changes. For a spiking neural network (SNN) receiving those events, how does an input that has already passed contribute to the response it is making now?
 
-Existing work extends temporal processing through richer spiking dynamics~\cite{glif,tclif} and compact representations of input history~\cite{lmu,hippo,s4}. Dual memory pathways (DMP) bring the latter idea to SNNs by adding a small memory shared across each layer~\cite{dmp}. This makes history available to the fast spiking pathway at low storage cost. Yet the shared state keeps updating during both useful input and interference. Information that was successfully accumulated can consequently be altered before it is needed.
+A leaky integrate-and-fire (LIF) neuron already has some memory. Incoming spikes change its membrane potential, but the influence of earlier spikes decays. Sun and colleagues asked how to extend this timescale within the storage and energy budget of a chip. Dense recurrent connections require weights, and long delays require buffers for past spikes. Their dual memory pathways (DMP) give a whole layer one compact memory to share. Each neuron receives both the current input and a current derived from recent history. They tested the idea on sequential images and spiking speech and designed hardware for the fast and slow paths~\cite{dmp}.
 
-Following this principle, we propose \emph{gated dual-state memory} (GDSM), which separates ongoing integration from protected storage. A candidate state tracks incoming evidence, while a stable state accepts selected updates from that candidate. Both remain available to the spiking layer. Drawing on selective updating in recurrent and state-space models~\cite{lstm,gru,mamba}, this design allows new input to be processed without automatically replacing the stored context. A vector input projection also lets the shared memory receive distinct combinations of input features.
+DMP updates its memory on every frame. This lets it follow a new movement as soon as it begins. In the circle example, the network also needs the position the hand occupied a moment ago. A related problem arises in working memory. Miller and colleagues showed macaques a sample image followed by a series of pictures. The animals had to inspect each picture while keeping the sample available to recognize its return~\cite{miller1996}. Models of prefrontal function distinguish the maintenance of task information from control over when to update it~\cite{millercohen,oreillyfrank}.
 
-We evaluate this distinction by appending silence or noise after a complete event and classifying from the end of the gap. Whole-sequence averages can include earlier correct predictions even when the current state has lost the answer; endpoint evaluation directly tests whether the representation remains usable. We pair these tests with ordinary classification and interruptions placed within the event.
+We give the shared memory in DMP two states. A candidate follows the input frame by frame. A stable state has a write gate that controls when it takes in the candidate. Both feed back into the original spiking layer. The layer can then track how the hand is moving while continuing to use information from earlier frames. We call this architecture gated dual-state memory (GDSM).
 
-The results show substantial retention gains across speech, event-camera gestures and sequential images, including gap lengths absent from training. On SSC, GDSM retains 52.79\% accuracy after 120 noise frames, compared with 3.91\% for DMP. Gesture starts from nearly matched clean endpoints, yet GDSM retains 70.83\% after 80 silent frames versus 19.70\% for DMP. SHD controls identify complementary contributions from richer memory input and protected writes. A fixed-point implementation further demonstrates that the mechanism can be realized in hardware. Together, these findings establish selective storage as an effective addition to shared spiking memory.
-
-\section{Gated dual-state memory}
+\section{How a layer reads and writes its memory}
 \label{sec:method}
-\subsection{Candidate--stable shared memory}
-We follow DMP's notation~\cite{dmp}: $s^{l-1}[k]\in\R^M$ is the input to layer $l$ at step $k$, $u^l[k]\in\R^N$ its LIF membrane potentials, and $s^0[k]$ the raw sensor frame. Each layer shares a slow memory of dimension $d\ll N$. The original DMP writes a scalar drive into this state:
-\begin{equation}
-\begin{aligned}
- x^l[k]&=f_x(W_x s^{l-1}[k]+b),\\
- m^l[k]&=\bar A m^l[k-1]+\bar B x^l[k] .
-\end{aligned}
-\label{eq:dmp}
-\end{equation}
-Here $f_x$ is the input mapping, $W_x\in\R^{1\times M}$ its projection, and $b$ its bias. The fixed matrices $\bar A\in\R^{d\times d}$ and $\bar B\in\R^{d\times1}$ are the discretized Legendre parameters. Thus $x^l[k]$ is scalar, while the memory $m^l[k]$ is a vector.
 
-Equation~\eqref{eq:dmp} exposes two constraints. First, all input channels enter memory through a single scalar projection at each frame. Second, the state continues to evolve regardless of whether the input is useful. During a pause or a noise segment, stored features can change through the state dynamics or through irrelevant new drive.
+\begin{figure*}[t]
+\centering\includegraphics[width=0.93\textwidth]{figures/architecture.pdf}
+\caption{Shared memory feeds the same layer of LIF neurons. Left, DMP. Right, GDSM. The diamond controls the transfer of the previous candidate to stable memory. The two states have separate read weights. Layer indices are omitted.}
+\label{fig:architecture}
+\end{figure*}
 
-GDSM adds a candidate $p^l[k]$ and retains $m^l[k]$ for protected storage. We extend the scalar drive to $\mathbf{x}^l[k]\in\R^d$, applying $f_x$ coordinatewise:
-\begin{equation}
-\begin{aligned}
- \mathbf{x}^l[k]&=f_x(W_x s^{l-1}[k]+b),\\
- p^l[k]&=\bar A p^l[k-1]+\bar B\odot \mathbf{x}^l[k] ,
-\end{aligned}
-\label{eq:candidate}
-\end{equation}
+Consider one speech layer in Fig.~\ref{fig:architecture}. In one configuration, a frame has 140 input channels and the layer contains 128 LIF neurons. DMP projects the 140 values onto one number and uses it to drive a 30-dimensional memory shared across the layer. Each of the 128 neurons reads those same 30 values with its own weights to obtain a memory current. Neurons can thus draw different information from the same history. The next layer receives the 128 output spikes and maintains its own memory.
+
+Our first change is at the entrance to memory. Two different sound frames that agree on the single DMP projection send exactly the same drive into its slow state. We let the layer learn 30 sets of channel weights instead. Each gives one number, so different combinations of frequency channels can drive different coordinates of the candidate state $p$. The fast path still receives the original 140 channels.
+
+Next comes the decision about when to write. The stable state $m$ also has 30 values, each with a gate value $g$. A zero keeps the old coordinate. A one takes the previous candidate coordinate. Values in between mix the two in proportion. The update below is for layer $l$ at step $k$, with $\odot$ denoting coordinatewise multiplication. A new frame can change the candidate immediately. Its earliest route through that candidate into stable memory is one step later.
+
 \begin{equation}
 \begin{aligned}
  m^l[k]={}&(1-g^l[k])\odot m^l[k-1]\\
@@ -79,6 +70,137 @@ GDSM adds a candidate $p^l[k]$ and retains $m^l[k]$ for protected storage. We ex
 \end{aligned}
 \label{eq:stable}
 \end{equation}
+
+A neuron reads both states. One follows what has just changed. The other supplies what remains from previous writes. Their currents add to the fast input in determining whether the neuron fires. Closing the write gate leaves the stable read available and the candidate free to update.
+
+The gate uses only present and past input. An empty raw sensor frame closes all stable writes. On other frames the network uses the level, change and distribution of activity to decide which coordinates can update. Gated writing has precedents in recurrent networks~\cite{lstm,gru}. Here a set of gates manages the memory shared by an entire layer. Appendix~\ref{app:training} gives the currents, gate and training objective.
+
+\section{Does earlier input contribute to classification?}
+
+\subsection{Recognition at the end of the event}
+
+We begin with ordinary classification. On Spiking Heidelberg Digits (SHD) and Spiking Speech Commands (SSC), the network receives the frames of a spoken digit or command and classifies it as soon as the word ends. On DVS Gesture it identifies a movement recorded by an event camera. S-MNIST presents a handwritten digit one pixel at a time. PS-MNIST uses the same images with a fixed permutation of the pixel order~\cite{shd,gesture,mnist}. Each task has its own trained models. At the known event boundary we average the class scores over the original sequence. Table~\ref{tab:recognition} compares DMP and GDSM with the same backbone and training schedule within each task.
+
+\begin{table*}[tbp]
+\centering\small
+\caption{Clean recognition at the event boundary using scores from the full sequence. SSC uses 200 clean epochs. SHD, Gesture and the image tasks use their respective fine-tuned models. Image results are means over three training seeds. The other comparisons each use one training seed. Differences use unrounded accuracies.}
+\label{tab:recognition}
+\begin{tabular}{lrrrr}
+\toprule
+Task & Test examples & DMP (\%) & GDSM (\%) & Difference (pp)\\\midrule
+SHD & 2,264 & 89.80 & 90.33 & $+0.53$\\
+SSC & 20,382 & 72.34 & 75.29 & $+2.95$\\
+DVS Gesture & 264 & 86.74 & 86.74 & $0.00$\\
+S-MNIST & 10,000 & 94.39 & 96.42 & $+2.03$\\
+PS-MNIST & 10,000 & 89.00 & 89.63 & $+0.63$\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Clean gesture accuracy was identical. On the other four tasks the difference ranged from 0.53 to 2.95 percentage points. On sequential images the difference was already visible during training. On S-MNIST, for example, clean validation accuracy at epoch five was 82.64\% for DMP and 92.12\% for GDSM. The gap narrowed later in training. Figure~\ref{fig:training} shows the validation curves, including the separate mixed-training schedule for SSC.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/training-curves.pdf}
+\caption{Recognition of clean validation examples during training. The dashed line marks the switch from clean to mixed training. Markers denote recorded evaluations. SSC uses the 40+12 schedule. Image curves give the mean and one standard deviation over three training seeds.}
+\label{fig:training}
+\end{figure*}
+
+The SSC comparison allows two closer looks. Both networks used two layers of 256 neurons and took 59,000 updates on the same examples. DMP had 116,913 trainable parameters and GDSM had 127,639. Replacing the memory raised whole-word accuracy by 2.95 points. We then took the fitted GDSM and switched off only the weights that read its stable states in the two hidden layers, preserving biases and the rest of the computation. Accuracy fell from 75.29\% to 23.17\%. The neurons were using this memory during ordinary word recognition. To find out whether information from earlier in the word mattered, we intervened at a single instant.
+
+\subsection{Clearing the state halfway through a word}
+
+We split each 250-frame word in half. After the network heard the first 125 frames, we copied its entire state. Both copies then heard exactly the same second half. In one copy we cleared the stable state in both layers once, at the midpoint. Candidate states, membrane potentials and gate history all carried over. Normal writes resumed at frame 126. We classified the word using only the scores from the final 125 frames, so votes cast during the first half could not enter the decision directly.
+
+This experiment used a separate fitted SSC model with 128 neurons per layer, trained for 200 clean and 12 mixed epochs. Across 20,382 test words, accuracy from second-half scores was 32.83\% with the carried state and 28.84\% after the reset. That amounts to a net 813 additional correct words, or 3.99 percentage points. With background spikes added only to the second half, the corresponding values were 17.73\% and 15.33\%, a net 489 words. The difference arose while speech was still arriving. Given the same subsequent sounds, the network made better use of them when it carried its earlier state forward.
+
+\section{What the timing of noise reveals}
+
+\subsection{During and after the same gesture}
+
+The two models tied on clean gestures, which makes gestures a useful way to examine what follows. In one test, background events accompanied the movement from start to finish and the model answered as soon as it ended. In the other, the model saw the clean movement, received 80 frames of background events, then identified the gesture from its last 20 outputs. Both tests used the same mean noise intensity calibrated on training data. The first asks the model to perceive a movement in noise. The second lets us examine how long evidence already acquired can still affect its answer.
+
+With noise during the gesture, DMP recognized 75.76\% and GDSM recognized 64.39\%. With noise after the gesture, the scores were 24.24\% and 46.59\%. We can also follow just the 224 gestures both models got right when clean. GDSM lost a net 25 of these relative to DMP when the noise accompanied the movement, and gained a net 58 when it followed the movement. Changing when the interference arrived reversed the outcome on the same gestures (Fig.~\ref{fig:paired}).
+
+\begin{figure*}[t]
+\centering\includegraphics[width=0.95\textwidth]{figures/paired-effects.pdf}
+\caption{GDSM minus DMP accuracy in percentage points. (a) Noise spans the event. Curves use all examples and the subset both models recognized when clean. (b) The decision uses the last 20 outputs after 80 frames of background noise. Diamonds give the architecture difference, and dots show individual training seeds for the image tasks. Noise units are task-specific (Appendix~\ref{app:training}).}
+\label{fig:paired}
+\end{figure*}
+
+Background spikes throughout a word also weakened GDSM on the two speech tasks. At a mean of 0.125 added events per channel per frame, DMP and GDSM scored 52.56\% and 46.11\% on SHD, and 12.14\% and 9.42\% on the clean-trained SSC models in Table~\ref{tab:recognition}. A separate pair of SSC models exposed to interruptions during training retained a GDSM advantage at low noise. That advantage narrowed with intensity. At 0.25, DMP scored 14.43\% and GDSM 9.77\% (Fig.~\ref{fig:speech}). Holding on to a cue already acquired and extracting one from a noisy signal are abilities we can measure separately.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/ssc-speech.pdf}
+\caption{SSC models trained for 40 clean and 12 mixed epochs. (a) The same utterance without and with a Poisson background of mean 0.25 throughout. (b) Whole-word accuracy on the same 20,382 test utterances. FSNN is the fast-path spiking network without shared memory.}
+\label{fig:speech}
+\end{figure*}
+
+\subsection{Reading the layer after the evidence has passed}
+
+The same check is possible with a stream of pixels. After each model saw all 784 pixels of a digit, we fed it 80 frames of noise. With pixels in scan order, DMP and GDSM scored 40.53\% and 58.87\%. With pixels permuted, they scored 26.33\% and 45.96\%, averaged over three training seeds in both cases. We also extended silence to 160 frames, a duration unseen in training. With pixels in scan order, GDSM still identified 78.68\% of images from its final outputs and DMP identified 8.69\%. With the permutation, the corresponding accuracies were 56.43\% and 14.12\%. Figure~\ref{fig:retention} traces what happens as the interval grows. Accuracy after 80 noise frames was much lower on SHD, where the matched models in Table~\ref{tab:recognition} scored 4.95\% (DMP) and 10.29\% (GDSM).
+
+Training affects how a network uses this pathway. On SSC, after 80 frames of noise the models trained on clean words scored 2.96\% (DMP) and 3.22\% (GDSM), both close to chance for 35 classes. In the separate 40+12 schedule, training asked the models to identify the original word after an interruption. After 120 noise frames, DMP scored 3.91\% and GDSM 52.79\%. Backbone width and channel pooling also differ between schedules. Within the latter schedule, the same GDSM scored 11.47\% under this disturbance before mixed training and 52.79\% afterwards.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/retention.pdf}
+\caption{Class information accessible after the event. The horizontal axis gives the number of appended frames. Every point uses the last 20 outputs, including the clean endpoint at zero. A dashed vertical line marks the largest trained gap where longer gaps were tested. Gesture noise scores average three draws. Image-task shading shows one training-seed standard deviation.}
+\label{fig:retention}
+\end{figure*}
+
+SHD lets us ask how much the input to memory matters. Under one auxiliary-supervision schedule we trained two models with almost identical parameter counts. One expanded the input to 30 values and collapsed it to a scalar before writing. The other passed all 30 values into the candidate. Decoding the clean word at its endpoint from the stable state alone improved from 69.57\% to 81.05\%. Reading the whole network after 80 frames of interference improved from 59.76\% to 66.70\%, averaged over silence and noise (Appendix~\ref{app:shd}). What the gate can preserve depends on what enters memory in the first place.
+
+\section{The cost of a second state}
+
+DMP keeps its memory small by sharing it across the layer. GDSM retains that sharing and adds work for the vector input, write gate and stable readout. If all write gates close on a step, the stable state stays the same and its previously computed read current can be reused. On clean gestures, the estimated effective multiply--accumulate count per example rose from 63.212 million for DMP to 67.196 million for cached GDSM across the whole network, an increase of 6.30\% (Fig.~\ref{fig:hardware}). With 80 frames of appended silence, caching saved 1.18\% of the model’s own full-network count.
+
+We implemented the memory path in the original DMP Chisel framework and replayed 944 input steps with weights from a trained layer. All 117,056 checked fixed-point values matched an integer reference. The replay tests arithmetic and timing inside the memory core. The full-network operation count is a separate estimate. Energy on silicon remains to be measured.
+
+\begin{figure}[t]
+\centering\includegraphics[width=\linewidth]{figures/full-network-macs.pdf}
+\caption{Estimated effective multiply--accumulate operations per gesture across the full network, averaged over all 264 test examples. Dense execution recomputes the stable read. Cached execution can reuse it. The axis starts at zero and is in millions.}
+\label{fig:hardware}
+\end{figure}
+
+\section{Returning to the movement}
+
+At the top of the circle, the path the hand has taken should still count. DMP provides a route from past inputs to the current response. Our change lets two states on that route update at different times. The midpoint intervention made that contribution observable. Given the same second half of a word, the network recognized more words when it carried the earlier state forward. Which phonemes or portions of a trajectory are encoded by particular coordinates remains to be determined.
+
+What the memory can do depends on what arrives next. When background events followed a clearly visible gesture, the stable state extended the influence of the preceding movement. When background events accompanied the gesture from the outset, both paths could receive distorted cues, and DMP recognized more gestures at the tested medium intensity. An open question is which new cues deserve a stable write while a movement is still unfolding and which can remain in the candidate for the next few steps.
+
+\paragraph{Data and code.}
+
+The datasets are public~\cite{shd,gesture,mnist}. Code, per-example predictions and hardware replay data are available at \url{https://github.com/Veirsune/Dual_memory_pathways}.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\appendix
+\setcounter{dbltopnumber}{4}
+
+\section{Gate, training and computation}
+\label{app:training}
+
+In the notation of DMP, $s^{l-1}[k]\in\R^M$ enters layer $l$ at step $k$, and $u^l[k]\in\R^N$ denotes the membrane potentials of its $N$ neurons. In DMP, $x^l[k]$ is the scalar drive and $m^l[k]\in\R^d$ the shared memory. The input mapping is $f_x$. The fixed matrices $\bar A\in\R^{d\times d}$ and $\bar B\in\R^{d\times1}$ come from a discretized Legendre memory unit~\cite{dmp,lmu}.
+
+\begin{equation}
+\begin{aligned}
+ x^l[k]&=f_x(W_x s^{l-1}[k]+b),\\
+ m^l[k]&=\bar A m^l[k-1]+\bar B x^l[k] .
+\end{aligned}
+\label{eq:dmp}
+\end{equation}
+
+GDSM expands the projection $W_x$ from one row to $d$ rows and drives its candidate $p^l[k]$ with a vector $\mathbf{x}^l[k]$. The implementation uses ReLU for $f_x$. A fixed positive diagonal scaling in the code can be absorbed into $W_x$ and $b$ by positive homogeneity. The Legendre window $\theta$ is 40 for speech and 300 for Gesture and the image tasks. Compressing recent input into a state also appears in other linear memory and state-space models~\cite{hippo,s4}.
+
+\begin{equation}
+\begin{aligned}
+ \mathbf{x}^l[k]&=f_x(W_x s^{l-1}[k]+b),\\
+ p^l[k]&=\bar A p^l[k-1]+\bar B\odot \mathbf{x}^l[k] ,
+\end{aligned}
+\label{eq:candidate}
+\end{equation}
+
+Equation~\eqref{eq:stable} writes the stable state. The fast input supplies $I^l[k]$ and independent reads of candidate and stable states supply $I_m^l[k]$. The two currents and a combined bias drive the LIF neurons. States start at zero for a new sequence and carry through inserted gaps.
+
 \begin{equation}
 \begin{aligned}
  I^l[k]&=W_f s^{l-1}[k],\\
@@ -86,26 +208,9 @@ GDSM adds a candidate $p^l[k]$ and retains $m^l[k]$ for protected storage. We ex
 \end{aligned}
 \label{eq:read}
 \end{equation}
-The drive $\mathbf{x}^l[k]$, candidate $p^l[k]$ and stable state $m^l[k]$ are all $d$-dimensional. Compared with DMP, $W_x$ now has $d$ rows rather than one, allowing different input-channel combinations to enter memory. The column $\bar B$ scales this drive coordinatewise. The code's fixed diagonal scaling is absorbed into $W_x$ and $b$ (Appendix~\ref{app:training}). No separate memory is introduced for each neuron.
 
-The candidate updates at every step to track new input. The stable state updates only through its write gate $g^l[k]\in[0,1]^d$. It receives the previous candidate $p^l[k-1]$, allowing the gate to use current evidence before accepting that candidate and preventing the current frame from entering stable memory through the candidate branch in the same step. This delay defines the write timing; rejection of a sustained disturbance is learned by the gate.
+The local gate reads normalized mean activity, the absolute change in mean activity, variance and nonzero occupancy as a vector $f^l[k]$. The history follows $e^l[k]=\rho e^l[k-1]+(1-\rho)f^l[k]$ with $\rho=0.8$. In Eq.~\eqref{eq:gate}, $q^l[k]$ is a coordinatewise binary permission from a small perceptron using raw-input features and their history, and $s^0[k]$ is the current sensor frame. We set $\varepsilon=0.02$. An empty frame, a local gate below threshold or a withheld permission can set a write exactly to zero. With a write coefficient of 0.02 for 80 steps, the direct coefficient on the old state would fall to $0.98^{80}\approx0.20$. This explains why exact closure matters.
 
-Following DMP, $I^l[k]$ denotes the fast input current and $I_m^l[k]$ the memory current. Their sum, together with the combined readout bias $b_o$, drives the LIF layer. Candidate and stable memory have independent read projections. When $g^l[k]=\mathbf0$, $m^l[k]$ is unchanged while candidate and fast processing continue. The product $W_m m^l[k]$ can therefore be cached and reused.
-
-\begin{figure*}[t]
-\centering\includegraphics[width=.94\textwidth]{figures/architecture.pdf}
-\caption{\textbf{Shared-memory architectures.} \textbf{a}, DMP~\cite{dmp} drives one shared state with a scalar input. \textbf{b}, GDSM uses vector drive, a candidate state and a gated stable state. The write carries $p^l[k-1]$; independent reads combine both states with the fast pathway. $W_m$ is the memory-read projection in both panels; layer superscripts are omitted in the diagram. The diamond denotes $g^l[k]$, whose causal construction is specified in Eq.~\eqref{eq:gate}.}
-\label{fig:architecture}
-\end{figure*}
-
-\subsection{Exact gate closure and training objective}
-A small write gate can still accumulate substantial drift. For a fixed realized gate sequence, the direct coefficient of old stable coordinate $j$ after $L$ steps is
-\[
- R_j(k,L)=\prod_{r=1}^{L}(1-g_j^l[k+r]).
-\]
-For example, a constant gate of 0.02 gives $(0.98)^{80}\approx0.20$. This coefficient describes the old state's direct contribution, rather than the fraction of class information retained. Nevertheless, it shows why weak continuous writing may be insufficient for long pauses. We therefore allow exact closure.
-
-Let $f^l[k]=f(s^{l-1}[k])$ contain four input statistics: normalized mean activity, absolute change in mean activity, variance and nonzero occupancy. Their history is summarized by $e^l[k]=\rho e^l[k-1]+(1-\rho)f^l[k]$, with $\rho=0.8$. The gate uses current features and the previous history:
 \begin{equation}
 \begin{aligned}
  \hat g^l[k]&=\sigma\!\left(W_g[f^l[k];e^l[k-1]]+b_g\right),\\
@@ -115,9 +220,11 @@ Let $f^l[k]=f(s^{l-1}[k])$ contain four input statistics: normalized mean activi
 \end{aligned}
 \label{eq:gate}
 \end{equation}
-The threshold $\varepsilon=0.02$ is applied coordinate by coordinate. The binary permission $q^l[k]\in\{0,1\}^d$ comes from a small MLP using current raw-input statistics and their historical summary. A raw empty frame closes all stable writes. Otherwise, each coordinate must pass both the local threshold and the learned permission. The forward pass uses hard decisions; the backward pass uses sigmoid derivatives as surrogates. No interruption mask or future frame is supplied to the gate.
 
-In the main SSC, Gesture and MNIST mixed-training comparisons, all models receive the same class supervision, without noise-position labels for gate learning. Let $T$ denote the length of the complete, possibly extended sequence, $o[k]$ its per-step output score, and $y$ the class. We combine whole-sequence and endpoint classification:
+The forward pass uses hard gate decisions and the backward pass uses sigmoid surrogate gradients~\cite{surrogate,spikingjelly}. Local gate weights start at zero and their bias at $\log(0.95/0.05)$. The permission output weights start at zero and their bias at $+2$. Here the gate dimension grows with shared memory size, while other spiking models learn gates or timescales per neuron~\cite{glif,tclif}. Input-dependent updates also appear in selective state-space models~\cite{mamba}.
+
+Ordinary whole-word training applies cross-entropy to the mean of the $T$ per-frame class scores $o[k]$. Mixed training also uses the mean over the last $K=20$ frames, weighting the two losses equally ($\lambda=0.5$ in Eq.~\eqref{eq:loss}). Both targets are the original class $y$. This gives the model a training signal at the end of an interruption. Event boundaries define the bins and readout times. The write gate receives features of the input. Both memory states learn from task errors. Appendix~\ref{app:shd} identifies the SHD controls that use additional supervision.
+
 \begin{equation}
 \begin{aligned}
 \mathcal L={}&(1-\lambda)\CE\!\left(\frac1T\sum_{k=1}^{T}o[k],y\right)\\
@@ -125,17 +232,10 @@ In the main SSC, Gesture and MNIST mixed-training comparisons, all models receiv
 \end{aligned}
 \label{eq:loss}
 \end{equation}
-where $\lambda=0.5$ and $K=20$. When a gap is appended, its final window contains no new task event. The second term therefore encourages the network to preserve information acquired earlier. GDSM supplies a stable storage path for that objective, while the first term maintains ordinary sequence classification. Clean-stage objectives and the auxiliary SHD diagnostics are specified in Appendix~\ref{app:training}.
 
-\section{Experimental design}
-\subsection{Datasets and model comparisons}
-We evaluate the contribution of shared memory on SHD, Spiking Speech Commands (SSC), DVS Gesture, sequential MNIST (S-MNIST) and permuted sequential MNIST (PS-MNIST)~\cite{shd,gesture,mnist}. The last two tasks use the same images with different pixel orderings. Table~\ref{tab:protocol} summarizes the main comparisons.
-
-The retention training comparisons include FSNN, scalar-drive DMP and GDSM with the same fast backbone, input realizations and training schedule. DMP and GDSM use the same candidate dimension $d$; GDSM adds a stable state and gate parameters. SSC and MNIST share the initial fast-path and classifier weights across models, and GDSM's vector drive is initialized from the DMP scalar drive. Gesture starts from each model's own clean validation-selected checkpoint, then uses identical mixed-training batches for all three models. All GDSM transfer experiments use the fixed read in Eq.~\eqref{eq:read}. For SSC, our 40 clean and 12 mixed epochs used batches of 512 and max pooling across groups of five input channels. The released DMP training script uses 200 clean epochs, batches of 256, channel summation and a whole-word objective. Our DMP baseline therefore establishes performance under the shared retention protocol; the original study reports 72.90\% on SSC under its own settings.
-
-\begin{table*}[t]
+\begin{table*}[tp]
 \centering\small
-\caption{Main comparison settings. $T_0$ is the original sequence length and $d$ is the candidate dimension in each memory layer. Gesture uses a checkpoint selected within 50 clean epochs, followed by 20 fixed mixed epochs.}
+\caption{Training and evaluation sizes. $T_0$ is the original frame count and $d$ the dimension of each shared state. The last column gives clean plus fine-tuning epochs. Gesture selects its starting checkpoint within 50 epochs. The SSC 200+12 schedule supplies the model for the midpoint intervention.}
 \label{tab:protocol}
 \begin{tabular}{lrrrrll}
 \toprule
@@ -143,6 +243,7 @@ Task & Train / validation / test & Classes & $T_0$ & $d$ & Backbone & Clean + mi
 \midrule
 SHD & 8,156 / -- / 2,264 & 20 & 100 & 30 & $140\to128\to128\to20$ & $200+30$\\
 SSC & 75,466 / 9,981 / 20,382 & 35 & 250 & 10 & $140\to256\to256\to35$ & $200+0$\\
+SSC & 75,466 / 9,981 / 20,382 & 35 & 250 & 10 & $140\to128\to128\to35$ & $200+12$\\
 SSC & 75,466 / 9,981 / 20,382 & 35 & 250 & 30 & $140\to128\to128\to35$ & $40+12$\\
 DVS Gesture & 901 / 176 / 264 & 11 & 100 & 40 & Conv32--Conv64--FC256--11 & $50+20$\\
 S-MNIST & 54,000 / 6,000 / 10,000 & 10 & 784 & 40 & $1\to200\to200\to10$ & $50+12$\\
@@ -151,64 +252,24 @@ PS-MNIST & 54,000 / 6,000 / 10,000 & 10 & 784 & 40 & $1\to200\to200\to10$ & $50+
 \end{tabular}
 \end{table*}
 
-\subsection{Testing recognition and retention separately}
-For SSC word recognition, the network scores each class on every frame. At the known word boundary (frame 250), we classify the word using its mean class scores over frames 1--250. A second readout at the same instant uses frames 231--250. To measure retention, we append silence or noise and ask for the original class again at the end of the gap, using the most recent 20 frames. For example, an appended 120-frame gap moves this second decision to frame 370. In the middle-interruption condition, the event resumes after an inserted gap and classification uses the mean scores over the extended sequence.
+For SHD in Table~\ref{tab:recognition}, both architectures started from the same pretrained DMP and received the same class loss and sample order over 8,156 training words for 30 fine-tuning epochs (seed 301). The 256-wide SSC models used seed 42, batches of 256 and Adam with initial learning rate 0.01, with clean validation selection. At the original rate of 0.1, clean test accuracy was 60.21\% and 67.68\%, and the selected DMP had zero drive in both memory layers on 2,048 validation words. The midpoint intervention used a separate 128-wide fit with seed 42. Both 200-epoch schedules sum each group of five adjacent auditory channels. The 40+12 SSC schedule uses max pooling, batches of 512, seed 801 and AdamW learning rates of 0.003 and 0.001. It uses Eq.~\eqref{eq:loss} in both stages.
 
-Mixed training samples clean input, silence and Poisson noise with equal probability. SSC and MNIST use lengths 40 and 80 and either middle or tail placement. Evaluation adds length 120 for SSC and 160 for MNIST, which are absent from training. SSC noise has rate 0.25 per channel per frame; MNIST uses rate 0.1 clipped to $[0,1]$. Gesture uses lengths 20, 40 and 80, with noise intensity calibrated from training activity (1$\times$); 3$\times$ is an additional stress test. Noise realizations are paired across model families.
+Gesture uses subjects 1--19 for training, 20--23 for validation and 24--29 for testing, with 100 two-polarity frames at $32\times32$ pixels. Mixed training runs for 20 epochs with seed 701. The MNIST training and validation splits are stratified. Its three training seeds are 42--44 with a common pixel permutation for PS-MNIST. All 18 MNIST fits were frozen before official testing. The accompanying experimental records give the development and evaluation chronology for SHD and SSC, along with splits, model selection and disturbance conditions.
 
-Auditory and gesture events are normalized into frames using known segment boundaries. All state updates are causal over those frames, and inserted gaps do not reset the network. The longest main test contains 944 pixel steps. These constructed streams isolate retention and interruption recovery while keeping the class target unambiguous.
+Whole-event speech noise consists of independent Poisson counts with means 0.0625, 0.125 or 0.25 per channel per frame. Noise after a word uses 0.25 for the 80-frame probe. Gesture tests 0.5, 1 and 3 times the mean training event density during movement and uses 1 times that density for the paired post-movement test. Image gaps use a Poisson rate of 0.1 clipped to $[0,1]$. Models share each draw within a condition. Gesture uses one draw per condition in the paired analysis and three for its gap-length curves. Mixed training uses 40- or 80-frame gaps on speech and images, with 20 frames also used for gestures. An inserted gap precedes the resumption of the event. Overlay leaves the event length unchanged.
 
-\subsection{Repetitions and uncertainty}
-Both MNIST tasks use three training seeds, and all 18 models are frozen before official-test evaluation. Their results are reported as mean $\pm$ sample standard deviation. Each SSC protocol uses one training seed. Gesture uses one fine-tuning seed. Its retention curve averages three noise realizations, while the paired example analysis uses one shared draw per condition. SHD supervision controls use three fine-tuning seeds. Speaker- and subject-cluster bootstrap intervals describe paired SSC and Gesture differences; three-seed paired $t$ intervals are reported for MNIST in Appendix~\ref{app:additional}. Training details and evaluation chronology are provided in Appendix~\ref{app:training}.
+\paragraph{Hardware.}\label{app:hardware}
 
-\section{Results}
-\subsection{Class information survives long interruptions}
+The core uses signed 24-bit Q11.12 arithmetic. With four inputs and 32 read outputs, local updates at $d=10/30$ take 43/63 cycles for DMP and 136/216 cycles for GDSM, falling to 104/184 cycles for a fully closed cached step. The trained-weight replay used 784 pixel steps, 80 silent steps and 80 noise steps, testing four read coordinates of a fitted $d=40$ layer. Caching reduced replay cycles from 188,800 to 185,528. These tests characterize timing and integer arithmetic inside the memory core.
 
-\begin{table*}[t]
-\centering\small
-\caption{Endpoint classification accuracy (\%) after mixed training. The clean and disturbed columns both use the final 20 frames. For Gesture, noise is 1$\times$ the training-calibrated rate. SSC and MNIST use an unseen longest gap; MNIST reports three-seed mean $\pm$ SD.}
-\label{tab:retention}
-\begin{tabular}{llrrrr}
-\toprule Task & Model & $L$ & Clean endpoint & Silence endpoint & Noise endpoint\\\midrule
-\tableinput{tables/retention.tex}
-\bottomrule
-\end{tabular}
-\end{table*}
+\section{Separating input projection and write control}
+\label{app:shd}
 
-\begin{figure*}[t]
-\centering\includegraphics[width=\textwidth]{figures/retention.pdf}
-\caption{Information retained after an appended gap. The point at $L=0$ is the clean endpoint, using the same readout as all other points. MNIST shading shows one training-seed SD. Gesture noise scores average three paired realizations. Dashed lines mark the largest trained length when a longer unseen gap is evaluated.}
-\label{fig:retention}
-\end{figure*}
-
-GDSM substantially improves endpoint accuracy across speech, event vision and sequential images (Table~\ref{tab:retention}). On SSC, it retains 54.93\% after 120 silent frames and 52.79\% after 120 noise frames, compared with 3.52\% and 3.91\% for DMP. GDSM's own clean endpoint is 56.52\%, so the noise interval costs only 3.73 percentage points. Its retention changes little from length 40 to the unseen length 120 (Fig.~\ref{fig:retention}). This is direct evidence that the learned representation remains usable beyond the interruption lengths used in training.
-
-Gesture offers an especially clear comparison because the two memory models begin the gap with similar accuracy: 85.61\% for DMP and 86.36\% for GDSM. After 80 silent frames, their accuracies diverge to 19.70\% and 70.83\%. At the trained noise intensity, the corresponding values are 26.52\% and 47.47\%. The advantage therefore reflects preservation of information, rather than a large difference in initial recognition. The paired gains are 51.14 points for silence and 20.96 for noise, with subject-cluster 95\% intervals of $[42.93,57.27]$ and $[11.07,28.40]$.
-
-The benefit extends to full 784-step image sequences. After an unseen 160-frame pause, S-MNIST accuracy rises from $8.69\pm5.36$\% with DMP to $78.68\pm15.74$\% with GDSM. PS-MNIST rises from $14.12\pm0.46$\% to $56.43\pm17.28$\%. Under noise, GDSM reaches $32.03\pm15.51$\% and $28.02\pm12.89$\%, respectively. All three training seeds improve over DMP in each of these four tail conditions. The effect is strongest for silence, with larger remaining variation under active interference.
-
-
-
-
-
-\begin{figure*}[t]
-\centering\includegraphics[width=\textwidth]{figures/training-curves.pdf}
-\caption{\textbf{Learning curves on the validation sets.} Accuracy uses whole-sequence scores on clean inputs in both stages. Dashed lines mark the switch to mixed training. Markers denote recorded evaluations: every 10 epochs for SSC, every 5 for MNIST, and each stage's final epoch. Lines connect those observations. SSC uses one seed; MNIST shows the mean and one standard deviation over three seeds.}
-\label{fig:training}
-\end{figure*}
-
-\subsection{Useful content and protected writes are complementary}
-The endpoint gains raise two questions: what has been stored, and what prevents it from being overwritten? SHD controls examine these separately. We compare scalar drive, vector drive and a \emph{wide-scalar} control that expands the input to $d$ coordinates and then compresses it back to one scalar. The wide-scalar model closely matches the vector model's parameter count. All three share the same protected-memory training recipe and independent candidate/stable reads.
-
-Table~\ref{tab:capacity} shows that vector drive improves both clean stable-memory decoding and the main SNN's retention. At $d=30$, it reaches 66.70\% average L80 retention, compared with 59.76\% for the slightly larger wide-scalar control. The improvement is therefore not explained by parameter count alone. The same comparison at $d=10$ gives 51.88\% versus 47.46\%. In the three-seed scalar--vector comparison, mean retention improves by 14.36 and 12.46 points at $d=10$ and $d=30$, respectively.
-
-Protection is also important. With vector drive but without the additional protection mechanism, the single-seed controls reach only 23.98\% and 38.25\% at those capacities, compared with 51.88\% and 66.70\% in the protected variants. The combined evidence supports the design's two roles: vector drive improves what enters memory, and selective writes help preserve it.
-
-The capacity study used a historical recipe with explicit gate supervision. A separate matched supervision ablation asks whether useful protection can be learned without those labels (Appendix~\ref{app:shd}). At $d=30$, task training plus the zero-input rule reaches 67.82\% silence retention and 60.16\% noise retention. Adding noise-position-derived gate losses changes noise retention to 60.81\%, an increase of only 0.65 points. The main transfer experiments therefore use class supervision without noise-position gate labels.
+The SHD component experiments use a separate training recipe. The capacity study varies the input projection and includes an auxiliary stable-state class loss (weight 1.0) and gate supervision from known disturbance positions. In Table~\ref{tab:capacity}, the wide scalar compresses through $M\to d\to1$, while the vector model retains $d$ inputs. Both use the same readouts and write protection. At $d=30$ the vector model has 62 fewer parameters and yields more decodable class information.
 
 \begin{table}[htbp]
 \centering\small
-\caption{SHD input-bandwidth control, seed 501. ``Stored'' is clean-endpoint accuracy of a stable-memory auxiliary head; ``Retained'' is main-SNN accuracy averaged over silence and noise L80 gaps. All rows use the same historical protected recipe, including explicit gate supervision.}
+\caption{Projection comparison on SHD, seed 501. Stored is the auxiliary classifier accuracy from the stable state at a clean word endpoint. Retained is the mean whole-network endpoint accuracy after 80 frames of silence or noise.}
 \label{tab:capacity}
 \begin{tabular}{rlrrr}
 \toprule $d$ & Drive & Parameters & Stored (\%) & Retained (\%)\\\midrule
@@ -222,102 +283,11 @@ The capacity study used a historical recipe with explicit gate supervision. A se
 \end{tabular}
 \end{table}
 
-\subsection{Retention and recognition measure different abilities}
-Figure~\ref{fig:training} shows clean-input validation accuracy across both training stages. GDSM is ahead of DMP at the first logged evaluation on all three tasks; on S-MNIST, the epoch-5 means are 92.12\% and 82.64\%. Mixed training largely preserves recognition in the memory models but substantially reduces FSNN accuracy on MNIST. Final clean-input test results from both stages are listed in Appendix~\ref{app:additional}.
+The write-control study fine-tunes matched starting weights for 30 epochs with seeds 501--503. All arms retain the auxiliary class loss. At $d=30$, class supervision with empty-frame closure gave 67.82\% after silence and 60.16\% after noise. Adding disturbance-position supervision for the write gate gave 60.81\% after noise (Table~\ref{tab:supervision}). Concentrating the same overall noise intensity into 28 adjacent channels reduced the empty-frame model to 6.91\%. Changing which frequency bands carry the disturbance also changes what survives in memory.
 
-
-
-At the end of a clean SSC word, GDSM recognized 58.83\% of words using the whole utterance and 56.52\% using its last 20 frames. DMP scored 47.89\% and 11.05\% at those same readouts. When tested again after 120 frames of background noise, GDSM scored 52.79\% and DMP 3.91\% using the final 20 frames. GDSM thus entered the gap with a stronger endpoint representation. Gesture offers a closer comparison of retention because the two models start with nearly identical clean endpoint accuracies.
-
-Interruption training contributes to active-noise robustness. Clean-only GDSM reaches 11.47\% after SSC tail noise of length 120, increasing to 52.79\% after mixed training. The architecture supplies a protected storage path, and disturbance exposure teaches the network to use it.
-
-When the original event resumes after a middle gap, later evidence can replenish the state. GDSM exceeds DMP in all six SSC middle conditions, but gains are smaller and mixed on MNIST. The longest-gap results in Appendix~\ref{app:additional} distinguish this recovery problem from remembering a completed event. The main advantage of GDSM is persistence of usable information after evidence is no longer present.
-
-During speech, the relative performance depended on background intensity (Fig.~\ref{fig:speech}). GDSM recognized 58.83\% of clean words and DMP recognized 47.89\%. With background spikes added throughout the word at 0.0625 events per channel per frame, these accuracies fell to 25.69\% and 20.46\%. At twice this rate the gap narrowed to 0.92 points. At 0.25, DMP led with 14.43\% versus 9.77\% for GDSM. Selective storage preserved a completed word under this noise rate in the retention task, while sustained interference during recognition eroded GDSM's clean advantage.
-
-\begin{figure*}[t]
-\centering\includegraphics[width=\textwidth]{figures/ssc-speech.pdf}
-\caption{SSC word recognition with background spikes throughout the utterance. (a) The first test utterance, clean and with Poisson noise at 0.25 events per channel per frame. Color marks the source of spike activity. (b) Accuracy on 20,382 utterances using the mean class score across all 250 frames. The three frozen models receive the same noise realization for each utterance and rate.}
-\label{fig:speech}
-\end{figure*}
-
-We compared the two architectures on exactly the examples both classified correctly on clean input (Fig.~\ref{fig:paired}a). With background events added throughout each example, the net change per 100 such examples was -6.85 on SHD, -11.16 on Gesture and -2.53 on SSC. Speech used a Poisson rate of 0.125 per channel per frame; Gesture used the mean training event density. Both models recognized 224 gestures in common. GDSM lost a net 25 of those relative to DMP during the gesture but preserved a net 58 more when the same noise intensity followed the gesture for 80 frames. The timing of interference changes the sign of the architectural effect.
-
-For the direct SHD comparison, both models started from the same pretrained DMP and received identical inputs and classification objectives for 30 epochs (seed 301). For the clean-trained SSC comparison, both models used two 256-neuron layers, $d=10$, sum-pooled channels and 200 epochs (seed 42). At an initial Adam learning rate of 0.01, clean test accuracy was 72.34\% for DMP and 75.29\% for GDSM. Under simultaneous noise at 0.125, the respective accuracies were 12.14\% and 9.42\%. With an 80-frame noise tail, DMP and GDSM scored 4.95\% and 10.29\% on SHD and 2.96\% and 3.22\% on clean-trained SSC. At the original rate of 0.1 the selected DMP checkpoint had zero drive in both memory layers on 2,048 validation words. The apparent 7.47-point clean advantage at that rate therefore included a baseline optimization failure. Disabling only the stable readout in the fitted GDSM reduced clean word recognition from 75.29\% to 23.17\%, while delayed accuracy changed by just 0.27 percentage points.
-
-\begin{figure*}[t]
-\centering\includegraphics[width=.90\textwidth]{figures/paired-effects.pdf}
-\caption{Effect of candidate--stable memory on classification accuracy. (a) With noise throughout the event, each model decides at the event boundary. The two curves use all test examples and the subset both models recognized on clean input. (b) After 80 frames of background noise, the network classifies the preceding event from its last 20 outputs. Diamonds show the GDSM minus DMP difference in percentage points. Dots show individual training seeds for the two image tasks. Rates are specific to each dataset.}
-\label{fig:paired}
-\end{figure*}
-
-\section{Implementation cost and hardware verification}
-The retention mechanism has a measurable model-level cost. On clean Gesture inputs, effective full-network MACs increase from 63.212 million for DMP to 67.196 million for GDSM, an overhead of 6.30\% (Fig.~\ref{fig:hardware}). During an appended L80 silent gap, cached GDSM requires 68.455 million MACs versus 64.159 million for DMP. Caching reduces GDSM's own dense count from 69.274 million to 68.455 million, saving 1.183\% of full-network MACs. These estimates account for active computation across the network; the local memory-core cycle measurements are reported separately in Appendix~\ref{app:hardware}.
-
-We implement the memory branch in the public DMP Chisel framework using signed 24-bit Q11.12 arithmetic. The core includes vector drive, full candidate dynamics, delayed stable writes, causal gates, independent reads and a stable-read cache. All 25 original tests and seven additional integer-reference tests pass. A separate trained-weight reference test and native Verilator replay validate a 944-step sequence comprising 784 pixels, 80 silent steps and 80 noisy steps. All 117,056 checked fixed-point values agree exactly with the reference.
-
-The replay tests a memory core, with four read coordinates from a real $d=40$ trained layer. It verifies the arithmetic and update schedule; whole-network quantized classification remains a separate evaluation. Together with operation accounting, it establishes an implementable mechanism and its computation cost. Physical energy characterization requires the technology and memory-macro flow used in the original DMP hardware study~\cite{dmp}.
-
-\begin{figure}[t]
-\centering\includegraphics[width=\columnwidth]{figures/full-network-macs.pdf}
-\caption{Full-network effective MACs on Gesture, averaged over 264 test samples. The axis starts at zero. Counts include convolutional and memory-layer MACs; output synaptic operations are tabulated separately in the source accounting. These are operation estimates, not measured network latency or physical energy.}
-\label{fig:hardware}
-\end{figure}
-
-\section{Discussion and conclusion}
-The experiments show that persistent shared memory requires both informative content and selective updates. Increasing input bandwidth improves what can be stored, while the stable state protects that content without stopping ongoing integration. The benefit appears across spiking speech, event-camera gestures and long pixel sequences, and extends to gap lengths absent from training. GDSM therefore provides a practical way to strengthen retention in SNN layers while keeping memory shared across neurons.
-
-A command recognizer can act at the word boundary and cache its predicted label if the application needs it later. Our delayed readout asks how much class information remains accessible in the network itself as new frames arrive. The experiments use known event boundaries. Detecting when a speaker has finished or how early a command can be recognized in continuous speech remains an open question.
-
-Future work should improve adaptation to new events and unfamiliar noise statistics, using the switching and stress tests in Appendix~\ref{app:additional} as guides. More training-seed repetitions on SSC and Gesture and further matched-capacity controls would refine the attribution and variability of these effects.
-
-\paragraph{Data and code.}
-The datasets are publicly available~\cite{shd,gesture,mnist}. Source code, manuscript files, result tables and hardware replay data are available at \url{https://github.com/Veirsune/Dual_memory_pathways}. The implementation extends the original DMP project~\cite{dmp}; its authorship and source are preserved in the repository.
-
-\bibliographystyle{unsrtnat}
-\bibliography{references}
-\appendix
-\setcounter{dbltopnumber}{4}
-
-\section{Reproduction essentials}
-\label{app:training}
-The implementation uses SpikingJelly and surrogate gradients~\cite{spikingjelly,surrogate}. Table~\ref{tab:optimization} summarizes optimization; Table~\ref{tab:protocol} gives data sizes and backbones. Detailed preprocessing, feature normalization and implementation records are provided in the repository's \texttt{EXPERIMENT\_DETAILS.md}.
-
-\begin{table*}[t]
+\begin{table*}[tp]
 \centering\small
-\caption{Optimization settings. Learning rates and epochs are listed as clean / mixed. Gesture selects its clean checkpoint by validation accuracy within 50 epochs.}
-\label{tab:optimization}
-\begin{tabular}{llrrrr}
-\toprule Task & Optimizer & Epochs & Learning rate & Batch & Training seeds\\\midrule
-SSC & AdamW & $40/12$ & $0.003/0.001$ & 512 & 801\\
-Gesture & Adam & $50/20$ & --- / $10^{-4}$ & 4 & 701 (mixed)\\
-S-MNIST & Adam & $50/12$ & $0.001/0.0003$ & 512 & 42--44\\
-PS-MNIST & Adam & $50/12$ & $0.005/0.0003$ & 512 & 42--44\\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-\paragraph{States and gates.}
-States start at zero for each new sequence and persist across inserted gaps. Candidate dynamics use the original DMP Legendre construction with zero-order-hold discretization. The memory window is $\theta=40$ for speech and 300 for Gesture/MNIST. The code stores $D_{ii}=\bar B_i/c_i$, with positive $c_i$ spanning 0.5--1.5. Setting $W_x=C^{-1}\widetilde W_x$ and $b=C^{-1}\widetilde b$, where $C=\operatorname{diag}(c_i)$, gives the equivalent drive in Eq.~\eqref{eq:candidate} by ReLU homogeneity. Projection rows initially match scalar DMP; paired SSC/MNIST starts set $W_m=0$. The input mapping $f_x$ is ReLU in the released DMP code and in our experiments; the main equations retain the original paper's generic notation.
-
-Local gates start with zero weights and bias $\log(0.95/0.05)$. The permission MLP starts with zero output weights and bias $+2$; its hidden layer uses ReLU. Auditory features combine four global statistics and 14 frequency bands ($36\to32\to2d$ MLP); Gesture uses four statistics and $2\times4\times4$ spatial bins ($72\to32\to d$); MNIST uses four statistics ($8\to32\to2d$). Each input includes the previous feature EMA. Permission is one for a nonnegative output logit, with sigmoid surrogate gradients.
-
-\paragraph{Data and objectives.}
-Speech is reduced to 140 channels. Gesture uses subjects 1--19 for training, 20--23 for validation and 24--29 for testing, with 100 frames and two-polarity $32\times32$ inputs. MNIST uses a stratified training/validation split (seed 1701), normalized pixels and a shared PS-MNIST permutation (seed 1702). In the 40+12 SSC protocol, both stages use Eq.~\eqref{eq:loss}; the 200-epoch SSC runs use only the whole-word loss. MNIST uses whole-sequence loss in the clean stage. All main mixed stages use Eq.~\eqref{eq:loss}. SHD was used iteratively during development and SSC test evaluation had occurred in earlier stages; the reported protocols and scheduled checkpoints were fixed before evaluation. All 18 MNIST fits were frozen before their official-test evaluation.
-
-\paragraph{Hardware scope.}
-\label{app:hardware}
-The memory core uses signed 24-bit Q11.12 arithmetic. With four inputs and 32 read outputs, local DMP cycles are 43/63 at $d=10/30$, versus 136/216 for dense GDSM and 104/184 for fully closed cached GDSM. These exclude the fast backbone. Trained replay covers 944 steps and matches 117,056 integer-reference values; cached execution uses 185,528 rather than 188,800 cycles. Lookup-table settings and quantization errors are documented in the repository. No physical power or energy measurement is inferred from these counts.
-
-\section{SHD supervision controls}
-\label{app:shd}
-SHD uses 6,245 training, 640 validation and 1,271 confirmation examples from the training release, with 2,264 official-test examples. Inputs have 100 frames; the backbone has two 128-unit LIF layers. The capacity comparison in Table~\ref{tab:capacity} uses a shared historical recipe with explicit gate supervision and a stable-memory auxiliary loss of weight 1.0. Its wide-scalar control uses $M\to d\to1$ projections.
-
-The separate supervision ablation starts each arm from matched class-trained weights and freshly initialized permission networks. All arms retain the auxiliary class loss and run 30 epochs with seeds 501--503, batch size 128 and AdamW (learning rate 0.001, weight decay 0.05, clipping at 1). Training mixes single words (25\%), middle interruptions (37.5\%) and paired words (37.5\%), with silence or rate-0.25 noise and gaps of 20/40/80 frames. Table~\ref{tab:supervision} separates the empty-frame closure rule from additional gate classification and leakage losses. At $d=30$, closure raises silence retention from 29.52\% to 67.82\%; gate labels add only 0.65 points to noise retention. The main cross-dataset study therefore uses class supervision without gate labels.
-
-\begin{table*}[t]
-\centering\small
-\caption{SHD supervision ablation: accuracy (\%), mean $\pm$ SD over three fine-tuning seeds. Silence and noise use L80 retention queries; the new-word column uses sequence classification.}
+\caption{SHD write-gate controls. Accuracy (\%) is the mean and sample standard deviation over three fine-tuning seeds. Silence and noise each last 80 frames. The last column scores the next word.}
 \label{tab:supervision}
 \begin{tabular}{rlrrrr}
 \toprule $d$ & Training & Clean & Silence L80 & Noise L80 & New word\\\midrule
@@ -331,14 +301,14 @@ The separate supervision ablation starts each arm from matched class-trained wei
 \end{tabular}
 \end{table*}
 
-\section{Supplementary results}
+\section{Comparisons at different readout times}
 \label{app:additional}
-\paragraph{Recognition and recovery.}
-Table~\ref{tab:clean} reports clean-input recognition before and after mixed training; Table~\ref{tab:middle} gives every model's longest middle-gap result. All shorter conditions remain in the repository. GDSM exceeds DMP in all six SSC middle conditions. At MNIST L160, its middle-noise accuracy is higher but its middle-silence accuracy is slightly lower, distinguishing recovery after an interruption from retention after an event ends.
 
-\begin{table*}[t]
+Table~\ref{tab:clean} reports recognition on clean inputs before and after mixed training. Table~\ref{tab:retention} keeps the readout window at the final 20 frames. For example, DMP and GDSM scored 85.61\% and 86.36\% at the clean gesture endpoint, and 19.70\% and 70.83\% after 80 silent frames. Table~\ref{tab:middle} inserts the interruption inside the event, where the network receives fresh evidence from the same event after the gap.
+
+\begin{table*}[tp]
 \centering\small
-\caption{Clean-input whole-sequence accuracy (\%) at the clean and mixed checkpoints. MNIST values are mean $\pm$ SD over three training seeds. The FSNN drop under mixed training reflects the common endpoint objective in addition to ordinary recognition.}
+\caption{Clean inputs using whole-sequence scores. SSC uses the 40+12 schedule. Image values are means and sample standard deviations over three training seeds.}
 \label{tab:clean}
 \begin{tabular}{llrrr}
 \toprule Task & Stage & FSNN & DMP & GDSM\\\midrule
@@ -347,9 +317,20 @@ Table~\ref{tab:clean} reports clean-input recognition before and after mixed tra
 \end{tabular}
 \end{table*}
 
-\begin{table*}[t]
+\begin{table*}[tp]
 \centering\small
-\caption{Longest middle interruption: whole-sequence accuracy (\%). MNIST reports three-seed mean $\pm$ SD; Gesture noise is 1$\times$. These gaps are unseen during training for SSC and MNIST.}
+\caption{Final-20-frame accuracy (\%). Each mixed-trained model is read at the clean endpoint and at the end of silence or noise. Gesture uses noise at the mean training event density.}
+\label{tab:retention}
+\begin{tabular}{llrrrr}
+\toprule Task & Model & $L$ & Clean endpoint & Silence endpoint & Noise endpoint\\\midrule
+\tableinput{tables/retention.tex}
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[tp]
+\centering\small
+\caption{Longest middle gap, with scores averaged over the extended sequence. Image results are means and sample standard deviations over three training seeds.}
 \label{tab:middle}
 \begin{tabular}{llrrrr}
 \toprule Task & Interruption & $L$ & FSNN & DMP & GDSM\\\midrule
@@ -358,10 +339,8 @@ Table~\ref{tab:clean} reports clean-input recognition before and after mixed tra
 \end{tabular}
 \end{table*}
 
-\paragraph{Noise shifts and switching.}
-Concentrating SHD noise into 28 adjacent channels at matched global intensity lowers the $d=30$ zero-rule model's L80 retention from 60.16\% to $6.91\pm0.38$\%. Under unseen 3$\times$ Gesture noise at L80, all models reach 9.09\% tail accuracy; middle accuracy is 64.27\%, 19.19\% and 54.17\% for FSNN, DMP and GDSM. Thus protection depends on the disturbance distribution. In the frozen-memory switching study, static and dynamic reading give first-20-frame new-word accuracy of $12.28\pm0.87$\% and $12.69\pm0.45$\%, versus $12.22\pm0.97$\% for fixed reading. Their L80 noise retention is $58.94\pm8.17$\% and $61.50\pm8.36$\%, versus $60.16\pm8.76$\%. These small gains support the simpler fixed reader used in the main experiments.
+The paired midpoint intervals resample 498 speakers. The 95\% interval for carrying versus clearing the state was $[3.44,4.55]$ percentage points with a clean second half and $[1.89,2.93]$ with a noisy second half. Resampling the six test subjects for the paired gesture comparison gave GDSM minus DMP intervals of $[-19.59,-4.35]$ points with noise during movement and $[11.16,31.82]$ with noise afterwards. These intervals describe test-sample variation at fixed weights. The image tables report variability over independently trained seeds.
 
-\paragraph{Uncertainty.}
-SSC's L120 GDSM--DMP gains are 51.41 points for silence and 48.88 for noise; speaker-cluster bootstrap 95\% intervals are $[49.49,53.25]$ and $[46.96,50.73]$. These intervals condition on fitted models. MNIST L160 differences are positive for all three seeds; paired 95\% $t$ intervals (unclipped percentage points) are $[27.17,112.80]$ (S-MNIST silence), $[-22.10,65.84]$ (S-MNIST noise), $[-0.68,85.30]$ (PS-MNIST silence) and $[-14.19,48.45]$ (PS-MNIST noise).
+Two harder conditions illustrate the scope of these results. When the 80-frame background following a gesture was three times the training intensity, all three models scored 9.09\%. A separate SHD study concatenated two words. Over the first 20 frames of the new word, accuracy was 12.22\% with fixed read weights and 12.69\% with a dynamic reader, averaged over three seeds. The two tests expose the models to unfamiliar background activity and to the need for a prompt change of decision, respectively.
 
 \end{document}

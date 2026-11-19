@@ -20,7 +20,11 @@ sources={
  'gesture-report.md':'final-study/BLOCK3_REPORT.md','operations-report.md':'final-study/BLOCK4_REPORT.md',
  'rtl-report.md':'block7-hardware/REPORT.md','ssc-protocol.json':'block5-ssc/LOCKED_PROTOCOL.json',
  'mnist-protocol.json':'block6-mnist/LOCKED_PROTOCOL.json','gesture-protocol.json':'final-study/LOCKED_PROTOCOL.json',
- 'shd-protocol.json':'shd-supervision-ablation/protocol.json'}
+ 'shd-protocol.json':'shd-supervision-ablation/protocol.json',
+ 'paired-effects.csv':'large_scale/paired_effects/paired.csv',
+ 'paired-intervals.csv':'large_scale/paired_effects/uncertainty.csv',
+ 'ssc-midpoint.json':'large_scale/ssc_matched200/midpoint/results.json',
+ 'ssc-midpoint.npz':'large_scale/ssc_matched200/midpoint/predictions.npz'}
 manifest=[]
 for dest,src in sources.items():
  p=EXP/src;target=ROOT/'evidence'/dest

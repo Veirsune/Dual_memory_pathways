@@ -1,0 +1,59 @@
+{
+  "n": 20382,
+  "speakers": 498,
+  "implementation_checks": {
+    "clean_keep": {
+      "probe_n": 16,
+      "equal_predictions": 16,
+      "max_score_difference": 0.0
+    },
+    "clean_reset": {
+      "probe_n": 16,
+      "equal_predictions": 16,
+      "max_score_difference": 0.0
+    },
+    "noise_keep": {
+      "probe_n": 16,
+      "equal_predictions": 16,
+      "max_score_difference": 0.0
+    },
+    "noise_reset": {
+      "probe_n": 16,
+      "equal_predictions": 16,
+      "max_score_difference": 0.0
+    }
+  },
+  "clean": {
+    "keep_correct": 6692,
+    "reset_correct": 5879,
+    "keep_pct": 32.832891767245606,
+    "reset_pct": 28.84407810813463,
+    "keep_only": 1899,
+    "reset_only": 1086,
+    "delta_pp": 3.9888136591109804,
+    "ci95": [
+      3.4422223460509165,
+      4.554667217752558
+    ]
+  },
+  "noise": {
+    "keep_correct": 3613,
+    "reset_correct": 3124,
+    "keep_pct": 17.726425277205376,
+    "reset_pct": 15.327249533902462,
+    "keep_only": 1324,
+    "reset_only": 835,
+    "delta_pp": 2.3991757433029144,
+    "ci95": [
+      1.8872319127903503,
+      2.926329565124926
+    ]
+  },
+  "noise_minus_clean": {
+    "delta_pp": -1.5896379158080658,
+    "ci95": [
+      -2.240566777610058,
+      -0.9629568736287653
+    ]
+  }
+}

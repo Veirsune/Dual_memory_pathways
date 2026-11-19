@@ -35,7 +35,7 @@ def value(task,family,L,kind):
  assert len(c)==1
  return round(c[0]['mean'],2)
 for t,f,L,k,want in [('SSC','commit',120,'poisson',52.79),('SSC','dmp',120,'poisson',3.91),('DVS Gesture','commit',80,'silence',70.83),('DVS Gesture','dmp',80,'silence',19.70),('S-MNIST','commit',160,'silence',78.68),('S-MNIST','dmp',160,'silence',8.69)]:
- check('abstract '+str((t,f,L,k)),value(t,f,L,k)==want)
+ check('gap endpoints '+str((t,f,L,k)),value(t,f,L,k)==want)
 # Float schedule arithmetic and exact-integer scope.
 replay=json.loads((R/'evidence/hardware-replay.json').read_text())
 check('native replay archived outcome',replay['passed'] and replay['steps']==944 and replay['checked_values']==117056 and replay['cycles']==185528 and not replay['full_classifier'])
@@ -63,14 +63,14 @@ check('no LaTeX errors','! LaTeX Error' not in log)
 info=subprocess.check_output(['pdfinfo',str(R/'GDSM_Paper.pdf')],text=True)
 pages=int(re.search(r'Pages:\s+(\d+)',info).group(1))
 extracted=subprocess.check_output(['pdftotext',str(R/'GDSM_Paper.pdf'),'-'],text=True)
-check('complete PDF',pages>0 and 'No physical power or energy measurement is inferred from these counts.' in ' '.join(extracted.split()),{'pages':pages})
+check('complete PDF',pages>0 and all(v in ' '.join(extracted.split()) for v in ['813','117,056','Energy on silicon remains to be measured.']),{'pages':pages})
 main_text=text.split(r'\appendix')[0]
-check('six core equations',main_text.count(r'\begin{equation}')==6)
-check('defined core equation labels',all(r'\label{eq:'+s+'}' in main_text for s in ['dmp','candidate','stable','read','gate','loss']))
-check('original DMP notation preserved',all(v in main_text for v in [r's^{l-1}[k]',r'u^l[k]',r'x^l[k]',r'm^l[k]',r'W_x',r'f_x(',r'\bar B',r'I_m^l[k]']) and not any(v in main_text for v in [r'u_t',r'h_t',r'W_u',r'W_h',r'\relu(',r'\bar b']))
+check('six core equations',text.count(r'\begin{equation}')==6)
+check('defined core equation labels',all(r'\label{eq:'+s+'}' in text for s in ['dmp','candidate','stable','read','gate','loss']))
+check('original DMP notation preserved',all(v in text for v in [r's^{l-1}[k]',r'u^l[k]',r'x^l[k]',r'm^l[k]',r'W_x',r'f_x(',r'\bar B',r'I_m^l[k]']) and not any(v in text for v in [r'u_t',r'h_t',r'W_u',r'W_h',r'\relu(',r'\bar b']))
 check('raw-input closure rule',r'\ind[\|s^0[k]\|_1>0]' in text)
 check('appendix sections present',all(r'\label{app:'+s+'}' in text for s in ['training','shd','additional','hardware']))
-check('headline quantities typeset',all(v in main_text for v in ['52.79','3.91','70.83','19.70','78.68','8.69','117,056','6.30']))
+check('headline quantities typeset',all(v in main_text for v in ['72.34','75.29','23.17','32.83','28.84','17.73','15.33','813','489','52.79','3.91','78.68','8.69','117,056','6.30']))
 check('plot uses matching notation',all(v in (R/'scripts/draw_architecture.py').read_text() for v in ['$s[k]$',r'$W_f$',r'$\bar B\odot \mathbf{x}[k]$',r'$p[k-1]$',r'$W_m$']))
 # Learning curves must reproduce archived validation histories, not training/test scores.
 from draw_training_curves import training_points
@@ -112,6 +112,44 @@ for task in ('shd-matched','gesture','ssc-repair'):
  for row in rows:
   net=int(row['only_b_shared'])-int(row['only_a_shared'])
   check('paired changed predictions '+task+' '+row['condition'],net==int(row['b_correct_shared'])-int(row['a_correct_shared']) and abs(float(row['shared_delta_pp'])-100*net/int(row['n_both_clean']))<1e-8)
-report={'status':'passed','checks':checks,'pages':pages,'new_training_runs':3,'note':'Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript.'}
+# Recompute the numbers behind the five-row ordinary recognition table.
+zh_text = (R/'main_zh.tex').read_text()
+recognition = {}
+for dataset, label in [('shd-matched', 'SHD'), ('ssc-repair', 'SSC'), ('gesture', 'DVS Gesture')]:
+    [row] = [r for r in paired if r['dataset']==dataset and r['comparison']=='DMP / GDSM' and r['condition']=='clean']
+    recognition[label] = (int(row['n']), float(row['acc_a']), float(row['acc_b']))
+image_rows = csvread('mnist.csv')
+for task, label in [('smnist','S-MNIST'), ('psmnist','PS-MNIST')]:
+    scores = []
+    for family in ('dmp', 'commit'):
+        rows = [r for r in image_rows if r['task']==task and r['family']==family
+                and r['phase']=='mixed' and r['metric']=='mean' and r['name']=='clean']
+        assert sorted(int(r['seed']) for r in rows)==[42,43,44]
+        assert all(int(r['n'])==10000 for r in rows)
+        scores.append(statistics.mean(100*float(r['accuracy']) for r in rows))
+    recognition[label] = (10000, *scores)
+for task, (n, dmp, gdsm) in recognition.items():
+    delta = gdsm - dmp
+    signed = f'{delta:+.2f}' if delta else '0.00'
+    table_row = f'{task} & {n:,} & {dmp:.2f} & {gdsm:.2f} & ${signed}$'
+    check('ordinary recognition table '+task, all(table_row in doc for doc in (text, zh_text)))
+
+# Four predictions per word verify the effect of keeping the prefix state.
+midpoint = json.loads((R/'evidence/ssc-midpoint.json').read_text())
+with np.load(R/'evidence/ssc-midpoint.npz') as data:
+    labels = data['labels']
+    check('midpoint test cohort', len(labels)==midpoint['n']==20382 and len(np.unique(data['speakers']))==midpoint['speakers']==498)
+    for cond in ('clean','noise'):
+        keep = data[cond+'_keep'] == labels
+        reset = data[cond+'_reset'] == labels
+        net = int(keep.sum()) - int(reset.sum())
+        result = midpoint[cond]
+        check('midpoint correct counts '+cond, (int(keep.sum()), int(reset.sum()), int((keep & ~reset).sum()), int((reset & ~keep).sum())) ==
+              (result['keep_correct'], result['reset_correct'], result['keep_only'], result['reset_only']))
+        values = [f'{100*keep.mean():.2f}', f'{100*reset.mean():.2f}', str(net)]
+        check('midpoint values in both languages '+cond, all(v in doc for v in values for doc in (text, zh_text)))
+[stable] = [r for r in paired if r['dataset']=='ssc-repair' and r['comparison']=='GDSM stable read off / full' and r['condition']=='clean']
+check('stable readout dependence', all(f"{float(stable[k]):.2f}" in doc for doc in (text,zh_text) for k in ('acc_a','acc_b')))
+report={'status':'passed','checks':checks,'pages':pages,'new_training_runs':0,'note':'Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript.'}
 (R/'evidence/manuscript-audit.json').write_text(json.dumps(report,indent=2))
-print(f'Passed {len(checks)} checks; {pages} PDF pages; three matched training runs in the paired analysis.')
+print(f'Passed {len(checks)} checks; {pages} PDF pages; verified frozen evaluations.')

@@ -1,24 +1,22 @@
 {
   "status": "passed",
-  "paragraphs": 57,
+  "paragraphs": 41,
   "equations_identical_to_english": 6,
   "tables_with_identical_numeric_cells": 7,
   "translated_captions": 13,
   "embedded_figures": 6,
-  "references": 16,
-  "pdf_pages": 15,
-  "english_source_sha256": "c3c68c81007000561f2239e4021c9e5262778ff641ef7c563a8e0933b8c3ca71",
-  "new_training_runs": 3,
+  "references": 17,
+  "pdf_pages": 12,
+  "english_source_sha256": "b71537c3a3f08f255b5c1f67d7af53ae2df08a78f1dbaf7da84c9bcdd6686f32",
+  "new_training_runs": 0,
   "checks": [
-    "paragraph IDs present in PDF, Markdown and Word",
-    "paragraph numbers preserved (including seven additional tests)",
-    "equation source matches English exactly",
-    "all section/equation/figure/table reference numbers match English",
-    "all table numerical cells preserved",
-    "Word archive valid with editable math and seven tables",
-    "Markdown includes all bibliography titles",
-    "no PDF overflow, missing characters or unresolved references",
-    "Paired official-test analysis paragraphs present in PDF, Markdown and Word"
-  ],
-  "notation": "Aligned with original DMP layer l, step [k], x, m, u, W_x, f_x, Abar and Bbar"
+    "Every paragraph ID in Chinese Markdown, Word and PDF",
+    "Line-by-line English and Chinese sources match the paragraph map",
+    "All six equations identical in LaTeX and editable as Word math",
+    "Table data rows match across both languages",
+    "All numbered cross-references and bibliography entries agree",
+    "Six embedded Word figures match the published PNGs",
+    "Headline recognition, midpoint, interference and hardware values appear in both PDFs and the writing copies",
+    "No missing glyphs, overflowing boxes or unresolved references"
+  ]
 }

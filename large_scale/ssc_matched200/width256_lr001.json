@@ -1,0 +1,30 @@
+{
+  "dataset": "SSC official train/valid/test, 75466/9981/20382",
+  "models": [
+    "dmp",
+    "gdsm"
+  ],
+  "inputs": "250 frames from first to last event, sum contiguous groups of 5 cochlear channels; the upstream SSC loader reads pre-binned files and does not specify raw time binning",
+  "hidden": [
+    256,
+    256
+  ],
+  "classes": 35,
+  "memory_dimension_per_state": 10,
+  "theta": 40,
+  "theta_choice": "Table 4; explicitly overrides the SSC training script default of 250; exact setting of the 72.90 run unverified",
+  "seed": 42,
+  "batch": 256,
+  "clean_epochs": 200,
+  "mixed_epochs": 0,
+  "recognition": "All 200 epochs on clean data, no augmentation, Adam lr=0.01, StepLR(80,0.5), no weight decay or gradient clipping, CE on mean logits over all 250 frames, no active dropout",
+  "selection": "Highest whole-word validation accuracy checked every epoch; earliest tie; strict split isolation",
+  "retention": "Post-training tail80 test only.",
+  "test": "Official test. Clean and whole-event additive Poisson .0625/.125/.25 read at event end by mean logits; appended Poisson .25 L80 read on last 20. Full and bias-preserving dynamic-memory ablation; additionally stable-only read ablation for GDSM.",
+  "sharing": "Equal examples, shuffle, corruption, backbone initialization, optimizer, updates, scoring and selection per phase across families; GDSM uses extra stable state and gate parameters. Known boundaries; single training seed.",
+  "earlier_results": "The older 40+12 baseline with max pooling and batch 512 answers a different training question and is not an author-performance replication.",
+  "test_clean_only": true,
+  "comparison": "Only Adam starting learning rate changes from the prior 256-wide clean fit; all training and validation selection settings match.",
+  "clean_lr": 0.01,
+  "width_diagnostics": true
+}

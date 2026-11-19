@@ -137,6 +137,11 @@ def main():
     ids=np.random.default_rng(6501).choice(len(y),2048,replace=False)
     scale=max(.05,float(torch.quantile(x[ids].float().mean(-1).flatten(),.9)))
     models=make_models(scale)
+    diagnose=PROTO.get('width_diagnostics',False)
+    if diagnose:
+        from width_diagnostics import drive_rates, paired_test
+        idx=np.random.default_rng(123).choice(len(valid[1]),128,replace=False)
+        probe=valid[0][idx].float()
     write('model-info.json',dict(parameters={k:sum(v.numel() for v in m.parameters() if v.requires_grad) for k,m in models.items()},gpu=torch.cuda.get_device_name() if DEVICE=='cuda' else 'cpu',torch=torch.__version__,feature_scale=scale))
     clean=[('clean',250,0,0)]
     retention=clean+[('silence',250,80,0),('noise',250,80,.25)]
@@ -145,7 +150,7 @@ def main():
         optimizers={}; schedules={}; history={}; best={}
         for fam,m in models.items():
             if phase=='mixed':m.load_state_dict(torch.load(OUT/f'{fam}-clean-best.pt',map_location=DEVICE))
-            opt=(torch.optim.Adam(m.parameters(),lr=.1) if phase=='clean' else torch.optim.AdamW(m.parameters(),lr=.001,weight_decay=.05))
+            opt=(torch.optim.Adam(m.parameters(),lr=PROTO.get('clean_lr', .1)) if phase=='clean' else torch.optim.AdamW(m.parameters(),lr=.001,weight_decay=.05))
             sched=(torch.optim.lr_scheduler.StepLR(opt,80,.5) if phase=='clean' else torch.optim.lr_scheduler.CosineAnnealingLR(opt,12,eta_min=.00005))
             checkpoint=OUT/f'{fam}-{phase}-last.pt'
             rows=[]; top=-1.
@@ -178,6 +183,8 @@ def main():
                 val=evaluate(fam,m,valid,clean if phase=='clean' else retention)
                 metric=np.mean([r['whole' if phase=='clean' else 'endpoint'] for r in val.values()]).item()
                 row=dict(epoch=epoch+1,train_accuracy=hits/len(y),loss=total/len(y),val=val,selection=metric,seconds=time.monotonic()-tick)
+                if diagnose:
+                    row['memory_drive_positive']=drive_rates(m,fam,probe,scores)
                 history[fam].append(row);schedules[fam].step()
                 if metric>best[fam]:
                     write(f'{fam}-{phase}-best.pt',state_dict(m),True);best[fam]=metric
@@ -193,6 +200,8 @@ def main():
             state_dict(m)  # Restore upstream FFT buffer shape after variable-length evaluation.
             m.load_state_dict(torch.load(OUT/f'{fam}-{phase}-best.pt',map_location=DEVICE))
             result[f'{fam}-{phase}']=evaluate(fam,m,test,cases)
+            if diagnose:
+                paired_test(m,fam,test,scores,stimulus,BATCH,OUT/f'{fam}-paired.npz')
     write('test.json',result);write('complete.json',{'completed':True})
 
 if __name__=='__main__':main()

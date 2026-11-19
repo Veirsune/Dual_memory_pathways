@@ -105,6 +105,13 @@ with np.load(speech/'predictions.npz') as preds, np.load(folder/'predictions.npz
   key=families[r['model']]+'_'+str(rates.index(float(r['poisson_rate'])))
   hits=int(np.count_nonzero(preds[key]==labels))
   check('SSC whole-word '+key,int(r['correct'])==hits and int(r['n'])==len(labels) and abs(float(r['accuracy_pct'])-100*hits/len(labels))<1e-6)
-report={'status':'passed','checks':checks,'pages':pages,'new_training_runs':0,'note':'Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript.'}
+paired=csvread('paired-effects.csv')
+for task in ('shd-matched','gesture','ssc-repair'):
+ rows=[r for r in paired if r['dataset']==task and r['comparison']=='DMP / GDSM']
+ check('paired official cohort '+task,len(rows)==5)
+ for row in rows:
+  net=int(row['only_b_shared'])-int(row['only_a_shared'])
+  check('paired changed predictions '+task+' '+row['condition'],net==int(row['b_correct_shared'])-int(row['a_correct_shared']) and abs(float(row['shared_delta_pp'])-100*net/int(row['n_both_clean']))<1e-8)
+report={'status':'passed','checks':checks,'pages':pages,'new_training_runs':3,'note':'Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript.'}
 (R/'evidence/manuscript-audit.json').write_text(json.dumps(report,indent=2))
-print(f'Passed {len(checks)} checks; {pages} PDF pages; zero new training runs.')
+print(f'Passed {len(checks)} checks; {pages} PDF pages; three matched training runs in the paired analysis.')

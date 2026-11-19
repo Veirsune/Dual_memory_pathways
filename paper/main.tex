@@ -129,9 +129,9 @@ where $\lambda=0.5$ and $K=20$. When a gap is appended, its final window contain
 
 \section{Experimental design}
 \subsection{Datasets and model comparisons}
-We use SHD for mechanism studies and evaluate the resulting architecture on Spiking Speech Commands (SSC), DVS Gesture, sequential MNIST (S-MNIST) and permuted sequential MNIST (PS-MNIST)~\cite{shd,gesture,mnist}. The last two tasks use the same images with different pixel orderings. Table~\ref{tab:protocol} summarizes the main comparisons.
+We evaluate the contribution of shared memory on SHD, Spiking Speech Commands (SSC), DVS Gesture, sequential MNIST (S-MNIST) and permuted sequential MNIST (PS-MNIST)~\cite{shd,gesture,mnist}. The last two tasks use the same images with different pixel orderings. Table~\ref{tab:protocol} summarizes the main comparisons.
 
-Each comparison contains FSNN, scalar-drive DMP and GDSM with the same fast backbone, input realizations and training schedule. DMP and GDSM use the same candidate dimension $d$; GDSM adds a stable state and gate parameters. SSC and MNIST share the initial fast-path and classifier weights across models, and GDSM's vector drive is initialized from the DMP scalar drive. Gesture starts from each model's own clean validation-selected checkpoint, then uses identical mixed-training batches for all three models. All GDSM transfer experiments use the fixed read in Eq.~\eqref{eq:read}. For SSC, our 40 clean and 12 mixed epochs used batches of 512 and max pooling across groups of five input channels. The released DMP training script uses 200 clean epochs, batches of 256, channel summation and a whole-word objective. Our DMP baseline therefore establishes performance under the shared retention protocol; the original study reports 72.90\% on SSC under its own settings.
+The retention training comparisons include FSNN, scalar-drive DMP and GDSM with the same fast backbone, input realizations and training schedule. DMP and GDSM use the same candidate dimension $d$; GDSM adds a stable state and gate parameters. SSC and MNIST share the initial fast-path and classifier weights across models, and GDSM's vector drive is initialized from the DMP scalar drive. Gesture starts from each model's own clean validation-selected checkpoint, then uses identical mixed-training batches for all three models. All GDSM transfer experiments use the fixed read in Eq.~\eqref{eq:read}. For SSC, our 40 clean and 12 mixed epochs used batches of 512 and max pooling across groups of five input channels. The released DMP training script uses 200 clean epochs, batches of 256, channel summation and a whole-word objective. Our DMP baseline therefore establishes performance under the shared retention protocol; the original study reports 72.90\% on SSC under its own settings.
 
 \begin{table*}[t]
 \centering\small
@@ -141,6 +141,8 @@ Each comparison contains FSNN, scalar-drive DMP and GDSM with the same fast back
 \toprule
 Task & Train / validation / test & Classes & $T_0$ & $d$ & Backbone & Clean + mixed epochs\\
 \midrule
+SHD & 8,156 / -- / 2,264 & 20 & 100 & 30 & $140\to128\to128\to20$ & $200+30$\\
+SSC & 75,466 / 9,981 / 20,382 & 35 & 250 & 10 & $140\to256\to256\to35$ & $200+0$\\
 SSC & 75,466 / 9,981 / 20,382 & 35 & 250 & 30 & $140\to128\to128\to35$ & $40+12$\\
 DVS Gesture & 901 / 176 / 264 & 11 & 100 & 40 & Conv32--Conv64--FC256--11 & $50+20$\\
 S-MNIST & 54,000 / 6,000 / 10,000 & 10 & 784 & 40 & $1\to200\to200\to10$ & $50+12$\\
@@ -157,7 +159,7 @@ Mixed training samples clean input, silence and Poisson noise with equal probabi
 Auditory and gesture events are normalized into frames using known segment boundaries. All state updates are causal over those frames, and inserted gaps do not reset the network. The longest main test contains 944 pixel steps. These constructed streams isolate retention and interruption recovery while keeping the class target unambiguous.
 
 \subsection{Repetitions and uncertainty}
-Both MNIST tasks use three training seeds, and all 18 models are frozen before official-test evaluation. Their results are reported as mean $\pm$ sample standard deviation. SSC uses one training seed; Gesture uses one fine-tuning seed and averages three noise realizations. SHD supervision controls use three fine-tuning seeds. Speaker- and subject-cluster bootstrap intervals describe paired SSC and Gesture differences; three-seed paired $t$ intervals are reported for MNIST in Appendix~\ref{app:additional}. Training details and evaluation chronology are provided in Appendix~\ref{app:training}.
+Both MNIST tasks use three training seeds, and all 18 models are frozen before official-test evaluation. Their results are reported as mean $\pm$ sample standard deviation. Each SSC protocol uses one training seed. Gesture uses one fine-tuning seed. Its retention curve averages three noise realizations, while the paired example analysis uses one shared draw per condition. SHD supervision controls use three fine-tuning seeds. Speaker- and subject-cluster bootstrap intervals describe paired SSC and Gesture differences; three-seed paired $t$ intervals are reported for MNIST in Appendix~\ref{app:additional}. Training details and evaluation chronology are provided in Appendix~\ref{app:training}.
 
 \section{Results}
 \subsection{Class information survives long interruptions}
@@ -239,6 +241,16 @@ During speech, the relative performance depended on background intensity (Fig.~\
 \label{fig:speech}
 \end{figure*}
 
+We compared the two architectures on exactly the examples both classified correctly on clean input (Fig.~\ref{fig:paired}a). With background events added throughout each example, the net change per 100 such examples was -6.85 on SHD, -11.16 on Gesture and -2.53 on SSC. Speech used a Poisson rate of 0.125 per channel per frame; Gesture used the mean training event density. Both models recognized 224 gestures in common. GDSM lost a net 25 of those relative to DMP during the gesture but preserved a net 58 more when the same noise intensity followed the gesture for 80 frames. The timing of interference changes the sign of the architectural effect.
+
+For the direct SHD comparison, both models started from the same pretrained DMP and received identical inputs and classification objectives for 30 epochs (seed 301). For the clean-trained SSC comparison, both models used two 256-neuron layers, $d=10$, sum-pooled channels and 200 epochs (seed 42). At an initial Adam learning rate of 0.01, clean test accuracy was 72.34\% for DMP and 75.29\% for GDSM. Under simultaneous noise at 0.125, the respective accuracies were 12.14\% and 9.42\%. With an 80-frame noise tail, DMP and GDSM scored 4.95\% and 10.29\% on SHD and 2.96\% and 3.22\% on clean-trained SSC. At the original rate of 0.1 the selected DMP checkpoint had zero drive in both memory layers on 2,048 validation words. The apparent 7.47-point clean advantage at that rate therefore included a baseline optimization failure. Disabling only the stable readout in the fitted GDSM reduced clean word recognition from 75.29\% to 23.17\%, while delayed accuracy changed by just 0.27 percentage points.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=.90\textwidth]{figures/paired-effects.pdf}
+\caption{Effect of candidate--stable memory on classification accuracy. (a) With noise throughout the event, each model decides at the event boundary. The two curves use all test examples and the subset both models recognized on clean input. (b) After 80 frames of background noise, the network classifies the preceding event from its last 20 outputs. Diamonds show the GDSM minus DMP difference in percentage points. Dots show individual training seeds for the two image tasks. Rates are specific to each dataset.}
+\label{fig:paired}
+\end{figure*}
+
 \section{Implementation cost and hardware verification}
 The retention mechanism has a measurable model-level cost. On clean Gesture inputs, effective full-network MACs increase from 63.212 million for DMP to 67.196 million for GDSM, an overhead of 6.30\% (Fig.~\ref{fig:hardware}). During an appended L80 silent gap, cached GDSM requires 68.455 million MACs versus 64.159 million for DMP. Caching reduces GDSM's own dense count from 69.274 million to 68.455 million, saving 1.183\% of full-network MACs. These estimates account for active computation across the network; the local memory-core cycle measurements are reported separately in Appendix~\ref{app:hardware}.
 
@@ -291,7 +303,7 @@ States start at zero for each new sequence and persist across inserted gaps. Can
 Local gates start with zero weights and bias $\log(0.95/0.05)$. The permission MLP starts with zero output weights and bias $+2$; its hidden layer uses ReLU. Auditory features combine four global statistics and 14 frequency bands ($36\to32\to2d$ MLP); Gesture uses four statistics and $2\times4\times4$ spatial bins ($72\to32\to d$); MNIST uses four statistics ($8\to32\to2d$). Each input includes the previous feature EMA. Permission is one for a nonnegative output logit, with sigmoid surrogate gradients.
 
 \paragraph{Data and objectives.}
-Speech is reduced to 140 channels. Gesture uses subjects 1--19 for training, 20--23 for validation and 24--29 for testing, with 100 frames and two-polarity $32\times32$ inputs. MNIST uses a stratified training/validation split (seed 1701), normalized pixels and a shared PS-MNIST permutation (seed 1702). SSC uses Eq.~\eqref{eq:loss} in both stages; MNIST uses whole-sequence loss in the clean stage. All main mixed stages use Eq.~\eqref{eq:loss}. SHD was used iteratively during development and SSC test evaluation had occurred in earlier stages; the reported protocols and scheduled checkpoints were fixed before evaluation. All 18 MNIST fits were frozen before their official-test evaluation.
+Speech is reduced to 140 channels. Gesture uses subjects 1--19 for training, 20--23 for validation and 24--29 for testing, with 100 frames and two-polarity $32\times32$ inputs. MNIST uses a stratified training/validation split (seed 1701), normalized pixels and a shared PS-MNIST permutation (seed 1702). In the 40+12 SSC protocol, both stages use Eq.~\eqref{eq:loss}; the 200-epoch SSC runs use only the whole-word loss. MNIST uses whole-sequence loss in the clean stage. All main mixed stages use Eq.~\eqref{eq:loss}. SHD was used iteratively during development and SSC test evaluation had occurred in earlier stages; the reported protocols and scheduled checkpoints were fixed before evaluation. All 18 MNIST fits were frozen before their official-test evaluation.
 
 \paragraph{Hardware scope.}
 \label{app:hardware}

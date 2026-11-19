@@ -65,7 +65,7 @@ Gesture 两个模型在干扰开始前的末端准确率接近（85.61% 与 86.3
 
 ## 编译与数值核验
 
-图 4 比较 SSC 全程叠加背景脉冲时的整词识别准确率，使用相同的冻结模型和四档噪声强度（含干净输入）；可用 `make ssc-speech` 重画。图 5 给出全网 MACs。
+图 4 比较 SSC 全程叠加背景脉冲时的整词识别准确率，使用相同的冻结模型和四档噪声强度（含干净输入）；可用 `make ssc-speech` 重画。图 5 汇总五项任务的架构差值，图 6 给出全网 MACs。
 
 上传本目录到 Overleaf，选择 `main.tex`，用 pdfLaTeX 编译。图表与参考文献已随附，无需训练环境。
 
@@ -85,3 +85,5 @@ make audit
 需要 TeX Live、latexmk、Python、NumPy 和 Matplotlib。`build_assets.py` 在研究工作区使用实验源文件，独立运行时使用 `evidence/` 中的快照。`audit_manuscript.py` 核对来源校验和、主要数值、计算成本、记号和编译结果。
 
 `EVIDENCE_MAP.md` 给出证据对应关系。代码与图表生成所需指标已公开；原始数据和大型训练检查点不包含在源码仓库内。实验记录中的 `commit` 是 GDSM 的历史代码键，保留它是为了保持与封存结果的对应关系。
+
+SHD、DVS Gesture 和 SSC 的整段叠加与 L80 延迟读取逐样本对照，以及 S-MNIST、PS-MNIST 的延迟读取结果，见[跨数据集报告](../large_scale/paired_effects/REPORT.md)。报告同时给出 SSC 200 轮匹配训练与在同一检查点关闭记忆读取的诊断。

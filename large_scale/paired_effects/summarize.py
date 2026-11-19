@@ -31,6 +31,10 @@ def main(args):
             a,b=[np.load(args.pred/(prefix+k+'.npz')) for k in keys]
             for name in pairfiles(a,b):
                 rows.append(contrast(task,label,seed,name,a['labels'],a['clean'],b['clean'],a[name],b[name]))
+    if args.repair:
+        a,b=[np.load(args.pred/n) for n in ('shd-301-dmp.npz','shd-matched-301-gdsm.npz')]
+        for name in pairfiles(a,b):
+            rows.append(contrast('shd-matched','DMP / GDSM',301,name,a['labels'],a['clean'],b['clean'],a[name],b[name]))
     zs=np.load(args.ssc/'ssc-speech/predictions.npz')
     zt=np.load(args.ssc/'ssc-position/predictions.npz')
     y=zs['labels'];assert np.array_equal(y,zt['labels'])
@@ -47,7 +51,7 @@ def main(args):
             for name in ['clean','overlay-0.0625','overlay-0.125','overlay-0.25','tail80']:
                 rows.append(contrast('ssc-repair',label,42,name,arm1['labels'],arm1[p1+'_clean'],arm2[p2+'_clean'],arm1[p1+'_'+name],arm2[p2+'_'+name]))
     with args.output.open('w',newline='') as f:
-        writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
+        writer=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator="\n");writer.writeheader();writer.writerows(rows)
     for ds in dict.fromkeys(r['dataset'] for r in rows):
         group=[r for r in rows if r['dataset']==ds]
         for comparison in dict.fromkeys(r['comparison'] for r in group):

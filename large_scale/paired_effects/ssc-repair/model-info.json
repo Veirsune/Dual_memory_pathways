@@ -1,0 +1,9 @@
+{
+  "parameters": {
+    "dmp": 116913,
+    "gdsm": 127639
+  },
+  "gpu": "NVIDIA L4",
+  "torch": "2.0.0+cu118",
+  "feature_scale": 0.8142856955528259
+}

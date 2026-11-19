@@ -444,7 +444,7 @@
       "check": "complete PDF",
       "passed": true,
       "details": {
-        "pages": 9
+        "pages": 10
       }
     },
     {
@@ -656,9 +656,99 @@
       "check": "SSC whole-word commit_3",
       "passed": true,
       "details": null
+    },
+    {
+      "check": "paired official cohort shd-matched",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions shd-matched clean",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions shd-matched overlay-0.0625",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions shd-matched overlay-0.125",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions shd-matched overlay-0.25",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions shd-matched tail80",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired official cohort gesture",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions gesture clean",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions gesture overlay-0.906323",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions gesture overlay-1.81265",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions gesture overlay-5.43794",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions gesture tail80",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired official cohort ssc-repair",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions ssc-repair clean",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions ssc-repair overlay-0.0625",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions ssc-repair overlay-0.125",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions ssc-repair overlay-0.25",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired changed predictions ssc-repair tail80",
+      "passed": true,
+      "details": null
     }
   ],
-  "pages": 9,
-  "new_training_runs": 0,
+  "pages": 10,
+  "new_training_runs": 3,
   "note": "Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript."
 }

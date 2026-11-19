@@ -19,3 +19,14 @@ SSC 重训保留原宽度实验的通道求和、每段 250 帧、同一初始�
 在保存原实验的工作区，用仓库的 PyTorch / SpikingJelly 环境分别运行 paired_eval.py 的 shd、shd-vector 和 gesture 子命令并指定 --out。verify.py 检查与原评估逐例的干净标签和预测一致性。SSC 重训由相邻 ssc_matched200 目录中的 train.py、width256_lr001.json 以及 width_diagnostics.py 完成。压缩预测文件中的 ids 与 labels 确定测试顺序。正文报告的中档点固定为 SHD/SSC 的 0.125 和手势的 1 倍；低、高档也全部保留。
 
 为取得最终向量架构与原 DMP 在 SHD 上的直接对照，另固定既有三个种子中的首个（301），从同一 d=30 黄金检查点按原 DMP 的输入、频移、配对、静音/噪声、查询、dropout、AdamW 和 30 轮训练配方拟合向量 GDSM。训练前把稳定读取初始化为零，新模型保留黄金 DMP 的快通路和读出，允许门按向量版本既有规则学习。两组都只使用类别查询损失。检查每轮学习率、任务样本数、查询数及源权重哈希。此项为最终架构的同配方对照；早期标量版本和同权重稳定读取消融单列。
+
+从仓库根目录可以直接从公开逐例预测重算差值、表格和曲线。汇总脚本使用 NumPy，绘图使用 Matplotlib。
+
+```bash
+cd large_scale/paired_effects
+python summarize.py --pred predictions --ssc ../../paper/evidence --repair ssc-repair --output paired.csv
+python report.py paired.csv ssc-repair REPORT.md
+python plot.py paired.csv paired-effects.pdf
+```
+
+S-MNIST 和 PS-MNIST 的三种子结果来自同一仓库的 `paper/evidence/mnist.csv`。图像结果按图像序列结束后 L80 的泊松干扰纳入跨任务表；L160 的静音和噪声对照见论文的延迟分类表。图的上排分别展示两项语音任务与手势的全事件叠加测试，下排用相同的 L80 读取时刻展示五项任务，并标出两种 SSC 训练配方和图像任务的三个种子。

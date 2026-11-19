@@ -64,3 +64,12 @@ make
 - 回路、实线和虚线表达结构，解释性语句放在正文和图注中。
 
 图中沿用原 DMP 的离散时间写法 `[k]`；为避免拥挤，统一省略层上标。左侧状态为 `m[k]`，右侧为 `p[k]` 与 `m[k]`；输入驱动的粗体 `x[k]` 表示向量，膜电位保留符号 `u`。
+
+## 跨数据集架构差值（图 5）
+
+绘图脚本为 [plot.py](../large_scale/paired_effects/plot.py)。上排两条线分别表示全部测试样本与干净条件下双方共同认对的样本；下排菱形为整个测试集上的准确率差值，圆点是图像任务的各个种子。语音与手势使用各自输入单位定义的噪声强度。修改脚本中的蓝灰色、线型或布局后，在仓库根目录运行以下命令更新矢量图和中文写作稿预览图。
+
+```bash
+python large_scale/paired_effects/plot.py large_scale/paired_effects/paired.csv paper/figures/paired-effects.pdf
+pdftoppm -scale-to 1450 -singlefile -png paper/figures/paired-effects.pdf paper/figures/paired-effects
+```

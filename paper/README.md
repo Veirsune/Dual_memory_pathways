@@ -1,6 +1,6 @@
-# 面向鲁棒时序处理的脉冲神经网络门控双状态记忆
+# 脉冲神经网络中的候选记忆与稳定记忆
 
-*Gated Dual-State Memory for Robust Temporal Processing in Spiking Neural Networks*
+*Candidate and Stable Memory States in Spiking Neural Networks*
 
 [中文 PDF](GDSM_Paper_ZH.pdf) · [中文 Word](GDSM_Chinese.docx) · [中文 Markdown](GDSM_Chinese.md) · [英文 PDF](GDSM_Paper.pdf) · [LaTeX 源码包](GDSM_LaTeX.zip)
 

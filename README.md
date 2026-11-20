@@ -1,8 +1,8 @@
 # GDSM：门控双状态记忆
 
-**面向鲁棒时序处理的脉冲神经网络门控双状态记忆**
+**脉冲神经网络中的候选记忆与稳定记忆**
 
-*Gated Dual-State Memory for Robust Temporal Processing in Spiking Neural Networks*
+*Candidate and Stable Memory States in Spiking Neural Networks*
 
 DMP 让一层脉冲神经元共享一份输入历史。GDSM 让候选状态继续跟踪新输入，写入门决定何时更新稳定状态。神经元同时读取两份状态。
 

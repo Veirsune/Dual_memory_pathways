@@ -35,24 +35,24 @@ Crossref DOI metadata was retrieved for LSTM, GRU, the Heidelberg datasets, DVS 
 
 ## Result selection
 
-Table 1 covers the full official test sets of SHD, SSC, DVS Gesture, S-MNIST and PS-MNIST, with recognition scored at the event boundary. Historical SHD controls are used to explain mechanism and are labelled by their actual supervision recipe. Whole-sequence, endpoint, auxiliary-head, gate-coefficient, operation-estimate and RTL-cycle quantities remain separately identified. Strong-noise failures and the final readout study are included in the text/appendix.
+Table 4 covers the full official test sets of SHD, SSC, DVS Gesture, S-MNIST and PS-MNIST, with recognition scored at the event boundary. Historical SHD controls are used to explain mechanism and are labelled by their actual supervision recipe. Whole-sequence, endpoint, auxiliary-head, gate-coefficient, operation-estimate and RTL-cycle quantities remain separately identified. Further noise-shift and switching results are recorded in the corresponding study reports.
 
 ## Manuscript artifacts
 
-The paper is `GDSM_Paper.pdf`, with editable source in `main.tex` and an independent source package in `GDSM_LaTeX.zip`. The main text gives the stable write rule. Appendix A gives the five remaining equations. Source metrics are preserved in the evidence files above.
+The paper is `GDSM_Paper.pdf`, with editable source in `main.tex` and an independent source package in `GDSM_LaTeX.zip`. Section 2 defines the model and training objective in six numbered equations. Source metrics are preserved in the evidence files above.
 
-Detailed protocols, exploratory diagnostics and complete supplementary tables are preserved in `EXPERIMENT_DETAILS.md`. The PDF retains the longest middle-gap condition for each dataset and both disturbance types, without changing any recorded values. The memory-core cycle plot remains a repository asset; the PDF reports its key counts in Appendix A.
+Detailed protocols, exploratory diagnostics and complete supplementary tables are preserved in `EXPERIMENT_DETAILS.md`. The full middle-gap tables and the memory-core cycle plot are repository assets. Section 5 reports the measured replay cycles and the estimated full-network operation count.
 
 ## Training curves
 
-Figure 2 uses clean-input, whole-sequence validation accuracy from 42 original stage histories, packaged under `evidence/training-history/`. Source locations and SHA-256 hashes are listed in `evidence/training-history-manifest.json`. `training-curve-points.csv` contains 96 aggregates. All seeds are included (SSC: 801; MNIST: 42, 43, 44), and uncertainty is sample standard deviation, not a confidence interval. The archived validation functions are in `training-history/ssc_study.py` and `training-history/mnist_run.py`. No corruption-specific validation trajectory was recorded, and no missing epochs or intermediate checkpoints are reconstructed.
+Figure 3 uses clean-input, whole-sequence validation accuracy from 42 original stage histories, packaged under `evidence/training-history/`. Source locations and SHA-256 hashes are listed in `evidence/training-history-manifest.json`. `training-curve-points.csv` contains 96 aggregates. All seeds are included (SSC: 801; MNIST: 42, 43, 44), and uncertainty is sample standard deviation, not a confidence interval. The archived validation functions are in `training-history/ssc_study.py` and `training-history/mnist_run.py`. No corruption-specific validation trajectory was recorded, and no missing epochs or intermediate checkpoints are reconstructed.
 
 ## Notation alignment
 
-The English and Chinese manuscripts now follow the original DMP Methods equations (7)–(11) and tensor-dimension table: layer l, step [k], membrane u, drive x, memory m, projection W_x, mapping f_x and matrices Abar/Bbar. The proposed model adds candidate p and write gate g and extends x to a vector. ReLU remains documented as the actual implementation of f_x in Appendix A. Fast and memory currents are written separately, with their combined implementation bias retained in the text. See `NOTATION.md` for the code-variable correspondence. No trained model or archived numerical result was changed.
+The English and Chinese manuscripts now follow the original DMP Methods equations (7)–(11) and tensor-dimension table: layer l, step [k], membrane u, drive x, memory m, projection W_x, mapping f_x and matrices Abar/Bbar. The proposed model adds candidate p and write gate g and extends x to a vector. The implementation uses ReLU for f_x, as recorded in `NOTATION.md`. Fast and memory currents are written separately, with their combined implementation bias retained in the text. See `NOTATION.md` for the code-variable correspondence. No trained model or archived numerical result was changed.
 
 The separate word-end placement experiment uses the official SSC test predictions in `evidence/ssc-position/predictions.npz`. The directory also contains the fixed protocol, inference script, plotted utterance and per-condition counts. From the paper directory, `make ssc-position` redraws the panels and regenerates the accuracy CSV.
 
 Figure 4 uses `evidence/ssc-speech/` for matched whole-utterance recognition at four background rates. The directory includes the fixed protocol, predictions, first test input, evaluator and accuracy counts.
 
-Figure 3 uses the matched within-event and post-event differences. The 200-epoch clean-trained SSC model in Table 1 and the 200+12 model in the midpoint intervention are separate fitted models. For the latter, only frames 126–250 contribute scores. The manuscript audit reconstructs the four midpoint accuracies and both net counts from the archived predictions.
+Figure 5 uses the matched within-event and post-event differences. The 200-epoch clean-trained SSC model in Table 4 and the 200+12 model in the midpoint intervention are separate fitted models. For the latter, only frames 126–250 contribute scores. The manuscript audit reconstructs the four midpoint accuracies and both net counts from the archived predictions.

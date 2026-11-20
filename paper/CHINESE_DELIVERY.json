@@ -1,29 +1,29 @@
 {
   "language": "zh-CN",
   "purpose": "paragraph-aligned reading and writing",
-  "english_source_sha256": "b71537c3a3f08f255b5c1f67d7af53ae2df08a78f1dbaf7da84c9bcdd6686f32",
-  "paragraphs": 41,
+  "english_source_sha256": "627b0d3d36d285fcd8e759efbf2d0e73031355fd68c9252e2f5bc9374e44648f",
+  "paragraphs": 47,
   "pdf_pages": 12,
   "files": {
     "GDSM_Paper_ZH.pdf": {
-      "bytes": 399473,
-      "sha256": "9f0a106fd19e42b2e795ff118db63fd5dc764a26d6c54403c0d7653be3585363"
+      "bytes": 395171,
+      "sha256": "09fa2cb69550d7b50192e5f4f2eba1fe8dcf51718b9ab80997ca6b19a32c927b"
     },
     "GDSM_Chinese.docx": {
-      "bytes": 590685,
-      "sha256": "a333590ea7d83d5b2ea4c561d760724e208a4f4e704da28183056926cbd77eaa"
+      "bytes": 590289,
+      "sha256": "d01b1a85a6bfb61407b86973da9918129c984121e128d25d11881af83a2ec88f"
     },
     "GDSM_Chinese.md": {
-      "bytes": 33361,
-      "sha256": "8ed579e36de7eef5fc95691ed0995676ddce74b6a08047b894eaf3e3e2f785cc"
+      "bytes": 32761,
+      "sha256": "7342e0eae10b7a7a159f11e98ce013bf1521bd26b7e4bf9c1f7e69763644a85a"
     },
     "main_zh.tex": {
-      "bytes": 33614,
-      "sha256": "b8a19a1f141924ca40a1fb5176e8c1699cebb843058c6e38c54b6212722c4a9e"
+      "bytes": 32097,
+      "sha256": "4971c01fbfebd54b8c7998b719fc6541f9447dde8884d2f9b1677476b8839c05"
     },
     "CHINESE_PARAGRAPHS.json": {
-      "bytes": 45520,
-      "sha256": "fd9e31810fc1cc157ceb4e9f85b8035cebbc9387c983b69f6e004a59a810a0cb"
+      "bytes": 48459,
+      "sha256": "ea66c2617474ba91c3d48c6882f8f31585e27e2521efa1199ef83d41c91a7ff2"
     }
   }
 }

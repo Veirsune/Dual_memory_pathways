@@ -464,16 +464,56 @@
       "check": "complete PDF",
       "passed": true,
       "details": {
-        "pages": 9
+        "pages": 8
       }
     },
     {
-      "check": "six core equations",
+      "check": "English main section order",
       "passed": true,
       "details": null
     },
     {
-      "check": "defined core equation labels",
+      "check": "English manuscript ends with references",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "English numbered equations in method order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "English figure order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "English table order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Chinese main section order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Chinese manuscript ends with references",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Chinese numbered equations in method order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Chinese figure order",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Chinese table order",
       "passed": true,
       "details": null
     },
@@ -484,11 +524,6 @@
     },
     {
       "check": "raw-input closure rule",
-      "passed": true,
-      "details": null
-    },
-    {
-      "check": "appendix sections present",
       "passed": true,
       "details": null
     },
@@ -823,7 +858,7 @@
       "details": null
     }
   ],
-  "pages": 9,
+  "pages": 8,
   "new_training_runs": 0,
   "note": "Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript."
 }

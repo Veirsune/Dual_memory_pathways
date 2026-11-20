@@ -9,7 +9,7 @@ def csvread(name):return list(csv.DictReader((R/'evidence'/name).open()))
 # Source files must match archived hashes.
 for row in json.loads((R/'evidence/source-manifest.json').read_text()):
  check('source checksum: '+row['file'],hashlib.sha256((R/row['file']).read_bytes()).hexdigest()==row['sha256'])
-# Explicitly check all values in manually typeset SHD ablation tables.
+# Reconstruct the archived SHD controls behind the component comparisons.
 a=csvread('shd-supervision.csv')
 expected={
 (10,'task_only'):[85.62,2.06,31.38,3.19,41.64,9.83,73.28,2.51],
@@ -45,7 +45,7 @@ check('gate coordinate count',944*40==37760)
 check('scalar-DMP cycles',[(1+d+32) for d in (10,30)]==[43,63])
 check('dense Commit cycles',[(4*d+32+64) for d in (10,30)]==[136,216])
 check('closed Commit cycles',[(4*d+32+32) for d in (10,30)]==[104,184])
-# Revised Figure 3: compare network MAC estimates using the selected tail condition.
+# Compare the plotted full-network MAC estimates with the archived operation counts.
 ops={(v['family'],v['condition']):v for v in csvread('hardware-operations.csv')}
 full=json.loads((R/'evidence/full-network-mac-claims.json').read_text())
 for v in full:
@@ -64,13 +64,23 @@ info=subprocess.check_output(['pdfinfo',str(R/'GDSM_Paper.pdf')],text=True)
 pages=int(re.search(r'Pages:\s+(\d+)',info).group(1))
 extracted=subprocess.check_output(['pdftotext',str(R/'GDSM_Paper.pdf'),'-'],text=True)
 check('complete PDF',pages>0 and all(v in ' '.join(extracted.split()) for v in ['813','117,056','Energy on silicon remains to be measured.']),{'pages':pages})
-main_text=text.split(r'\appendix')[0]
-check('six core equations',text.count(r'\begin{equation}')==6)
-check('defined core equation labels',all(r'\label{eq:'+s+'}' in text for s in ['dmp','candidate','stable','read','gate','loss']))
+zh_text=(R/'main_zh.tex').read_text()
+headings={
+    'English': (text, ['Introduction','Gated dual-state memory','Experimental design','Results','Implementation cost and hardware verification','Discussion and conclusion'], r'\bibliography{references}'),
+    'Chinese': (zh_text, ['引言','门控双状态记忆','实验设计','实验结果','实现开销与硬件验证','讨论与结论'], r'\input{main.bbl}'),
+}
+figures=['architecture','retention','training','speech','paired','hardware']
+equations=['dmp','candidate','stable','read','gate','loss']
+for language,(document,section_titles,bibliography) in headings.items():
+    sections=re.split(r'(?m)^\\section\{([^}\n]+)\}',document)
+    check(language+' main section order',sections[1::2]==section_titles)
+    check(language+' manuscript ends with references',document.split(bibliography)[-1].strip()==r'\end{document}' and r'\appendix' not in document)
+    check(language+' numbered equations in method order',re.findall(r'\\label\{eq:([^}]+)\}',sections[4])==equations and document.count(r'\begin{equation}')==len(equations))
+    check(language+' figure order',re.findall(r'\\label\{fig:([^}]+)\}',document)==figures)
+    check(language+' table order',re.findall(r'\\label\{tab:([^}]+)\}',document)==['protocol','retention','capacity','recognition'])
 check('original DMP notation preserved',all(v in text for v in [r's^{l-1}[k]',r'u^l[k]',r'x^l[k]',r'm^l[k]',r'W_x',r'f_x(',r'\bar B',r'I_m^l[k]']) and not any(v in text for v in [r'u_t',r'h_t',r'W_u',r'W_h',r'\relu(',r'\bar b']))
 check('raw-input closure rule',r'\ind[\|s^0[k]\|_1>0]' in text)
-check('appendix sections present',all(r'\label{app:'+s+'}' in text for s in ['training','shd','additional','hardware']))
-check('headline quantities typeset',all(v in main_text for v in ['72.34','75.29','23.17','32.83','28.84','17.73','15.33','813','489','52.79','3.91','78.68','8.69','117,056','6.30']))
+check('headline quantities typeset',all(v in text and v in zh_text for v in ['72.34','75.29','23.17','32.83','28.84','17.73','15.33','813','489','52.79','3.91','78.68','8.69','117,056','6.30']))
 check('plot uses matching notation',all(v in (R/'scripts/draw_architecture.py').read_text() for v in ['$s[k]$',r'$W_f$',r'$\bar B\odot \mathbf{x}[k]$',r'$p[k-1]$',r'$W_m$']))
 # Learning curves must reproduce archived validation histories, not training/test scores.
 from draw_training_curves import training_points
@@ -113,7 +123,6 @@ for task in ('shd-matched','gesture','ssc-repair'):
   net=int(row['only_b_shared'])-int(row['only_a_shared'])
   check('paired changed predictions '+task+' '+row['condition'],net==int(row['b_correct_shared'])-int(row['a_correct_shared']) and abs(float(row['shared_delta_pp'])-100*net/int(row['n_both_clean']))<1e-8)
 # Recompute the numbers behind the five-row ordinary recognition table.
-zh_text = (R/'main_zh.tex').read_text()
 recognition = {}
 for dataset, label in [('shd-matched', 'SHD'), ('ssc-repair', 'SSC'), ('gesture', 'DVS Gesture')]:
     [row] = [r for r in paired if r['dataset']==dataset and r['comparison']=='DMP / GDSM' and r['condition']=='clean']

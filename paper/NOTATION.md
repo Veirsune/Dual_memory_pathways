@@ -14,6 +14,6 @@
 | `W_f, W_m` | 相同 | 快通路和记忆读取权重 |
 | 无 | `p^l[k], g^l[k], W_p` | 新增候选状态、写入门和候选读取权重 |
 
-原文将 f_x 定义为 mapping function，没有在该公式中指定 ReLU。仓库 `shd/src/dual_pathway.py` 的 LMUFFTCell 中，输入投影实现为 `self.W_u`，映射为 `self.f_u = nn.ReLU()`；代码的 `self.W_x` 则对应论文的快通路 W_f。论文符号与代码变量名本来就不完全一致。因此本文按原论文命名，在附录交代实际使用的 ReLU，不修改已有模型或 checkpoint。
+原文将 f_x 定义为 mapping function，没有在该公式中指定 ReLU。仓库 `shd/src/dual_pathway.py` 的 LMUFFTCell 中，输入投影实现为 `self.W_u`，映射为 `self.f_u = nn.ReLU()`；代码的 `self.W_x` 则对应论文的快通路 W_f。论文符号与代码变量名本来就不完全一致。第 2 节沿用原论文的映射函数记号 `f_x`。
 
-读取电流分开写为 I 和 I_m；正文中的 b_o 合并代码快投影与候选读取的偏置，保持与原先总电流表达式等价。Bbar 对向量驱动逐维相乘；固定正行缩放的等价参数变换仍见附录 A。
+读取电流分开写为 I 和 I_m；正文中的 b_o 合并代码快投影与候选读取的偏置，保持与原先总电流表达式等价。Bbar 对向量驱动逐维相乘；代码的对角系数满足 `D_ii = Bbar_i / c_i`，其中 `c_i > 0`。对 ReLU，可将输入投影的第 i 行及其偏置同时除以 `c_i`，得到正文式 (2) 使用的等价写法。

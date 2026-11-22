@@ -24,7 +24,8 @@ sources={
  'paired-effects.csv':'large_scale/paired_effects/paired.csv',
  'paired-intervals.csv':'large_scale/paired_effects/uncertainty.csv',
  'ssc-midpoint.json':'large_scale/ssc_matched200/midpoint/results.json',
- 'ssc-midpoint.npz':'large_scale/ssc_matched200/midpoint/predictions.npz'}
+ 'ssc-midpoint.npz':'large_scale/ssc_matched200/midpoint/predictions.npz',
+ 'ssc-memory-swap.json':'large_scale/ssc_matched200/memory_swap/results.json'}
 manifest=[]
 for dest,src in sources.items():
  p=EXP/src;target=ROOT/'evidence'/dest

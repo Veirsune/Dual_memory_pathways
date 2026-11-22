@@ -1,10 +1,10 @@
 {
-  "english_source_sha256": "7211aaa0f67f9f3fdb39a87a1c262c1d463dd1d967160a7cb967a3b60b093653",
+  "english_source_sha256": "d86a87c61c12fbfc48b26d95a8e823e7577670f070237844f7d2b57740d1fcbf",
   "paragraphs": [
     {
       "id": "摘要",
-      "en": "The opening sounds of a word can help identify it after those sounds have passed. Dual memory pathways (DMP) give each layer of spiking neurons a shared record of its input, which changes with every frame. We introduce gated dual-state memory (GDSM). A candidate state follows the incoming signal, a stable state accepts selected writes from the candidate, and neurons read both. We evaluate this design on spiking speech, event-camera gestures and sequential images. With the same spiking backbone and 200 training epochs on Spiking Speech Commands (SSC), whole-word accuracy rises from 72.34\\% for DMP to 75.29\\% for GDSM. In a separate SSC experiment, we clear the stable state once at the midpoint of a word. Two copies of the model then hear an identical second half and classify the word from second-half outputs alone. Carrying the state forward yields a net 813 more correct decisions over 20,382 utterances. GDSM also retains more gesture information when background events follow a movement. DMP recognizes more gestures when background events of the same intensity accompany the movement. These findings show how a shared state can help recognize an unfolding event and why its value depends on the evidence available when it is written.",
-      "zh": "一个词的开头已经过去，后半段仍可能要靠它来辨认。双记忆通路（DMP）让每层脉冲神经元共享一份输入历史，但每来一帧，这份记忆就更新一次。我们提出门控双状态记忆（GDSM）。候选状态逐帧跟踪输入，稳定状态只在写入门打开时接收候选内容。神经元同时读取两者。我们在脉冲语音、事件相机手势和逐像素数字分类上检验这种设计。在语音命令数据集 SSC 上，两种模型采用相同的脉冲骨干，各训练 200 轮，整词准确率从 DMP 的 72.34\\% 提高到 GDSM 的 75.29\\%。在另一组 SSC 实验中，我们只在词的中点清空一次稳定状态。两份模型听到相同的后半段，只用后半段的输出作答。保留状态的模型在 20,382 条语音中净多认对了 813 条。噪声接在动作之后时，GDSM 也能保留更多手势信息。同等强度的噪声贯穿动作时，DMP 的识别率更高。实验表明，先前输入留下的状态可以直接帮助网络识别正在进行的事件，其作用取决于写入时已经获得了哪些线索。",
+      "en": "The opening sounds of a word can help identify it after those sounds have passed. Dual memory pathways (DMP) give each layer of spiking neurons a shared record of its input, which changes with every frame. We introduce gated dual-state memory (GDSM). A candidate state follows the incoming signal, a stable state accepts selected writes from the candidate, and neurons read both. We evaluate this design on spiking speech, event-camera gestures and sequential images. With the same spiking backbone and 200 training epochs on Spiking Speech Commands (SSC), whole-word accuracy rises from 72.34\\% for DMP to 75.29\\% for GDSM. In a separate SSC experiment, we clear the stable state once at the midpoint of a word. Two copies of the model then hear an identical second half and classify the word from second-half outputs alone. Carrying the state forward yields a net 813 more correct decisions over 20,382 utterances. Transplanting the stable state from another word also shifts decisions slightly toward the word that supplied it. GDSM also retains more gesture information when background events follow a movement. DMP recognizes more gestures when background events of the same intensity accompany the movement. These findings show how a shared state can help recognize an unfolding event and why its value depends on the evidence available when it is written.",
+      "zh": "一个词的开头已经过去，后半段仍可能要靠它来辨认。双记忆通路（DMP）让每层脉冲神经元共享一份输入历史，但每来一帧，这份记忆就更新一次。我们提出门控双状态记忆（GDSM）。候选状态逐帧跟踪输入，稳定状态只在写入门打开时接收候选内容。神经元同时读取两者。我们在脉冲语音、事件相机手势和逐像素数字分类上检验这种设计。在语音命令数据集 SSC 上，两种模型采用相同的脉冲骨干，各训练 200 轮，整词准确率从 DMP 的 72.34\\% 提高到 GDSM 的 75.29\\%。在另一组 SSC 实验中，我们只在词的中点清空一次稳定状态。两份模型听到相同的后半段，只用后半段的输出作答。保留状态的模型在 20,382 条语音中净多认对了 813 条。同一模型换入另一词的稳定状态后，答案也会小幅偏向提供记忆的词。噪声接在动作之后时，GDSM 也能保留更多手势信息。同等强度的噪声贯穿动作时，DMP 的识别率更高。实验表明，先前输入留下的状态可以直接帮助网络识别正在进行的事件，其作用取决于写入时已经获得了哪些线索。",
       "line": 35
     },
     {
@@ -39,8 +39,8 @@
     },
     {
       "id": "1-P6",
-      "en": "We consider this intervention alongside whole-event recognition on five tasks. On SSC, GDSM improves whole-word accuracy by 2.95 percentage points over DMP. The midpoint experiment further shows that carrying the state from the first half helps classify words even when only the second half can contribute output scores. We then vary when noise arrives to distinguish recognizing the input in the first place from continuing to use evidence after it has been acquired.",
-      "zh": "我们把这项检验与五项任务的整段识别放在一起比较。在 SSC 上，GDSM 的整词准确率比 DMP 高 2.95 个百分点。词中清零实验又显示，只计后半段输出时，保留前半段形成的状态仍能多认对一部分词。随后我们改变噪声出现的时间，分别观察模型能否在噪声中认清输入，以及已经获得的线索能在后续输入中起多久作用。",
+      "en": "We consider this intervention alongside whole-event recognition on five tasks. On SSC, GDSM improves whole-word accuracy by 2.95 percentage points over DMP. The midpoint experiment further shows that carrying the state from the first half helps classify words even when only the second half can contribute output scores. We then transplant a state formed during a different word from the same speaker and ask which word the decision favors. We then vary when noise arrives to distinguish recognizing the input in the first place from continuing to use evidence after it has been acquired.",
+      "zh": "我们把这项检验与五项任务的整段识别放在一起比较。在 SSC 上，GDSM 的整词准确率比 DMP 高 2.95 个百分点。词中清零实验又显示，只计后半段输出时，保留前半段形成的状态仍能多认对一部分词。我们进一步把同一说话人另一个词的稳定状态换进来，观察判断会偏向哪个词。随后我们改变噪声出现的时间，分别观察模型能否在噪声中认清输入，以及已经获得的线索能在后续输入中起多久作用。",
       "line": 50
     },
     {
@@ -86,202 +86,232 @@
       "line": 93
     },
     {
+      "id": "2.1-P8",
+      "en": "The two states can contribute at the same instant. Suppose that the opening sound is consistent with several words. As later sounds arrive, the candidate changes while the stable state can still supply evidence from the opening. Currents from both states reach the same neurons, which can then distinguish possibilities that the opening alone left unresolved. This is a computation that the architecture permits. To see whether a trained network actually uses earlier evidence, we intervene while it is listening.",
+      "zh": "一个词还在继续时，这两份记忆可以同时发挥作用。假设开头的声音和几个词都相容，模型暂时还选不出答案。后面的声音到来时，候选状态随之改变，稳定状态仍可提供开头留下的线索。神经元把两种电流加在一起，才可能把几个词区分开。这是这套结构允许发生的一种计算。要知道训练好的模型实际上有没有这样使用历史，还需要在听词的过程中干预它。",
+      "line": 95
+    },
+    {
       "id": "2.2-P1",
       "en": "Both the size and the duration of a write matter. Unrolling the stable-state update over $L$ steps gives the following direct coefficient on coordinate $j$ of the old state,",
       "zh": "要让一份记忆在许多步之后仍有影响，门开多大和开多久都重要。把写入式逐步展开，经过 $L$ 步后，旧状态第 $j$ 个坐标直接留在更新式中的系数为",
-      "line": 102
+      "line": 104
     },
     {
       "id": "2.2-P2",
       "en": "With a write value of 0.02 on every step, the coefficient falls to $(0.98)^{80}\\approx0.20$ after 80 steps. This coefficient tracks the old value in the update. How much class information remains can be measured by reading the network. The example explains why we allow the write value to reach zero exactly.",
       "zh": "若每一步门值都是 0.02，80 步以后，原值的系数只剩 $(0.98)^{80}\\approx0.20$。这个数衡量的是旧值在更新式里的权重，类别还能否读出来要用分类实验检验。这个例子解释了为什么我们允许门恰好取零。",
-      "line": 106
+      "line": 108
     },
     {
       "id": "2.2-P3",
       "en": "The gate makes its decision from the present frame and recent input. The vector $f^l[k]$ records normalized mean activity, the absolute change in mean activity, variance and the fraction of active channels. An exponential moving average $e^l[k]=\\rho e^l[k-1]+(1-\\rho)f^l[k]$, with $\\rho=0.8$, supplies a recent reference level. Equation~\\eqref{eq:gate} uses the current statistics and the previous reference to compute the write gate.",
       "zh": "门根据当前帧和最近一段输入作决定。$f^l[k]$ 记录该层输入的平均活动量、平均活动量的绝对变化、方差和非零通道比例。指数移动平均 $e^l[k]=\\rho e^l[k-1]+(1-\\rho)f^l[k]$ 提供近期参照，$\\rho=0.8$。式~\\eqref{eq:gate} 用当前统计量和上一步的参照值计算写入门。",
-      "line": 108
+      "line": 110
     },
     {
       "id": "2.2-P4",
       "en": "An empty sensor frame closes stable writes in every layer. On an active frame, a coordinate can accept a write if its local gate reaches $\\varepsilon=0.02$ and a small perceptron grants permission $q^l[k]$ from sensor activity and its recent history. The forward computation uses this hard decision and backpropagation uses sigmoid surrogate gradients~\\cite{surrogate,spikingjelly}. In the command, gesture and image comparisons, the gate learns from classification errors and receives no labels marking the disturbance interval.",
       "zh": "原始传感器帧全空时，各层都停止向稳定状态写入。有活动时，每个坐标还要满足两个条件。局部门值达到 $\\varepsilon=0.02$，而且还要由一个小型感知机根据传感器活动及其近期变化给出写入许可 $q^l[k]$。训练时，前向计算使用这个开关的实际取值，反向传播使用 sigmoid 的代理梯度~\\cite{surrogate,spikingjelly}。在语音命令、手势和图像的多模型对照中，门从分类误差学习，输入中没有标出干扰开始或结束的时刻。",
-      "line": 118
+      "line": 120
     },
     {
       "id": "2.2-P5",
       "en": "Ordinary whole-word training compares the mean class scores across the word with its label. In mixed training we also ask the last part of the sequence to identify that same class. Let $T$ be the full sequence length, $o[k]$ the class scores at frame $k$, and $y$ the label. Equation~\\eqref{eq:loss} applies cross-entropy to the mean scores of the full sequence and of its last $K$ frames.",
       "zh": "整词识别训练直接对一个词各帧的类别分数取平均，再与真实类别比较。带干扰的混合训练还要让末段的输出能够识别同一个类别。设整段长 $T$ 帧，$o[k]$ 为网络在第 $k$ 帧给各类别的分数，$y$ 为真实类别。式~\\eqref{eq:loss} 分别对整段和最后 $K$ 帧的平均分数计算交叉熵。",
-      "line": 120
+      "line": 122
     },
     {
       "id": "2.2-P6",
       "en": "We set $K=20$ and $\\lambda=0.5$, giving the two losses equal weight. When noise is appended after an event, the last 20 frames contain no new class evidence. To answer correctly in that window, the network has to use information acquired earlier. All models within a mixed-training comparison receive this same classification objective. The 200-epoch clean SSC comparison uses the whole-word loss alone.",
       "zh": "我们取 $K=20$、$\\lambda=0.5$，两个损失权重相同。若在事件之后追加一段噪声，末 20 帧中就没有新的类别线索。要在这些帧上答对，网络必须用到先前获得的信息。同一混合训练对照中的各模型都收到这一分类要求。200 轮干净 SSC 识别对照则只用整词损失。",
-      "line": 128
+      "line": 130
     },
     {
       "id": "3.1-P1",
       "en": "We train separate models on each of five tasks. SHD classifies spoken digits and SSC classifies 35 spoken commands. DVS Gesture distinguishes 11 movements recorded by an event camera. S-MNIST and PS-MNIST each present a handwritten digit one pixel at a time over 784 steps, in scan order or in a single fixed permutation shared by all examples~\\cite{shd,gesture,mnist}. Table~\\ref{tab:protocol} gives layer widths, memory dimensions and training schedules.",
       "zh": "五项任务各自训练模型。SHD 要求辨认说出的数字，SSC 要求辨认 35 类语音命令。DVS Gesture 根据事件相机的记录辨认 11 类动作。S-MNIST 和 PS-MNIST 都把一张手写数字拆成 784 个像素逐个输入，前者按扫描顺序，后者对所有样本使用同一随机排列~\\cite{shd,gesture,mnist}。表~\\ref{tab:protocol} 给出每项任务的层宽、记忆维数和训练轮数。",
-      "line": 132
+      "line": 134
     },
     {
       "id": "3.1-P2",
       "en": "Each architecture comparison uses the same fast backbone, examples and training schedule. FSNN has the fast pathway alone. DMP and GDSM add their respective shared memories. For whole-word recognition on SSC, both have two layers of 256 neurons, $d=10$ and 200 epochs on the same clean words. DMP has 116,913 trainable parameters and GDSM 127,639. Two separate experiments use 128 neurons per layer. The 200-clean-plus-12-mixed model supplies the midpoint intervention. The 40-plus-12 schedule compares all three architectures under interference. Each comparison uses matched inputs within its own schedule. For the direct SHD comparison, both models start from the same pretrained DMP and undergo 30 fine-tuning epochs with identical sample order and classification objectives.",
       "zh": "每组架构对照使用相同的快通路、样本和训练安排。FSNN 只有快通路，DMP 和 GDSM 则分别接入各自的共享记忆。在 SSC 的整词识别对照中，两者都是两层、每层 256 个神经元，记忆维数 $d=10$，用同样的干净语音训练 200 轮。两者的可训练参数分别为 116,913 和 127,639。另有两组实验的每层宽度均为 128。200 轮干净训练加 12 轮混合训练的模型用于词中清零，40 加 12 轮的模型用于三种架构的干扰对照。三个配置回答不同的问题，各配置内比较使用相同的输入。SHD 的直接架构对照从同一个预训练 DMP 出发，再用相同的样本顺序和分类目标微调 30 轮。",
-      "line": 134
+      "line": 136
     },
     {
       "id": "3.2-P1",
       "en": "An SSC word occupies 250 frames and the network scores all 35 words on every frame. At the known word boundary it can answer immediately by averaging frames 1--250 for each class. At the same instant, reading only frames 231--250 tells us how much evidence is still accessible near the end. We can also append silence or noise and read the latest 20 outputs at the end of that interval to see what has happened to the old evidence. Only this memory test adds a delay to the decision.",
       "zh": "以 SSC 为例，一个词有 250 帧，模型每帧都给 35 个词打分。在已知的词边界，把第 1 至 250 帧的分数按类别取平均，就可以立即作答。若想知道最后时刻还有多少线索可读，可以在同一时刻只看第 231 至 250 帧。再把静音或噪声接到词后，等到干扰末尾只读最后 20 帧，就能观察旧线索在后续输入中的变化。这里的等待只用于测记忆，正常识别在词结束时就已经完成。",
-      "line": 156
+      "line": 158
     },
     {
       "id": "3.2-P2",
       "en": "We control when interference arrives. For simultaneous noise, random background spikes are added to the event frames and the network answers at the event boundary. For appended noise, the complete clean event is followed by background alone. For an inserted gap, the original event resumes after the interruption. Mixed training samples clean, silent and Poisson-noise conditions with equal probability. SSC and MNIST training gaps last 40 or 80 frames, with longer tests of 120 and 160 frames, respectively. Gesture uses 20, 40 or 80 frames and a standard noise intensity calibrated to training event density. Models receive the same noise for each test example.",
       "zh": "干扰出现的时间由实验控制。全程叠加时，保留原始事件，在同一批帧上加入随机背景脉冲，模型在事件结束时分类。末尾追加时，先呈现完整的干净事件，再单独给一段背景。中间插入时，干扰过后还会继续播放原事件。混合训练等概率抽取干净、静音和泊松噪声条件。SSC 和 MNIST 的训练间隔为 40 或 80 帧，测试时分别延长到 120 和 160 帧。手势训练使用 20、40 或 80 帧，标准噪声强度按训练集事件密度确定。同一测试样本上的各模型接收相同的噪声。",
-      "line": 158
+      "line": 160
     },
     {
       "id": "3.2-P3",
       "en": "The midpoint intervention consists of a single operation after frame 125. We copy the full network state, then zero both layers' stable states in one copy. Candidate states, membrane potentials and gate history carry over, and normal writes resume at frame 126. We classify using only the mean scores over frames 126--250. Both copies hear the same second half, either clean or with additive Poisson noise of mean 0.125 per channel per frame.",
       "zh": "词中清零实验把一次操作限制在第 125 帧之后。我们先复制模型的全部状态，只将其中一份副本两层的稳定状态置零。候选状态、膜电位和门控历史都保留，从第 126 帧起照常写入。最终只对第 126 至 250 帧的类别分数取平均。两份副本听到的后半段完全相同，可以是干净语音，也可以叠加每通道每帧均值 0.125 的泊松噪声。",
-      "line": 160
+      "line": 162
+    },
+    {
+      "id": "3.2-P4",
+      "en": "We also exchange memories at the same midpoint. For each clean utterance we choose two other words, A and B, spoken by the same person. All three have different labels. We match suffixes by the similarity of their spike counts across time and frequency bins, without consulting model predictions. We run A and B to their midpoints and transplant their two stable states into the recipient in separate runs. Both runs continue with the recipient’s own suffix. An answer of A in both runs contributes zero to the paired comparison. A preference that follows the transplanted word contributes a directional difference.",
+      "zh": "我们还在同一个中点做了一次记忆交换。对一条干净语音，从同一说话人的其他录音中找出两个不同的词甲和乙，均与原词不同。按后半段在时间和频带上的脉冲计数相似度配对，全程不看模型的预测。让甲、乙各自播放到中点，取出两层的稳定状态，轮流放入原词的模型。两次都继续播放原词自己的后半段。若模型两次都回答甲，这个回答无法说明是哪一份记忆起了作用。只有当答案跟着实际放入的记忆改变时，两次对照才会显出方向。",
+      "line": 164
     },
     {
       "id": "3.3-P1",
       "en": "For each image task we report the mean and sample standard deviation over three independent training seeds. Each SSC schedule, the matched SHD recognition comparison and gesture fine-tuning use one seed. The SHD supervision controls use three. The gesture retention curves average three noise draws, and the per-example comparison uses one shared draw. When comparing two readings of a fitted network, we pair their decisions on the same test items and resample speakers or gesture subjects as groups. The resulting intervals describe variation across test participants.",
       "zh": "S-MNIST 和 PS-MNIST 各用三个独立训练种子，报告均值和样本标准差。SSC 每种训练配置、SHD 的整段识别对照和手势微调各用一个种子，SHD 的监督方式对照使用三个。手势保持曲线对三次加噪取平均，逐例对照使用同一份加噪输入。对已有模型比较两种读法时，我们在同一测试样本上配对计数，并按说话人或手势受试者分组重采样。这样算出的区间反映抽到不同测试对象时的变化。",
-      "line": 163
+      "line": 167
     },
     {
       "id": "4.1-P1",
       "en": "We first present the full event and lengthen the interval that follows. The new frames contain no evidence about the original class, so a decision from the final outputs depends on information acquired earlier. On the 40-plus-12 SSC schedule, GDSM identifies 52.79\\% of words from its last 20 outputs after 120 noise frames. DMP scores 3.91\\% (Table~\\ref{tab:retention}). The models already differ at the start of the gap, with final-20-frame accuracies of 56.52\\% and 11.05\\%, respectively. Figure~\\ref{fig:retention} includes each model's starting point at zero gap and uses the same readout at all subsequent points.",
       "zh": "先把事件完整地呈现一遍，再逐步延长后面的干扰。这时，新帧没有提供关于原类别的线索，末段分类只能依靠先前留下的信息。对经过 40 加 12 轮训练的 SSC 模型，追加 120 帧噪声后，GDSM 仍能从末 20 帧认对 52.79\\% 的词，DMP 为 3.91\\%（表~\\ref{tab:retention}）。不过，两者进入噪声段时的末 20 帧准确率已经不同，分别为 56.52\\% 和 11.05\\%。图~\\ref{fig:retention} 把每个模型在没有间隔时的起点也画了出来，其后各点都使用相同的读法。",
-      "line": 185
+      "line": 189
     },
     {
       "id": "4.1-P2",
       "en": "Gestures provide a comparison with similar starting points. At the end of the movement, DMP identifies 85.61\\% and GDSM 86.36\\% from the last 20 frames. After 80 silent frames, the corresponding accuracies are 19.70\\% and 70.83\\%. Under standard noise of the same duration they are 26.52\\% and 47.47\\%. Both networks could identify the gesture from their recent outputs when the movement ended. Their responses diverged over the following empty frames or background events.",
       "zh": "手势提供了起点接近的对照。动作刚结束时，按末 20 帧读取，DMP 认对 85.61\\%，GDSM 认对 86.36\\%。再加入 80 帧静音，两者分别降至 19.70\\% 和 70.83\\%。同样长的标准噪声下，两者分别为 26.52\\% 和 47.47\\%。也就是说，两种网络起初都能从最近的输出认出动作，之后新来的空帧或背景事件才把差距拉开。",
-      "line": 187
+      "line": 191
     },
     {
       "id": "4.1-P3",
       "en": "On the image tasks, the network receives all 784 pixels of a digit before a 160-frame silence, a duration absent from training. With pixels in scan order, DMP and GDSM retain 8.69\\% and 78.68\\% classification accuracy. With the shared permutation they retain 14.12\\% and 56.43\\%. Both comparisons average three training seeds. Replacing silence with noise reduces GDSM accuracy to 32.03\\% in scan order and 28.02\\% in permuted order. Evidence that survives silence can still change in the presence of new activity.",
       "zh": "在图像任务中，网络先接收构成一个数字的全部 784 个像素，再经历训练中未见过的 160 帧静音。按扫描顺序输入时，DMP 和 GDSM 分别保留 8.69\\% 和 78.68\\% 的分类准确率。打乱像素顺序时，两者分别为 14.12\\% 和 56.43\\%。这两个任务都取三个训练种子的平均值。换成噪声后，GDSM 的准确率也会下降，顺序和乱序任务分别为 32.03\\% 和 28.02\\%。静音时能保住的线索，在持续有新活动时仍可能被改写。",
-      "line": 189
+      "line": 193
     },
     {
       "id": "4.2-P1",
       "en": "How much class information entered the stable state, and how much of it survived subsequent input? On SHD we vary the memory input and write protection separately. To distinguish input dimension from parameter count, we include a wide-scalar projection. It learns $d$ channel combinations, then reduces them to one number before writing to memory. Its parameter count is close to that of a model that passes the full vector through.",
       "zh": "前面的实验留下两个问题。稳定状态里原先写进了多少可供分类的信息？写好以后，门控能帮它保住多少？我们在 SHD 上分别改变记忆的入口和写入保护。为了把输入维数与参数量区分开，还设置了一种先扩展、再压缩的投影（wide scalar）。它先学 $d$ 组通道组合，再把结果合成一个数送入记忆，参数量和直接写入向量的模型很接近。",
-      "line": 198
+      "line": 202
     },
     {
       "id": "4.2-P2",
       "en": "Table~\\ref{tab:capacity} uses two readouts. The first asks an auxiliary classifier to identify a clean word from the stable state alone at the word boundary. The second reads the full network after 80 frames of interference. At $d=30$, passing the full vector raises the first accuracy from 69.57\\% to 81.05\\% and the second from 59.76\\% to 66.70\\%, with 62 fewer parameters than the wide scalar. The benefit of preserving distinct channel combinations is visible both at the write stage and after interference.",
       "zh": "表~\\ref{tab:capacity} 给出两种读法。第一种只读干净词末的稳定状态，看看一个辅助分类器能否据此认出原词。第二种在词后加 80 帧干扰，再由整网分类。在 $d=30$ 时，直接写入向量使第一项准确率从 69.57\\% 提高到 81.05\\%，第二项从 59.76\\% 提高到 66.70\\%。向量模型还少用了 62 个参数。保留多组通道信息的好处，在写入之后和经过干扰之后都能观察到。",
-      "line": 200
+      "line": 204
     },
     {
       "id": "4.2-P3",
       "en": "Write protection also matters. With vector drive and the additional write protection removed, mean retention accuracy is 23.98\\% at $d=10$ and 38.25\\% at $d=30$. Restoring protection gives 51.88\\% and 66.70\\%, respectively. This single-seed comparison used disturbance positions to help train the gate. A separate control therefore examined protection learned from class labels.",
       "zh": "只改输入仍不够。在保留向量输入、去掉额外写入保护的对照中，$d=10$ 和 $d=30$ 的平均保持准确率分别为 23.98\\% 和 38.25\\%。加回保护后分别为 51.88\\% 和 66.70\\%。这组单种子对照使用干扰位置辅助训练门控，因此我们另做了只给类别标签的对照。",
-      "line": 202
+      "line": 206
     },
     {
       "id": "4.2-P4",
       "en": "All arms of this control use the same auxiliary class loss on the stable state and three fine-tuning seeds. At $d=30$, adding the empty-frame closure rule raises accuracy after 80 silent frames from 29.52\\% to 67.82\\%. With 80 noise frames, class supervision and the closure rule give 60.16\\%. Adding disturbance-position supervision for the gate gives 60.81\\%. Closure accounts for a large change under silence, while position labels add 0.65 points under noise in this setting.",
       "zh": "在这个对照中，所有组都用相同的稳定状态辅助分类损失，并重复训练三次。在 $d=30$ 时，加入空帧关门规则，使 80 帧静音后的准确率从 29.52\\% 升至 67.82\\%。80 帧噪声后的准确率为 60.16\\%，再用干扰位置监督门控则为 60.81\\%。在这组设置中，静音条件下的主要改善来自空帧规则。在噪声条件下，加上位置标签只多了 0.65 个百分点。",
-      "line": 204
+      "line": 208
     },
     {
       "id": "4.3-P1",
       "en": "The interruption tests measure how long acquired evidence remains accessible. For ordinary recognition we average all outputs at the original event boundary. GDSM scores higher than DMP on four of the five tasks and ties on gestures (Table~\\ref{tab:recognition}). In the 200-epoch clean SSC comparison, whole-word accuracy rises from 72.34\\% to 75.29\\%. The smaller 40-plus-12 SSC models score 47.89\\% and 58.83\\%, respectively. Layer width, channel pooling and the training objective differ between those two schedules. The architecture comparisons in the table are made within each schedule.",
       "zh": "前面的干扰实验检验已经获得的线索还能保留多久。回到正常识别，在原事件结束时对整段输出取平均，GDSM 在五项任务中的四项高于 DMP，手势持平（表~\\ref{tab:recognition}）。干净 SSC 的 200 轮对照中，整词准确率从 72.34\\% 升至 75.29\\%。在训练 40 加 12 轮的较小 SSC 模型上，整词准确率分别是 47.89\\% 和 58.83\\%。两组的层宽、通道合并方式和训练目标均有差异，所以表中比较的是各训练配置内部的架构差值。",
-      "line": 223
+      "line": 227
     },
     {
       "id": "4.3-P2",
       "en": "Does the stable state participate in ordinary word recognition? In the fitted 200-epoch clean GDSM, we set the stable-read weights in both layers to zero and preserve the biases and all other computations. Whole-word accuracy falls from 75.29\\% to 23.17\\%. This establishes that the network uses the read pathway. To find out whether the state formed in the first half of the word matters, we intervene at just one moment.",
       "zh": "稳定状态真的参与了正常听词吗？取已经完成 200 轮干净训练的 GDSM，只把两层读取稳定状态的权重设为零，保留偏置和其余所有计算。整词准确率从 75.29\\% 降至 23.17\\%。这个操作说明模型在识别时依赖这条读取通路。要知道它是否用到了前半个词形成的状态，还要把改动限制在词中的一个时刻。",
-      "line": 241
+      "line": 245
     },
     {
       "id": "4.3-P3",
       "en": "The midpoint test uses separate fitted weights from the 128-neuron, 200-plus-12 model. On 20,382 clean utterances, both copies answer from second-half scores alone. The copy that carries the state identifies 6,692 words (32.83\\%), and the copy that clears it identifies 5,879 (28.84\\%). The difference is 3.99 percentage points, a net 813 additional correct decisions. The subsequent sounds are identical in the two copies. The difference arises while speech is still arriving, showing that the stable state formed in the first half helps identify the word in the second.",
       "zh": "词中清零使用另一组已训练好的权重，即每层 128 个神经元的 200 加 12 轮模型。在 20,382 条干净语音上，两份副本只用后半段输出作答。保留状态的认对 6,692 条（32.83\\%），清零的认对 5,879 条（28.84\\%），相差 3.99 个百分点，净多认对 813 条。两个模型在分开以后收到的是同一段声音，区别出现在词仍在播放的时候。这直接说明，前半段形成的稳定状态有助于后半段辨认这个词。",
-      "line": 243
+      "line": 247
     },
     {
       "id": "4.3-P4",
       "en": "With background spikes added only to the second half, the carried-state and reset copies score 17.73\\% and 15.33\\%, a net difference of 489 words. Resampling the 498 speakers gives a 95\\% interval for the advantage of carrying the state of $[3.44,4.55]$ points with a clean second half and $[1.89,2.93]$ with a noisy one. The state left by the clean first half helps in both conditions, although second-half noise still makes the word harder to identify.",
       "zh": "如果只在后半个词叠加背景脉冲，保留与清零的准确率分别为 17.73\\% 和 15.33\\%，净差仍有 489 条。按 498 名说话人分组重采样，保留状态所带来差值的 95\\% 区间在干净后半段是 $[3.44,4.55]$ 个百分点，在加噪后半段是 $[1.89,2.93]$。干净的前半段留下的状态在两种条件下都有帮助，但还不足以抵消后半段的噪声。",
-      "line": 245
+      "line": 249
     },
     {
       "id": "4.3-P5",
-      "en": "When noise starts with the first sound, even the earliest evidence can be corrupted. Figure~\\ref{fig:speech} adds background spikes throughout each word for the 40-plus-12 models. At a mean of 0.0625 spikes per channel per frame, whole-word accuracy is 25.69\\% for GDSM and 20.46\\% for DMP. At 0.25, the two score 9.77\\% and 14.43\\%, respectively. The same noise intensity that GDSM can withstand after hearing a clear word makes it difficult to acquire reliable evidence from the outset. The training curves in Fig.~\\ref{fig:training} use clean validation inputs and track ordinary recognition over the two stages.",
-      "zh": "如果从第一个声音开始就有噪声，情况又不同。图~\\ref{fig:speech} 用 40 加 12 轮模型，把背景脉冲叠在整个词上。每通道每帧平均加入 0.0625 个脉冲时，GDSM 的整词准确率为 25.69\\%，DMP 为 20.46\\%。强度增至 0.25 时，分别为 9.77\\% 和 14.43\\%。同样强度的噪声接在词后时，GDSM 能保留更多先前听到的信息。从开头就加噪时，它要从已经受扰的输入中提取线索。图~\\ref{fig:training} 中的训练曲线使用干净验证输入，衡量的是两个训练阶段中的普通识别能力。",
-      "line": 247
+      "en": "Clearing memory tells us what happens when the original state is lost. Transplanting memory also lets us ask where the decision moves. Two donors were available for 20,340 utterances from 472 speakers. The model identified 32.83\\% of recipient words from suffix outputs with its own state and 27.77\\% after transplantation. Across 40,680 swaps, the answer was the actual donor word in 1,939 cases (4.77\\%) and the paired but unused donor word in 1,603 (3.94\\%). The difference was 0.83 percentage points, with a 95\\% speaker-bootstrap interval from 0.62 to 1.04 points. The loss of recipient accuracy was larger than the shift toward the particular word that supplied the state.",
+      "zh": "清零能说明少了原来的记忆会怎样。换入别的词的记忆，还可以问判断会往哪里偏。共有 472 名说话人的 20,340 条语音能配到甲、乙两个词。保留自己的记忆，模型只听取后半段的输出能认对 32.83\\%。换入另一词的稳定状态后，原词识别率降到 27.77\\%。在 40,680 次交换中，模型有 1,939 次答成实际提供记忆的词（4.77\\%），有 1,603 次答成入选但这一次没有提供记忆的另一个词（3.94\\%）。两者相差 0.83 个百分点，按说话人重采样的 95\\% 区间为 0.62 至 1.04 个百分点。原词识别下降得较多，其中只有一部分表现为朝来源词的定向偏移。",
+      "line": 251
     },
     {
       "id": "4.3-P6",
-      "en": "Gestures allow the two timings to be compared on the same examples. Both models initially recognize 224 clean gestures in common. Adding standard background activity throughout those movements gives GDSM a net 25 fewer correct gestures than DMP. Applying the same noise intensity for 80 frames after the movements gives it a net 58 more (Fig.~\\ref{fig:paired}). Gating can help earlier evidence continue to guide the response. When noise is mixed with the movement itself, that evidence must first be extracted from a noisy signal.",
-      "zh": "手势可以在同一批样本上比较这两种情形。两个模型原本都认对了 224 个干净动作。把标准强度的背景事件叠加在动作上，GDSM 比 DMP 净少认对 25 个。将同等强度的噪声接在动作之后，持续 80 帧，GDSM 比 DMP 净多认对 58 个（图~\\ref{fig:paired}）。同一个写入门可以帮神经元继续使用先前的动作线索。至于噪声已经混在动作里的时候，架构还得先从带噪输入里提取这些线索。",
-      "line": 255
+      "en": "One recording of down illustrates the distinction. With its own memory, the model answered down. With the state from on spoken by the same person, it answered on. With the state from go, it answered go. The suffix was the same recording of down each time. This was the only utterance among the 20,340 for which all three decisions followed their respective sources. The broader tendency was smaller: grouped by recipient word, the point estimate favored the actual donor for 30 of the 35 classes. Stable memory therefore carries evidence that can favor a particular word. A whole-state transplant cannot distinguish an acoustic feature from a class preference already formed at the midpoint.",
+      "zh": "有一条 down 录音让这一区别变得直观。保留它自己的记忆，模型答 down。换入同一人说 on 时的记忆，模型答 on。换入 go 的记忆，模型又答 go。三次听到的后半段是同一段 down。这是全部 20,340 条语音中唯一一次三种读法都恰好命中对应词。更普遍的现象要小得多。按原词分组，35 类中有 30 类的差值方向指向记忆来源词。这说明稳定状态里有能把判断推向特定词的线索。它保存的是某些声音特征，还是模型在中点已经形成的类别倾向，交换整个状态还区分不开。",
+      "line": 253
     },
     {
       "id": "4.3-P7",
+      "en": "When noise starts with the first sound, even the earliest evidence can be corrupted. Figure~\\ref{fig:speech} adds background spikes throughout each word for the 40-plus-12 models. At a mean of 0.0625 spikes per channel per frame, whole-word accuracy is 25.69\\% for GDSM and 20.46\\% for DMP. At 0.25, the two score 9.77\\% and 14.43\\%, respectively. The same noise intensity that GDSM can withstand after hearing a clear word makes it difficult to acquire reliable evidence from the outset. The training curves in Fig.~\\ref{fig:training} use clean validation inputs and track ordinary recognition over the two stages.",
+      "zh": "如果从第一个声音开始就有噪声，情况又不同。图~\\ref{fig:speech} 用 40 加 12 轮模型，把背景脉冲叠在整个词上。每通道每帧平均加入 0.0625 个脉冲时，GDSM 的整词准确率为 25.69\\%，DMP 为 20.46\\%。强度增至 0.25 时，分别为 9.77\\% 和 14.43\\%。同样强度的噪声接在词后时，GDSM 能保留更多先前听到的信息。从开头就加噪时，它要从已经受扰的输入中提取线索。图~\\ref{fig:training} 中的训练曲线使用干净验证输入，衡量的是两个训练阶段中的普通识别能力。",
+      "line": 255
+    },
+    {
+      "id": "4.3-P8",
+      "en": "Gestures allow the two timings to be compared on the same examples. Both models initially recognize 224 clean gestures in common. Adding standard background activity throughout those movements gives GDSM a net 25 fewer correct gestures than DMP. Applying the same noise intensity for 80 frames after the movements gives it a net 58 more (Fig.~\\ref{fig:paired}). Gating can help earlier evidence continue to guide the response. When noise is mixed with the movement itself, that evidence must first be extracted from a noisy signal.",
+      "zh": "手势可以在同一批样本上比较这两种情形。两个模型原本都认对了 224 个干净动作。把标准强度的背景事件叠加在动作上，GDSM 比 DMP 净少认对 25 个。将同等强度的噪声接在动作之后，持续 80 帧，GDSM 比 DMP 净多认对 58 个（图~\\ref{fig:paired}）。同一个写入门可以帮神经元继续使用先前的动作线索。至于噪声已经混在动作里的时候，架构还得先从带噪输入里提取这些线索。",
+      "line": 263
+    },
+    {
+      "id": "4.3-P9",
       "en": "Training also affects how the network uses this pathway. After 80 noise frames following a word, the clean-trained 200-epoch SSC models score 2.96\\% for DMP and 3.22\\% for GDSM, both close to chance for 35 classes. Following the same GDSM across the two stages of the 40-plus-12 schedule, accuracy after 120 noise frames rises from 11.47\\% before mixed training to 52.79\\% afterwards. Using earlier evidence during a word and learning to carry a class through a long interruption can thus be tested separately.",
       "zh": "训练方式也决定网络会怎样使用这条通路。只用干净词训练 200 轮的 SSC 模型，在词后追加 80 帧噪声时，DMP 和 GDSM 分别为 2.96\\% 和 3.22\\%，都接近 35 类任务的随机水平。再看采用 40 加 12 轮训练的 GDSM，在词后追加 120 帧噪声，准确率从混合训练前的 11.47\\% 升至训练后的 52.79\\%。因此，类别线索能在词内帮助识别，与模型学会跨过长干扰维持类别，是两项可分别检验的行为。",
-      "line": 257
+      "line": 265
     },
     {
       "id": "5-P1",
       "en": "The second shared state adds work for the input projection, gate and readout. When all write gates close on a step, the stable state stays fixed and its previously computed read current can be reused. Across 264 clean gestures, DMP uses an estimated 63.212 million effective multiply--accumulates per example and cached GDSM uses 67.196 million across the full network, an increase of 6.30\\% (Fig.~\\ref{fig:hardware}). With 80 silent frames after the movement, reusing the read reduces GDSM's own full-network count from 69.274 million to 68.455 million, a saving of about 1.18\\%.",
       "zh": "第二份共享记忆增加了输入投影、门控和读取的计算量。若一个时间步上所有写入门都关闭，稳定状态没有改变，上次算好的稳定读取电流就可以复用。在 264 个干净手势上，按整网统计，DMP 每例平均使用 63.212 百万次有效乘加，带缓存的 GDSM 为 67.196 百万次，增加 6.30\\%（图~\\ref{fig:hardware}）。在动作后追加 80 帧静音时，复用读取结果让 GDSM 自身的整网乘加数从 69.274 百万降至 68.455 百万，减少约 1.18\\%。",
-      "line": 266
+      "line": 274
     },
     {
       "id": "5-P2",
       "en": "We implement the memory pathway in the public DMP Chisel design using signed 24-bit fixed-point arithmetic. We replay 784 pixels, 80 silent frames and 80 noise frames in Verilator using a fitted 40-dimensional memory layer, and compare each step with an independent integer reference. All 117,056 checked values agree over the 944 steps. This test directly checks the order and arithmetic of candidate updates, stable writes and cached reads.",
       "zh": "我们在原 DMP 公开的 Chisel 硬件工程中实现记忆通路，使用有符号 24 位定点运算。取一个已经训练好的 40 维记忆层，在 Verilator 中依次输入 784 个像素、80 帧静音和 80 帧噪声，并与独立的整数参考逐步比较。944 步中检查的 117,056 个数值全部一致。这个测试直接核对了候选更新、稳定写入和读取缓存的运算顺序。",
-      "line": 268
+      "line": 276
     },
     {
       "id": "5-P3",
       "en": "On the same input trace, caching the stable read reduces memory-core cycles from 188,800 to 185,528. These cycles are timed inside the memory core. The operation count in Fig.~\\ref{fig:hardware} covers the full network. The former checks the implementation and the latter estimates the cost of adding memory to the model. Energy on silicon remains to be measured.",
       "zh": "同一条输入轨迹上，复用稳定读取使记忆核的周期数从 188,800 降至 185,528。这里计时的是记忆核。图~\\ref{fig:hardware} 的乘加统计覆盖整网。前者验证实现，后者估算增加这份记忆需要多少计算。芯片上的实际能耗还需要工艺和存储器层面的测量。",
-      "line": 270
+      "line": 278
     },
     {
       "id": "6-P1",
       "en": "DMP gives earlier inputs a route back to the neurons processing the present frame. GDSM lets two states on that route update at different times. One tracks the input and the other can carry an earlier write into the current computation. The midpoint experiment makes this contribution observable. Changing only the stable state carried over from the first half alters the decision while the network is still hearing the same word.",
       "zh": "DMP 给脉冲网络提供了一条从过去的输入通向当前神经元的路。GDSM 在这条路上允许两份状态在不同的时刻更新。一份记忆随输入变化，另一份可以带着先前的内容继续参与计算。词中清零实验让这种作用可以直接观察。模型仍在听同一个词，只改变从前半段带来的稳定状态，后半段的判断就发生了变化。",
-      "line": 280
+      "line": 288
     },
     {
       "id": "6-P2",
-      "en": "The gesture results help locate the conditions under which this mechanism is most effective. When the movement is clear before background events arrive, longer-lived memory preserves useful evidence. When background events are present from the start, the content written to the stable state can itself be unreliable. The SHD projection control points to the same issue from another direction. For earlier input to remain useful, discriminative information must first enter memory. A question for future work is how the gate can identify a worthwhile new cue when both the movement and its background are changing.",
-      "zh": "手势结果说明了这个机制在什么条件下最有帮助。先看清动作再遇到背景时，更持久的记忆能保住较早的线索。若背景从动作开始就存在，稳定状态接收的内容也可能已经受扰。SHD 的输入投影对照有助于解释这一点。要让先前信息持续起作用，首先要让有辨别力的信息进入记忆。今后值得检验的是，怎样让门在新线索刚刚出现时判断哪些值得写入，尤其是在动作和噪声同时变化的时候。",
-      "line": 282
+      "en": "The experiments address three distinct questions. Whole-word accuracy measures the benefit of changing the architecture, but a single score cannot assign that benefit to individual components. Carrying or clearing the midpoint state isolates its contribution to later decisions in the same fitted network. Exchanging the states of two words then tests whether the direction of that contribution depends on which word supplied it. Together these comparisons suggest that current input, the candidate and earlier stable writes all participate in recognition. A stable write can favor one word while leaving room for the remaining input and pathways to determine the answer.",
+      "zh": "这几项实验对应着三个不同的问题。看整词准确率，可以判断换用这套架构是否有益，却很难从一个总分里分出各部件的作用。保留或清空中点的稳定状态，就能在同一个模型里检验它对后半段判断的贡献。再把甲词的状态换成乙词的状态，才有机会观察贡献的内容是否随词而变。三者放在一起，可以看到，当前输入、候选状态和先前写入的稳定状态共同参与识别，其中稳定状态可以给某个词增加一点支持，而其他通路仍足以改变最后的答案。",
+      "line": 290
     },
     {
       "id": "6-P3",
-      "en": "We evaluate classification at known event boundaries. A recognizer can answer when a complete command ends. Appending a disturbance lets us observe how its internal state evolves afterwards. Recognizing continuous, unsegmented speech would also require the network to detect the start of a new command and determine when it has enough evidence to decide.",
-      "zh": "本研究在已知事件边界上评估分类。识别一个完整命令时，模型可以在词结束时作答。词后追加干扰是为了观察内部状态如何演化。若要识别没有预先分段的连续语音，还要让网络自己判断新命令从哪里开始、何时已有足够信息作出决定。",
-      "line": 284
+      "en": "The gesture results help locate the conditions under which this mechanism is most effective. When the movement is clear before background events arrive, longer-lived memory preserves useful evidence. When background events are present from the start, the content written to the stable state can itself be unreliable. The SHD projection control points to the same issue from another direction. For earlier input to remain useful, discriminative information must first enter memory. A question for future work is how the gate can identify a worthwhile new cue when both the movement and its background are changing.",
+      "zh": "手势结果说明了这个机制在什么条件下最有帮助。先看清动作再遇到背景时，更持久的记忆能保住较早的线索。若背景从动作开始就存在，稳定状态接收的内容也可能已经受扰。SHD 的输入投影对照有助于解释这一点。要让先前信息持续起作用，首先要让有辨别力的信息进入记忆。今后值得检验的是，怎样让门在新线索刚刚出现时判断哪些值得写入，尤其是在动作和噪声同时变化的时候。",
+      "line": 292
     },
     {
       "id": "6-P4",
+      "en": "We evaluate classification at known event boundaries. A recognizer can answer when a complete command ends. Appending a disturbance lets us observe how its internal state evolves afterwards. Recognizing continuous, unsegmented speech would also require the network to detect the start of a new command and determine when it has enough evidence to decide.",
+      "zh": "本研究在已知事件边界上评估分类。识别一个完整命令时，模型可以在词结束时作答。词后追加干扰是为了观察内部状态如何演化。若要识别没有预先分段的连续语音，还要让网络自己判断新命令从哪里开始、何时已有足够信息作出决定。",
+      "line": 294
+    },
+    {
+      "id": "6-P5",
       "en": "The datasets are public~\\cite{shd,gesture,mnist}. Training code, per-example predictions and hardware replay records are available at \\url{https://github.com/Veirsune/Dual_memory_pathways}. The implementation extends the DMP project of Sun and colleagues~\\cite{dmp}.",
       "zh": "数据集均已公开~\\cite{shd,gesture,mnist}。训练代码、逐例预测和硬件重放记录见 \\url{https://github.com/Veirsune/Dual_memory_pathways}。实现基于 Sun 等人的 DMP 工程~\\cite{dmp}。",
-      "line": 287
+      "line": 297
     }
   ]
 }

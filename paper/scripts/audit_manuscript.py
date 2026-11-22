@@ -159,6 +159,15 @@ with np.load(R/'evidence/ssc-midpoint.npz') as data:
         check('midpoint values in both languages '+cond, all(v in doc for v in values for doc in (text, zh_text)))
 [stable] = [r for r in paired if r['dataset']=='ssc-repair' and r['comparison']=='GDSM stable read off / full' and r['condition']=='clean']
 check('stable readout dependence', all(f"{float(stable[k]):.2f}" in doc for doc in (text,zh_text) for k in ('acc_a','acc_b')))
+swap = json.loads((R/'evidence/ssc-memory-swap.json').read_text())
+check('swap design and eligible cohort', swap['swaps'] == 2*swap['n'] and swap['speakers']==472)
+specific = 100*(swap['actual_donor_hits']-swap['alternate_donor_hits'])/swap['swaps']
+check('paired donor contrast', abs(specific - swap['donor_specific_pp']['mean']) < 1e-9)
+swap_numbers = [f"{swap[k]:,}" for k in ('n','swaps','actual_donor_hits','alternate_donor_hits')]
+swap_numbers += [f"{swap[k]['mean']:.2f}" for k in ('donor_specific_pp','actual_donor_pct','alternate_donor_pct','swapped_recipient_pct')]
+swap_numbers += [f"{v:.2f}" for v in swap['donor_specific_pp']['ci95']]
+check('swap results typeset in both languages', all(v in doc for v in swap_numbers for doc in (text,zh_text)))
+check('three-way example', swap['three_way_examples']==1 and swap['first_three_way']['recipient']=='down' and swap['first_three_way']['donor_words']==['on','go'])
 report={'status':'passed','checks':checks,'pages':pages,'new_training_runs':0,'note':'Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript.'}
 (R/'evidence/manuscript-audit.json').write_text(json.dumps(report,indent=2))
 print(f'Passed {len(checks)} checks; {pages} PDF pages; verified frozen evaluations.')

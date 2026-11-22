@@ -11,6 +11,7 @@ The manuscript describes completed experiments. Manuscript preparation performed
 | Gesture official-test comparison | `final-study/block3-summary.csv` | `gesture.csv`, `gesture-report.md`, `gesture-protocol.json` |
 | Ordinary recognition and timed interference | Repository `large_scale/paired_effects/` | `paired-effects.csv`, `paired-intervals.csv`, `mnist.csv` |
 | Carried word-prefix state on SSC | Repository `large_scale/ssc_matched200/midpoint/` | `ssc-midpoint.json`, `ssc-midpoint.npz` |
+| Midpoint exchange of stable states | [Swap protocol, predictions and class-level effects](../large_scale/ssc_matched200/memory_swap/) | `ssc-memory-swap.json` |
 | Full SSC comparison | `block5-ssc/metrics.csv`, `paired-statistics.json` | `ssc.csv`, `ssc-statistics.json`, protocol/report |
 | Full S/PS-MNIST comparison | `block6-mnist/metrics.csv`, `paired-statistics.json` | `mnist.csv`, `mnist-statistics.json`, protocol/report |
 | Gesture operation estimates | `final-study/hardware-summary.csv` | `hardware-operations.csv`, `operations-report.md` |

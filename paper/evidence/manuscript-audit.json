@@ -137,6 +137,11 @@
       "details": null
     },
     {
+      "check": "source checksum: evidence/ssc-memory-swap.json",
+      "passed": true,
+      "details": null
+    },
+    {
       "check": "SHD supervision d10 task_only",
       "passed": true,
       "details": {
@@ -464,7 +469,7 @@
       "check": "complete PDF",
       "passed": true,
       "details": {
-        "pages": 8
+        "pages": 9
       }
     },
     {
@@ -856,9 +861,29 @@
       "check": "stable readout dependence",
       "passed": true,
       "details": null
+    },
+    {
+      "check": "swap design and eligible cohort",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paired donor contrast",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "swap results typeset in both languages",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "three-way example",
+      "passed": true,
+      "details": null
     }
   ],
-  "pages": 8,
+  "pages": 9,
   "new_training_runs": 0,
   "note": "Numerical/source and compilation audit; figure pages are also visually inspected. Scientific interpretation is described in the manuscript."
 }

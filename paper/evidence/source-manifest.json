@@ -133,5 +133,10 @@
     "file": "evidence/ssc-midpoint.npz",
     "source": "large_scale/ssc_matched200/midpoint/predictions.npz",
     "sha256": "e93d3a2682bb1a67d2b3d8d18ac42d675c24c88365c90c8a5538ebeadf97fff4"
+  },
+  {
+    "file": "evidence/ssc-memory-swap.json",
+    "source": "large_scale/ssc_matched200/memory_swap/results.json",
+    "sha256": "fa240bfcd32d1825ac5e79c763dc8feb5e039c616b34774faff272291e73750e"
   }
 ]

@@ -1,0 +1,90 @@
+{
+  "n": 20340,
+  "speakers": 472,
+  "classes": 35,
+  "swaps": 40680,
+  "distinct_donors": 15466,
+  "actual_donor_hits": 1939,
+  "alternate_donor_hits": 1603,
+  "baseline_donor_hits": 1528,
+  "own_recipient_hits": 6677,
+  "swapped_recipient_hits": 11296,
+  "new_donor_hits": 922,
+  "lost_donor_hits": 511,
+  "actual_donor_pct": {
+    "mean": 4.766470009832842,
+    "ci95": [
+      4.4543213655278615,
+      5.078263898865319
+    ]
+  },
+  "alternate_donor_pct": {
+    "mean": 3.940511307767945,
+    "ci95": [
+      3.6777932558910855,
+      4.199772558418566
+    ]
+  },
+  "own_state_donor_pct": {
+    "mean": 3.7561455260570304,
+    "ci95": [
+      3.4848374665911677,
+      4.023174617593822
+    ]
+  },
+  "donor_specific_pp": {
+    "mean": 0.8259587020648967,
+    "ci95": [
+      0.617516518821232,
+      1.0423333326610258
+    ]
+  },
+  "donor_change_from_own_pp": {
+    "mean": 1.0103244837758112,
+    "ci95": [
+      0.7959163906934791,
+      1.22534070672918
+    ]
+  },
+  "own_recipient_pct": {
+    "mean": 32.82694198623402,
+    "ci95": [
+      31.276341500288844,
+      34.409522692674166
+    ]
+  },
+  "swapped_recipient_pct": {
+    "mean": 27.76794493608653,
+    "ci95": [
+      26.399854584625665,
+      29.186002612180026
+    ]
+  },
+  "recipient_change_pp": {
+    "mean": -5.058997050147493,
+    "ci95": [
+      -5.566282128144522,
+      -4.573510409718322
+    ]
+  },
+  "donor_logit_contrast": {
+    "mean": 0.18235937602696217,
+    "ci95": [
+      0.16461912313367366,
+      0.20112306903730176
+    ]
+  },
+  "three_way_examples": 1,
+  "first_three_way": {
+    "recipient_index": 10487,
+    "recipient": "down",
+    "donor_indices": [
+      8647,
+      16849
+    ],
+    "donor_words": [
+      "on",
+      "go"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "input_n": 20382,
+  "eligible": 20340,
+  "speakers_total": 498,
+  "own_predictions_match_archive": 20382,
+  "independent_probe_n": 16,
+  "probe_max_logit_difference": 0.0
+}
